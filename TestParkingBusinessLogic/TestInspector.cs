@@ -4,11 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TestParkingBusinessLogic
 {
     [TestClass]
-    public class UnitTest1
+    public class TestInspector
     {
         [TestMethod]
         public void TestMethod1()
         {
+           
         }
     }
 }
