@@ -4,10 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestParkingBusinessLogic", "TestParkingBusinessLogic\TestParkingBusinessLogic.csproj", "{70380AD2-98E9-40EC-89CB-50C1E96BD775}"
+	ProjectSection(ProjectDependencies) = postProject
+		{36A1DF78-CD90-4610-B474-ED203C1F5879} = {36A1DF78-CD90-4610-B474-ED203C1F5879}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingBusinessLogic", "ParkingBusinessLogic\ParkingBusinessLogic.csproj", "{36A1DF78-CD90-4610-B474-ED203C1F5879}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingUserInterface", "ParkingUserInterface\ParkingUserInterface.csproj", "{C6916B87-03A5-4A72-A36A-B98E0BA4036D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{36A1DF78-CD90-4610-B474-ED203C1F5879} = {36A1DF78-CD90-4610-B474-ED203C1F5879}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -51,9 +51,16 @@
   <ItemGroup>
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestAccount.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ParkingBusinessLogic\ParkingBusinessLogic.csproj">
+      <Project>{36a1df78-cd90-4610-b474-ed203c1f5879}</Project>
+      <Name>ParkingBusinessLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
