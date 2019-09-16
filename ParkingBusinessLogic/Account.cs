@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-﻿using System;
-=======
+
 using System;
->>>>>>> a3da371c5930b235f97ae2f22009c6378d496ff4
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +9,6 @@ namespace ParkingBusinessLogic
 {
     public class Account
     {
-<<<<<<< HEAD
         public Boolean addBalance()
         {
             return true;
@@ -48,13 +44,3 @@ namespace ParkingBusinessLogic
 
     }
 }
-=======
-
-
-        public Boolean addBalance()
-        {
-            return true;
-        }
-    }
-}
->>>>>>> a3da371c5930b235f97ae2f22009c6378d496ff4
