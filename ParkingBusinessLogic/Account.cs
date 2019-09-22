@@ -20,11 +20,14 @@ namespace ParkingBusinessLogic
                 return number;
             }
             private set {
-                if(ValidateFormat(value))
+                if (ValidateFormat(value))
                 {
                     number = Format(value);
                 }
-                throw new InvalidNumberException();
+                else
+                {
+                    throw new InvalidNumberException();
+                }
             }
         }
 
@@ -58,15 +61,8 @@ namespace ParkingBusinessLogic
 
         public Boolean  ValidateFormat(String num)
         {
-            Boolean result = false;
             num = num.Replace(" ","");
-            Regex expretion = new Regex(@"0?[9][^3]\d{6}$");
-
-            if (expretion.IsMatch(num)) { 
-               result = true;
-                    
-            }
-            return result;
+            return Regex.IsMatch(num, @"^0?[9][^3]\d{6}" );
         }
 
         public Boolean  EnoughBalance ()
