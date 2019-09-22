@@ -1,43 +1,75 @@
 
+using ParkingBusinessLogic.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ParkingBusinessLogic
 {
     public class Account
     {
-        public Boolean addBalance()
+
+        private string number;
+
+        public string Number
+        {
+            get {
+                return number;
+            }
+            private set {
+                if(ValidateFormat(value))
+                {
+                    number = Format(value);
+                }
+                throw new InvalidNumberException();
+            }
+        }
+
+        private string Format(string num)
+        {
+            num = num.Replace(" ", "");
+            if (num.Length==9)
+            {
+                num = num.Insert(6, " ");
+                num = num.Insert(3, " ");
+            } else if (num.Length==8)
+            {
+                num = num.Insert(5, " ");
+                num = num.Insert(2, " ");
+            } else
+            {
+                throw new InvalidNumberException();
+            }
+            return num;
+        }
+
+        public Account(string num)
+        {
+            Number = num;
+        }
+
+        public Boolean AddBalance()
         {
             return true;
         }
 
-        public String validateFormat(String num)
+        public Boolean  ValidateFormat(String num)
         {
-            String result = "Formato Invalido";
+            Boolean result = false;
             num = num.Replace(" ","");
+            Regex expretion = new Regex(@"0?[9][^3]\d{6}$");
 
-            if ((num.Length == 9) || (num.Length == 8))
-            {
-                if (num.All(char.IsDigit))
-                {
-                    if((num.Length == 9) && (num[0] == '0') && (num[1]=='9') && (num[2]!='3'))
-                    {
-                        result = num.Insert(6," ") ;
-                        result = result.Insert(3, " ");
-                    } else if ((num[0]=='9') && (num[1]!='3') && (num.Length == 8))
-                    {
-                        result = num.Insert(5, " ");
-                        result = result.Insert(2, " ");
-                    }
-                }
+            if (expretion.IsMatch(num)) { 
+               result = true;
+                    
             }
             return result;
         }
 
-        public Boolean  enoughBalance ()
+        public Boolean  EnoughBalance ()
         {
             return true;
         } 

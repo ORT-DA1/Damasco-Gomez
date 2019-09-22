@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingUserInterface", "Par
 		{36A1DF78-CD90-4610-B474-ED203C1F5879} = {36A1DF78-CD90-4610-B474-ED203C1F5879}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C6916B87-03A5-4A72-A36A-B98E0BA4036D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6916B87-03A5-4A72-A36A-B98E0BA4036D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6916B87-03A5-4A72-A36A-B98E0BA4036D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
