@@ -135,14 +135,16 @@ namespace TestParkingBusinessLogic
 
             Assert.IsTrue(output);
         }
+        [TestMethod]
+        public void DiscountBalance()
+        {
+            Account myAccount = new Account("098878989");
+            int amount = 200;
+            Boolean output = myAccount.DiscountBalance(amount);
+            Assert.IsTrue(output);
+        }
 
-    }
-    [TestMethod]
-    public void DiscountBalance()
-    {
-        int amount = 200;
-        Boolean output = myAccount.DiscountBalance(amount);
-        Assert.IsTrue(output);
+
     }
 
 
