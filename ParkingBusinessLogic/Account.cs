@@ -13,7 +13,6 @@ namespace ParkingBusinessLogic
     {
 
         private string number;
-
         public string Number
         {
             get {
@@ -27,6 +26,16 @@ namespace ParkingBusinessLogic
                 throw new InvalidNumberException();
             }
         }
+        private int amount;
+        public int Amount {
+            get { 
+                 return Amount}
+            private set {
+                aumount= value }
+
+
+
+      }
 
         private string Format(string num)
         {
@@ -73,6 +82,8 @@ namespace ParkingBusinessLogic
         {
             return true;
         } 
-
+        public Boolean DiscountBalance(int amount) {
+              return true;
+        }
     }
 }
