@@ -31,10 +31,12 @@ namespace ParkingBusinessLogic
         }
         private int amount;
         public int Amount {
-            get { 
-                 return Amount}
+            get {
+                return amount;
+                    }
             private set {
-                aumount= value }
+                amount = value;
+            }
 
 
 
