@@ -83,5 +83,81 @@ namespace ParkingBusinessLogic
         public Boolean DiscountBalance(int amount) {
               return true;
         }
+        public void AskforParking(String num, String msg)
+        {
+            if (validateMsg(msg))
+            {
+
+            } else
+            {
+                throw new InvalidTextException();
+            }
+        }
+
+        public Boolean validateMsg(string msg)
+        {
+
+            String[] msgList = msg.Split(' ');
+            String enrollment = "";
+            String cantHours = "";
+            String startTime = "";
+
+            if (msgList.Length >= 2)
+            {
+                if (msgList[0].Length == 3)
+                {
+                    enrollment = msgList[0] + msgList[1];
+                    cantHours = msgList[2];
+                    if (msgList.Length > 3) {
+                        startTime = msgList[3];
+                    }
+                       
+                }
+                else
+                {
+                    enrollment = msgList[0];
+                    cantHours = msgList[1];
+                    if (msgList.Length >2)
+                    {
+
+                        startTime = msgList[2]; 
+                    }
+
+                }
+                Console.WriteLine(enrollment);
+                Console.WriteLine(cantHours);
+                Console.WriteLine(startTime);
+
+                if (validarEnrollment(enrollment))
+                {
+                    return true;
+                }
+                else { return false; }
+            }
+            else
+            {
+                return false;
+            }
+            
+           
+
+
+            
+        }
+
+        private bool validarEnrollment(string enrollment)
+        {
+            
+            if (!enrollment.Equals("") &&  Regex.IsMatch(enrollment, @"^[a-zA-Z]{3}\d{4}$"))
+            {
+                return true;
+               
+            }
+            else {
+                
+                throw new InvalidTextException();
+            }
+            
+        }
     }
 }

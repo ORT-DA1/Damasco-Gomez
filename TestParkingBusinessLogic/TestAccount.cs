@@ -144,6 +144,40 @@ namespace TestParkingBusinessLogic
             Assert.IsTrue(output);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTextException))]
+        public void askforParking()
+        {   
+            String num = ("098 87 89 89");
+            Account myAccount = new Account(num);
+            String msg = ("jyjtgytjh");
+            myAccount.AskforParking(num,msg);
+
+
+        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTextException))]
+        public void validateMsgIncorrect()
+        {
+            String num = ("098 87 89 89");
+            Account myAccount = new Account(num);
+            String msg = ("SB1234 1234");
+            myAccount.validateMsg(msg);
+
+
+        }
+        [TestMethod]
+       
+        public void validateMsgCorrect()
+        {
+            String num = ("098 87 89 89");
+            Account myAccount = new Account(num);
+            String msg = ("SBS1234 150 10:15");
+            Boolean output= myAccount.validateMsg(msg);
+            Assert.IsTrue(output);
+
+
+        }
 
     }
 
