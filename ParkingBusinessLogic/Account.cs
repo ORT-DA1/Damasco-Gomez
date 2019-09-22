@@ -124,12 +124,11 @@ namespace ParkingBusinessLogic
                     }
 
                 }
-                Console.WriteLine(enrollment);
-                Console.WriteLine(cantHours);
-                Console.WriteLine(startTime);
+                
 
-                if (validarEnrollment(enrollment))
+                if (validateEnrollment(enrollment) && validateHoursMultiple30(cantHours))
                 {
+                    startTime = validateStartTime(startTime);
                     return true;
                 }
                 else { return false; }
@@ -145,7 +144,49 @@ namespace ParkingBusinessLogic
             
         }
 
-        private bool validarEnrollment(string enrollment)
+        public String validateStartTime(string startTime)
+        {
+            if (!startTime.Equals("") && startTime.Contains(':')) {
+
+
+                String[] hourmin = startTime.Split(':');
+                String hour = hourmin[0];
+                String min = hourmin[1];
+                int hours = Int32.Parse(hour);
+                int mins = Int32.Parse(min);
+                if ((hours >= 10) && (hours <= 18))
+                {
+                    return startTime;
+
+                }
+                else { throw new InvalidTextException(); }
+
+
+            }
+            else
+            {
+                DateTime time = DateTime.Now;
+                return time.ToString("h:mm");
+                Console.WriteLine(time.ToString("h:mm"));
+            }
+        }
+
+        private Boolean validateHoursMultiple30(string cantHours)
+        {
+            int hours = Int32.Parse(cantHours);
+            if ((hours % 30) == 0) {
+
+                return true;
+
+            }
+            else {
+                throw new InvalidTextException();
+            }
+           
+            
+        }
+
+        private Boolean validateEnrollment(string enrollment)
         {
             
             if (!enrollment.Equals("") &&  Regex.IsMatch(enrollment, @"^[a-zA-Z]{3}\d{4}$"))

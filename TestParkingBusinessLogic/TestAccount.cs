@@ -178,7 +178,59 @@ namespace TestParkingBusinessLogic
 
 
         }
+        [TestMethod]
 
+        public void validateHoursMultiple30()
+        {
+            String num = ("098 87 89 89");
+            Account myAccount = new Account(num);
+            String msg = ("SBS1234 150 10:15");
+            Boolean output = myAccount.validateMsg(msg);
+            Assert.IsTrue(output);
+
+
+        }
+
+        [TestMethod]
+
+        [ExpectedException(typeof(InvalidTextException))]
+        public void  validateHoursNotMultiple30()
+        {
+            String num = ("098 87 89 89");
+            Account myAccount = new Account(num);
+            String msg = ("SBS1234 153 10:15");
+            myAccount.validateMsg(msg);
+         
+           
+
+
+        }
+        [TestMethod]
+
+        public void validateTimeInMsgCorrect()
+        {
+            String num = ("098 87 89 89");
+            Account myAccount = new Account(num);
+            String expected = "10:15";
+            String output = myAccount.validateStartTime(expected);
+            Assert.AreEqual(output, expected);
+
+
+
+        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTextException))]
+        public void validateTimeInMsgIncorrect()
+        {
+            String num = ("098 87 89 89");
+            Account myAccount = new Account(num);
+            String expected = "19:15";
+            String output = myAccount.validateStartTime(expected);
+
+
+
+
+        }
     }
 
 
