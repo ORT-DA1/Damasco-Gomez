@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
 using ParkingBusinessLogic.Exceptions;
 
 namespace TestParkingBusinessLogic
 {
+    [ExcludeFromCodeCoverage]
     [TestClass]
     public class TestAccount
     {
@@ -231,7 +233,50 @@ namespace TestParkingBusinessLogic
 
 
         }
+        [TestMethod]
+       
+        public void breakdownlicensePlateCorrect()
+        {
+            String num = ("098 87 89 89");
+            Account myAccount = new Account(num);
+            String msg = ("ABC 1234 60 10:00");
+            string output = myAccount.breakDownLicensePlate(msg);
+            String expected = "ABC 1234";
+            Assert.AreEqual(output, expected);
+
+
+
+
+        }
+
+        public void breakdownCantMinutesCorrect()
+        {
+            String num = ("098 87 89 89");
+            Account myAccount = new Account(num);
+            String msg = ("ABC 1234 60 10:00");
+            string output = myAccount.breakDownCantMinutes(msg);
+            String expected = "60";
+            Assert.AreEqual(output, expected);
+
+
+
+
+        }
+        public void breakdownHoursCorrect()
+        {
+            String num = ("098 87 89 89");
+            Account myAccount = new Account(num);
+            String msg = ("ABC 1234 60 10:00");
+            string output = myAccount.breakDownHours(msg);
+            String expected = "10:00";
+            Assert.AreEqual(output, expected);
+
+
+
+
+        }
     }
+
 
 
 }

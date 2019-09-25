@@ -15,10 +15,12 @@ namespace ParkingBusinessLogic
         private string number;
         public string Number
         {
-            get {
+            get
+            {
                 return number;
             }
-            private set {
+            private set
+            {
                 if (ValidateFormat(value))
                 {
                     number = Format(value);
@@ -30,30 +32,35 @@ namespace ParkingBusinessLogic
             }
         }
         private int amount;
-        public int Amount {
-            get {
+        public int Amount
+        {
+            get
+            {
                 return amount;
-                    }
-            private set {
+            }
+            private set
+            {
                 amount = value;
             }
 
 
 
-      }
+        }
 
         private string Format(string num)
         {
             num = num.Replace(" ", "");
-            if (num.Length==9)
+            if (num.Length == 9)
             {
                 num = num.Insert(6, " ");
                 num = num.Insert(3, " ");
-            } else if (num.Length==8)
+            }
+            else if (num.Length == 8)
             {
                 num = num.Insert(5, " ");
                 num = num.Insert(2, " ");
-            } else
+            }
+            else
             {
                 throw new InvalidNumberException();
             }
@@ -70,25 +77,27 @@ namespace ParkingBusinessLogic
             return true;
         }
 
-        public Boolean  ValidateFormat(String num)
+        public Boolean ValidateFormat(String num)
         {
-            num = num.Replace(" ","");
-            return Regex.IsMatch(num, @"^0?[9][^3]\d{6}" );
+            num = num.Replace(" ", "");
+            return Regex.IsMatch(num, @"^0?[9][^3]\d{6}");
         }
 
-        public Boolean  EnoughBalance ()
+        public Boolean EnoughBalance()
         {
             return true;
-        } 
-        public Boolean DiscountBalance(int amount) {
-              return true;
+        }
+        public Boolean DiscountBalance(int amount)
+        {
+            return true;
         }
         public void AskforParking(String num, String msg)
         {
             if (validateMsg(msg))
             {
 
-            } else
+            }
+            else
             {
                 throw new InvalidTextException();
             }
@@ -98,55 +107,31 @@ namespace ParkingBusinessLogic
         {
 
             String[] msgList = msg.Split(' ');
-            String enrollment = "";
-            String cantHours = "";
-            String startTime = "";
+            String licensePlate = breakDownLicensePlate(msg);
+            String cantMinutes = BreakDownCantMinutes(msg);
+            String startTime = breakDownStarTime(msg);
+           
+            
 
-            if (msgList.Length >= 2)
+            if (validateLicensePlate(licensePlate) && validateMinutesMultiple30(cantMinutes))
             {
-                if (msgList[0].Length == 3)
-                {
-                    enrollment = msgList[0] + msgList[1];
-                    cantHours = msgList[2];
-                    if (msgList.Length > 3) {
-                        startTime = msgList[3];
-                    }
-                       
-                }
-                else
-                {
-                    enrollment = msgList[0];
-                    cantHours = msgList[1];
-                    if (msgList.Length >2)
-                    {
-
-                        startTime = msgList[2]; 
-                    }
-
-                }
-                
-
-                if (validateEnrollment(enrollment) && validateHoursMultiple30(cantHours))
-                {
-                    startTime = validateStartTime(startTime);
-                    return true;
-                }
-                else { return false; }
+                startTime = validateStartTime(startTime);
+                return true;
             }
             else
             {
                 return false;
             }
-            
-           
-
-
-            
         }
+
+
+
+
 
         public String validateStartTime(string startTime)
         {
-            if (!startTime.Equals("") && startTime.Contains(':')) {
+            if (!startTime.Equals("") && startTime.Contains(':'))
+            {
 
 
                 String[] hourmin = startTime.Split(':');
@@ -171,34 +156,157 @@ namespace ParkingBusinessLogic
             }
         }
 
-        private Boolean validateHoursMultiple30(string cantHours)
+        private Boolean validateMinutesMultiple30(string minutes)
         {
-            int hours = Int32.Parse(cantHours);
-            if ((hours % 30) == 0) {
+            int min = Int32.Parse(minutes);
+            if ((min % 30) == 0)
+            {
 
                 return true;
 
             }
-            else {
+            else
+            {
                 throw new InvalidTextException();
             }
-           
-            
+
+
         }
 
-        private Boolean validateEnrollment(string enrollment)
+        private Boolean validateLicensePlate(string licensePlate)
         {
-            
-            if (!enrollment.Equals("") &&  Regex.IsMatch(enrollment, @"^[a-zA-Z]{3}\d{4}$"))
+
+            if (!licensePlate.Equals("") && Regex.IsMatch(licensePlate, @"^[a-zA-Z]{3}\d{4}$"))
             {
                 return true;
-               
+
             }
-            else {
-                
+            else
+            {
+
                 throw new InvalidTextException();
             }
+
+        }
+
+
+        public string breakDownLicensePlate(string msg)
+        {
             
+            string licensePlate= ParseLicensePlate(msg);
+            validateLicensePlate(licensePlate);
+            return licensePlate;
+
+
+           
+           
+        }
+
+        private String ParseLicensePlate(string msg)
+        {
+
+            String[] msgList = msg.Split(' ');
+            String licensePlate = "";
+            if (msgList.Length >= 2)
+            {
+                if (msgList[0].Length == 3)
+                {
+                    licensePlate = msgList[0] + msgList[1];
+
+
+                }
+                else
+                {
+                    licensePlate = msgList[0];
+
+
+                }
+
+            }
+            return licensePlate;
+        }
+
+        public string BreakDownCantMinutes(string msg)
+        {
+
+            string cantMinutes = ParseCantMinutes(msg);
+            validateMinutesMultiple30(cantMinutes);
+            return cantMinutes;
+
+
+           
+        }
+
+        private string ParseCantMinutes(string msg)
+        {
+
+            String[] msgList = msg.Split(' ');
+            
+            String minutes = "";
+            
+
+            if (msgList.Length >= 2)
+            {
+                if (msgList[0].Length == 3)
+                {
+                    
+                    minutes = msgList[2];
+                   
+
+                }
+                else
+                {
+          
+                    minutes = msgList[1]; 
+
+                }      
+                                             
+            }
+            return minutes;
+
+        }
+
+        public string breakDownStarTime(string msg)
+        {
+
+            string starTime = ParseStarTime(msg);
+            validateStartTime(starTime);
+            return starTime;
+
+          
+        }
+        public string ParseStarTime(string msg)
+        {
+            String starTime = "";
+            String[] msgList = msg.Split(' ');
+            if (msgList.Length >= 2)
+            {
+                if (msgList[0].Length == 3)
+                {
+
+                    if (msgList.Length > 3)
+                    {
+                        starTime = msgList[3];
+                    }
+
+                }
+                else
+                {
+                    if (msgList.Length > 2)
+                    {
+
+                        starTime = msgList[2];
+                    }
+
+                }
+            }
+            return starTime;
+
+
         }
     }
 }
+
+
+
+    
