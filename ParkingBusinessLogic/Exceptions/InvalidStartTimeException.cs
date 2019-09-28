@@ -10,7 +10,7 @@ namespace ParkingBusinessLogic.Exceptions
     public class InvalidStartTimeException : LogicException
     {
 
-            private static readonly string message = "The number is invalid";
+            private static readonly string message = "The time is invalid";
 
             public InvalidStartTimeException() : base(message)
             {
