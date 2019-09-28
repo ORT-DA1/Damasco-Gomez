@@ -97,17 +97,7 @@ namespace ParkingBusinessLogic
         {
             return true;
         }
-        public void AskforParking(string num, string msg)
-        {
-            if (validateMsg(msg))
-            {
 
-            }
-            else
-            {
-                throw new InvalidTextException();
-            }
-        }
 
 
     }
