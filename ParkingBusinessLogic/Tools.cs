@@ -9,10 +9,10 @@ namespace ParkingBusinessLogic
 {
     public class Tools
     {
-        public bool ValidateMinutesMultiple30(string minutes)
+       
+        public bool ValidateMinutesMultiple30(int minutes)
         {
-            int min = Int32.Parse(minutes);
-            if ((min % 30) == 0)
+            if ((minutes % 30) == 0)
             {
 
                 return true;
@@ -26,10 +26,10 @@ namespace ParkingBusinessLogic
 
         }
 
-        public string BreakDownCantMinutes(string msg)
+        public int BreakDownCantMinutes(string msg)
         {
 
-            string cantMinutes = ParseCantMinutes(msg);
+            int cantMinutes = ParseCantMinutes(msg);
             ValidateMinutesMultiple30(cantMinutes);
             return cantMinutes;
 
@@ -37,7 +37,7 @@ namespace ParkingBusinessLogic
 
         }
 
-        public string ParseCantMinutes(string msg)
+        public int ParseCantMinutes(string msg)
         {
 
             string[] msgList = msg.Split(' ');
@@ -62,7 +62,7 @@ namespace ParkingBusinessLogic
                 }
 
             }
-            return minutes;
+            return Convert.ToInt32(minutes);
 
         }
     }
