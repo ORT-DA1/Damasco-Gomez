@@ -75,11 +75,18 @@ namespace ParkingBusinessLogic
         }
 
         public bool AddBalance(Account account, int cant)
-        {
+        { 
 
-            int previosBalance = account.balance;
-            account.balance = previosBalance + cant;
-            return true;
+            if (cant>0)
+            {
+                int previosBalance = account.balance;
+                account.balance = previosBalance + cant;
+                return true;
+            } else
+            {
+                throw new NegativeNumberException();
+            }
+            
          }
         
 

@@ -25,12 +25,14 @@ namespace TestParkingBusinessLogic
 
             Assert.IsTrue(output);
         }
+        [TestMethod]
+        [ExpectedException(typeof(NegativeNumberException))]
         public void TestAddBalanceNegativeNumber()
         {
 
             Account myAccount = new Account("098456783");
-            bool output = myAccount.AddBalance(myAccount, 200);
-            Assert.IsTrue(output);
+            myAccount.AddBalance(myAccount, -200);
+            
         }
 
 
