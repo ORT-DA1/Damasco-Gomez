@@ -72,26 +72,26 @@ namespace ParkingBusinessLogic
             Number = num;
         }
 
-        public Boolean AddBalance()
+        public bool AddBalance()
         {
             return true;
         }
 
-        public Boolean ValidateFormat(String num)
+        public bool ValidateFormat(string num)
         {
             num = num.Replace(" ", "");
             return Regex.IsMatch(num, @"^0?[9][^3]\d{6}");
         }
 
-        public Boolean EnoughBalance()
+        public bool EnoughBalance()
         {
             return true;
         }
-        public Boolean DiscountBalance(int amount)
+        public bool DiscountBalance(int amount)
         {
             return true;
         }
-        public void AskforParking(String num, String msg)
+        public void AskforParking(string num, string msg)
         {
             if (validateMsg(msg))
             {
@@ -103,13 +103,13 @@ namespace ParkingBusinessLogic
             }
         }
 
-        public Boolean validateMsg(string msg)
+        public bool validateMsg(string msg)
         {
 
-            String[] msgList = msg.Split(' ');
-            String licensePlate = breakDownLicensePlate(msg);
-            String cantMinutes = BreakDownCantMinutes(msg);
-            String startTime = breakDownStarTime(msg);
+            string[] msgList = msg.Split(' ');
+            string licensePlate = breakDownLicensePlate(msg);
+            string cantMinutes = BreakDownCantMinutes(msg);
+            string startTime = breakDownStarTime(msg);
            
             
 
@@ -128,15 +128,15 @@ namespace ParkingBusinessLogic
 
 
 
-        public String validateStartTime(string startTime)
+        public string validateStartTime(string startTime)
         {
             if (!startTime.Equals("") && startTime.Contains(':'))
             {
 
 
-                String[] hourmin = startTime.Split(':');
-                String hour = hourmin[0];
-                String min = hourmin[1];
+                string[] hourmin = startTime.Split(':');
+                string hour = hourmin[0];
+                string min = hourmin[1];
                 int hours = Int32.Parse(hour);
                 int mins = Int32.Parse(min);
                 if ((hours >= 10) && (hours <= 18))
@@ -156,7 +156,7 @@ namespace ParkingBusinessLogic
             }
         }
 
-        private Boolean validateMinutesMultiple30(string minutes)
+        private bool validateMinutesMultiple30(string minutes)
         {
             int min = Int32.Parse(minutes);
             if ((min % 30) == 0)
@@ -173,7 +173,7 @@ namespace ParkingBusinessLogic
 
         }
 
-        private Boolean validateLicensePlate(string licensePlate)
+        private bool validateLicensePlate(string licensePlate)
         {
 
             if (!licensePlate.Equals("") && Regex.IsMatch(licensePlate, @"^[a-zA-Z]{3}\d{4}$"))
@@ -202,11 +202,11 @@ namespace ParkingBusinessLogic
            
         }
 
-        private String ParseLicensePlate(string msg)
+        private string ParseLicensePlate(string msg)
         {
 
-            String[] msgList = msg.Split(' ');
-            String licensePlate = "";
+            string[] msgList = msg.Split(' ');
+            string licensePlate = "";
             if (msgList.Length >= 2)
             {
                 if (msgList[0].Length == 3)
@@ -240,9 +240,9 @@ namespace ParkingBusinessLogic
         private string ParseCantMinutes(string msg)
         {
 
-            String[] msgList = msg.Split(' ');
+            string[] msgList = msg.Split(' ');
             
-            String minutes = "";
+            string minutes = "";
             
 
             if (msgList.Length >= 2)
@@ -277,8 +277,8 @@ namespace ParkingBusinessLogic
         }
         public string ParseStarTime(string msg)
         {
-            String starTime = "";
-            String[] msgList = msg.Split(' ');
+            string starTime = "";
+            string[] msgList = msg.Split(' ');
             if (msgList.Length >= 2)
             {
                 if (msgList[0].Length == 3)
