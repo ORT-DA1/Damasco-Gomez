@@ -67,7 +67,7 @@ namespace ParkingBusinessLogic
             Tools myTool = new Tools();
 
 
-            string finishTime = AddMinHour(  myTool.BreakDownCantMinutes(msg) , ValidateTime(startTime));
+            string finishTime = AddMinHour(  myTool.GetCantMinutes(msg) , ValidateTime(startTime));
 
             myAccount = myA ;
             MyLicensePlate = licensePlate;
