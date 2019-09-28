@@ -48,6 +48,12 @@ namespace ParkingBusinessLogic
 
 
         }
+        public Account(String num, int balance)
+        {
+            Number = num;
+            Balance = balance;
+
+        }
 
         private string Format(string num)
         {
@@ -64,7 +70,7 @@ namespace ParkingBusinessLogic
             }
             else
             {
-                throw new InvalidNumberException();
+                throw new InvalidNumberExcpetion();
             }
             return num;
         }
@@ -79,8 +85,8 @@ namespace ParkingBusinessLogic
 
             if (cant>0)
             {
-                int previosBalance = account.balance;
-                account.balance = previosBalance + cant;
+                int previosBalance = account.Balance;
+                account.Balance = previosBalance + cant;
                 return true;
             } else
             {
@@ -102,7 +108,27 @@ namespace ParkingBusinessLogic
         }
         public bool DiscountBalance(int amount)
         {
-            return true;
+            if (amount > 0)
+            {  
+                if (amount <= Balance)
+                {
+                    int actualBalance = Balance;
+                    Balance = actualBalance - amount;
+                    return true;
+                }
+               else
+                {
+                    throw new InvalidNumberExcpetion();
+                }
+
+            }
+            else 
+            {
+
+                throw new NegativeNumberException();
+            }
+                
+           
         }
 
 

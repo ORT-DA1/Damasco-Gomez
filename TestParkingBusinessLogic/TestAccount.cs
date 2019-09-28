@@ -37,7 +37,7 @@ namespace TestParkingBusinessLogic
 
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidNumberException))]
+        [ExpectedException(typeof(InsufficientBalanceException))]
         public void TestValidateFormatFalse1()
         {
             String num = "9f03uf134";
@@ -46,7 +46,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidNumberException))]
+        [ExpectedException(typeof(InsufficientBalanceException))]
         public void TestValidateFormatFalse2()
         {
             string num = "19042";
@@ -54,7 +54,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidNumberException))]
+        [ExpectedException(typeof(InsufficientBalanceException))]
         public void TestValidateFormatFalse3()
         {
             string num = "093457869";
@@ -62,7 +62,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidNumberException))]
+        [ExpectedException(typeof(InsufficientBalanceException))]
         public void TestValidateFormatFalse4()
         {
             string num = "0998473647875";
@@ -70,7 +70,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidNumberException))]
+        [ExpectedException(typeof(InsufficientBalanceException))]
         public void TestValidateFormatFalse5()
         {
             string num = "095 77 88 99 34";
@@ -78,7 +78,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidNumberException))]
+        [ExpectedException(typeof(InsufficientBalanceException))]
         public void TestValidateFormatFalse6()
         {
             string num = " 09577889934 ";
@@ -149,13 +149,36 @@ namespace TestParkingBusinessLogic
             Assert.IsTrue(output);
         }
         [TestMethod]
-        public void DiscountBalance()
+        public void TestDiscountBalancePositiveNumberandEnoughBalance()
         {
-            Account myAccount = new Account("098878989");
+            Account myAccount = new Account("098878989",300);
             int amount = 200;
             bool output = myAccount.DiscountBalance(amount);
             Assert.IsTrue(output);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(InsufficientBalanceException))]
+        public void TestDiscountBalancePositiveNumberandInsufficientBalance()
+        {
+            Account myAccount = new Account("098878989", 100);
+            int amount = 200;
+            bool output = myAccount.DiscountBalance(amount);
+            
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NegativeNumberException))]
+        public void TestDiscountBalanceNegativeNumber()
+        {
+            Account myAccount = new Account("098878989", 100);
+            int amount = -50;
+            bool output = myAccount.DiscountBalance(amount);
+
+        }
+
+
+
 
     }
 

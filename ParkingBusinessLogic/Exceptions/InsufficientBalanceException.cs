@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace ParkingBusinessLogic.Exceptions
 {
-    public class NegativeNumberException : LogicException
+    public class InsufficientBalanceException : LogicException
     {
-        private static readonly string message = "Numero ingresado no debe ser  negativo";
+        private static readonly string message = "Saldo Insuficiente";
 
-        public NegativeNumberException() : base(message)
+        public InsufficientBalanceException() : base(message)
         {
 
         }
+
     }
 }
