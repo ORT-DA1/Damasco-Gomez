@@ -7,6 +7,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+
+
 namespace ParkingBusinessLogic
 {
     public class Account
@@ -31,16 +33,16 @@ namespace ParkingBusinessLogic
                 }
             }
         }
-        private int amount;
-        public int Amount
+        private int balance;
+        public int Balance
         {
             get
             {
-                return amount;
+                return balance;
             }
             private set
             {
-                amount = value;
+                balance = value;
             }
 
 
@@ -72,10 +74,14 @@ namespace ParkingBusinessLogic
             Number = num;
         }
 
-        public bool AddBalance()
+        public bool AddBalance(Account account, int cant)
         {
+
+            int previosBalance = account.balance;
+            account.balance = previosBalance + cant;
             return true;
-        }
+         }
+        
 
         public bool ValidateFormat(string num)
         {

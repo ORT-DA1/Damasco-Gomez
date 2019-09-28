@@ -17,13 +17,22 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        public void TestAddBalance()
+        public void TestAddBalanceCorrect()
         {
-            Account myAccount = new Account("099897989");
-            bool output = myAccount.AddBalance();
+
+            Account myAccount = new Account("098456783");
+            bool output = myAccount.AddBalance(myAccount, 200);
 
             Assert.IsTrue(output);
         }
+        public void TestAddBalanceNegativeNumber()
+        {
+
+            Account myAccount = new Account("098456783");
+            bool output = myAccount.AddBalance(myAccount, 200);
+            Assert.IsTrue(output);
+        }
+
 
         [TestMethod]
         [ExpectedException(typeof(InvalidNumberException))]
@@ -87,7 +96,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        //[ExpectedException(typeof(InvalidFormatException))]
+     
         public void TestValidateFormatTrue2()
         {
             string num = "099673647";
