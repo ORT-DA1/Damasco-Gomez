@@ -13,16 +13,28 @@ namespace TestParkingBusinessLogic
     {
 
         [TestMethod]
-        public void createPurchase()
+        public void TestCreatePurchase()
         {
             Account myAccount = new Account("098872898");
-            string licensePlate = "";
-            string day = DateTime.Now.Day + "/" +DateTime.Now.Month;
-            string initHour = "10:00";
-            string finHour = "11:00";
-            Purchase myPurchase = new Purchase(myAccount, licensePlate, day,initHour,finHour);
+            string text = "SBN 2208 150 10:00";
+            Purchase myPurchase = new Purchase(text, myAccount);
 
         }
+
+        [TestMethod]
+        public void TestCheckLicensePlate()
+        {
+            Account myAccount = new Account("098872898");
+            string text = "SBN 2208 150 10:00";
+            Purchase myPurchase = new Purchase(text, myAccount);
+            string expected = "SBN2208";
+            string output = myPurchase.MyLicensePlate;
+            Assert.AreEqual(output, expected);
+
+        }
+
+
+
 
 
     }
