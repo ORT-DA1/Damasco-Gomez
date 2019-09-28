@@ -37,7 +37,7 @@ namespace TestParkingBusinessLogic
 
 
         [TestMethod]
-        [ExpectedException(typeof(InsufficientBalanceException))]
+        [ExpectedException(typeof(InvalidNumberException))]
         public void TestValidateFormatFalse1()
         {
             String num = "9f03uf134";
@@ -46,7 +46,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InsufficientBalanceException))]
+        [ExpectedException(typeof(InvalidNumberException))]
         public void TestValidateFormatFalse2()
         {
             string num = "19042";
@@ -54,7 +54,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InsufficientBalanceException))]
+        [ExpectedException(typeof(InvalidNumberException))]
         public void TestValidateFormatFalse3()
         {
             string num = "093457869";
@@ -62,7 +62,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InsufficientBalanceException))]
+        [ExpectedException(typeof(InvalidNumberException))]
         public void TestValidateFormatFalse4()
         {
             string num = "0998473647875";
@@ -70,7 +70,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InsufficientBalanceException))]
+        [ExpectedException(typeof(InvalidNumberException))]
         public void TestValidateFormatFalse5()
         {
             string num = "095 77 88 99 34";
@@ -78,7 +78,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InsufficientBalanceException))]
+        [ExpectedException(typeof(InvalidNumberException))]
         public void TestValidateFormatFalse6()
         {
             string num = " 09577889934 ";
@@ -177,7 +177,13 @@ namespace TestParkingBusinessLogic
 
         }
 
-
+        [TestMethod]
+        public void TestRegisterAccount()
+        {
+            Controller myController = new Controller();
+            bool output = myController.RegisterAccount("098567890",500);
+            Assert.IsTrue(output);
+        }
 
 
     }

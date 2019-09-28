@@ -70,7 +70,7 @@ namespace ParkingBusinessLogic
             }
             else
             {
-                throw new InvalidNumberExcpetion();
+                throw new InvalidNumberException();
             }
             return num;
         }
@@ -118,7 +118,7 @@ namespace ParkingBusinessLogic
                 }
                else
                 {
-                    throw new InvalidNumberExcpetion();
+                    throw new InsufficientBalanceException();
                 }
 
             }
