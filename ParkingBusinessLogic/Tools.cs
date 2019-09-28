@@ -39,28 +39,23 @@ namespace ParkingBusinessLogic
 
         public int ParseCantMinutes(string msg)
         {
-
+            
+                
             string[] msgList = msg.Split(' ');
-
             string minutes = "";
-
-
             if (msgList.Length >= 2)
             {
-                if (msgList[0].Length == 3)
+                if (msgList.Length == 3 && msgList[2].All(char.IsDigit) )
                 {
-
                     minutes = msgList[2];
-
-
                 }
-                else
+                else if (msgList[1].All(char.IsDigit))
                 {
-
                     minutes = msgList[1];
-
+                } else
+                {
+                    throw new InvalidTextException();
                 }
-
             }
             return Convert.ToInt32(minutes);
 
