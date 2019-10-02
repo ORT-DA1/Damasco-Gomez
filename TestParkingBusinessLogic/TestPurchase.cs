@@ -109,7 +109,7 @@ namespace TestParkingBusinessLogic
             Account myAccount = new Account("098872898");
             string text = "SBN 2208 150 10:00";
             Purchase myPurchase = new Purchase(text, myAccount);
-            string expected = "28-09";
+            string expected = DateTime.Now.ToString("dd-MM");
             string output = myPurchase.MyDay;
             Assert.AreEqual(output, expected);
 
