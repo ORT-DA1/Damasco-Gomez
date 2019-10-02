@@ -48,9 +48,10 @@
     <Compile Include="Exceptions\InvalidTextExeption.cs" />
     <Compile Include="Exceptions\InvalidNumberException.cs" />
     <Compile Include="Exceptions\NegativeNumberException.cs" />
+    <Compile Include="MinuteParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Purchase.cs" />
-    <Compile Include="MinuteParser.cs" />
+    <Compile Include="ValueMinute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contracts\Contracts.csproj">
