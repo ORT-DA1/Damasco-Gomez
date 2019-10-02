@@ -64,7 +64,7 @@ namespace ParkingBusinessLogic
         {
             string licensePlate = ParseLicensePlate(msg);            
             string startTime = ParseStarTime(msg);
-            Tools myTool = new Tools();
+            MinuteParser myTool = new MinuteParser();
 
 
             string finishTime = AddMinHour(  myTool.GetCantMinutes(msg) , ValidateTime(startTime));

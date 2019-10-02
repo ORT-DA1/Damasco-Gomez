@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ParkingBusinessLogic
 {
-    public class Tools
+    public class MinuteParser
     {
        
         public bool ValidateMinutesMultiple30(int minutes)
@@ -19,7 +19,7 @@ namespace ParkingBusinessLogic
             }
             else
             {
-                throw new InvalidTextException();
+                return false;
             }
         }
 
