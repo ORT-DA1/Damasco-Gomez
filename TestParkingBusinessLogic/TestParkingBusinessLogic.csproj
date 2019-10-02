@@ -53,6 +53,7 @@
     <Compile Include="TestAccount.cs" />
     <Compile Include="TestController.cs" />
     <Compile Include="TestPurchase.cs" />
+    <Compile Include="TestValueMinute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
