@@ -143,8 +143,8 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestEnoughBalance()
         {
-            Account myAccount = new Account("098878989");
-            bool output = myAccount.EnoughBalance();
+            Account myAccount = new Account("098878989",200);
+            bool output = myAccount.EnoughBalance(99);
 
             Assert.IsTrue(output);
         }

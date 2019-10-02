@@ -102,9 +102,17 @@ namespace ParkingBusinessLogic
             return Regex.IsMatch(num, @"^0?[9][^3]\d{6}");
         }
 
-        public bool EnoughBalance()
-        {
-            return true;
+        public bool EnoughBalance(int value)
+        {   
+            if(value<= Balance){
+                return true;
+            }
+            else {
+                return false;
+
+         }
+
+            
         }
         public bool DiscountBalance(int amount)
         {
