@@ -22,7 +22,7 @@ namespace TestParkingBusinessLogic
         {
 
             Account myAccount = new Account("098456783", 0);
-            bool output = myAccount.AddBalance(myAccount, 200);
+            bool output = myAccount.AddBalance(200);
 
             Assert.IsTrue(output);
         }
@@ -32,7 +32,7 @@ namespace TestParkingBusinessLogic
         {
 
             Account myAccount = new Account("098456783", 0);
-            myAccount.AddBalance(myAccount, -200);
+            myAccount.AddBalance(-200);
             
         }
 
@@ -177,8 +177,16 @@ namespace TestParkingBusinessLogic
             bool output = myAccount.DiscountBalance(amount);
 
         }
+        [TestMethod]
+        public void TestAccountEmpty()
+        {
 
-       
+            Account myAccount = new Account();
+            bool expected = myAccount.AccountEmpty();
+            Assert.IsTrue(expected);
+        }
+
+
 
 
     }

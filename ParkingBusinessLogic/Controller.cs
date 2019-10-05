@@ -22,12 +22,15 @@ namespace ParkingBusinessLogic
        
 
 
+        public bool isAccountEmpty(Account account)
+        {
+            return account.AccountEmpty();
 
+        }
 
-        public bool RegisterAccount(String num, int balance)
+        public bool RegisterAccount(Account account) 
         {   
             
-            Account account = new Account(num, balance);
             Accounts.Add(account);
             return true;
             

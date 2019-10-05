@@ -77,7 +77,7 @@ namespace ParkingBusinessLogic
 
         public Account()
         {
-            Number = "";
+            this.number = "";
             Balance = 0;
         }
         

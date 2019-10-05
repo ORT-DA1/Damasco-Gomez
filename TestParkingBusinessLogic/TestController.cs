@@ -18,8 +18,9 @@ namespace TestParkingBusinessLogic
         {
             String num = "099 45 56 97";
             int balance = 190;
+            Account expected = new Account(num, balance);
             Controller myC = new Controller();
-            bool output = myC.RegisterAccount(num,balance);
+            bool output = myC.RegisterAccount(expected);
             Assert.IsTrue(output);
         }
 
@@ -28,8 +29,9 @@ namespace TestParkingBusinessLogic
         {
             String num = "099455697";
             int balance = 190;
+            Account expected = new Account(num, balance);
             Controller myC = new Controller();
-            bool output = myC.RegisterAccount(num, balance);
+            bool output = myC.RegisterAccount(expected);
             
         }
 
@@ -39,22 +41,35 @@ namespace TestParkingBusinessLogic
         {
             Controller myController = new Controller();
             myController.InitLists();
-            myController.RegisterAccount("098567890", 500);
-            Account output = myController.Accounts.ElementAt(0);
             Account expected = new Account("098567890", 500);
+            myController.RegisterAccount(expected);
+            Account output = myController.Accounts.ElementAt(0);
+          
             Assert.AreEqual(output, expected);
         }
         [TestMethod]
-        public void FindAccountOk()
+        public void TestFindAccountOk()
         {
             Controller myController = new Controller();
             myController.InitLists();
-            myController.RegisterAccount("098567890", 500);
             Account wanted = new Account("098567890", 500);
+            myController.RegisterAccount(wanted);
             Account expected = myController.FindAccount("098567890");
             Assert.AreEqual(wanted, expected);
 
         }
+        [TestMethod]
+        public void TestisAccountEmpty()
+        {
+            Controller myController = new Controller();
+            myController.InitLists();
+            Account myAccount = new Account();
+            myController.RegisterAccount(myAccount);
+            bool  expected = myController.isAccountEmpty(myAccount);
+            Assert.IsTrue(expected);
+
+        }
+        
     }
 
 
