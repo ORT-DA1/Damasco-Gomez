@@ -55,7 +55,7 @@ namespace ParkingBusinessLogic
 
         }
 
-        private string Format(string num)
+        public string Format(string num)
         {
             num = num.Replace(" ", "");
             if (num.Length == 9)
@@ -75,18 +75,21 @@ namespace ParkingBusinessLogic
             return num;
         }
 
-        public Account(string num)
+        public Account()
         {
-            Number = num;
+            Number = "";
+            Balance = 0;
         }
+        
+        
 
-        public bool AddBalance(Account account, int cant)
+        public bool AddBalance( int cant)
         { 
 
             if (cant>0)
             {
-                int previosBalance = account.Balance;
-                account.Balance = previosBalance + cant;
+                int previosBalance = Balance;
+                Balance = previosBalance + cant;
                 return true;
             } else
             {
@@ -137,6 +140,18 @@ namespace ParkingBusinessLogic
             }
                 
            
+        }
+        public bool AccountEmpty() {
+            
+            if (Number== "")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
 

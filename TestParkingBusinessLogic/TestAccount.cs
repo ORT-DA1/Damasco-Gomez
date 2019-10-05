@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
@@ -20,7 +21,7 @@ namespace TestParkingBusinessLogic
         public void TestAddBalanceCorrect()
         {
 
-            Account myAccount = new Account("098456783");
+            Account myAccount = new Account("098456783", 0);
             bool output = myAccount.AddBalance(myAccount, 200);
 
             Assert.IsTrue(output);
@@ -30,7 +31,7 @@ namespace TestParkingBusinessLogic
         public void TestAddBalanceNegativeNumber()
         {
 
-            Account myAccount = new Account("098456783");
+            Account myAccount = new Account("098456783", 0);
             myAccount.AddBalance(myAccount, -200);
             
         }
@@ -41,7 +42,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatFalse1()
         {
             String num = "9f03uf134";
-            Account myAccount = new Account(num);
+            Account myAccount = new Account(num, 0);
 
         }
 
@@ -50,7 +51,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatFalse2()
         {
             string num = "19042";
-            Account myAccount = new Account(num);
+            Account myAccount = new Account(num, 0);
         }
 
         [TestMethod]
@@ -58,7 +59,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatFalse3()
         {
             string num = "093457869";
-            Account myAccount = new Account(num);
+            Account myAccount = new Account(num, 0);
         }
 
         [TestMethod]
@@ -66,7 +67,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatFalse4()
         {
             string num = "0998473647875";
-            Account myAccount = new Account(num);
+            Account myAccount = new Account(num, 0);
         }
 
         [TestMethod]
@@ -74,7 +75,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatFalse5()
         {
             string num = "095 77 88 99 34";
-            Account myAccount = new Account(num);
+            Account myAccount = new Account(num, 0);
         }
 
         [TestMethod]
@@ -82,7 +83,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatFalse6()
         {
             string num = " 09577889934 ";
-            Account myAccount = new Account(num);
+            Account myAccount = new Account(num, 0);
         }
 
 
@@ -90,7 +91,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatTrue1()
         {
             string num = "99673647";
-            Account myAccount = new Account(num);
+            Account myAccount = new Account(num,0);
             string output = myAccount.Number;
             string expected = "99 673 647";
 
@@ -102,7 +103,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatTrue2()
         {
             string num = "099673647";
-            Account myAccount = new Account(num);
+            Account myAccount = new Account(num, 0);
             string output = myAccount.Number;
             string expected = "099 673 647";
 
@@ -113,7 +114,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatTrue3()
         {
             string num = "99 67 364 7";
-            Account myAccount = new Account(num);
+            Account myAccount = new Account(num, 0);
             string output = myAccount.Number;
             string expected = "99 673 647";
 
@@ -123,7 +124,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatTrue4()
         {
             string num = "   99673647  ";
-            Account myAccount = new Account(num);
+            Account myAccount = new Account(num, 0);
             string output = myAccount.Number;
             string expected = "99 673 647";
 
@@ -133,7 +134,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatTrue5()
         {
             string num = "09 96 73 6 47";
-            Account myAccount = new Account(num);
+            Account myAccount = new Account(num,0);
             string output = myAccount.Number;
             string expected = "099 673 647";
 
@@ -177,13 +178,7 @@ namespace TestParkingBusinessLogic
 
         }
 
-        [TestMethod]
-        public void TestRegisterAccount()
-        {
-            Controller myController = new Controller();
-            bool output = myController.RegisterAccount("098567890",500);
-            Assert.IsTrue(output);
-        }
+       
 
 
     }
