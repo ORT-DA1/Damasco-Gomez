@@ -9,9 +9,9 @@ namespace ParkingBusinessLogic
 {
     public class Controller
     {
-        public List<Account> Accounts ;
+        private List<Account> accounts ;
 
-        public List<Purchase> Purchases;
+        private List<Purchase> purchases;
 
         public void InitLists()
         {
@@ -19,7 +19,32 @@ namespace ParkingBusinessLogic
            Purchases = new List<Purchase>();
 
        }
-       
+
+        public List<Account> Accounts
+        {
+            get
+            {
+                return accounts;
+            }
+            private set
+            {
+                Accounts = value;
+            }
+        }
+
+        public List<Purchase> Purchases
+        {
+            get
+            {
+                return purchases;
+            }
+            private set
+            {
+                Purchases = value;
+            }
+        }
+
+
 
 
         public bool isAccountEmpty(Account account)
@@ -46,11 +71,10 @@ namespace ParkingBusinessLogic
                 if (element.Number == text)
                 {
                     myAccount= element;
-                } 
-            
-                
-                
+                }
+
             }
+            
 
             return myAccount;
 

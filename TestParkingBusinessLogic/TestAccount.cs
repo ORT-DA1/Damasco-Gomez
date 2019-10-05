@@ -13,9 +13,7 @@ namespace TestParkingBusinessLogic
     {
 
         [TestInitialize]
-        public void TestInit()
-        {
-        }
+       
 
         [TestMethod]
         public void TestAddBalanceCorrect()
