@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ParkingUserInterface
 {
-    public partial class Form1 : Form
+    public partial class ChangeCostParkingInterface : Form
     {
-        public Form1()
+        public ChangeCostParkingInterface()
         {
             InitializeComponent();
         }
