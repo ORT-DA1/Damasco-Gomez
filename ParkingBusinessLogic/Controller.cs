@@ -22,8 +22,6 @@ namespace ParkingBusinessLogic
             ValueOfMinute = new ValueMinute();
 
         }
-       
-
 
         public bool isAccountEmpty(Account account)
         {
@@ -46,14 +44,9 @@ namespace ParkingBusinessLogic
                 if (element.Number == text)
                 {
                     myAccount= element;
-                } 
-            
-                
-                
+                }                                            
             }
-
             return myAccount;
-
         }
 
         public void ChageValueMinute(int value)

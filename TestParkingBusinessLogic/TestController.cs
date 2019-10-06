@@ -74,7 +74,8 @@ namespace TestParkingBusinessLogic
         public void TestChangeValueOfMinute()
         {
             Controller myController = new Controller();
-            int value = 22; 
+            myController.InitLists();
+            int value = 22;
             myController.ChageValueMinute(value);
             int output = myController.ValueOfMinute.ValuePerMinutes;
             Assert.AreEqual(value, output);
