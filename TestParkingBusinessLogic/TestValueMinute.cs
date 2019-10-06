@@ -14,10 +14,16 @@ namespace TestParkingBusinessLogic
     [TestClass]
     public class TestValueMinute
     {
+        ValueMinute myValue;
+
+        [TestInitialize]
+        public void InitTest()
+        {
+            myValue = new ValueMinute();
+        }
         [TestMethod]
         public void TestTotalPricePositivo()
-        {
-            ValueMinute myValue = new ValueMinute();
+        {            
             int cantMinutes = 120;
             int totalPrice = myValue.TotalPrice(cantMinutes);
             int expected = 30 * 120;
@@ -27,11 +33,17 @@ namespace TestParkingBusinessLogic
         [ExpectedException(typeof(NegativeNumberException))]
         public void TestTotalPriceNegativo()
         {
-            ValueMinute myValue = new ValueMinute();
             int cantMinutes = -120;
             int totalPrice = myValue.TotalPrice(cantMinutes);
-         
-            
+        }
+
+        [TestMethod]
+        public void TestChangeValue()
+        {
+            int NewValue = 400;
+            myValue.ChangeValue(NewValue);
+            int Output = myValue.ValuePerMinutes;
+            Assert.AreEqual(NewValue, Output);
         }
 
     }

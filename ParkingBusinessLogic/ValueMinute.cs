@@ -45,5 +45,10 @@ namespace ParkingBusinessLogic
            
 
         }
+
+        public void ChangeValue(int NewValue)
+        {
+            ValuePerMinutes = NewValue;
+        }
     }
 }

@@ -13,12 +13,15 @@ namespace ParkingBusinessLogic
 
         public List<Purchase> Purchases;
 
+        public ValueMinute ValueOfMinute;
+
         public void InitLists()
         {
-           Accounts = new List<Account>();
-           Purchases = new List<Purchase>();
+            Accounts = new List<Account>();
+            Purchases = new List<Purchase>();
+            ValueOfMinute = new ValueMinute();
 
-       }
+        }
        
 
 
@@ -29,13 +32,10 @@ namespace ParkingBusinessLogic
         }
 
         public bool RegisterAccount(Account account) 
-        {   
-            
+        {               
             Accounts.Add(account);
             return true;
-            
-            
-
+       
         }
 
         public Account FindAccount(String text)
@@ -56,7 +56,10 @@ namespace ParkingBusinessLogic
 
         }
 
-
+        public void ChageValueMinute(int value)
+        {
+            ValueOfMinute.ChangeValue(value);
+        }
     }
 
     
