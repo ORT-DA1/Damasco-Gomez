@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParkingBusinessLogic.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -80,14 +81,21 @@ namespace ParkingBusinessLogic
             Account myAccount = FindAccount(num);
             if (isAccountEmpty(myAccount)) {
 
-                //throw new NotAccountException();
+                throw new NotAccountException();
 
             }
             else
             {
                 MinuteParser minuteParser = new MinuteParser();
                 int cantMinutes = minuteParser.GetCantMinutes(msg);
-                
+                ValueMinute valueMinute = new ValueMinute();
+                int amountToDiscont=valueMinute.TotalPrice(cantMinutes);
+                myAccount.DiscountBalance(amountToDiscont);
+                Purchase newPurchase = new Purchase(msg,myAccount);
+                Purchases.Add(newPurchase);
+
+
+
 
             }
          }
