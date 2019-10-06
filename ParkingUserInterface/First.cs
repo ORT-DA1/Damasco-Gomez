@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParkingBusinessLogic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,12 @@ namespace ParkingUserInterface
 {
     public partial class First : Form
     {
+        Controller MyController;
         public First()
         {
             InitializeComponent();
+            MyController = new Controller();
+
         }
 
         private void AddAccountButton_Click(object sender, EventArgs e)
@@ -57,7 +61,7 @@ namespace ParkingUserInterface
         private void CostParkingButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ChangeCostParkingInterface sistema = new ChangeCostParkingInterface();
+            ChangeCostParkingInterface sistema = new ChangeCostParkingInterface(MyController);
             sistema.ShowDialog();
             this.Close();
         }

@@ -10,11 +10,9 @@ namespace ParkingBusinessLogic
 {
     public class Controller
     {
-        private List<Account> accounts ;
-
+        private List<Account> accounts;
         private List<Purchase> purchases;
-
-        public ValueMinute ValueOfMinute;
+        public ValueMinute valueOfMinute;
 
         public List<Account> Accounts
         {
@@ -39,13 +37,24 @@ namespace ParkingBusinessLogic
                 Purchases = value;
             }
         }
-        public void InitLists()
+        public ValueMinute ValueOfMinute
         {
-
-            Accounts = new List<Account>();
-            Purchases = new List<Purchase>();
-            ValueOfMinute = new ValueMinute();
+            get
+            {
+                return valueOfMinute;
+            }
+            private set
+            {
+                valueOfMinute = value;
+            }
         }
+        public Controller()
+        {
+            accounts = new List<Account>();
+            purchases = new List<Purchase>();
+            valueOfMinute = new ValueMinute();
+        }
+
 
 
         public bool isAccountEmpty(Account account)
