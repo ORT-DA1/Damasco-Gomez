@@ -75,6 +75,16 @@ namespace TestParkingBusinessLogic
 
 
         }
+        [TestMethod]
+
+        public void TestBuyParking()
+        {
+            
+
+
+
+        }
+        
 
 
     }

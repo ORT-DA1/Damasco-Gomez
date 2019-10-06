@@ -79,6 +79,26 @@ namespace ParkingBusinessLogic
             return myAccount;
 
         }
+        public void BuyParking(String num, String msg)
+        {
+
+            Account myAccount = FindAccount(num);
+            if (isAccountEmpty(myAccount)) {
+
+                //throw new NotAccountException();
+
+            }
+            else
+            {
+                MinuteParser minuteParser = new MinuteParser();
+                int cantMinutes = minuteParser.GetCantMinutes(msg);
+                
+
+            }
+           
+
+
+        }
 
 
     }
