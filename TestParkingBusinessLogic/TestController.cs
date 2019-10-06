@@ -69,6 +69,16 @@ namespace TestParkingBusinessLogic
             Assert.IsTrue(expected);
 
         }
+
+        [TestMethod]
+        public void TestChangeValueOfMinute()
+        {
+            Controller myController = new Controller();
+            int value = 22; 
+            myController.ChageValueMinute(value);
+            int output = myController.ValueOfMinute.ValuePerMinutes;
+            Assert.AreEqual(value, output);
+        }
         
     }
 

@@ -58,6 +58,12 @@
     <Compile Include="BuyParkingInterface.Designer.cs">
       <DependentUpon>BuyParkingInterface.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChangeCostParkingInterface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeCostParkingInterface.Designer.cs">
+      <DependentUpon>ChangeCostParkingInterface.cs</DependentUpon>
+    </Compile>
     <Compile Include="First.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BuyParkingInterface.resx">
       <DependentUpon>BuyParkingInterface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangeCostParkingInterface.resx">
+      <DependentUpon>ChangeCostParkingInterface.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="First.resx">
       <DependentUpon>First.cs</DependentUpon>
