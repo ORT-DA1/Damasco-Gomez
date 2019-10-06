@@ -13,27 +13,7 @@ namespace TestParkingBusinessLogic
     [TestClass]
     public class TestController
     {
-        [TestMethod]
-        public void TestCreateAccout()
-        {
-            String num = "099 45 56 97";
-            int balance = 190;
-            Account expected = new Account(num, balance);
-            Controller myC = new Controller();
-            bool output = myC.RegisterAccount(expected);
-            Assert.IsTrue(output);
-        }
-
-        [TestMethod]
-        public void TestCreateAccount2()
-        {
-            String num = "099455697";
-            int balance = 190;
-            Account expected = new Account(num, balance);
-            Controller myC = new Controller();
-            bool output = myC.RegisterAccount(expected);
-            
-        }
+       
 
 
         [TestMethod]
@@ -47,21 +27,21 @@ namespace TestParkingBusinessLogic
           
             Assert.AreEqual(output, expected);
         }
-        [TestMethod]
+       [TestMethod]
         public void TestFindAccountOk()
         {
             Controller myController = new Controller();
             myController.InitLists();
             Account wanted = new Account("098567890", 500);
             myController.RegisterAccount(wanted);
-            Account expected = myController.FindAccount("098567890");
+            Account expected = myController.FindAccount("098 567 890");
             Assert.AreEqual(wanted, expected);
 
         }
         [TestMethod]
         public void TestisAccountEmpty()
         {
-            Controller myController = new Controller();
+		Controller myController = new Controller();
             myController.InitLists();
             Account myAccount = new Account();
             myController.RegisterAccount(myAccount);
@@ -69,6 +49,7 @@ namespace TestParkingBusinessLogic
             Assert.IsTrue(expected);
 
         }
+
 
         [TestMethod]
         public void TestChangeValueOfMinute()
@@ -79,11 +60,48 @@ namespace TestParkingBusinessLogic
             myController.ChageValueMinute(value);
             int output = myController.ValueOfMinute.ValuePerMinutes;
             Assert.AreEqual(value, output);
+
+        [TestMethod]
+
+        public void TestInitAccount()
+        {
+            Controller myController = new Controller();
+            myController.InitLists();
+            List<Account> EmptyAccount = myController.Accounts;
+            List<Account>  Accounts = new List<Account>();
+            Assert.AreEqual(EmptyAccount, Accounts);
+
+
+
+        }
+        [TestMethod]
+
+        public void TestInitPurchase()
+        {
+            Controller myController = new Controller();
+            myController.InitLists();
+            List<Purchase> EmptyPurchase = myController.Purchases;
+            List<Purchase> Purchases = new List<Purchase>();
+            Assert.AreEqual(EmptyPurchase, Purchases);
+
+
+
+        }
+        [TestMethod]
+
+        public void TestBuyParking()
+        {
+            
+
+
+
         }
         
+
+
     }
 
 
 
-    
+
 }

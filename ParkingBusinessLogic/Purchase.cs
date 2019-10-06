@@ -60,6 +60,10 @@ namespace ParkingBusinessLogic
                 
             }
         }
+        public Purchase() {
+
+
+        }
         public Purchase(string msg, Account myA)
         {
             string licensePlate = ParseLicensePlate(msg);            
@@ -112,7 +116,7 @@ namespace ParkingBusinessLogic
             }
         }
 
-
+        
         private string ValidateLicensePlate(string licensePlate)
         {
             if (!licensePlate.Equals("") && Regex.IsMatch(licensePlate, @"^[a-zA-Z]{3}\d{4}$"))
@@ -125,7 +129,7 @@ namespace ParkingBusinessLogic
             }
         }
 
-        private string ParseLicensePlate(string msg)
+        public string ParseLicensePlate(string msg)
         {
             string[] msgList = msg.Split(' ');
             string licensePlate = "";
@@ -142,8 +146,18 @@ namespace ParkingBusinessLogic
             }
             return licensePlate;
         }
+        public bool IsLicensePlateValid(String msg)
+        {
+            bool Validation=false;
+            String licensePlate = ParseLicensePlate(msg);
+            if (licensePlate == ValidateLicensePlate(licensePlate))
+            {
+                 Validation=true;
+            }
+            return Validation;
 
-        public string ParseStarTime(string msg)
+        }
+        public string ParseStarTime(String msg)
         {
             string starTime = "";
             string[] msgList = msg.Split(' ');
@@ -164,6 +178,15 @@ namespace ParkingBusinessLogic
                 starTime = DateTime.Now.ToString("HH:mm");
             }
             return starTime;
+        }
+        public bool IsStartTimeValid(String msg) {
+            bool Validation = false;
+            String starTime = ParseStarTime(msg);
+            if (starTime == ValidateTime(starTime))
+            {
+                Validation = true;
+            }
+            return Validation;
         }
     }
 }

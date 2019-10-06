@@ -9,17 +9,46 @@ namespace ParkingBusinessLogic
 {
     public class Controller
     {
-        public List<Account> Accounts ;
+        private List<Account> accounts ;
 
-        public List<Purchase> Purchases;
+        private List<Purchase> purchases;
 
         public ValueMinute ValueOfMinute;
 
         public void InitLists()
         {
+
             Accounts = new List<Account>();
             Purchases = new List<Purchase>();
             ValueOfMinute = new ValueMinute();
+       }
+
+        public List<Account> Accounts
+        {
+            get
+            {
+                return accounts;
+            }
+            private set
+            {
+                Accounts = value;
+            }
+        }
+
+        public List<Purchase> Purchases
+        {
+            get
+            {
+                return purchases;
+            }
+            private set
+            {
+                Purchases = value;
+            }
+        }
+
+
+>>>>>>> 5874ac63e4bb02c9432c5ed98014713bd11943a6
 
         }
 
@@ -33,7 +62,7 @@ namespace ParkingBusinessLogic
         {               
             Accounts.Add(account);
             return true;
-       
+      
         }
 
         public Account FindAccount(String text)
@@ -44,10 +73,35 @@ namespace ParkingBusinessLogic
                 if (element.Number == text)
                 {
                     myAccount= element;
+
                 }                                            
             }
             return myAccount;
+                }
+
+            }
+            
+
+            return myAccount;
+
         }
+        public void BuyParking(String num, String msg)
+        {
+
+            Account myAccount = FindAccount(num);
+            if (isAccountEmpty(myAccount)) {
+
+                //throw new NotAccountException();
+
+            }
+            else
+            {
+                MinuteParser minuteParser = new MinuteParser();
+                int cantMinutes = minuteParser.GetCantMinutes(msg);
+                
+
+            }
+         }
 
         public void ChageValueMinute(int value)
         {
