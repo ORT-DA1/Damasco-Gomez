@@ -114,30 +114,8 @@ namespace TestParkingBusinessLogic
             Assert.AreEqual(output, expected);
 
         }
+      
 
-        [TestMethod]
-        public void IsLicensePlateValid()
-        {
-            Account myAccount = new Account();
-            string text = "SBN 2208 150 10:00";
-            Purchase myPurchase = new Purchase(text, myAccount);
-            bool expected = myPurchase.IsLicensePlateValid("SBN 2208 150 10:00");
-            Assert.IsTrue(expected);
-          
-
-        }
-        [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
-        public void IsNotLicensePlateValid()
-        {
-            Account myAccount = new Account();
-            string text = "SBN 2208 150 10:00";
-            Purchase myPurchase = new Purchase(text, myAccount);
-            bool expected = myPurchase.IsLicensePlateValid("S 2208 150 10:00");
-           
-
-
-        }
 
 
     }

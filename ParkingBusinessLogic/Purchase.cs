@@ -60,6 +60,10 @@ namespace ParkingBusinessLogic
                 
             }
         }
+        public Purchase() {
+
+
+        }
         public Purchase(string msg, Account myA)
         {
             string licensePlate = ParseLicensePlate(msg);            
@@ -174,6 +178,15 @@ namespace ParkingBusinessLogic
                 starTime = DateTime.Now.ToString("HH:mm");
             }
             return starTime;
+        }
+        public bool IsStartTimeValid(String msg) {
+            bool Validation = false;
+            String starTime = ParseStarTime(msg);
+            if (starTime == ValidateTime(starTime))
+            {
+                Validation = true;
+            }
+            return Validation;
         }
     }
 }

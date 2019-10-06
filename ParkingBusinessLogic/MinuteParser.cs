@@ -9,7 +9,7 @@ namespace ParkingBusinessLogic
 {
     public class MinuteParser
     {
-       
+       public MinuteParser() { }
         public bool ValidateMinutesMultiple30(int minutes)
         {
             Console.WriteLine(minutes);
