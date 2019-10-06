@@ -74,6 +74,19 @@ namespace ParkingBusinessLogic
             }
             return myAccount;
         }
+        public Purchase FindPurchase(String licensePlate) {
+
+            Purchase myPurchase= new Purchase() ;
+            foreach (Purchase element in Purchases) {
+
+                if (element.MyLicensePlate== licensePlate) {
+                    myPurchase = element;
+                }
+            }
+            return myPurchase;
+
+        }
+
 
         public void BuyParking(String num, String msg)
         {

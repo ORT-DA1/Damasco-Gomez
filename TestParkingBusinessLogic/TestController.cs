@@ -84,9 +84,34 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
+
+        public void TestFindPurchaseOk()
+        {
+            Controller myController = new Controller();
+            myController.InitLists();
+            Account myA = new Account("098437217",4799);
+            Purchase wantedPurchase = new Purchase("SBN 2208 150 10:00", myA);
+            myController.InitLists();
+            //agregar wanredpurchase a la coleccion de purchase 
+            Purchase expected = myController.FindPurchase("SBN 1234");
+            Assert.AreEqual(wantedPurchase, expected);
+
+        }
+        
+
+        [TestMethod]
         public void TestBuyParking()
         {
-            Assert.IsTrue(true);
+            Controller myController = new Controller();
+            myController.InitLists();
+            String num = "098437217";
+            String msg = "SBN 2208 150 10:00";
+            Account myAccount = new Account(num,4799);
+            myController.Accounts.Add(myAccount);
+            myController.BuyParking(num, msg);
+            //FIND COMPRA CON ESA ACCOUNT Y SI EL SALDO DE ESA CUENTA  ES 299
+
+
         }
         
 
