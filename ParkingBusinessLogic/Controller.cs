@@ -71,11 +71,13 @@ namespace ParkingBusinessLogic
         }
 
         public Account FindAccount(String text)
-        {
+        { 
+        
             Account myAccount = new Account();
+            Account auxiliar = new Account(text,0);
             foreach (Account element in Accounts)
             {
-                if (element.Number == text)
+                if (element.Number == auxiliar.Number)
                 {
                     myAccount= element;
 
@@ -83,6 +85,19 @@ namespace ParkingBusinessLogic
             }
             return myAccount;
         }
+        public Purchase FindPurchase(Account myAccount) {
+
+            Purchase myPurchase= new Purchase() ;
+            foreach (Purchase element in Purchases) {
+
+                if (element.MyAccount == myAccount) {
+                    myPurchase = element;
+                }
+            }
+            return myPurchase;
+
+        }
+
 
         public void BuyParking(String num, String msg)
         {
@@ -90,11 +105,13 @@ namespace ParkingBusinessLogic
             Account myAccount = FindAccount(num);
             if (isAccountEmpty(myAccount)) {
 
+                Console.WriteLine("antes de la exep");
                 throw new NotAccountException();
 
             }
             else
             {
+              
                 MinuteParser minuteParser = new MinuteParser();
                 int cantMinutes = minuteParser.GetCantMinutes(msg);
                 ValueMinute valueMinute = new ValueMinute();
