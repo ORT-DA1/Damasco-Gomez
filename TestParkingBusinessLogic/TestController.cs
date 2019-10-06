@@ -12,11 +12,14 @@ namespace TestParkingBusinessLogic
     public class TestController
     {
         private Controller myController;
+        
 
         [TestInitialize]
         public void InitTest()
         {
             myController = new Controller();
+            Account account1 = new Account("099 111 111",1000);
+            myController.Accounts.Add(account1);
         }
 
         [TestMethod]
@@ -24,7 +27,7 @@ namespace TestParkingBusinessLogic
         {
             Account expected = new Account("098567890", 500);
             myController.RegisterAccount(expected);
-            Account output = myController.Accounts.ElementAt(0);
+            Account output = myController.Accounts.ElementAt(1);
             Assert.AreEqual(output, expected);
         }
 
@@ -62,13 +65,10 @@ namespace TestParkingBusinessLogic
 
         public void TestFindPurchaseOk()
         {
-            Controller myController = new Controller();
-            myController.InitLists();
             Account myA = new Account("098437217",4799);
-            Purchase wantedPurchase = new Purchase("SBN 2208 150 10:00", myA);
-            myController.InitLists();
-            //agregar wanredpurchase a la coleccion de purchase 
-            Purchase expected = myController.FindPurchase("SBN 1234");
+            Purchase wantedPurchase = new Purchase("SBN 1234 150 10:00", myA);
+            myController.Purchases.Add(wantedPurchase);
+            Purchase expected = myController.FindPurchase(myA);
             Assert.AreEqual(wantedPurchase, expected);
 
         }
@@ -77,14 +77,17 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestBuyParking()
         {
-            Controller myController = new Controller();
-            myController.InitLists();
+
             String num = "098437217";
             String msg = "SBN 2208 150 10:00";
             Account myAccount = new Account(num,4799);
-            myController.Accounts.Add(myAccount);
+            myController.RegisterAccount(myAccount);
             myController.BuyParking(num, msg);
-            //FIND COMPRA CON ESA ACCOUNT Y SI EL SALDO DE ESA CUENTA  ES 299
+            Purchase purchaseExpected = myController.FindPurchase(myAccount);
+            Account myA = new Account(num, 299);
+            Purchase purchase = new Purchase("SBN 2208 150 10:00", myA);
+            Assert.AreEqual(purchaseExpected.MyAccount.Balance, purchase.MyAccount.Balance);
+            
 
 
         }

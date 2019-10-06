@@ -26,6 +26,17 @@ namespace ParkingBusinessLogic
                 myLicensePlate = ValidateLicensePlate(value);
             }
         }
+        public Account MyAccount
+        {
+            get
+            {
+                return myAccount;
+            }
+            private set
+            {
+                myAccount = value;
+            }
+        }
         public string MyDay
         {
             get
