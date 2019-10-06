@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParkingBusinessLogic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,14 @@ using System.Windows.Forms;
 
 namespace ParkingUserInterface
 {
+    
     public partial class BuyParkingInterface : Form
     {
-        public BuyParkingInterface(bool IsParking)
+        private Controller MyController;
+        public BuyParkingInterface(Controller controller, bool IsParking)
         {
             InitializeComponent();
+            MyController = controller;
             if (IsParking)
             {
                 LabelLicensePlate.Visible = false;

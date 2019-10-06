@@ -113,6 +113,11 @@ namespace ParkingBusinessLogic
         {
             ValueOfMinute.ChangeValue(value);
         }
+
+        public void AddBalanceInAccount(Account MyAccount, int value)
+        {
+            MyAccount.AddBalance(value);
+        }
     }
 
     

@@ -35,7 +35,7 @@ namespace ParkingUserInterface
         public void GoToAddBalanceAccount(bool IsAccount)
         {
             this.Hide();
-            AddAccountInterface sistema = new AddAccountInterface(IsAccount);
+            AddAccountInterface sistema = new AddAccountInterface(MyController,IsAccount);
             sistema.ShowDialog();
             this.Close();
         }
@@ -43,7 +43,7 @@ namespace ParkingUserInterface
         public void GoToParkingLicense( bool IsParking)
         {
             this.Hide();
-            BuyParkingInterface sistema = new BuyParkingInterface(IsParking);
+            BuyParkingInterface sistema = new BuyParkingInterface(MyController, IsParking);
             sistema.ShowDialog();
             this.Close();
         }

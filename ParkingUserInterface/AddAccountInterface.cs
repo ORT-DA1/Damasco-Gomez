@@ -16,10 +16,10 @@ namespace ParkingUserInterface
     public partial class AddAccountInterface : Form
     {
         private Controller MyController;
-        public AddAccountInterface(bool CreateAccount)
+        public AddAccountInterface(Controller controller, bool CreateAccount)
         {
             InitializeComponent();
-            MyController = new Controller();
+            MyController = controller;
             if (CreateAccount)
             {
                 LabelAddBalance.Visible = false;
@@ -39,42 +39,33 @@ namespace ParkingUserInterface
 
         private void AddBalanceButton_Click(object sender, EventArgs e)
         {
-            LogicException MyExc = new TextIncompliteException();
             if (textBoxNumber.TextLength == 0 || textBoxBalance.Text.Length == 0)
             {   
-                MessageBox.Show(MyExc.ToString());
+                MessageBox.Show("We need values in ALL the empty boxes");
             } 
             else
-            {
-                Account MyAccount = new Account();
-                string number = textBoxNumber.Text.ToString();
-                if (MyAccount.ValidateFormat(number))
+            {                
+                String number = textBoxNumber.Text;
+                String balance = textBoxBalance.Text;
+                Account account = MyController.FindAccount(number);
+                if (MyController.isAccountEmpty(account))
                 {
-                    number = MyAccount.Format(number);
+                    MessageBox.Show("Theres no account with that number, try to add it first.");
                 }
-                MyAccount = MyController.FindAccount(textBoxNumber.Text);
-                if ( !MyController.isAccountEmpty(MyAccount) )
+                else if (balance.All(char.IsDigit))
                 {
-                    if (textBoxBalance.Text.Length > 0 && textBoxBalance.Text.All(char.IsDigit))
-                    {
-                        int BalanceToAdd = Int32.Parse(textBoxNumber.Text);
-                        MyAccount.AddBalance(BalanceToAdd);
-                        MessageBox.Show("Balance added correctly!");
-                        GoToFirstInterface();
-                    }
+                    MyController.AddBalanceInAccount(account, Int32.Parse(balance));
                     
                 } 
                 else
                 {
-                    MyExc = new NotAccountException();
-                    MessageBox.Show(MyExc.ToString());
+                    MessageBox.Show("The amount to add in balance should be in number.");
                 }
             }
         }
 
         private void AddAccountButton_Click(object sender, EventArgs e)
         {
-            LogicException MyExc;
             Account MyAccount = new Account();
             string Number = textBoxNumber.Text.ToString();
             if (MyAccount.ValidateFormat(Number))
@@ -91,8 +82,7 @@ namespace ParkingUserInterface
             }
             else
             {
-                MyExc = new HaveAccountException();
-                MessageBox.Show(MyExc.ToString());
+                MessageBox.Show("The number is already register, try to add balance, not create a new account.");
             }
         }
 

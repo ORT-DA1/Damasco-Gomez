@@ -13,11 +13,11 @@ namespace ParkingUserInterface
 {
     public partial class ChangeCostParkingInterface : Form
     {
-        private Controller MyControl;
+        private Controller MyController;
         public ChangeCostParkingInterface(Controller myController)
         {
             InitializeComponent();
-            MyControl = myController;
+            MyController = myController;
         }
 
         private void ChangeButton_Click(object sender, EventArgs e)
@@ -28,12 +28,26 @@ namespace ParkingUserInterface
             } 
             else if (TextBoxCost.Text.All(char.IsDigit))
             {
-                
-    
-            } else
+                int NewValue = Int32.Parse(TextBoxCost.Text);
+                MyController.ChageValueMinute(NewValue);
+                MessageBox.Show("The cost was change.");
+                GoToFirst();
+            } 
+            else
             {
                 MessageBox.Show("The cost should be in numbers");
             }
+        }
+        public void GoToFirst()
+        {
+            this.Hide();
+            First sistema = new First();
+            sistema.ShowDialog();
+            this.Close();
+        }
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            GoToFirst();
         }
     }
 }
