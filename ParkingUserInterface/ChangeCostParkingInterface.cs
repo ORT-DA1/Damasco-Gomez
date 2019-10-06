@@ -28,7 +28,7 @@ namespace ParkingUserInterface
             } 
             else if (TextBoxCost.Text.All(char.IsDigit))
             {
-                MyControl.
+                
     
             } else
             {
