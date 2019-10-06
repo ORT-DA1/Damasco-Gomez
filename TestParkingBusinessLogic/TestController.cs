@@ -60,6 +60,7 @@ namespace TestParkingBusinessLogic
             myController.ChageValueMinute(value);
             int output = myController.ValueOfMinute.ValuePerMinutes;
             Assert.AreEqual(value, output);
+        }
 
         [TestMethod]
 
@@ -70,9 +71,6 @@ namespace TestParkingBusinessLogic
             List<Account> EmptyAccount = myController.Accounts;
             List<Account>  Accounts = new List<Account>();
             Assert.AreEqual(EmptyAccount, Accounts);
-
-
-
         }
         [TestMethod]
 
@@ -83,18 +81,12 @@ namespace TestParkingBusinessLogic
             List<Purchase> EmptyPurchase = myController.Purchases;
             List<Purchase> Purchases = new List<Purchase>();
             Assert.AreEqual(EmptyPurchase, Purchases);
-
-
-
         }
-        [TestMethod]
 
+        [TestMethod]
         public void TestBuyParking()
         {
-            
-
-
-
+            Assert.IsTrue(true);
         }
         
 

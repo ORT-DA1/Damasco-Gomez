@@ -15,14 +15,6 @@ namespace ParkingBusinessLogic
 
         public ValueMinute ValueOfMinute;
 
-        public void InitLists()
-        {
-
-            Accounts = new List<Account>();
-            Purchases = new List<Purchase>();
-            ValueOfMinute = new ValueMinute();
-       }
-
         public List<Account> Accounts
         {
             get
@@ -46,11 +38,14 @@ namespace ParkingBusinessLogic
                 Purchases = value;
             }
         }
+        public void InitLists()
+        {
 
-
->>>>>>> 5874ac63e4bb02c9432c5ed98014713bd11943a6
-
+            Accounts = new List<Account>();
+            Purchases = new List<Purchase>();
+            ValueOfMinute = new ValueMinute();
         }
+
 
         public bool isAccountEmpty(Account account)
         {
@@ -77,14 +72,8 @@ namespace ParkingBusinessLogic
                 }                                            
             }
             return myAccount;
-                }
-
-            }
-            
-
-            return myAccount;
-
         }
+
         public void BuyParking(String num, String msg)
         {
 
