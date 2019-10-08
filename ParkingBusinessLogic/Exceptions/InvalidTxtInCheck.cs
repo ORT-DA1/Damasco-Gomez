@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ParkingBusinessLogic.Exceptions
 {
-    class InvalidTxtInCheck : LogicException
+    public class InvalidTxtInCheck : LogicException
     {
         private static readonly string message = "Text show have the format '11/11 12:45' .";
 

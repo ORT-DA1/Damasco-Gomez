@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ParkingBusinessLogic
 {
-    class DateParser
+    public class DateParser
     {
         public DateParser()
         {
@@ -18,7 +18,7 @@ namespace ParkingBusinessLogic
         {
             txt = txt.Trim();
             String[] arrayTxt = txt.Split(' ');
-            if (arrayTxt.Length == 0)
+            if (arrayTxt.Length <= 1)
             {
                 throw new InvalidTxtInCheck();
             } else
@@ -55,7 +55,7 @@ namespace ParkingBusinessLogic
         {
             txt = txt.Trim();
             String[] arrayTxt = txt.Split(' ');
-            if (arrayTxt.Length == 0)
+            if (arrayTxt.Length <= 1)
             {
                 throw new InvalidTxtInCheck();
             }
@@ -82,7 +82,7 @@ namespace ParkingBusinessLogic
 
             return auxReturn;
         }
-        public bool ValidateDayNumber (string MyMonth , string MyDay)
+        public bool ValidateDateNumber (string MyMonth , string MyDay)
         {
             int ThisDay = Int32.Parse(DateTime.Now.ToString("dd"));
             int ThisMonth = Int32.Parse(DateTime.Now.ToString("MM"));
@@ -105,7 +105,7 @@ namespace ParkingBusinessLogic
             if (MyDay.Contains('/'))
             {
                 string[] parserDay = MyDay.Split('/');
-                return parserDay.Length == 2 && ValidateNumberArray(parserDay) && ValidateDayNumber(parserDay[0],parserDay[1]); 
+                return parserDay.Length == 2 && ValidateNumberArray(parserDay) && ValidateDateNumber(parserDay[0],parserDay[1]); 
             }
             else
             {
@@ -113,34 +113,38 @@ namespace ParkingBusinessLogic
             }
         }
 
-        public String FormatDay(string MyDay)
+        public String FormatDay(string MyDate)
         {
-            return "";
+            string[] formatDay = MyDate.Split('/');
+            return formatDay[0] + "-" +formatDay[1];
         }
 
         public string GetTimeFromCheck(string myTime)
         {
-            if (ValidateTime(ParserTimeFromCheck(myTime)))
+            string parserTime = ParserTimeFromTxt(myTime);
+            if (ValidateTime(ParserTimeFromCheck(parserTime)))
             {
-                return myTime;
+                return parserTime;
             }
             throw new InvalidStartTimeException();
         }
 
         public string GetTimeFromTxt(string myTime)
         {
-            if (ValidateTime(ParserTimeFromTxt(myTime)))
+            string parserTime = ParserTimeFromTxt(myTime);
+            if (ValidateTime(parserTime))
             {
-                return myTime;
+                return parserTime;
             }
             throw new InvalidStartTimeException();
         }
 
         public string GetDayFromCheck(string myDay)
         {
-            if (ValidateDay(ParserDay(myDay)))
+            string parserDay = ParserDay(myDay);
+            if (ValidateDay(ParserDay(parserDay)))
             {
-                return myDay;
+                return FormatDay(parserDay);
             }
             throw new InvalidDayException();
         }
