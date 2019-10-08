@@ -206,7 +206,7 @@ namespace TestParkingBusinessLogic
             Assert.AreEqual(expected, output);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTxtInCheck))]
+        [ExpectedException(typeof(InvalidTextException))]
         public void TestGetTimeFromTxtFail()
         {
             string input = "thisIsTrash";

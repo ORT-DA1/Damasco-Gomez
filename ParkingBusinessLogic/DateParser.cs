@@ -42,14 +42,12 @@ namespace ParkingBusinessLogic
                 else if (msgList.Length == 4)
                 {
                     starTime = msgList[3];
-
-
                 }
-                else
-                {
-                    starTime = DateTime.Now.ToString("HH:mm");
-                }
-                
+
+            }
+            else
+            {
+                starTime = DateTime.Now.ToString("HH:mm");
             }
             return starTime;
         }
@@ -145,7 +143,7 @@ namespace ParkingBusinessLogic
 
             else
             {
-                throw new InvalidTxtInCheck();
+                throw new InvalidTextException();
             }
         }
 
