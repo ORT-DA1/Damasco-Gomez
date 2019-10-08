@@ -61,6 +61,7 @@
     <Compile Include="TestAccount.cs" />
     <Compile Include="TestController.cs" />
     <Compile Include="TestDateParser.cs" />
+    <Compile Include="TestLicensePlateParser.cs" />
     <Compile Include="TestPurchase.cs" />
     <Compile Include="TestMinuteParser.cs" />
     <Compile Include="TestValueMinute.cs" />

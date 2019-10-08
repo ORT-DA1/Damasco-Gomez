@@ -37,7 +37,7 @@ namespace TestParkingBusinessLogic
             Purchase myPurchase = new Purchase(text, myAccount);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidStartTimeException))]
+        [ExpectedException(typeof(InvalidTextException))]
         public void TestCreatePurchaseWithWrongTime()
         {
             Account myAccount = new Account();

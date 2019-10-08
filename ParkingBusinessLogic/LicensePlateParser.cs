@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ParkingBusinessLogic
 {
-    class LicensePlateParser
+    public class LicensePlateParser
     {
         private String licensePlate;
         public String LicensePlate
@@ -31,7 +31,7 @@ namespace ParkingBusinessLogic
             LicensePlate = License;
         }
 
-        private string ValidateLicensePlate(string licensePlate)
+        public string ValidateLicensePlate(string licensePlate)
         {
             if (!licensePlate.Equals("") && Regex.IsMatch(licensePlate, @"^[a-zA-Z]{3}\d{4}$"))
             {
