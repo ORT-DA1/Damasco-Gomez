@@ -139,7 +139,7 @@ namespace ParkingBusinessLogic
             {
                 return parserTime;
             }
-            throw new InvalidStartTimeException();
+            throw new InvalidTextException();
         }
 
         public string GetDayFromCheck(string myDay)

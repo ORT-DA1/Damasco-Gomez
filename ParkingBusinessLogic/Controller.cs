@@ -115,7 +115,7 @@ namespace ParkingBusinessLogic
                 ValueMinute valueMinute = new ValueMinute();
                 int amountToDiscont=valueMinute.TotalPrice(cantMinutes);
                 myAccount.DiscountBalance(amountToDiscont);
-                Purchase newPurchase = new Purchase(msg,myAccount);
+                Purchase newPurchase = new Purchase(msg, myAccount);
                 Purchases.Add(newPurchase);
 
 
