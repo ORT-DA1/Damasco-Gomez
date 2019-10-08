@@ -104,7 +104,6 @@ namespace ParkingBusinessLogic
             Account myAccount = FindAccount(num);
             if (isAccountEmpty(myAccount)) {
 
-                Console.WriteLine("antes de la exep");
                 throw new NotAccountException();
 
             }
