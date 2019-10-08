@@ -23,7 +23,7 @@ namespace ParkingBusinessLogic
                 throw new InvalidTxtInCheck();
             } else
             {
-                return arrayTxt[0];
+                return arrayTxt[1];
             }
         }
         public String ParserTimeFromTxt(string txt)
@@ -61,7 +61,7 @@ namespace ParkingBusinessLogic
             }
             else
             {
-                return arrayTxt[1];
+                return arrayTxt[0];
             }
         }
 
@@ -86,7 +86,7 @@ namespace ParkingBusinessLogic
         {
             int ThisDay = Int32.Parse(DateTime.Now.ToString("dd"));
             int ThisMonth = Int32.Parse(DateTime.Now.ToString("MM"));
-            return ((Int32.Parse(MyMonth) <= ThisMonth) && (Int32.Parse(MyDay) <= ThisDay));
+            return (Int32.Parse(MyMonth.Replace("0","")) <= ThisMonth) && (Int32.Parse(MyDay.Replace("0", "")) <= ThisDay);
         }
 
         public bool ValidateNumberArray(string[] stringArray)
@@ -105,7 +105,7 @@ namespace ParkingBusinessLogic
             if (MyDay.Contains('/'))
             {
                 string[] parserDay = MyDay.Split('/');
-                return parserDay.Length == 2 && ValidateNumberArray(parserDay) && ValidateDateNumber(parserDay[0],parserDay[1]); 
+                return parserDay.Length >= 2 && ValidateNumberArray(parserDay) && ValidateDateNumber(parserDay[0],parserDay[1]); 
             }
             else
             {
@@ -121,12 +121,15 @@ namespace ParkingBusinessLogic
 
         public string GetTimeFromCheck(string myTime)
         {
-            string parserTime = ParserTimeFromTxt(myTime);
-            if (ValidateTime(ParserTimeFromCheck(parserTime)))
+            string parserTime = ParserTimeFromCheck(myTime);
+            if (ValidateTime(parserTime))
             {
                 return parserTime;
             }
-            throw new InvalidStartTimeException();
+            else
+            {
+                throw new InvalidStartTimeException();
+            }
         }
 
         public string GetTimeFromTxt(string myTime)
@@ -136,17 +139,24 @@ namespace ParkingBusinessLogic
             {
                 return parserTime;
             }
-            throw new InvalidStartTimeException();
+            else
+            {
+                throw new InvalidTxtInCheck();
+            }
         }
 
         public string GetDayFromCheck(string myDay)
         {
             string parserDay = ParserDay(myDay);
-            if (ValidateDay(ParserDay(parserDay)))
+            if (ValidateDay(parserDay))
             {
                 return FormatDay(parserDay);
             }
-            throw new InvalidDayException();
+            else
+            {
+                throw new InvalidDayException();
+            }
+
         }
     }
 }

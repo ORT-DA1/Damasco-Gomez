@@ -24,7 +24,7 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestParserTimeFromCheckOk()
         {
-            string checkMsg = " 13:00 14/10";
+            string checkMsg = "  14/10 13:00";
             string output = dateParser.ParserTimeFromCheck(checkMsg);
             string expected = "13:00";
             Assert.AreEqual(expected, output);
@@ -63,7 +63,7 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestParserDayOk()
         {
-            string checkMsg = " 13:00 14/10";
+            string checkMsg = "14/10 13:00 ";
             string output = dateParser.ParserDay(checkMsg);
             string expected = "14/10";
             Assert.AreEqual(expected, output);
@@ -185,23 +185,47 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestGetTimeFromCheckOk()
         {
-            Assert.IsTrue(true);
+            string input = "1/10 12:00";
+            string expected = "12:00";
+            string output = dateParser.GetTimeFromCheck(input);
+            Assert.AreEqual(expected, output);
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidTxtInCheck))]
         public void TestGetTimeFromCheckFail()
         {
-            Assert.IsTrue(true);
+            string input = "thisIsTrash";
+            string output = dateParser.GetTimeFromCheck(input);
         }
         [TestMethod]
-        public void TestGetTimeFromTxt()
+        public void TestGetTimeFromTxtOk()
         {
-            Assert.IsTrue(true);
+            string input = "SBD1234 120 12:00";
+            string expected = "12:00";
+            string output = dateParser.GetTimeFromTxt(input);
+            Assert.AreEqual(expected, output);
         }
         [TestMethod]
-        public void TestGetDayFromCheck()
+        [ExpectedException(typeof(InvalidTxtInCheck))]
+        public void TestGetTimeFromTxtFail()
         {
-            Assert.IsTrue(true);
+            string input = "thisIsTrash";
+            string output = dateParser.GetTimeFromTxt(input);
+        }
+        [TestMethod]
+        public void TestGetDayFromCheckOk()
+        {
+            string input = "01/01 12:00";
+            string expected = "01-01";
+            string output = dateParser.GetDayFromCheck(input);
+            Assert.AreEqual(expected, output);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTxtInCheck))]
+        public void TestGetDayFromCheckFail()
+        {
+            string input = "thisIsTrash";
+            string output = dateParser.GetDayFromCheck(input);
         }
     }
 }
