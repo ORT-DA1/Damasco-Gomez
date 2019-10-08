@@ -77,13 +77,14 @@ namespace ParkingBusinessLogic
         }
         public Purchase(string msg, Account myA)
         {
-            string startTime = ParseStarTime(msg);
-            MinuteParser myTool = new MinuteParser();
+            DateParser dateParser = new DateParser();
+            string startTime = dateParser.GetTimeFromTxt(msg);
+            MinuteParser minuteParser = new MinuteParser();
             LicensePlateParser myParserLicense = new LicensePlateParser();
             string licensePlate = myParserLicense.GetLicensePlate(msg);
 
 
-            string finishTime = AddMinHour(  myTool.GetCantMinutes(msg) , (startTime));
+            string finishTime = AddMinHour(minuteParser.GetCantMinutes(msg) , startTime);
 
             myAccount = myA ;
             MyLicensePlate = licensePlate;
@@ -105,30 +106,6 @@ namespace ParkingBusinessLogic
             
         }
 
-
-
-        public string ParseStarTime(String msg)
-        {
-            string starTime = "";
-            string[] msgList = msg.Split(' ');
-            if (msg.Contains(':'))
-            {
-                
-                if (msgList.Length == 3)
-                {
-                    starTime = msgList[2];
-
-                }else if (msgList.Length == 4)
-                {
-                    starTime = msgList[3];
-                }
-            }
-            else
-            {
-                starTime = DateTime.Now.ToString("HH:mm");
-            }
-            return starTime;
-        }
 
     }
 }
