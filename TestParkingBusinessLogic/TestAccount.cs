@@ -147,6 +147,15 @@ namespace TestParkingBusinessLogic
 
             Assert.IsTrue(output);
         }
+
+        [TestMethod]
+        public void TestNotEnoughBalance()
+        {
+            Account myAccount = new Account("098878989", 98);
+            bool output = myAccount.EnoughBalance(99);
+            Assert.IsFalse(output);
+        }
+
         [TestMethod]
         public void TestDiscountBalancePositiveNumberandEnoughBalance()
         {
