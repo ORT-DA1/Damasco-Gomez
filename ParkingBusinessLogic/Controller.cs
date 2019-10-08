@@ -56,7 +56,6 @@ namespace ParkingBusinessLogic
         }
 
 
-
         public bool isAccountEmpty(Account account)
         {
             return account.AccountEmpty();

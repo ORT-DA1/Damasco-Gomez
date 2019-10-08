@@ -55,7 +55,7 @@ namespace ParkingUserInterface
                 else if (balance.All(char.IsDigit))
                 {
                     MyController.AddBalanceInAccount(account, Int32.Parse(balance));
-                    
+                    GoToFirstInterface();
                 } 
                 else
                 {
@@ -78,6 +78,7 @@ namespace ParkingUserInterface
                 MyAccount = new Account(Number, 0);
                 MyController.RegisterAccount(MyAccount);
                 MessageBox.Show("Account created succesfully!");
+                GoToFirstInterface();
                 
             }
             else
@@ -89,7 +90,7 @@ namespace ParkingUserInterface
         public void GoToFirstInterface()
         {
             this.Hide();
-            First sistema = new First();
+            First sistema = new First(MyController);
             sistema.ShowDialog();
             this.Close();
         }

@@ -14,10 +14,10 @@ namespace ParkingUserInterface
     public partial class First : Form
     {
         Controller MyController;
-        public First()
+        public First(Controller controller )
         {
             InitializeComponent();
-            MyController = new Controller();
+            MyController = controller;
 
         }
 
