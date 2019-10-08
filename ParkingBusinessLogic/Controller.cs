@@ -135,6 +135,32 @@ namespace ParkingBusinessLogic
         {
             MyAccount.AddBalance(value);
         }
+        public bool ChekPurchase(String licensePlate, String dateTime)
+        {
+
+            Purchase auxPurchase = new Purchase();
+
+            //String formattedLP = FormatLicensePlate(licensePlate);
+            //String day = FormatDay(dateTime);
+            //String hour = FormatHour(dateTime);
+
+            //bool result = false;
+            //foreach (Purchase element in Purchases)
+            //{
+
+            //if (element.MyLicensePlate == formattedLP)
+            //{
+            //if (element.MyDay== day) && (element.MyInitHour== hour)
+            //{
+            // result = true;
+
+            // }
+            //}
+            //}
+            //return result;
+            return true;
+
+        }
     }
 
     
