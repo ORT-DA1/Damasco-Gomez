@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParkingBusinessLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace ParkingUserInterface
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new First());
+            Controller MyController = new Controller();
+            Application.Run(new First(MyController));
         }
     }
 }

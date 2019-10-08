@@ -41,7 +41,7 @@ namespace ParkingUserInterface
         public void GoToFirst()
         {
             this.Hide();
-            First sistema = new First();
+            First sistema = new First(MyController);
             sistema.ShowDialog();
             this.Close();
         }

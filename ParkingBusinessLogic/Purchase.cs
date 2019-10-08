@@ -23,7 +23,7 @@ namespace ParkingBusinessLogic
             }
             private set
             {
-                myLicensePlate = ValidateLicensePlate(value);
+                myLicensePlate = value;
             }
         }
         public Account MyAccount
@@ -56,7 +56,7 @@ namespace ParkingBusinessLogic
             }
             private set
             {
-                myInitHour = ValidateTime(value);                             
+                myInitHour = value;                             
             }
         }
         public string MyFinHour
@@ -67,7 +67,7 @@ namespace ParkingBusinessLogic
             }
             private set
             {
-                myFinHour = ValidateTime(value);
+                myFinHour = value;
                 
             }
         }
@@ -77,12 +77,13 @@ namespace ParkingBusinessLogic
         }
         public Purchase(string msg, Account myA)
         {
-            string licensePlate = ParseLicensePlate(msg);            
             string startTime = ParseStarTime(msg);
             MinuteParser myTool = new MinuteParser();
+            LicensePlateParser myParserLicense = new LicensePlateParser();
+            string licensePlate = myParserLicense.GetLicensePlate(msg);
 
 
-            string finishTime = AddMinHour(  myTool.GetCantMinutes(msg) , ValidateTime(startTime));
+            string finishTime = AddMinHour(  myTool.GetCantMinutes(msg) , (startTime));
 
             myAccount = myA ;
             MyLicensePlate = licensePlate;
@@ -104,70 +105,8 @@ namespace ParkingBusinessLogic
             
         }
 
-        public string ValidateTime(string startTime)
-        {            
-            if (!startTime.Equals("") && startTime.Contains(':'))
-            {
-                string[] hourmin = startTime.Split(':');
-                string hour = hourmin[0];
-                int hours = Int32.Parse(hour);
-                if ((hours >= 10) && (hours <= 18))
-                {
-                    return startTime;
 
-                }
-                else
-                {
-                    throw new InvalidStartTimeException();
-                }
-            }
-            else
-            {
-                throw new InvalidStartTimeException();
-            }
-        }
 
-        
-        private string ValidateLicensePlate(string licensePlate)
-        {
-            if (!licensePlate.Equals("") && Regex.IsMatch(licensePlate, @"^[a-zA-Z]{3}\d{4}$"))
-            {
-                return licensePlate;
-            }
-            else
-            {
-                throw new InvalidTextException();
-            }
-        }
-
-        public string ParseLicensePlate(string msg)
-        {
-            string[] msgList = msg.Split(' ');
-            string licensePlate = "";
-            if (msgList.Length >= 2)
-            {
-                if (msgList[0].Length == 3)
-                {
-                    licensePlate = msgList[0] + msgList[1];
-                }
-                else
-                {
-                    licensePlate = msgList[0];
-                }
-            }
-            return licensePlate;
-        }
-        public bool IsLicensePlateValid(String msg)
-        {
-            bool Validation=false;
-            String licensePlate = ParseLicensePlate(msg);
-            if (licensePlate == ValidateLicensePlate(licensePlate))
-            {
-                 Validation=true;
-            }
-            return Validation;
-
-        }
         public string ParseStarTime(String msg)
         {
             string starTime = "";
@@ -190,14 +129,6 @@ namespace ParkingBusinessLogic
             }
             return starTime;
         }
-        public bool IsStartTimeValid(String msg) {
-            bool Validation = false;
-            String starTime = ParseStarTime(msg);
-            if (starTime == ValidateTime(starTime))
-            {
-                Validation = true;
-            }
-            return Validation;
-        }
+
     }
 }
