@@ -30,12 +30,9 @@ namespace ParkingBusinessLogic
         {
             txt = txt.Trim();
             LicensePlateParser lp = new LicensePlateParser();
-            String licenseParse = lp.GetLicensePlate(txt);
-            String getOnyLP = lp.ParseLicensePlate(txt);
-            MinuteParser cantMinutes = new MinuteParser();
-            int miuntes = cantMinutes.GetCantMinutes(txt);
-            string getOnlyCM = cantMinutes.ParseCantMinutes(txt);
-            int onlyMinutes = Int32.Parse(getOnlyCM);
+            MinuteParser mp = new MinuteParser();
+            string parserLicensePlate = lp.ParseLicensePlate(txt);
+            string parserMinutes = mp.ParseCantMinutes(txt);
             string starTime = "";
             
             string[] msgList = txt.Split(' ');
@@ -53,7 +50,7 @@ namespace ParkingBusinessLogic
                 }
 
             }
-            else if (getOnyLP == licenseParse && miuntes == onlyMinutes)
+            else if (lp.ValidateLicensePlate(parserLicensePlate) && mp.ValidateMinutesMultiple30(mp.ValidateDigit(parserMinutes)))
             {
                 starTime = DateTime.Now.ToString("HH:mm");
             }
