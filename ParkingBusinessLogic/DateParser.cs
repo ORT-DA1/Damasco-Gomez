@@ -28,6 +28,7 @@ namespace ParkingBusinessLogic
         }
         public String ParserTimeFromTxt(string txt)
         {
+            txt = txt.Trim();
             LicensePlateParser lp = new LicensePlateParser();
             String licenseParse = lp.GetLicensePlate(txt);
             String getOnyLP = lp.ParseLicensePlate(txt);
@@ -36,7 +37,7 @@ namespace ParkingBusinessLogic
             string getOnlyCM = cantMinutes.ParseCantMinutes(txt);
             int onlyMinutes = Int32.Parse(getOnlyCM);
             string starTime = "";
-            txt = txt.Trim();
+            
             string[] msgList = txt.Split(' ');
             if (txt.Contains(':'))
             {
@@ -56,12 +57,7 @@ namespace ParkingBusinessLogic
             {
                 starTime = DateTime.Now.ToString("HH:mm");
             }
-            else
-            {
-                throw new InvalidTextException();
-            }
-
-        
+          
             return starTime;
         }
 

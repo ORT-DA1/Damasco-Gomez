@@ -224,10 +224,35 @@ namespace TestParkingBusinessLogic
             Assert.AreEqual(expected, output);
         }
         [TestMethod]
+        public void TestGetTimeNow()
+        {
+            string input = "SBD 1234 120 ";
+            string expected = DateTime.Now.ToString("HH:mm");
+            string output = dateParser.ParserTimeFromTxt(input);
+            Assert.AreEqual(expected, output);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTextException))]
+        public void TestGetTimeNowLicensePlateInvalid()
+        {
+            string input = "SB 1234 120 ";
+            string output = dateParser.ParserTimeFromTxt(input);
+           
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTextException))]
+        public void TestGetTimeNowCantMinutesInvalid()
+        {
+            string input = "SBN 1234 147 ";
+            string output = dateParser.ParserTimeFromTxt(input);
+
+        }
+        [TestMethod]
         [ExpectedException(typeof(InvalidTextException))]
         public void TestGetTimeFromTxtFail()
         {
-            string input = "thisIsTrash";
+            string input = "SB 123 147";
             string output = dateParser.GetTimeFromTxt(input);
         }
         [TestMethod]
