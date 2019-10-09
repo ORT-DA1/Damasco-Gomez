@@ -137,6 +137,7 @@ namespace ParkingBusinessLogic
         {
 
             Purchase auxPurchase = new Purchase();
+            LicensePlateParser licensePlateParser = new LicensePlateParser();
 
             //String formattedLP = FormatLicensePlate(licensePlate);
             //String day = FormatDay(dateTime);
