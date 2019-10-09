@@ -55,6 +55,8 @@ namespace ParkingUserInterface
             if(TextBoxNumber.Text.Length != 0 && TextBoxText.Text.Length != 0)
             {
                 MyController.BuyParking(TextBoxNumber.Text, TextBoxText.Text);
+                MessageBox.Show("The parking was succesfully purchase.");
+                GoFirst();
             }
             else
             {
