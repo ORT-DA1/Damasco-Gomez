@@ -19,6 +19,14 @@ namespace TestParkingBusinessLogic
             Purchase myPurchase = new Purchase(text, myAccount);
 
         }
+        [TestMethod]
+        public void TestCreatePurchase2()
+        {
+           
+            Purchase myPurchase = new Purchase("SBS 1234", "08/09/2019","15:35");
+
+        }
+
 
         [TestMethod]
         [Ignore]
