@@ -227,7 +227,7 @@ namespace TestParkingBusinessLogic
         [ExpectedException(typeof(InvalidTextException))]
         public void TestGetTimeFromTxtFail()
         {
-            string input = "thisIs Trash";
+            string input = "thisIsTrash";
             string output = dateParser.GetTimeFromTxt(input);
         }
         [TestMethod]
