@@ -27,11 +27,7 @@ namespace ParkingBusinessLogic
         {
             ValuePerMinutes = 30;
         }
-        public ValueMinute(int value)
-        {
-            ValuePerMinutes = value;
-
-        }
+        
         public int TotalPrice(int cantMinutes)
         {
             if (cantMinutes > 0) {

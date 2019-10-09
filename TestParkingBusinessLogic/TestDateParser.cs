@@ -30,7 +30,7 @@ namespace TestParkingBusinessLogic
             Assert.AreEqual(expected, output);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTxtInCheck))]
+        [ExpectedException(typeof(InvalidTextCheckException))]
         public void TestParserTimeFromCheckFail()
         {
             string checkMsg = "notValid";
@@ -69,7 +69,7 @@ namespace TestParkingBusinessLogic
             Assert.AreEqual(expected, output);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTxtInCheck))]
+        [ExpectedException(typeof(InvalidTextCheckException))]
         public void TestParserDayFail()
         {
             string checkMsg = "notValid";
@@ -88,9 +88,15 @@ namespace TestParkingBusinessLogic
             string timeIn = "19:00";
             Assert.IsFalse(dateParser.ValidateTime(timeIn));
         }
-
         [TestMethod]
         public void TestValidateTimeFaild2()
+        {
+            string timeIn = "9:00";
+            Assert.IsFalse(dateParser.ValidateTime(timeIn));
+        }
+
+        [TestMethod]
+        public void TestValidateTimeFaild3()
         {
             string timeIn = "bananas";
             Assert.IsFalse(dateParser.ValidateTime(timeIn));
@@ -168,7 +174,19 @@ namespace TestParkingBusinessLogic
             Assert.IsFalse(dateParser.ValidateDay(input));
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTxtInCheck))]
+        public void TestValidateDayFalse3()
+        {
+            string input = "11/28";
+            Assert.IsFalse(dateParser.ValidateDay(input));
+        }
+        [TestMethod]
+        public void TestValidateDayFalse4()
+        {
+            string input = "a/b";
+            Assert.IsFalse(dateParser.ValidateDay(input));
+        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTextCheckException))]
         public void TestValidateDayFail()
         {
             string input = "novalido";
@@ -191,10 +209,10 @@ namespace TestParkingBusinessLogic
             Assert.AreEqual(expected, output);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTxtInCheck))]
+        [ExpectedException(typeof(InvalidTextCheckException))]
         public void TestGetTimeFromCheckFail()
         {
-            string input = "thisIsTrash";
+            string input = "thisIs Trash";
             string output = dateParser.GetTimeFromCheck(input);
         }
         [TestMethod]
@@ -209,7 +227,7 @@ namespace TestParkingBusinessLogic
         [ExpectedException(typeof(InvalidTextException))]
         public void TestGetTimeFromTxtFail()
         {
-            string input = "thisIsTrash";
+            string input = "thisIs Trash";
             string output = dateParser.GetTimeFromTxt(input);
         }
         [TestMethod]
@@ -221,10 +239,10 @@ namespace TestParkingBusinessLogic
             Assert.AreEqual(expected, output);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTxtInCheck))]
+        [ExpectedException(typeof(InvalidTextCheckException))]
         public void TestGetDayFromCheckFail()
         {
-            string input = "thisIsTrash";
+            string input = "101/101 12:00";
             string output = dateParser.GetDayFromCheck(input);
         }
     }

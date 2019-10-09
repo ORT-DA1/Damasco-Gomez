@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace ParkingBusinessLogic.Exceptions
 {
-    public class InvalidTxtInCheck : LogicException
+    public class InvalidTextCheckException : LogicException
     {
         private static readonly string message = "Text show have the format '11/11 12:45' .";
 
-        public InvalidTxtInCheck() : base(message)
+        public InvalidTextCheckException() : base(message)
         {
 
         }

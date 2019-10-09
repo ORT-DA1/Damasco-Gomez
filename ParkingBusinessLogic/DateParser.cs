@@ -20,7 +20,7 @@ namespace ParkingBusinessLogic
             String[] arrayTxt = txt.Split(' ');
             if (arrayTxt.Length <= 1)
             {
-                throw new InvalidTxtInCheck();
+                throw new InvalidTextCheckException();
             } else
             {
                 return arrayTxt[1];
@@ -58,7 +58,7 @@ namespace ParkingBusinessLogic
             String[] arrayTxt = txt.Split(' ');
             if (arrayTxt.Length <= 1)
             {
-                throw new InvalidTxtInCheck();
+                throw new InvalidTextCheckException();
             }
             else
             {
@@ -69,7 +69,7 @@ namespace ParkingBusinessLogic
         public bool ValidateTime(string startTime)
         {
             bool auxReturn = false;
-            if (!startTime.Equals("") && startTime.Contains(':'))
+            if (startTime.Contains(':'))
             {
                 string[] hourmin = startTime.Split(':');
                 string hour = hourmin[0];
@@ -106,11 +106,11 @@ namespace ParkingBusinessLogic
             if (MyDay.Contains('/'))
             {
                 string[] parserDay = MyDay.Split('/');
-                return parserDay.Length >= 2 && ValidateNumberArray(parserDay) && ValidateDateNumber(parserDay[0],parserDay[1]); 
+                return ValidateNumberArray(parserDay) && ValidateDateNumber(parserDay[0],parserDay[1]); 
             }
             else
             {
-                throw new InvalidTxtInCheck();
+                throw new InvalidTextCheckException();
             }
         }
 
@@ -127,10 +127,8 @@ namespace ParkingBusinessLogic
             {
                 return parserTime;
             }
-            else
-            {
-                throw new InvalidStartTimeException();
-            }
+                throw new InvalidTextCheckException();
+            
         }
 
         public string GetTimeFromTxt(string myTime)
@@ -141,10 +139,8 @@ namespace ParkingBusinessLogic
                 return parserTime;
             }
 
-            else
-            {
                 throw new InvalidTextException();
-            }
+            
         }
 
         public string GetDayFromCheck(string myDay)
@@ -154,10 +150,9 @@ namespace ParkingBusinessLogic
             {
                 return FormatDay(parserDay);
             }
-            else
-            {
-                throw new InvalidDayException();
-            }
+            
+                throw new InvalidTextCheckException();
+            
 
         }
     }

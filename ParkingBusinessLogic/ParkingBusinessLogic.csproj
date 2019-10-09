@@ -46,11 +46,9 @@
     <Compile Include="DateParser.cs" />
     <Compile Include="Exceptions\HaveAccountException.cs" />
     <Compile Include="Exceptions\InsufficientBalanceException.cs" />
-    <Compile Include="Exceptions\InvalidDayException.cs" />
-    <Compile Include="Exceptions\InvalidStartTimeException.cs" />
-    <Compile Include="Exceptions\InvalidTextExeption.cs" />
+    <Compile Include="Exceptions\InvalidTextException.cs" />
     <Compile Include="Exceptions\InvalidNumberException.cs" />
-    <Compile Include="Exceptions\InvalidTxtInCheck.cs" />
+    <Compile Include="Exceptions\InvalidTextCheckException.cs" />
     <Compile Include="Exceptions\NegativeNumberException.cs" />
     <Compile Include="Exceptions\NotAccountException.cs" />
     <Compile Include="Exceptions\TextIncompliteException.cs" />
