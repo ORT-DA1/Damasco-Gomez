@@ -28,6 +28,13 @@ namespace ParkingBusinessLogic
         }
         public String ParserTimeFromTxt(string txt)
         {
+            LicensePlateParser lp = new LicensePlateParser();
+            String licenseParse = lp.GetLicensePlate(txt);
+            String getOnyLP = lp.ParseLicensePlate(txt);
+            MinuteParser cantMinutes = new MinuteParser();
+            int miuntes = cantMinutes.GetCantMinutes(txt);
+            string getOnlyCM = cantMinutes.ParseCantMinutes(txt);
+            int onlyMinutes = Int32.Parse(getOnlyCM);
             string starTime = "";
             txt = txt.Trim();
             string[] msgList = txt.Split(' ');
@@ -45,115 +52,125 @@ namespace ParkingBusinessLogic
                 }
 
             }
-            else
+            else if (getOnyLP == licenseParse && miuntes == onlyMinutes)
             {
                 starTime = DateTime.Now.ToString("HH:mm");
             }
+            else
+            {
+                throw new InvalidTextException();
+            }
+
+        
             return starTime;
         }
 
-        public String ParserDay(string txt)
+
+    public String ParserDay(string txt)
+    {
+        txt = txt.Trim();
+        String[] arrayTxt = txt.Split(' ');
+        if (arrayTxt.Length <= 1)
         {
-            txt = txt.Trim();
-            String[] arrayTxt = txt.Split(' ');
-            if (arrayTxt.Length <= 1)
-            {
-                throw new InvalidTextCheckException();
-            }
-            else
-            {
-                return arrayTxt[0];
-            }
+            throw new InvalidTextCheckException();
         }
-
-        public bool ValidateTime(string startTime)
+        else
         {
-            bool auxReturn = false;
-            if (startTime.Contains(':'))
-            {
-                string[] hourmin = startTime.Split(':');
-                string hour = hourmin[0];
-                int hours = Int32.Parse(hour);
-                if ((hours >= 10) && (hours <= 18))
-                {
-                    return true;
-
-                }
-            }
-
-            return auxReturn;
-        }
-        public bool ValidateDateNumber (string MyMonth , string MyDay)
-        {
-            int ThisDay = Int32.Parse(DateTime.Now.ToString("dd"));
-            int ThisMonth = Int32.Parse(DateTime.Now.ToString("MM"));
-            return (Int32.Parse(MyMonth.Replace("0","")) <= ThisMonth) && (Int32.Parse(MyDay.Replace("0", "")) <= ThisDay);
-        }
-
-        public bool ValidateNumberArray(string[] stringArray)
-        {
-            bool AreNumberOnly = true;
-            int count = 0;
-            while (AreNumberOnly && count<stringArray.Length)
-            {
-                AreNumberOnly = stringArray[count].All(char.IsDigit);
-                count++;
-            }
-            return AreNumberOnly;
-        }
-        public bool ValidateDay(string MyDay)
-        {
-            if (MyDay.Contains('/'))
-            {
-                string[] parserDay = MyDay.Split('/');
-                return ValidateNumberArray(parserDay) && ValidateDateNumber(parserDay[0],parserDay[1]); 
-            }
-            else
-            {
-                throw new InvalidTextCheckException();
-            }
-        }
-
-        public String FormatDay(string MyDate)
-        {
-            string[] formatDay = MyDate.Split('/');
-            return formatDay[0] + "-" +formatDay[1];
-        }
-
-        public string GetTimeFromCheck(string myTime)
-        {
-            string parserTime = ParserTimeFromCheck(myTime);
-            if (ValidateTime(parserTime))
-            {
-                return parserTime;
-            }
-                throw new InvalidTextCheckException();
-            
-        }
-
-        public string GetTimeFromTxt(string myTime)
-        {
-            string parserTime = ParserTimeFromTxt(myTime);
-            if (ValidateTime(parserTime))
-            {
-                return parserTime;
-            }
-
-                throw new InvalidTextException();
-            
-        }
-
-        public string GetDayFromCheck(string myDay)
-        {
-            string parserDay = ParserDay(myDay);
-            if (ValidateDay(parserDay))
-            {
-                return FormatDay(parserDay);
-            }
-            
-                throw new InvalidTextCheckException();
-            
-
+            return arrayTxt[0];
         }
     }
-}
+
+    public bool ValidateTime(string startTime)
+    {
+        bool auxReturn = false;
+        if (startTime.Contains(':'))
+        {
+            string[] hourmin = startTime.Split(':');
+            string hour = hourmin[0];
+            int hours = Int32.Parse(hour);
+            if ((hours >= 10) && (hours <= 18))
+            {
+                return true;
+
+            }
+        }
+
+        return auxReturn;
+    }
+    public bool ValidateDateNumber(string MyMonth, string MyDay)
+    {
+        int ThisDay = Int32.Parse(DateTime.Now.ToString("dd"));
+        int ThisMonth = Int32.Parse(DateTime.Now.ToString("MM"));
+        return (Int32.Parse(MyMonth.Replace("0", "")) <= ThisMonth) && (Int32.Parse(MyDay.Replace("0", "")) <= ThisDay);
+    }
+
+    public bool ValidateNumberArray(string[] stringArray)
+    {
+        bool AreNumberOnly = true;
+        int count = 0;
+        while (AreNumberOnly && count < stringArray.Length)
+        {
+            AreNumberOnly = stringArray[count].All(char.IsDigit);
+            count++;
+        }
+        return AreNumberOnly;
+    }
+    public bool ValidateDay(string MyDay)
+    {
+        if (MyDay.Contains('/'))
+        {
+            string[] parserDay = MyDay.Split('/');
+            return ValidateNumberArray(parserDay) && ValidateDateNumber(parserDay[0], parserDay[1]);
+        }
+        else
+        {
+            throw new InvalidTextCheckException();
+        }
+    }
+
+    public String FormatDay(string MyDate)
+    {
+        string[] formatDay = MyDate.Split('/');
+        return formatDay[0] + "-" + formatDay[1];
+    }
+
+    public string GetTimeFromCheck(string myTime)
+    {
+        string parserTime = ParserTimeFromCheck(myTime);
+        if (ValidateTime(parserTime))
+        {
+            return parserTime;
+        }
+        throw new InvalidTextCheckException();
+
+    }
+
+    public string GetTimeFromTxt(string myTime)
+    {
+        string parserTime = ParserTimeFromTxt(myTime);
+        if (ValidateTime(parserTime))
+        {
+            return parserTime;
+        }
+
+        throw new InvalidTextException();
+
+    }
+
+    public string GetDayFromCheck(string myDay)
+    {
+        string parserDay = ParserDay(myDay);
+        if (ValidateDay(parserDay))
+        {
+            return FormatDay(parserDay);
+        }
+
+        throw new InvalidTextCheckException();
+
+
+    }
+  }
+ }
+    
+
+
