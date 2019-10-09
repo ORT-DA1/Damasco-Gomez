@@ -97,8 +97,15 @@ namespace TestParkingBusinessLogic
 
             Assert.IsTrue(true);
         }
+        [TestMethod]
+        public void TestFindPurchase()
+        {
+
+            Assert.IsTrue(true);
+        }
 
 
+        
 
     }
 

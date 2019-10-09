@@ -68,8 +68,15 @@ namespace ParkingBusinessLogic
                 
             }
         }
-        public Purchase() {
+        public Purchase(string licensePlate, string day , string initHour) {
+            myInitHour = initHour;
+            MyDay = day;
+            MyLicensePlate = licensePlate;
 
+
+        }
+        public Purchase()
+        {
 
         }
         public Purchase(string msg, Account myA)

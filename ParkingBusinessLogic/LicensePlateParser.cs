@@ -47,7 +47,7 @@ namespace ParkingBusinessLogic
             return licensePlate;
         }
 
-        public String GetLicensePlate(String txt)
+        public string GetLicensePlate(string txt)
         {
             String License = ParseLicensePlate(txt);
             License = ValidateLicensePlate(License);
