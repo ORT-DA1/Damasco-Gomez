@@ -22,7 +22,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        public void TestBreakdownCantMinutesCorrect()
+        public void TestGetCantMinutesCorrect()
         {
             string msg = ("ABC 1234 60 10:00");
             int output = myMinPar.GetCantMinutes(msg);

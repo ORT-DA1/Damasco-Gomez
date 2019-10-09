@@ -32,10 +32,7 @@ namespace ParkingBusinessLogic
             {
                 return myAccount;
             }
-            private set
-            {
-                myAccount = value;
-            }
+           
         }
         public string MyDay
         {

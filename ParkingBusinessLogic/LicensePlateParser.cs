@@ -10,27 +10,13 @@ namespace ParkingBusinessLogic
 {
     public class LicensePlateParser
     {
-        private String licensePlate;
-        public String LicensePlate
-        {
-            get
-            {
-                return licensePlate;
-            }
-            private set
-            {
-                licensePlate = value;
-            }
-        }
+      
+     
         public LicensePlateParser()
         {
 
         }
-        public LicensePlateParser(String License)
-        {
-            LicensePlate = License;
-        }
-
+      
         public string ValidateLicensePlate(string licensePlate)
         {
             if (!licensePlate.Equals("") && Regex.IsMatch(licensePlate, @"^[a-zA-Z]{3}\d{4}$"))

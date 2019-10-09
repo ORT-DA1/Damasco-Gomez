@@ -12,7 +12,6 @@ namespace ParkingBusinessLogic
        public MinuteParser() { }
         public bool ValidateMinutesMultiple30(int minutes)
         {
-            Console.WriteLine(minutes);
             if ((minutes % 30) == 0)
             {
                 return true;
@@ -25,40 +24,53 @@ namespace ParkingBusinessLogic
 
         public int GetCantMinutes(string msg)
         {
-            int cantMinutes = ParseCantMinutes(msg);
-            ValidateMinutesMultiple30(cantMinutes);
-            return cantMinutes;
+            string cantMinutes = ParseCantMinutes(msg);
+            int intCantMinutes = ValidateDigit(cantMinutes);
+
+
+            if (ValidateMinutesMultiple30(intCantMinutes))
+            {
+                return intCantMinutes;
+            }
+            else
+            {
+                throw new InvalidTextException();
+
+
+            }
         }
 
-        public int ParseCantMinutes(string msg)
+        public String ParseCantMinutes(string msg)
         {                
             if (msg.Contains(' '))
             { 
                 string[] msgList = msg.Split(' ');
                 string minutes = "";
-                if (msgList.Length >= 2)
+                if (msgList[msgList.Length - 1].Contains(':'))
                 {
-                    Console.WriteLine(msgList.Length);
-                    if (msgList.Length >= 3 && msgList[2].All(char.IsDigit))
-                    {
-                        minutes = msgList[2];
-                    }
-                    else if (msgList[1].All(char.IsDigit))
-                    {
-                        minutes = msgList[1];
-                    }
-                    else
-                    {
-                        throw new InvalidTextException();
-                    } 
+                    minutes = msgList[msgList.Length - 2];
                 }
-                Console.WriteLine(minutes);
-                return Convert.ToInt32(minutes);
+                else
+                {
+                    minutes= msgList[msgList.Length - 1];
+                }
+                return minutes;
             }
-            else
+            throw new InvalidTextException();
+
+
+        }
+
+        public int ValidateDigit(String minutes)
+        {
+            if (minutes.All(char.IsDigit))
             {
-                throw new InvalidTextException();
+                return Int32.Parse(minutes);
             }
+            
+            
+            throw new InvalidTextException();
+            
         }
     }
 }
