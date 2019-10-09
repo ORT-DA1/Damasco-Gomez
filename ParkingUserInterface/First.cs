@@ -16,6 +16,7 @@ namespace ParkingUserInterface
         Controller MyController;
         public First(Controller controller )
         {
+            Console.WriteLine(controller);
             InitializeComponent();
             MyController = controller;
 

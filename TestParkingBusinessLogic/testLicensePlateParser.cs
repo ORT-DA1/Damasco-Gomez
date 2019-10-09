@@ -28,60 +28,24 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestValidateLicensePlateOk()
         {
-            string licensePlateParserResult= licensePlateParser.ValidateLicensePlate("SBN2208");
-            string expected = "SBN2208";
-            Assert.AreEqual(licensePlateParserResult, expected);
+            string input = "SBN2208";
+            Assert.IsTrue(licensePlateParser.ValidateLicensePlate(input));
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
-        public void TestValidateLicensePlateOk2()
+        public void TestValidateLicensePlateError1()
         {
-            string licensePlateParserResult = licensePlateParser.ValidateLicensePlate("");
-           
+            string input = "SBN208";
+            Assert.IsFalse(licensePlateParser.ValidateLicensePlate(input));
         }
 
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
-        
-        public void TestValidateLicensePlateNotValid()
+        public void TestValidateLicensePlateError2()
         {
-            string licensePlateParserResult = licensePlateParser.ValidateLicensePlate("SBN24234232208");
-            
-        }
-        [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
-
-        public void TestValidateLicensePlateNotValid2()
-        {
-            string licensePlateParserResult = licensePlateParser.ValidateLicensePlate("SN2208");
-
+            string input = "";
+            Assert.IsFalse(licensePlateParser.ValidateLicensePlate(input));
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
-
-        public void TestValidateLicensePlateNotValid3()
-        {
-            string licensePlateParserResult = licensePlateParser.ValidateLicensePlate("SNB08");
-
-        }
-        [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
-
-        public void TestValidateLicensePlateNotValid4()
-        {
-            string licensePlateParserResult = licensePlateParser.ValidateLicensePlate("SNB");
-
-        }
-        [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
-
-        public void TestValidateLicensePlateNotValid5()
-        {
-            string licensePlateParserResult = licensePlateParser.ValidateLicensePlate("3456");
-
-        }
         [TestMethod]
         public void TestParseLicensePlate()
         {

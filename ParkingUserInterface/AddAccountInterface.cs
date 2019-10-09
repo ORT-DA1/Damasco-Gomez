@@ -34,7 +34,7 @@ namespace ParkingUserInterface
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            GoToFirstInterface();
+            GoToFirstInterface(MyController);
         }
 
         private void AddBalanceButton_Click(object sender, EventArgs e)
@@ -55,7 +55,8 @@ namespace ParkingUserInterface
                 else if (balance.All(char.IsDigit))
                 {
                     MyController.AddBalanceInAccount(account, Int32.Parse(balance));
-                    GoToFirstInterface();
+                    MessageBox.Show("The balance was added to the account.");
+                    GoToFirstInterface(MyController);
                 } 
                 else
                 {
@@ -66,28 +67,31 @@ namespace ParkingUserInterface
 
         private void AddAccountButton_Click(object sender, EventArgs e)
         {
-            Account MyAccount = new Account();
-            string Number = textBoxNumber.Text.ToString();
-            if (MyAccount.ValidateFormat(Number))
+            string Number = textBoxNumber.Text;
+            string balance = textBoxBalance.Text;
+            if (Number.Length != 0 && balance.Length != 0 && balance.All(char.IsDigit))
             {
-                Number = MyAccount.Format(Number);
-            }
-            MyAccount = MyController.FindAccount(Number);
-            if (MyController.isAccountEmpty(MyAccount))
-            {
-                MyAccount = new Account(Number, 0);
-                MyController.RegisterAccount(MyAccount);
-                MessageBox.Show("Account created succesfully!");
-                GoToFirstInterface();
                 
+                Account myAccount = MyController.FindAccount(Number);
+                if (MyController.isAccountEmpty(myAccount))
+                {
+                    myAccount = new Account(Number, Int32.Parse(balance));
+                    MyController.RegisterAccount(myAccount);
+                    MessageBox.Show("The account was successfully added.");
+                    GoToFirstInterface(MyController);
+                } 
+                else
+                {
+                    MessageBox.Show("The account already exist, try to add balance and not add account.");
+                }
             }
             else
             {
-                MessageBox.Show("The number is already register, try to add balance, not create a new account.");
+                MessageBox.Show("We need the correct info in all boxes.");
             }
         }
 
-        public void GoToFirstInterface()
+        public void GoToFirstInterface(Controller MyController)
         {
             this.Hide();
             First sistema = new First(MyController);

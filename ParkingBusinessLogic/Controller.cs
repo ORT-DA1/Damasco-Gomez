@@ -169,6 +169,20 @@ namespace ParkingBusinessLogic
             return result;
 
         }
+
+        public override string ToString()
+        {
+            foreach (Account s in Accounts)
+            {
+                Console.WriteLine(s);
+            }
+            foreach (Purchase t in Purchases)
+            {
+                Console.WriteLine(t);
+            }
+            return "Controller was. " ;
+        }
+
     }
 
     

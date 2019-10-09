@@ -110,6 +110,9 @@ namespace ParkingBusinessLogic
             
         }
 
-
+        public override string ToString()
+        {
+            return "License: " + MyLicensePlate + " Account:" + MyAccount;
+        }
     }
 }

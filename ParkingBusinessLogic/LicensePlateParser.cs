@@ -17,15 +17,15 @@ namespace ParkingBusinessLogic
 
         }
       
-        public string ValidateLicensePlate(string licensePlate)
+        public bool ValidateLicensePlate(string licensePlate)
         {
             if (!licensePlate.Equals("") && Regex.IsMatch(licensePlate, @"^[a-zA-Z]{3}\d{4}$"))
             {
-                return licensePlate;
+                return true;
             }
             else
             {
-                throw new InvalidTextException();
+                return false;
             }
         }
 
@@ -50,8 +50,13 @@ namespace ParkingBusinessLogic
         public string GetLicensePlate(string txt)
         {
             String License = ParseLicensePlate(txt);
-            License = ValidateLicensePlate(License);
-            return License;
+            if (ValidateLicensePlate(License)) {
+                return License;
+            }
+            else
+            {
+                throw new InvalidTextException();
+            }
         }
     }
 }

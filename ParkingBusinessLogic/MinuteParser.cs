@@ -35,17 +35,16 @@ namespace ParkingBusinessLogic
             else
             {
                 throw new InvalidTextException();
-
-
             }
         }
 
         public String ParseCantMinutes(string msg)
-        {                
+        {
+            string minutes = "";
             if (msg.Contains(' '))
             { 
                 string[] msgList = msg.Split(' ');
-                string minutes = "";
+                
                 if (msgList[msgList.Length - 1].Contains(':'))
                 {
                     minutes = msgList[msgList.Length - 2];
@@ -54,11 +53,9 @@ namespace ParkingBusinessLogic
                 {
                     minutes= msgList[msgList.Length - 1];
                 }
-                return minutes;
+                
             }
-            throw new InvalidTextException();
-
-
+            return minutes;
         }
 
         public int ValidateDigit(String minutes)
@@ -67,9 +64,10 @@ namespace ParkingBusinessLogic
             {
                 return Int32.Parse(minutes);
             }
-            
-            
-            throw new InvalidTextException();
+            else
+            {
+                return -1;
+            }
             
         }
     }

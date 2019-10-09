@@ -30,11 +30,12 @@ namespace TestParkingBusinessLogic
             Assert.AreEqual(expected, output);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextCheckException))]
         public void TestParserTimeFromCheckFail()
         {
             string checkMsg = "notValid";
             string output = dateParser.ParserTimeFromCheck(checkMsg);
+            string expected = "";
+            Assert.AreEqual(expected, output);
         }
         [TestMethod]
         public void TestParserTimeFromTxt1()
@@ -69,11 +70,12 @@ namespace TestParkingBusinessLogic
             Assert.AreEqual(expected, output);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextCheckException))]
         public void TestParserDayFail()
         {
             string checkMsg = "notValid";
             string output = dateParser.ParserDay(checkMsg);
+            string expected = "";
+            Assert.AreEqual(expected, output);
         }
         [TestMethod]
         public void TestValidateTimeOk()
@@ -185,12 +187,12 @@ namespace TestParkingBusinessLogic
             string input = "a/b";
             Assert.IsFalse(dateParser.ValidateDay(input));
         }
+
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextCheckException))]
         public void TestValidateDayFail()
         {
             string input = "novalido";
-            dateParser.ValidateDay(input);
+            Assert.IsFalse(dateParser.ValidateDay(input));
         }
         [TestMethod]
         public void TestFormatDay()
@@ -224,10 +226,35 @@ namespace TestParkingBusinessLogic
             Assert.AreEqual(expected, output);
         }
         [TestMethod]
+        public void TestGetTimeNow()
+        {
+            string input = "SBD 1234 120 ";
+            string expected = DateTime.Now.ToString("HH:mm");
+            string output = dateParser.ParserTimeFromTxt(input);
+            Assert.AreEqual(expected, output);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTextException))]
+        public void TestGetTimeNowLicensePlateInvalid()
+        {
+            string input = "SB 1234 120 ";
+            string output = dateParser.ParserTimeFromTxt(input);
+           
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTextException))]
+        public void TestGetTimeNowCantMinutesInvalid()
+        {
+            string input = "SBN 1234 147 ";
+            string output = dateParser.ParserTimeFromTxt(input);
+
+        }
+        [TestMethod]
         [ExpectedException(typeof(InvalidTextException))]
         public void TestGetTimeFromTxtFail()
         {
-            string input = "thisIsTrash";
+            string input = "SB 123 147";
             string output = dateParser.GetTimeFromTxt(input);
         }
         [TestMethod]

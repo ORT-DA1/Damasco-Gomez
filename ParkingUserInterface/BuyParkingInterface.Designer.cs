@@ -74,6 +74,7 @@
             this.BuyParkingButton.TabIndex = 3;
             this.BuyParkingButton.Text = "Buy Parking";
             this.BuyParkingButton.UseVisualStyleBackColor = true;
+            this.BuyParkingButton.Click += new System.EventHandler(this.BuyParkingButton_Click);
             // 
             // LabelLicensePlate
             // 
@@ -95,8 +96,8 @@
             // 
             this.LabelTime.AutoSize = true;
             this.LabelTime.Location = new System.Drawing.Point(115, 276);
-            this.LabelTime.Name = "LabelDate";
-            this.LabelTime.Size = new System.Drawing.Size(59, 25);
+            this.LabelTime.Name = "LabelTime";
+            this.LabelTime.Size = new System.Drawing.Size(57, 25);
             this.LabelTime.TabIndex = 6;
             this.LabelTime.Text = "Date";
             // 

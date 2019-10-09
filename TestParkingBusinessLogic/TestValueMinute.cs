@@ -26,7 +26,7 @@ namespace TestParkingBusinessLogic
         {            
             int cantMinutes = 120;
             int totalPrice = myValue.TotalPrice(cantMinutes);
-            int expected = 30 * 120;
+            int expected = 3 * 120;
             Assert.AreEqual(totalPrice, expected);
         }
         [TestMethod]

@@ -50,5 +50,16 @@ namespace ParkingUserInterface
             this.Close();
         }
 
+        private void BuyParkingButton_Click(object sender, EventArgs e)
+        {
+            if(TextBoxNumber.Text.Length != 0 && TextBoxText.Text.Length != 0)
+            {
+                MyController.BuyParking(TextBoxNumber.Text, TextBoxText.Text);
+            }
+            else
+            {
+                MessageBox.Show("To continue you need to fill all empty boxes");
+            }
+        }
     }
 }

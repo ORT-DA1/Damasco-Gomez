@@ -84,17 +84,7 @@ namespace TestParkingBusinessLogic
         {
             string msg = ("ABC rwt");
             int output = myMinPar.GetCantMinutes(msg);
-            int expected = 60;
-            Assert.AreEqual(output, expected);
         }
-        [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
-        public void TestParseTxtError2()
-        {
-            string msg = ("");
-            int output = myMinPar.GetCantMinutes(msg);
-            int expected = 60;
-            Assert.AreEqual(output, expected);
-        }
+        
     }
 }
