@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using ParkingBusinessLogic;
 using System.Collections.Generic;
 using System.Linq;
+using ParkingBusinessLogic.Exceptions;
 
 namespace TestParkingBusinessLogic
 {
@@ -92,6 +93,15 @@ namespace TestParkingBusinessLogic
 
         }
         [TestMethod]
+        [ExpectedException(typeof(NotAccountException))]
+        
+        public void TestBuyParkingEmptyAccount()
+        {
+            string msg = "SBN 2208 150 10:00";
+            myController.BuyParking("099856789", msg);
+        }
+       
+        [TestMethod]
         public void TestCheckPurchase()
         {
 
@@ -103,9 +113,21 @@ namespace TestParkingBusinessLogic
 
             Assert.IsTrue(true);
         }
+        [TestMethod]
+        public void TestFindAddBalanceInAccount()
+        {
+            Account account = new Account();
+            myController.AddBalanceInAccount(account, 800);
+            int balance = account.Balance;
+            Assert.AreEqual(balance,800);
 
 
+
+        }
         
+
+
+
 
     }
 
