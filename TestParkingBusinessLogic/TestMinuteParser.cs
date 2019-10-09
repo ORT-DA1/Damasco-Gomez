@@ -57,8 +57,8 @@ namespace TestParkingBusinessLogic
         public void TestParseTxt()
         {
             string msg = ("ABC 1234 60 10:00");
-            int output = myMinPar.ParseCantMinutes(msg);
-            int expected = 60;
+            string output = myMinPar.ParseCantMinutes(msg);
+            string expected = "60";
             Assert.AreEqual(output, expected);
         }
 
@@ -66,8 +66,8 @@ namespace TestParkingBusinessLogic
         public void TestParseTxt2()
         {
             string msg = ("ABC 1234 60");
-            int output = myMinPar.ParseCantMinutes(msg);
-            int expected = 60;
+            string output = myMinPar.ParseCantMinutes(msg);
+            string expected = "60";
             Assert.AreEqual(output, expected);
         }
 
