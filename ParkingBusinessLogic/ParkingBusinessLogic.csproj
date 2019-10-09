@@ -44,14 +44,12 @@
     <Compile Include="Account.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="DateParser.cs" />
-    <Compile Include="Exceptions\HaveAccountException.cs" />
     <Compile Include="Exceptions\InsufficientBalanceException.cs" />
     <Compile Include="Exceptions\InvalidTextException.cs" />
     <Compile Include="Exceptions\InvalidNumberException.cs" />
     <Compile Include="Exceptions\InvalidTextCheckException.cs" />
     <Compile Include="Exceptions\NegativeNumberException.cs" />
     <Compile Include="Exceptions\NotAccountException.cs" />
-    <Compile Include="Exceptions\TextIncompliteException.cs" />
     <Compile Include="LicensePlateParser.cs" />
     <Compile Include="MinuteParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
