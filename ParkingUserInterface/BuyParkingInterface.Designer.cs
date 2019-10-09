@@ -95,10 +95,10 @@
             // 
             this.LabelTime.AutoSize = true;
             this.LabelTime.Location = new System.Drawing.Point(115, 276);
-            this.LabelTime.Name = "LabelTime";
+            this.LabelTime.Name = "LabelDate";
             this.LabelTime.Size = new System.Drawing.Size(59, 25);
             this.LabelTime.TabIndex = 6;
-            this.LabelTime.Text = "Time";
+            this.LabelTime.Text = "Date";
             // 
             // TextBoxTime
             // 
