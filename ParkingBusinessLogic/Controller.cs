@@ -68,6 +68,12 @@ namespace ParkingBusinessLogic
             return true;
       
         }
+        public bool RegisterPurchase(Purchase purchase)
+        {
+            Purchases.Add(purchase);
+            return true;
+
+        }
 
         public Account FindAccount(String text)
         { 
@@ -84,18 +90,6 @@ namespace ParkingBusinessLogic
             }
             return myAccount;
         }
-        public Purchase FindPurchase(Account myAccount) {
-
-            Purchase myPurchase= new Purchase() ;
-            foreach (Purchase element in Purchases) {
-
-                if (element.MyAccount == myAccount) {
-                    myPurchase = element;
-                }
-            }
-            return myPurchase;
-
-        }
 
 
         public void BuyParking(String num, String msg)
@@ -110,9 +104,9 @@ namespace ParkingBusinessLogic
                 MinuteParser minuteParser = new MinuteParser();
                 ValueMinute valueMinute = new ValueMinute();
                 int cantMinutes = minuteParser.CalculateCantMinutesFromPurchase(newPurchase.MyInitHour, newPurchase.MyFinHour);
-                int amountToDiscont=valueMinute.TotalPrice(cantMinutes);               
-                myAccount.DiscountBalance(amountToDiscont);                
-                Purchases.Add(newPurchase);
+                int amountToDiscont = valueMinute.TotalPrice(cantMinutes);               
+                myAccount.DiscountBalance(amountToDiscont);
+                RegisterPurchase(newPurchase);
             }
          }
 

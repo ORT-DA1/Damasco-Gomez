@@ -14,14 +14,16 @@ namespace TestParkingBusinessLogic
     {
         private Controller myController;
         private Account account1;
+        private Purchase purchase1;
         private string txt = "ABC 1290 120 15:00";
+        private string checkTxt = DateTime.Now.ToString("dd/MM") + " 16:00";
 
         [TestInitialize]
         public void InitTest()
         {
             myController = new Controller();
             account1 = new Account("099 111 111",1000);
-            myController.Accounts.Add(account1);
+            myController.RegisterAccount(account1);
         }
 
         [TestMethod]
@@ -64,19 +66,13 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestBuyParking()
         {
-
-            String num = "098437217";
-            String msg = "SBN 2208 150 10:00";
-            Account myAccount = new Account(num,4799);
-            myController.RegisterAccount(myAccount);
-            myController.BuyParking(num, msg);
-            Purchase purchaseExpected = myController.FindPurchase(myAccount);
-            Account myA = new Account(num, 299);
-            Purchase purchase = new Purchase("SBN 2208 150 10:00", myA);
-            Assert.AreEqual(purchaseExpected.MyAccount.Balance, purchase.MyAccount.Balance);
+            myController.BuyParking(account1.Number, txt);
             
-
-
+            Purchase expected = new Purchase(txt, account1);
+            Console.WriteLine(expected + "the purchase");
+            Console.WriteLine(myController + "the conroller");
+            Assert.IsTrue(myController.Purchases.Contains(expected));
+            
         }
         [TestMethod]
         [ExpectedException(typeof(NotAccountException))]
