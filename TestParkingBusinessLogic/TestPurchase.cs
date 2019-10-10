@@ -20,15 +20,6 @@ namespace TestParkingBusinessLogic
 
         }
         [TestMethod]
-        public void TestCreatePurchase2()
-        {
-           
-            Purchase myPurchase = new Purchase("SBS 1234", "08/09/2019","15:35");
-
-        }
-
-
-        [TestMethod]
         [Ignore]
         public void TestCreatePurchaseWithoutTime()
         {

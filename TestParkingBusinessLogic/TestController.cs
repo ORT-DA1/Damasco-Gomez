@@ -13,13 +13,14 @@ namespace TestParkingBusinessLogic
     public class TestController
     {
         private Controller myController;
-        
+        private Account account1;
+        private string txt = "ABC 1290 120 15:00";
 
         [TestInitialize]
         public void InitTest()
         {
             myController = new Controller();
-            Account account1 = new Account("099 111 111",1000);
+            account1 = new Account("099 111 111",1000);
             myController.Accounts.Add(account1);
         }
 
@@ -60,21 +61,6 @@ namespace TestParkingBusinessLogic
             int output = myController.ValueOfMinute.ValuePerMinutes;
             Assert.AreEqual(value, output);
         }
-
-
-        [TestMethod]
-
-        public void TestFindPurchaseOk()
-        {
-            Account myA = new Account("098437217",4799);
-            Purchase wantedPurchase = new Purchase("SBN 1234 150 10:00", myA);
-            myController.Purchases.Add(wantedPurchase);
-            Purchase expected = myController.FindPurchase(myA);
-            Assert.AreEqual(wantedPurchase, expected);
-
-        }
-        
-
         [TestMethod]
         public void TestBuyParking()
         {
@@ -100,18 +86,72 @@ namespace TestParkingBusinessLogic
             string msg = "SBN 2208 150 10:00";
             myController.BuyParking("099856789", msg);
         }
-       
         [TestMethod]
-        public void TestCheckPurchase()
+        public void TestCheckPurchaseDoesntHave()
         {
-
-            Assert.IsTrue(true);
+            string licensePlate = "NBA 5678";
+            string dateTime = "7/5 12:00";
+            bool dosentHave = myController.ChekPurchase(licensePlate, dateTime);
+            Assert.IsFalse(dosentHave);
         }
         [TestMethod]
-        public void TestFindPurchase()
+        public void TestCheckPurchaseOk()
         {
+            string licensePlate = "ABC1290";
+            string dateTime = "9/10 15:00";
+            Purchase newPurchase =new  Purchase(txt,account1);
+            myController.Purchases.Add(newPurchase);
+            bool have = myController.ChekPurchase(licensePlate, dateTime);
+            Console.WriteLine();
+            Console.WriteLine(newPurchase.MyLicensePlate);
+            Console.WriteLine(newPurchase.MyDay);
+            Console.WriteLine(newPurchase.MyInitHour);
+            Console.WriteLine(dateTime);
 
-            Assert.IsTrue(true);
+            Assert.IsTrue(have);
+        }
+        [TestMethod]
+        public void TestFindPurchaseOk()
+        {
+            string licensePlate = "ABC1290";
+            string date = DateTime.Now.ToString("dd-MM");
+            string time = "15:00";
+            Purchase newPurchase = new Purchase(txt,account1);
+            myController.Purchases.Add(newPurchase);
+            bool find = myController.FindPurchase(licensePlate,date,time);
+            Assert.IsTrue(find);
+        }
+        [TestMethod]
+        public void TestNotFindPurchase()
+        {
+            string licensePlate = "ABC 1290";
+            string date = DateTime.Now.ToString("dd-MM");
+            string time = "12:00";
+            Purchase newPurchase = new Purchase(txt,account1);
+            bool find = myController.FindPurchase(licensePlate, date,time);
+            Assert.IsFalse(find);
+        }
+        [TestMethod]
+        public void TestNotFindPurchase2()
+        {
+            string licensePlate = "AAA 1110";
+            string date = "7/5";
+            string time = "12:00";
+            Purchase newPurchase = new Purchase(txt, account1);
+            myController.Purchases.Add(newPurchase);
+            bool find = myController.FindPurchase(licensePlate,date,time);
+            Assert.IsFalse(find);
+        }
+        [TestMethod]
+        public void TestNotFindPurchase3()
+        {
+            string licensePlate = "ABC 1290";
+            string date = "7/5";
+            string time = "15:00";
+            Purchase newPurchase = new Purchase(txt, account1);
+            myController.Purchases.Add(newPurchase);
+            bool find = myController.FindPurchase(licensePlate, date, time);
+            Assert.IsFalse(find);
         }
         [TestMethod]
         public void TestFindAddBalanceInAccount()

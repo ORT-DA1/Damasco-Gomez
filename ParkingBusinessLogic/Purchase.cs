@@ -68,16 +68,8 @@ namespace ParkingBusinessLogic
                 
             }
         }
-        public Purchase(string licensePlate, string day , string initHour) {
-            myInitHour = initHour;
-            MyDay = day;
-            MyLicensePlate = licensePlate;
-
-
-        }
-        public Purchase()
+               public Purchase()
         {
-
         }
         public Purchase(string msg, Account myA)
         {
@@ -99,6 +91,7 @@ namespace ParkingBusinessLogic
 
         private string AddMinHour(int cantMin, string startTime)
         {
+
             string[] divStartTime = startTime.Split(':');
             int Hour = Convert.ToInt32(divStartTime[0]);
             int Min = Convert.ToInt32(divStartTime[1]);
@@ -111,11 +104,23 @@ namespace ParkingBusinessLogic
                 finishHour = 18;
                 finishMinute = 00;
             }
-            return finishHour + ":" + finishMinute + "0";
-            
+            return finishHour + ":" + finishMinute 
         }
+        public bool ContainValues(string licensePlate, string date, string initTime)
+        {
+            bool result=false;
+            if (MyLicensePlate == licensePlate)
+            {
+                if ((MyDay == date) && (MyInitHour == initTime))
+                {
+                    result = true;
 
-        public override string ToString()
+                }
+            }
+            return result;
+        }
+         
+public override string ToString()
         {
             return "License: " + MyLicensePlate + " Account: " + MyAccount + " Day: " + MyDay 
                 + " TimeIn: " + MyInitHour + " TimFin: " + MyFinHour;

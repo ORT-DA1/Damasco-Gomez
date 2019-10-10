@@ -137,12 +137,11 @@ namespace ParkingBusinessLogic
 
            
             LicensePlateParser licensePlateParser = new LicensePlateParser();
-            string lp= licensePlateParser.GetLicensePlate(licensePlate);
+            string lp = licensePlateParser.FormatAndValidateLicensePlate(licensePlate);
             DateParser dateParse = new DateParser();
             string hour = dateParse.GetTimeFromCheck(dateTime);
             string day = dateParse.GetDayFromCheck(dateTime);
-            Purchase purchase = new Purchase(lp,day,hour);
-            bool isActivepurchase =  FindPurchase(purchase);
+            bool isActivepurchase =  FindPurchase(lp,day,hour);
             return isActivepurchase;
 
 
@@ -150,20 +149,18 @@ namespace ParkingBusinessLogic
 
 
         }
-        public bool FindPurchase(Purchase purchase)
+        public bool FindPurchase(string licensePlate, string date, string initTime)
         {
             bool result = false;
             foreach (Purchase element in Purchases)
             {
-
-                if (element.MyLicensePlate == purchase.MyLicensePlate)
+                if( element.ContainValues(licensePlate, date, initTime))
                 {
-                    if ((element.MyDay == purchase.MyDay) && (element.MyInitHour == purchase.MyInitHour))
-                    {
-                        result = true;
-
-                    }
+                    result= true;
                 }
+                
+
+              
             }
             return result;
 
