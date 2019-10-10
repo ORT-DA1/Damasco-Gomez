@@ -56,7 +56,7 @@ namespace ParkingBusinessLogic
         }
 
 
-        public bool isAccountEmpty(Account account)
+        public bool IsAccountEmpty(Account account)
         {
             return account.AccountEmpty();
 
@@ -69,7 +69,7 @@ namespace ParkingBusinessLogic
       
         }
 
-        public Account FindAccount(String text)
+        public Account FindAccount(string text)
         { 
         
             Account myAccount = new Account();
@@ -84,21 +84,10 @@ namespace ParkingBusinessLogic
             }
             return myAccount;
         }
-        public Purchase FindPurchase(Account myAccount) {
-
-            Purchase myPurchase= new Purchase() ;
-            foreach (Purchase element in Purchases) {
-
-                if (element.MyAccount == myAccount) {
-                    myPurchase = element;
-                }
-            }
-            return myPurchase;
-
-        }
+       
 
 
-        public void BuyParking(String num, String msg)
+        public void BuyParking(string num, string msg)
         {
 
             Account myAccount = FindAccount(num);

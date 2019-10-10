@@ -107,7 +107,6 @@ namespace TestParkingBusinessLogic
             Console.WriteLine(newPurchase.MyDay);
             Console.WriteLine(newPurchase.MyInitHour);
             Console.WriteLine(dateTime);
-
             Assert.IsTrue(have);
         }
         [TestMethod]
