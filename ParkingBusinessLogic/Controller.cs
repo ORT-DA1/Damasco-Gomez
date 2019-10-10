@@ -100,12 +100,9 @@ namespace ParkingBusinessLogic
 
         public void BuyParking(String num, String msg)
         {
-
             Account myAccount = FindAccount(num);
             if (isAccountEmpty(myAccount)) {
-
                 throw new NotAccountException();
-
             }
             else
             {
@@ -116,10 +113,6 @@ namespace ParkingBusinessLogic
                 int amountToDiscont=valueMinute.TotalPrice(cantMinutes);               
                 myAccount.DiscountBalance(amountToDiscont);                
                 Purchases.Add(newPurchase);
-
-
-
-
             }
          }
 
@@ -133,37 +126,24 @@ namespace ParkingBusinessLogic
             MyAccount.AddBalance(value);
         }
         public bool ChekPurchase(String licensePlate, String dateTime)
-        {
-
-           
+        {           
             LicensePlateParser licensePlateParser = new LicensePlateParser();
-            string lp= licensePlateParser.GetLicensePlate(licensePlate);
+            string lp = licensePlateParser.FormatAndValidateLicensePlate(licensePlate);
             DateParser dateParse = new DateParser();
             string hour = dateParse.GetTimeFromCheck(dateTime);
             string day = dateParse.GetDayFromCheck(dateTime);
-            Purchase purchase = new Purchase(lp,day,hour);
-            bool isActivepurchase =  FindPurchase(purchase);
+            bool isActivepurchase =  FindPurchase(lp,day,hour);
             return isActivepurchase;
-
-
-
-
-
         }
-        public bool FindPurchase(Purchase purchase)
+        public bool FindPurchase(string licensePlate, string date, string initTime)
         {
             bool result = false;
             foreach (Purchase element in Purchases)
             {
-
-                if (element.MyLicensePlate == purchase.MyLicensePlate)
+                if( element.ContainValues(licensePlate, date, initTime))
                 {
-                    if ((element.MyDay == purchase.MyDay) && (element.MyInitHour == purchase.MyInitHour))
-                    {
-                        result = true;
-
-                    }
-                }
+                    result= true;
+                }                             
             }
             return result;
 

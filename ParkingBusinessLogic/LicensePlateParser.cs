@@ -28,7 +28,19 @@ namespace ParkingBusinessLogic
                 return false;
             }
         }
+        public string FormatAndValidateLicensePlate(string licensePlate)
+        {
+            licensePlate = licensePlate.Replace(" ","");
+            if (ValidateLicensePlate(licensePlate))
+            {
+                return licensePlate;
+            }
+            else
+            {
+                throw new InvalidTextException();
+            }
 
+        }
         public string ParseLicensePlate(string msg)
         {
             string[] msgList = msg.Split(' ');

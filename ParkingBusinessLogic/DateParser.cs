@@ -121,7 +121,7 @@ namespace ParkingBusinessLogic
         }
     }
 
-    public String FormatDay(string MyDate)
+    public string FormatDay(string MyDate)
     {
         string[] formatDay = MyDate.Split('/');
         return formatDay[0] + "-" + formatDay[1];

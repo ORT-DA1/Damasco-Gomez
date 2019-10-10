@@ -1,6 +1,7 @@
 ﻿using ParkingBusinessLogic.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -68,13 +69,7 @@ namespace ParkingBusinessLogic
                 
             }
         }
-        public Purchase(string licensePlate, string day , string initHour) {
-            myInitHour = initHour;
-            MyDay = day;
-            MyLicensePlate = licensePlate;
-
-
-        }
+       
         public Purchase()
         {
 
@@ -97,24 +92,49 @@ namespace ParkingBusinessLogic
             MyFinHour = finishTime;
         }
 
-        private string AddMinHour(int cantMin, string startTime)
+        public string AddMinHour(int cantMin, string startTime)
         {
-            string[] divStartTime = startTime.Split(':');
-            int Hour = Convert.ToInt32(divStartTime[0]);
-            int Min = Convert.ToInt32(divStartTime[1]);
-            int cantAddHour = cantMin / 60;
-            int cantAddMin = cantMin % 60;
-            int finishHour = Hour + cantAddHour;
-            int finishMinute = Min + cantAddMin;
-            if (finishHour >= 18)
+            double cantAddHour = ((double)cantMin / 60);
+            DateTime addedHours = Convert.ToDateTime(startTime);
+            addedHours = addedHours.AddHours(cantAddHour);
+            if (OutOf18Hours(addedHours.ToString("HH:mm")))
             {
-                finishHour = 18;
-                finishMinute = 00;
+                return "18:00";
             }
-            return finishHour + ":" + finishMinute + "0";
             
+            return addedHours.ToString("HH:mm");
+           
+
         }
 
+        public bool OutOf18Hours(string timeFinish)
+        {
+            string[] parserTime = timeFinish.Split(':');
+            return ((Int32.Parse(parserTime[0]) > 18) || ((Int32.Parse(parserTime[0])==18) && (Int32.Parse(parserTime[1]) > 0)));
+
+        }
+        public bool ContainValues(string licensePlate, string date, string initTime)
+        {
+            bool result=false;
+            if (MyLicensePlate == licensePlate)
+            {
+                if ((MyDay == date) && CompareHours(MyFinHour,initTime))
+                {
+                    result = true;
+
+                }
+            }
+            return result;
+        }
+
+        public bool CompareHours (string finHour, string initHour)
+        {
+            string[] parserFin = finHour.Split(':');
+            string[] parserIni = initHour.Split(':');
+            return ( Int32.Parse(parserFin[0]) > Int32.Parse(parserIni[0]) || 
+                (Int32.Parse(parserFin[0]) == Int32.Parse(parserIni[0]) && Int32.Parse(parserFin[1]) >= Int32.Parse(parserIni[1])));
+        }
+         
         public override string ToString()
         {
             return "License: " + MyLicensePlate + " Account: " + MyAccount + " Day: " + MyDay 

@@ -62,7 +62,35 @@ namespace TestParkingBusinessLogic
             Assert.AreEqual(licensePlateParserResult, expected);
         }
 
-        
+        [TestMethod]
+        public void TestFormatAndValidateLicensePlate()
+        {
+            string licensePlateParserResult = licensePlateParser.FormatAndValidateLicensePlate("SBN 2208");
+            string expected = "SBN2208";
+            Assert.AreEqual(licensePlateParserResult, expected);
+        }
 
+        [TestMethod]
+        public void TestFormatAndValidateLicensePlate2()
+        {
+            string licensePlateParserResult = licensePlateParser.FormatAndValidateLicensePlate("SBN2208");
+            string expected = "SBN2208";
+            Assert.AreEqual(licensePlateParserResult, expected);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTextException))] 
+        public void TestFormatAndValidateLicensePlate2NotValid()
+        {
+            string licensePlateParserResult = licensePlateParser.FormatAndValidateLicensePlate("SBN208");
+         
+        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidTextException))]
+        public void TestFormatAndValidateLicensePlate2NotValid2()
+        {
+            string licensePlateParserResult = licensePlateParser.FormatAndValidateLicensePlate("SN2080");
+
+        }
     }
 }
