@@ -97,13 +97,17 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestCheckPurchaseOk()
         {
-            string licensePlate = "ABC 1290";
+            string licensePlate = "ABC1290";
             string dateTime = "9/10 15:00";
             Purchase newPurchase =new  Purchase(txt,account1);
             myController.Purchases.Add(newPurchase);
             bool have = myController.ChekPurchase(licensePlate, dateTime);
-            Console.WriteLine(have);
-            Console.WriteLine(newPurchase);
+            Console.WriteLine();
+            Console.WriteLine(newPurchase.MyLicensePlate);
+            Console.WriteLine(newPurchase.MyDay);
+            Console.WriteLine(newPurchase.MyInitHour);
+            Console.WriteLine(dateTime);
+
             Assert.IsTrue(have);
         }
         [TestMethod]

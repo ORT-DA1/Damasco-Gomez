@@ -138,7 +138,7 @@ namespace ParkingBusinessLogic
 
            
             LicensePlateParser licensePlateParser = new LicensePlateParser();
-            string lp= licensePlateParser.GetLicensePlate(licensePlate);
+            string lp = licensePlateParser.FormatAndValidateLicensePlate(licensePlate);
             DateParser dateParse = new DateParser();
             string hour = dateParse.GetTimeFromCheck(dateTime);
             string day = dateParse.GetDayFromCheck(dateTime);
