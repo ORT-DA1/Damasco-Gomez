@@ -56,7 +56,7 @@ namespace ParkingBusinessLogic
         }
 
 
-        public bool isAccountEmpty(Account account)
+        public bool IsAccountEmpty(Account account)
         {
             return account.AccountEmpty();
 
@@ -75,7 +75,7 @@ namespace ParkingBusinessLogic
 
         }
 
-        public Account FindAccount(String text)
+        public Account FindAccount(string text)
         { 
         
             Account myAccount = new Account();
@@ -90,9 +90,11 @@ namespace ParkingBusinessLogic
             }
             return myAccount;
         }
+<<<<<<< HEAD
 
 
         public void BuyParking(String num, String msg)
+
         {
             Account myAccount = FindAccount(num);
             if (isAccountEmpty(myAccount)) {

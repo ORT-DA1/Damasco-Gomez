@@ -102,7 +102,6 @@ namespace TestParkingBusinessLogic
             string dateTime = date + " 15:00";
             Console.WriteLine(dateTime);
             bool have = myController.ChekPurchase(licensePlate, dateTime);
-
             Assert.IsTrue(have);
         }
         [TestMethod]
