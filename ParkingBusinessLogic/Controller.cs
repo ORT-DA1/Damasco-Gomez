@@ -100,12 +100,9 @@ namespace ParkingBusinessLogic
 
         public void BuyParking(String num, String msg)
         {
-
             Account myAccount = FindAccount(num);
             if (isAccountEmpty(myAccount)) {
-
                 throw new NotAccountException();
-
             }
             else
             {
@@ -116,10 +113,6 @@ namespace ParkingBusinessLogic
                 int amountToDiscont=valueMinute.TotalPrice(cantMinutes);               
                 myAccount.DiscountBalance(amountToDiscont);                
                 Purchases.Add(newPurchase);
-
-
-
-
             }
          }
 
@@ -133,9 +126,7 @@ namespace ParkingBusinessLogic
             MyAccount.AddBalance(value);
         }
         public bool ChekPurchase(String licensePlate, String dateTime)
-        {
-
-           
+        {           
             LicensePlateParser licensePlateParser = new LicensePlateParser();
             string lp = licensePlateParser.FormatAndValidateLicensePlate(licensePlate);
             DateParser dateParse = new DateParser();
@@ -143,11 +134,6 @@ namespace ParkingBusinessLogic
             string day = dateParse.GetDayFromCheck(dateTime);
             bool isActivepurchase =  FindPurchase(lp,day,hour);
             return isActivepurchase;
-
-
-
-
-
         }
         public bool FindPurchase(string licensePlate, string date, string initTime)
         {
@@ -157,10 +143,7 @@ namespace ParkingBusinessLogic
                 if( element.ContainValues(licensePlate, date, initTime))
                 {
                     result= true;
-                }
-                
-
-              
+		}
             }
             return result;
 

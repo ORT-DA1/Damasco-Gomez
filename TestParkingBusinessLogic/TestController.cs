@@ -97,16 +97,15 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestCheckPurchaseOk()
         {
-            string licensePlate = "ABC1290";
-            string dateTime = "9/10 15:00";
-            Purchase newPurchase =new  Purchase(txt,account1);
+
+            Purchase newPurchase = new Purchase(txt, account1);
             myController.Purchases.Add(newPurchase);
-            bool have = myController.ChekPurchase(licensePlate, dateTime);
-            Console.WriteLine();
-            Console.WriteLine(newPurchase.MyLicensePlate);
-            Console.WriteLine(newPurchase.MyDay);
-            Console.WriteLine(newPurchase.MyInitHour);
+
+            string licensePlate = "ABC1290";
+            string date = DateTime.Now.ToString("dd/MM");
+            string dateTime = date + " 15:00";
             Console.WriteLine(dateTime);
+            bool have = myController.ChekPurchase(licensePlate, dateTime);
 
             Assert.IsTrue(have);
         }
@@ -115,7 +114,9 @@ namespace TestParkingBusinessLogic
         {
             string licensePlate = "ABC1290";
             string date = DateTime.Now.ToString("dd-MM");
-            string time = "15:00";
+
+            string time = "16:00";
+
             Purchase newPurchase = new Purchase(txt,account1);
             myController.Purchases.Add(newPurchase);
             bool find = myController.FindPurchase(licensePlate,date,time);
