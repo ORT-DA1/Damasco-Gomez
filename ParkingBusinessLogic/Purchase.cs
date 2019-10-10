@@ -111,7 +111,7 @@ namespace ParkingBusinessLogic
                 finishHour = 18;
                 finishMinute = 00;
             }
-            return finishHour + ":" + finishMinute;
+            return finishHour + ":" + finishMinute + "0";
             
         }
 
