@@ -85,6 +85,17 @@ namespace TestParkingBusinessLogic
             string msg = ("ABC rwt");
             int output = myMinPar.GetCantMinutes(msg);
         }
-        
+
+        [TestMethod]
+        public void TestCalculateCantMinutesFromPurchase()
+        {
+            string initHour = "14:00";
+            string finishHour = "18:00";
+            int output = myMinPar.CalculateCantMinutesFromPurchase(initHour, finishHour);
+            int expected = 240;
+            Assert.AreEqual(expected, output);
+        }
+
+
     }
 }
