@@ -99,14 +99,19 @@ namespace ParkingBusinessLogic
 
         private string AddMinHour(int cantMin, string startTime)
         {
-                string[] divStartTime = startTime.Split(':');
-                int Hour = Convert.ToInt32(divStartTime[0]);
-                int Min = Convert.ToInt32(divStartTime[1]);
-                int cantAddHour = cantMin / 60;
-                int cantAddMin = cantMin % 60;
-                int finalHour = Hour + cantAddHour;
-                int finalMin = Min + cantAddMin;
-                return finalHour + ":" + finalMin;
+            string[] divStartTime = startTime.Split(':');
+            int Hour = Convert.ToInt32(divStartTime[0]);
+            int Min = Convert.ToInt32(divStartTime[1]);
+            int cantAddHour = cantMin / 60;
+            int cantAddMin = cantMin % 60;
+            int finishHour = Hour + cantAddHour;
+            int finishMinute = Min + cantAddMin;
+            if (finishHour >= 18)
+            {
+                finishHour = 18;
+                finishMinute = 00;
+            }
+            return finishHour + ":" + finishMinute;
             
         }
 

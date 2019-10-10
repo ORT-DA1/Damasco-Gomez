@@ -70,5 +70,13 @@ namespace ParkingBusinessLogic
             }
             
         }
+
+        public int CalculateCantMinutesFromPurchase(string initHour, string finishHour)
+        {
+            string[] parserInit = initHour.Split(':');
+            string[] parserFin = finishHour.Split(':');
+            int canMinutes = ((Int32.Parse(parserFin[0]) - Int32.Parse(parserInit[0])) * 60 ) + (Int32.Parse(parserFin[1]) - Int32.Parse(parserInit[1]) );
+            return canMinutes;
+        }
     }
 }

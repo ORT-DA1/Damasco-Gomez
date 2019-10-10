@@ -109,13 +109,12 @@ namespace ParkingBusinessLogic
             }
             else
             {
-              
-                MinuteParser minuteParser = new MinuteParser();
-                int cantMinutes = minuteParser.GetCantMinutes(msg);
-                ValueMinute valueMinute = new ValueMinute();
-                int amountToDiscont=valueMinute.TotalPrice(cantMinutes);
-                myAccount.DiscountBalance(amountToDiscont);
                 Purchase newPurchase = new Purchase(msg, myAccount);
+                MinuteParser minuteParser = new MinuteParser();
+                ValueMinute valueMinute = new ValueMinute();
+                int cantMinutes = minuteParser.CalculateCantMinutesFromPurchase(newPurchase.MyInitHour, newPurchase.MyFinHour);
+                int amountToDiscont=valueMinute.TotalPrice(cantMinutes);               
+                myAccount.DiscountBalance(amountToDiscont);                
                 Purchases.Add(newPurchase);
 
 
