@@ -138,8 +138,9 @@ namespace ParkingBusinessLogic
             return "License: " + MyLicensePlate + " Account: " + MyAccount + " Day: " + MyDay 
                 + " TimeIn: " + MyInitHour + " TimFin: " + MyFinHour;
         }
-        public bool Equals(Purchase otherPurchase)
+        public override bool Equals(Object obj)
         {
+            Purchase otherPurchase = (Purchase)obj;
             return (otherPurchase.MyLicensePlate == this.MyLicensePlate) &&
                 (otherPurchase.MyInitHour==this.MyInitHour) && (otherPurchase.MyFinHour==this.MyFinHour);
         }

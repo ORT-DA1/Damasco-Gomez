@@ -90,14 +90,14 @@ namespace ParkingBusinessLogic
             }
             return myAccount;
         }
-<<<<<<< HEAD
+
 
 
         public void BuyParking(String num, String msg)
 
         {
             Account myAccount = FindAccount(num);
-            if (isAccountEmpty(myAccount)) {
+            if (IsAccountEmpty(myAccount)) {
                 throw new NotAccountException();
             }
             else
