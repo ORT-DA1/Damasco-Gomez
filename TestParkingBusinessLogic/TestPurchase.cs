@@ -28,6 +28,12 @@ namespace TestParkingBusinessLogic
 
         }
         [TestMethod]
+        public void TestCreatePurchase2()
+        {
+            myPurchase = new Purchase();
+
+        }
+        [TestMethod]
         [Ignore]
         public void TestCreatePurchaseWithoutTime()
         {
@@ -131,10 +137,28 @@ namespace TestParkingBusinessLogic
             Assert.IsTrue(output);
         }
         [TestMethod]
+        public void TestOutOf18HoursTrue2()
+        {
+            DateTime dateTime = new DateTime();
+            dateTime = dateTime.Date.AddHours(18).AddMinutes(38);
+            string inputTime = dateTime.ToString("HH:mm");
+            bool output = myPurchase.OutOf18Hours(inputTime);
+            Assert.IsTrue(output);
+        }
+        [TestMethod]
         public void TestOutOf18HoursFalse()
         {
             DateTime dateTime = new DateTime();
             dateTime = dateTime.Date.AddHours(14).AddMinutes(58);
+            string inputTime = dateTime.ToString("hh:mm");
+            bool output = myPurchase.OutOf18Hours(inputTime);
+            Assert.IsFalse(output);
+        }
+        [TestMethod]
+        public void TestOutOf18HoursFalse2()
+        {
+            DateTime dateTime = new DateTime();
+            dateTime = dateTime.Date.AddHours(18).AddMinutes(0);
             string inputTime = dateTime.ToString("hh:mm");
             bool output = myPurchase.OutOf18Hours(inputTime);
             Assert.IsFalse(output);
@@ -153,8 +177,16 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestCompareHoursTrue()
         {
-            string oneHour = "17:00";
+            string oneHour = "17:40";
             string otherHour = "11:00";
+            bool output = myPurchase.CompareHours(oneHour, otherHour);
+            Assert.IsTrue(output);
+        }
+        [TestMethod]
+        public void TestCompareHoursTrue2()
+        {
+            string oneHour = "17:40";
+            string otherHour = "17:40";
             bool output = myPurchase.CompareHours(oneHour, otherHour);
             Assert.IsTrue(output);
         }
@@ -166,10 +198,83 @@ namespace TestParkingBusinessLogic
             bool output = myPurchase.CompareHours( otherHour, oneHour);
             Assert.IsFalse(output);
         }
+        [TestMethod]
+        public void TestCompareHoursFalse2()
+        {
+            string oneHour = "11:30";
+            string otherHour = "11:00";
+            bool output = myPurchase.CompareHours(otherHour, oneHour);
+            Assert.IsFalse(output);
+        }
+        [TestMethod]
+        public void TestCompareHoursFals3e()
+        {
+            string oneHour = "17:50";
+            string otherHour = "11:00";
+            bool output = myPurchase.CompareHours(otherHour, oneHour);
+            Assert.IsFalse(output);
+        }
+        [TestMethod]
+        public void TestContainValuesTrue()
+        {
+            string licensePlate = "SBN2208";
+            string date = DateTime.Now.ToString("dd-MM");
+            string initTime = "12:00";
+            bool output = myPurchase.ContainValues(licensePlate, date, initTime);
+            Assert.IsTrue(output);
+        }
+        [TestMethod]
+        public void TestContainValuesFalse()
+        {
+            string licensePlate = "SBN2208";
+            string date = "11-11";
+            string initTime = "12:00";
+            bool output = myPurchase.ContainValues(licensePlate, date, initTime);
+            Assert.IsFalse(output);
+        }
+        [TestMethod]
+        public void TestContainValuesFalse2()
+        {
+            string licensePlate = "SBN2208";
+            string date = DateTime.Now.ToString("dd-MM");
+            string initTime = "15:00";
+            bool output = myPurchase.ContainValues(licensePlate, date, initTime);
+            Assert.IsFalse(output);
+        }
+        [TestMethod]
+        public void TestEqualsTrue()
+        {
+            string text = "SBN 2208 150 10:00";
+            Purchase otherPurchase = new Purchase(text,emptyAccount);
+            bool output = myPurchase.Equals(otherPurchase);
+            Assert.IsTrue(output);
+        }
+        [TestMethod]
+        public void TestEqualsFalse()
+        {
+            string text = "SBN 2208 120 10:00";
+            Purchase otherPurchase = new Purchase(text, emptyAccount);
+            bool output = myPurchase.Equals(otherPurchase);
+            Assert.IsFalse(output);
+        }
+        [TestMethod]
+        public void TestEqualsFalse2()
+        {
+            string text = "SBN 2208 150 12:00";
+            Purchase otherPurchase = new Purchase(text, emptyAccount);
+            bool output = myPurchase.Equals(otherPurchase);
+            Assert.IsFalse(output);
+        }
+        [TestMethod]
+        public void TestEqualsFalse3()
+        {
+            string text = "SBN 2508 150 10:00";
+            Purchase otherPurchase = new Purchase(text, emptyAccount);
+            bool output = myPurchase.Equals(otherPurchase);
+            Assert.IsFalse(output);
+        }
 
-
-
-
+        
 
     }
 }

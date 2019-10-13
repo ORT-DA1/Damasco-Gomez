@@ -49,7 +49,7 @@ namespace TestParkingBusinessLogic
         {
             Account myAccount = new Account();
             myController.RegisterAccount(myAccount);
-            bool expected = myController.isAccountEmpty(myAccount);
+            bool expected = myController.IsAccountEmpty(myAccount);
             Assert.IsTrue(expected);
 
         }
