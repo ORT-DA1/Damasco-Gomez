@@ -274,7 +274,6 @@ namespace TestParkingBusinessLogic
             Assert.IsFalse(output);
         }
 
-        
 
     }
 }

@@ -113,7 +113,7 @@ namespace ParkingBusinessLogic
         if (MyDay.Contains('/'))
         {
             string[] parserDay = MyDay.Split('/');
-            return ValidateNumberArray(parserDay) && ValidateDateNumber(parserDay[0], parserDay[1]);
+            return ValidateNumberArray(parserDay) && ValidateDateNumber(parserDay[1], parserDay[0]);
         }
         else
         {

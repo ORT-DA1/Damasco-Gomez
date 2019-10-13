@@ -20,10 +20,6 @@ namespace ParkingBusinessLogic
             {
                 return accounts;
             }
-            private set
-            {
-                Accounts = value;
-            }
         }
 
         public List<Purchase> Purchases
@@ -32,20 +28,12 @@ namespace ParkingBusinessLogic
             {
                 return purchases;
             }
-            private set
-            {
-                Purchases = value;
-            }
         }
         public ValueMinute ValueOfMinute
         {
             get
             {
                 return valueOfMinute;
-            }
-            private set
-            {
-                valueOfMinute = value;
             }
         }
         public Controller()

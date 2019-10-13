@@ -93,7 +93,6 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestCheckPurchaseOk()
         {
-
             Purchase newPurchase = new Purchase(txt, account1);
             myController.Purchases.Add(newPurchase);
 
