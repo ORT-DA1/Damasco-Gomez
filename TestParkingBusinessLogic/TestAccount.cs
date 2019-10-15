@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
 using ParkingBusinessLogic.Exceptions;
+using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TestParkingBusinessLogic
 {
@@ -13,7 +12,7 @@ namespace TestParkingBusinessLogic
     {
 
         [TestInitialize]
-       
+
 
         [TestMethod]
         public void TestAddBalanceCorrect()
@@ -31,7 +30,7 @@ namespace TestParkingBusinessLogic
 
             Account myAccount = new Account("098456783", 0);
             myAccount.AddBalance(-200);
-            
+
         }
 
 
@@ -89,7 +88,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatTrue1()
         {
             string num = "99673647";
-            Account myAccount = new Account(num,0);
+            Account myAccount = new Account(num, 0);
             string output = myAccount.Number;
             string expected = "99 673 647";
 
@@ -97,7 +96,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-     
+
         public void TestValidateFormatTrue2()
         {
             string num = "099673647";
@@ -132,7 +131,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatTrue5()
         {
             string num = "09 96 73 6 47";
-            Account myAccount = new Account(num,0);
+            Account myAccount = new Account(num, 0);
             string output = myAccount.Number;
             string expected = "099 673 647";
 
@@ -142,7 +141,7 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestEnoughBalance()
         {
-            Account myAccount = new Account("098878989",200);
+            Account myAccount = new Account("098878989", 200);
             bool output = myAccount.EnoughBalance(99);
 
             Assert.IsTrue(output);
@@ -159,7 +158,7 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestDiscountBalancePositiveNumberandEnoughBalance()
         {
-            Account myAccount = new Account("098878989",300);
+            Account myAccount = new Account("098878989", 300);
             int amount = 200;
             bool output = myAccount.DiscountBalance(amount);
             Assert.IsTrue(output);
@@ -172,7 +171,7 @@ namespace TestParkingBusinessLogic
             Account myAccount = new Account("098878989", 100);
             int amount = 200;
             bool output = myAccount.DiscountBalance(amount);
-            
+
         }
 
         [TestMethod]

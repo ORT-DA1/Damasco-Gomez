@@ -1,18 +1,14 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ParkingBusinessLogic;
 using ParkingBusinessLogic.Exceptions;
+using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TestParkingBusinessLogic
 {
     [ExcludeFromCodeCoverage]
     [TestClass]
-   public class TestDateParser
+    public class TestDateParser
     {
         private DateParser dateParser;
         [TestInitialize]
@@ -152,7 +148,7 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestValidateNumberArray()
         {
-            string[] input =  { "2", "4", "5", "8" };
+            string[] input = { "2", "4", "5", "8" };
             Assert.IsTrue(dateParser.ValidateNumberArray(input));
         }
         [TestMethod]

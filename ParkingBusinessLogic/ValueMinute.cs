@@ -1,15 +1,10 @@
 ﻿using ParkingBusinessLogic.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ParkingBusinessLogic
 {
     public class ValueMinute
     {
-        private int  valuePerMinutes;
+        private int valuePerMinutes;
         public int ValuePerMinutes
         {
             get
@@ -27,10 +22,11 @@ namespace ParkingBusinessLogic
         {
             ValuePerMinutes = 3;
         }
-        
+
         public int TotalPrice(int cantMinutes)
         {
-            if (cantMinutes > 0) {
+            if (cantMinutes > 0)
+            {
                 return cantMinutes * valuePerMinutes;
 
             }
@@ -38,7 +34,7 @@ namespace ParkingBusinessLogic
             {
                 throw new NegativeNumberException();
             }
-           
+
 
         }
 

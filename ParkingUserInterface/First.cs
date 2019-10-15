@@ -1,12 +1,5 @@
 ﻿using ParkingBusinessLogic;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ParkingUserInterface
@@ -14,9 +7,8 @@ namespace ParkingUserInterface
     public partial class First : Form
     {
         Controller MyController;
-        public First(Controller controller )
+        public First(Controller controller)
         {
-            Console.WriteLine(controller);
             InitializeComponent();
             MyController = controller;
 
@@ -36,12 +28,12 @@ namespace ParkingUserInterface
         public void GoToAddBalanceAccount(bool IsAccount)
         {
             this.Hide();
-            AddAccountInterface sistema = new AddAccountInterface(MyController,IsAccount);
+            AddAccountInterface sistema = new AddAccountInterface(MyController, IsAccount);
             sistema.ShowDialog();
             this.Close();
         }
 
-        public void GoToParkingLicense( bool IsParking)
+        public void GoToParkingLicense(bool IsParking)
         {
             this.Hide();
             BuyParkingInterface sistema = new BuyParkingInterface(MyController, IsParking);

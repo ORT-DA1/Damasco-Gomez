@@ -1,12 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
 using ParkingBusinessLogic.Exceptions;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestParkingBusinessLogic
 {
@@ -23,7 +18,7 @@ namespace TestParkingBusinessLogic
         }
         [TestMethod]
         public void TestTotalPricePositivo()
-        {            
+        {
             int cantMinutes = 120;
             int totalPrice = myValue.TotalPrice(cantMinutes);
             int expected = 3 * 120;

@@ -1,12 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
 using ParkingBusinessLogic.Exceptions;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestParkingBusinessLogic
 {
@@ -48,7 +43,7 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestValidateMinute()
         {
-            int min = 60 ;
+            int min = 60;
             bool output = myMinPar.ValidateMinutesMultiple30(min);
             Assert.IsTrue(output);
         }

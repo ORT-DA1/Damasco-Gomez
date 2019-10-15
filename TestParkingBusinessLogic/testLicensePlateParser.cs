@@ -1,12 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
 using ParkingBusinessLogic.Exceptions;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestParkingBusinessLogic
 {
@@ -79,11 +74,11 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))] 
+        [ExpectedException(typeof(InvalidTextException))]
         public void TestFormatAndValidateLicensePlate2NotValid()
         {
             string licensePlateParserResult = licensePlateParser.FormatAndValidateLicensePlate("SBN208");
-         
+
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidTextException))]

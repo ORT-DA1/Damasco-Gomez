@@ -1,22 +1,18 @@
 ﻿using ParkingBusinessLogic.Exceptions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace ParkingBusinessLogic
 {
     public class LicensePlateParser
     {
-      
-     
+
+
         public LicensePlateParser()
         {
 
         }
-      
+
         public bool ValidateLicensePlate(string licensePlate)
         {
             if (!licensePlate.Equals("") && Regex.IsMatch(licensePlate, @"^[a-zA-Z]{3}\d{4}$"))
@@ -30,7 +26,7 @@ namespace ParkingBusinessLogic
         }
         public string FormatAndValidateLicensePlate(string licensePlate)
         {
-            licensePlate = licensePlate.Replace(" ","");
+            licensePlate = licensePlate.Replace(" ", "");
             if (ValidateLicensePlate(licensePlate))
             {
                 return licensePlate;
@@ -62,7 +58,8 @@ namespace ParkingBusinessLogic
         public string GetLicensePlate(string txt)
         {
             String License = ParseLicensePlate(txt);
-            if (ValidateLicensePlate(License)) {
+            if (ValidateLicensePlate(License))
+            {
                 return License;
             }
             else

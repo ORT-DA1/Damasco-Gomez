@@ -1,14 +1,6 @@
-﻿using Contracts;
-using ParkingBusinessLogic;
-using ParkingBusinessLogic.Exceptions;
+﻿using ParkingBusinessLogic;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ParkingUserInterface
@@ -24,7 +16,8 @@ namespace ParkingUserInterface
             {
                 LabelAddBalance.Visible = false;
                 AddBalanceButton.Visible = false;
-            } else
+            }
+            else
             {
                 LabelAddAccount.Visible = false;
                 AddAccountButton.Visible = false;
@@ -40,15 +33,15 @@ namespace ParkingUserInterface
         private void AddBalanceButton_Click(object sender, EventArgs e)
         {
             if (textBoxNumber.TextLength == 0 || textBoxBalance.Text.Length == 0)
-            {   
+            {
                 MessageBox.Show("We need values in ALL the empty boxes");
-            } 
+            }
             else
-            {                
+            {
                 String number = textBoxNumber.Text;
                 String balance = textBoxBalance.Text;
                 Account account = MyController.FindAccount(number);
-                if (MyController.isAccountEmpty(account))
+                if (MyController.IsAccountEmpty(account))
                 {
                     MessageBox.Show("Theres no account with that number, try to add it first.");
                 }
@@ -57,7 +50,7 @@ namespace ParkingUserInterface
                     MyController.AddBalanceInAccount(account, Int32.Parse(balance));
                     MessageBox.Show("The balance was added to the account.");
                     GoToFirstInterface(MyController);
-                } 
+                }
                 else
                 {
                     MessageBox.Show("The amount to add in balance should be in number.");
@@ -71,15 +64,15 @@ namespace ParkingUserInterface
             string balance = textBoxBalance.Text;
             if (Number.Length != 0 && balance.Length != 0 && balance.All(char.IsDigit))
             {
-                
+
                 Account myAccount = MyController.FindAccount(Number);
-                if (MyController.isAccountEmpty(myAccount))
+                if (MyController.IsAccountEmpty(myAccount))
                 {
                     myAccount = new Account(Number, Int32.Parse(balance));
                     MyController.RegisterAccount(myAccount);
                     MessageBox.Show("The account was successfully added.");
                     GoToFirstInterface(MyController);
-                } 
+                }
                 else
                 {
                     MessageBox.Show("The account already exist, try to add balance and not add account.");

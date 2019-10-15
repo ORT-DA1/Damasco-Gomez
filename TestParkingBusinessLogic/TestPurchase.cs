@@ -1,8 +1,8 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
 using ParkingBusinessLogic.Exceptions;
+using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TestParkingBusinessLogic
 {
@@ -12,11 +12,12 @@ namespace TestParkingBusinessLogic
     {
         private Purchase myPurchase;
         private Account emptyAccount;
+        private string text = "SBN 2208 150 10:00";
         [TestInitialize]
         public void InitTest()
         {
             emptyAccount = new Account();
-            string text = "SBN 2208 150 10:00";
+
             myPurchase = new Purchase(text, emptyAccount);
         }
 
@@ -31,6 +32,15 @@ namespace TestParkingBusinessLogic
         public void TestCreatePurchase2()
         {
             myPurchase = new Purchase();
+
+        }
+        [TestMethod]
+        public void TestGetAccount()
+        {
+            Account otherAccount = new Account();
+            Purchase newPurchase = new Purchase(text, otherAccount);
+            Account output = newPurchase.MyAccount;
+            Assert.AreEqual(otherAccount, output);
 
         }
         [TestMethod]
@@ -52,7 +62,7 @@ namespace TestParkingBusinessLogic
         public void TestCreatePurchaseWithWrongTime()
         {
             string text = "SBN 2208 150 19:00";
-             myPurchase = new Purchase(text, emptyAccount);
+            myPurchase = new Purchase(text, emptyAccount);
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidTextException))]
@@ -104,7 +114,7 @@ namespace TestParkingBusinessLogic
             Purchase myPurchase = new Purchase(text, emptyAccount);
             string expected = "13:00";
             string output = myPurchase.MyFinHour;
-            Assert.AreEqual(expected,output);
+            Assert.AreEqual(expected, output);
 
         }
         [TestMethod]
@@ -124,14 +134,14 @@ namespace TestParkingBusinessLogic
             string startTime = "13:00";
             string output = myPurchase.AddMinHour(cantMinutes, startTime);
             string expected = "15:30";
-            Assert.AreEqual( expected, output);
+            Assert.AreEqual(expected, output);
         }
 
         [TestMethod]
         public void TestOutOf18HoursTrue()
         {
             DateTime dateTime = new DateTime();
-            dateTime= dateTime.Date.AddHours(19).AddMinutes(58);
+            dateTime = dateTime.Date.AddHours(19).AddMinutes(58);
             string inputTime = dateTime.ToString("HH:mm");
             bool output = myPurchase.OutOf18Hours(inputTime);
             Assert.IsTrue(output);
@@ -195,7 +205,7 @@ namespace TestParkingBusinessLogic
         {
             string oneHour = "17:00";
             string otherHour = "11:00";
-            bool output = myPurchase.CompareHours( otherHour, oneHour);
+            bool output = myPurchase.CompareHours(otherHour, oneHour);
             Assert.IsFalse(output);
         }
         [TestMethod]
@@ -245,7 +255,7 @@ namespace TestParkingBusinessLogic
         public void TestEqualsTrue()
         {
             string text = "SBN 2208 150 10:00";
-            Purchase otherPurchase = new Purchase(text,emptyAccount);
+            Purchase otherPurchase = new Purchase(text, emptyAccount);
             bool output = myPurchase.Equals(otherPurchase);
             Assert.IsTrue(output);
         }

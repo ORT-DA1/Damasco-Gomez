@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Diagnostics.CodeAnalysis;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
-using System.Collections.Generic;
-using System.Linq;
 using ParkingBusinessLogic.Exceptions;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace TestParkingBusinessLogic
 {
@@ -14,7 +13,6 @@ namespace TestParkingBusinessLogic
     {
         private Controller myController;
         private Account account1;
-        private Purchase purchase1;
         private string txt = "ABC 1290 120 15:00";
         private string checkTxt = DateTime.Now.ToString("dd/MM") + " 16:00";
 
@@ -22,7 +20,7 @@ namespace TestParkingBusinessLogic
         public void InitTest()
         {
             myController = new Controller();
-            account1 = new Account("099 111 111",1000);
+            account1 = new Account("099 111 111", 1000);
             myController.RegisterAccount(account1);
         }
 
@@ -67,16 +65,16 @@ namespace TestParkingBusinessLogic
         public void TestBuyParking()
         {
             myController.BuyParking(account1.Number, txt);
-            
+
             Purchase expected = new Purchase(txt, account1);
             Console.WriteLine(expected + "the purchase");
             Console.WriteLine(myController + "the conroller");
             Assert.IsTrue(myController.Purchases.Contains(expected));
-            
+
         }
         [TestMethod]
         [ExpectedException(typeof(NotAccountException))]
-        
+
         public void TestBuyParkingEmptyAccount()
         {
             string msg = "SBN 2208 150 10:00";
@@ -111,9 +109,9 @@ namespace TestParkingBusinessLogic
 
             string time = "16:00";
 
-            Purchase newPurchase = new Purchase(txt,account1);
+            Purchase newPurchase = new Purchase(txt, account1);
             myController.Purchases.Add(newPurchase);
-            bool find = myController.FindPurchase(licensePlate,date,time);
+            bool find = myController.FindPurchase(licensePlate, date, time);
             Assert.IsTrue(find);
         }
         [TestMethod]
@@ -122,8 +120,8 @@ namespace TestParkingBusinessLogic
             string licensePlate = "ABC 1290";
             string date = DateTime.Now.ToString("dd-MM");
             string time = "12:00";
-            Purchase newPurchase = new Purchase(txt,account1);
-            bool find = myController.FindPurchase(licensePlate, date,time);
+            Purchase newPurchase = new Purchase(txt, account1);
+            bool find = myController.FindPurchase(licensePlate, date, time);
             Assert.IsFalse(find);
         }
         [TestMethod]
@@ -134,7 +132,7 @@ namespace TestParkingBusinessLogic
             string time = "12:00";
             Purchase newPurchase = new Purchase(txt, account1);
             myController.Purchases.Add(newPurchase);
-            bool find = myController.FindPurchase(licensePlate,date,time);
+            bool find = myController.FindPurchase(licensePlate, date, time);
             Assert.IsFalse(find);
         }
         [TestMethod]
@@ -154,12 +152,12 @@ namespace TestParkingBusinessLogic
             Account account = new Account();
             myController.AddBalanceInAccount(account, 800);
             int balance = account.Balance;
-            Assert.AreEqual(balance,800);
+            Assert.AreEqual(balance, 800);
 
 
 
         }
-        
+
 
 
 

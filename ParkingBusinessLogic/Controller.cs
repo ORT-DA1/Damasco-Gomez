@@ -1,9 +1,6 @@
 ﻿using ParkingBusinessLogic.Exceptions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace ParkingBusinessLogic
@@ -50,11 +47,11 @@ namespace ParkingBusinessLogic
 
         }
 
-        public bool RegisterAccount(Account account) 
-        {               
+        public bool RegisterAccount(Account account)
+        {
             Accounts.Add(account);
             return true;
-      
+
         }
         public bool RegisterPurchase(Purchase purchase)
         {
@@ -64,17 +61,17 @@ namespace ParkingBusinessLogic
         }
 
         public Account FindAccount(string text)
-        { 
-        
+        {
+
             Account myAccount = new Account();
-            Account auxiliar = new Account(text,0);
+            Account auxiliar = new Account(text, 0);
             foreach (Account element in Accounts)
             {
                 if (element.Number == auxiliar.Number)
                 {
-                    myAccount= element;
+                    myAccount = element;
 
-                }                                            
+                }
             }
             return myAccount;
         }
@@ -85,7 +82,8 @@ namespace ParkingBusinessLogic
 
         {
             Account myAccount = FindAccount(num);
-            if (IsAccountEmpty(myAccount)) {
+            if (IsAccountEmpty(myAccount))
+            {
                 throw new NotAccountException();
             }
             else
@@ -94,11 +92,11 @@ namespace ParkingBusinessLogic
                 MinuteParser minuteParser = new MinuteParser();
                 ValueMinute valueMinute = new ValueMinute();
                 int cantMinutes = minuteParser.CalculateCantMinutesFromPurchase(newPurchase.MyInitHour, newPurchase.MyFinHour);
-                int amountToDiscont = valueMinute.TotalPrice(cantMinutes);               
+                int amountToDiscont = valueMinute.TotalPrice(cantMinutes);
                 myAccount.DiscountBalance(amountToDiscont);
                 RegisterPurchase(newPurchase);
             }
-         }
+        }
 
         public void ChageValueMinute(int value)
         {
@@ -110,13 +108,13 @@ namespace ParkingBusinessLogic
             MyAccount.AddBalance(value);
         }
         public bool ChekPurchase(String licensePlate, String dateTime)
-        {           
+        {
             LicensePlateParser licensePlateParser = new LicensePlateParser();
             string lp = licensePlateParser.FormatAndValidateLicensePlate(licensePlate);
             DateParser dateParse = new DateParser();
             string hour = dateParse.GetTimeFromCheck(dateTime);
             string day = dateParse.GetDayFromCheck(dateTime);
-            bool isActivepurchase =  FindPurchase(lp,day,hour);
+            bool isActivepurchase = FindPurchase(lp, day, hour);
             return isActivepurchase;
         }
         public bool FindPurchase(string licensePlate, string date, string initTime)
@@ -124,29 +122,17 @@ namespace ParkingBusinessLogic
             bool result = false;
             foreach (Purchase element in Purchases)
             {
-                if( element.ContainValues(licensePlate, date, initTime))
+                if (element.ContainValues(licensePlate, date, initTime))
                 {
-                    result= true;
-		}
+                    result = true;
+                }
             }
             return result;
 
         }
 
-        public override string ToString()
-        {
-            foreach (Account s in Accounts)
-            {
-                Console.WriteLine(s);
-            }
-            foreach (Purchase t in Purchases)
-            {
-                Console.WriteLine(t);
-            }
-            return "Controller was. " ;
-        }
 
     }
 
-    
+
 }

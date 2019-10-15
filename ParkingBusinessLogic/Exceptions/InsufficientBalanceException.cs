@@ -1,15 +1,10 @@
 ﻿using Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ParkingBusinessLogic.Exceptions
 {
     public class InsufficientBalanceException : LogicException
     {
-        private static readonly string message = "Saldo Insuficiente";
+        private static readonly string message = "The balance in the account is not enough to do the purchase.";
 
         public InsufficientBalanceException() : base(message)
         {

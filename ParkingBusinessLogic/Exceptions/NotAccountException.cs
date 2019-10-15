@@ -1,15 +1,10 @@
 ﻿using Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ParkingBusinessLogic.Exceptions
 {
     public class NotAccountException : LogicException
     {
-        private static readonly string message = "La cuenta no existe";
+        private static readonly string message = "The account with that number does not exist";
         public NotAccountException() : base(message)
         {
 

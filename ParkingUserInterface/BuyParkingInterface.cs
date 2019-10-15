@@ -1,17 +1,10 @@
 ﻿using ParkingBusinessLogic;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ParkingUserInterface
 {
-    
+
     public partial class BuyParkingInterface : Form
     {
         private Controller MyController;
@@ -26,7 +19,8 @@ namespace ParkingUserInterface
                 TextBoxLicense.Visible = false;
                 TextBoxTime.Visible = false;
                 CheckLicenseButton.Visible = false;
-            } else
+            }
+            else
             {
                 LabelNumber.Visible = false;
                 LabelText.Visible = false;
@@ -52,7 +46,7 @@ namespace ParkingUserInterface
 
         private void BuyParkingButton_Click(object sender, EventArgs e)
         {
-            if(TextBoxNumber.Text.Length != 0 && TextBoxText.Text.Length != 0)
+            if (TextBoxNumber.Text.Length != 0 && TextBoxText.Text.Length != 0)
             {
                 MyController.BuyParking(TextBoxNumber.Text, TextBoxText.Text);
                 MessageBox.Show("The parking was succesfully purchase.");

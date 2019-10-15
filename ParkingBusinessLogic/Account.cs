@@ -1,11 +1,7 @@
 
 using ParkingBusinessLogic.Exceptions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 
 
@@ -80,24 +76,25 @@ namespace ParkingBusinessLogic
             this.number = "";
             Balance = 0;
         }
-        
-        
 
-        public bool AddBalance( int cant)
-        { 
 
-            if (cant>0)
+
+        public bool AddBalance(int cant)
+        {
+
+            if (cant > 0)
             {
                 int previosBalance = Balance;
                 Balance = previosBalance + cant;
                 return true;
-            } else
+            }
+            else
             {
                 throw new NegativeNumberException();
             }
-            
-         }
-        
+
+        }
+
 
         public bool ValidateFormat(string num)
         {
@@ -106,44 +103,47 @@ namespace ParkingBusinessLogic
         }
 
         public bool EnoughBalance(int value)
-        {   
-            if(value<= Balance){
+        {
+            if (value <= Balance)
+            {
                 return true;
             }
-            else {
+            else
+            {
                 return false;
 
-         }
+            }
 
-            
+
         }
         public bool DiscountBalance(int amount)
         {
             if (amount > 0)
-            {  
+            {
                 if (amount <= Balance)
                 {
                     int actualBalance = Balance;
                     Balance = actualBalance - amount;
                     return true;
                 }
-               else
+                else
                 {
                     throw new InsufficientBalanceException();
                 }
 
             }
-            else 
+            else
             {
 
                 throw new NegativeNumberException();
             }
-                
-           
+
+
         }
-        public bool AccountEmpty() {
-            
-            if (Number== "")
+        public bool AccountEmpty()
+        {
+
+            if (Number == "")
             {
                 return true;
             }
@@ -154,14 +154,10 @@ namespace ParkingBusinessLogic
 
         }
 
-        public override string ToString()
-        {
-            return "Number: " + Number + " Balance" + Balance;
-        }
+
 
     }
 }
 
 
 
-    

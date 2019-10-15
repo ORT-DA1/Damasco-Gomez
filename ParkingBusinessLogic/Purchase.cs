@@ -1,11 +1,4 @@
-﻿using ParkingBusinessLogic.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace ParkingBusinessLogic
 {
@@ -14,7 +7,7 @@ namespace ParkingBusinessLogic
         Account myAccount;
         string myLicensePlate;
         string myDay;
-        string myInitHour ;
+        string myInitHour;
         string myFinHour;
         public string MyLicensePlate
         {
@@ -33,7 +26,7 @@ namespace ParkingBusinessLogic
             {
                 return myAccount;
             }
-           
+
         }
         public string MyDay
         {
@@ -54,7 +47,7 @@ namespace ParkingBusinessLogic
             }
             private set
             {
-                myInitHour = value;                             
+                myInitHour = value;
             }
         }
         public string MyFinHour
@@ -66,7 +59,7 @@ namespace ParkingBusinessLogic
             private set
             {
                 myFinHour = value;
-                
+
             }
         }
         public Purchase()
@@ -80,10 +73,10 @@ namespace ParkingBusinessLogic
             LicensePlateParser myParserLicense = new LicensePlateParser();
             string licensePlate = myParserLicense.GetLicensePlate(msg);
 
-           
-            string finishTime = AddMinHour(minuteParser.GetCantMinutes(msg) , startTime);
 
-            myAccount = myA ;
+            string finishTime = AddMinHour(minuteParser.GetCantMinutes(msg), startTime);
+
+            myAccount = myA;
             MyLicensePlate = licensePlate;
             MyDay = MyDay;
             MyInitHour = startTime;
@@ -99,22 +92,22 @@ namespace ParkingBusinessLogic
             {
                 return "18:00";
             }
-            
+
             return addedHours.ToString("HH:mm");
         }
-        
+
         public bool OutOf18Hours(string timeFinish)
         {
             string[] parserTime = timeFinish.Split(':');
-            return ((Int32.Parse(parserTime[0]) > 18) || ((Int32.Parse(parserTime[0])==18) && (Int32.Parse(parserTime[1]) > 0)));
+            return ((Int32.Parse(parserTime[0]) > 18) || ((Int32.Parse(parserTime[0]) == 18) && (Int32.Parse(parserTime[1]) > 0)));
 
         }
         public bool ContainValues(string licensePlate, string date, string initTime)
         {
-            bool result=false;
+            bool result = false;
             if (MyLicensePlate == licensePlate)
             {
-                if ((MyDay == date) && CompareHours(MyFinHour,initTime))
+                if ((MyDay == date) && CompareHours(MyFinHour, initTime))
                 {
                     result = true;
 
@@ -124,25 +117,19 @@ namespace ParkingBusinessLogic
         }
 
 
-        public bool CompareHours (string finHour, string initHour)
+        public bool CompareHours(string finHour, string initHour)
         {
             string[] parserFin = finHour.Split(':');
             string[] parserIni = initHour.Split(':');
-            return ( Int32.Parse(parserFin[0]) > Int32.Parse(parserIni[0]) || 
+            return (Int32.Parse(parserFin[0]) > Int32.Parse(parserIni[0]) ||
                 (Int32.Parse(parserFin[0]) == Int32.Parse(parserIni[0]) && Int32.Parse(parserFin[1]) >= Int32.Parse(parserIni[1])));
         }
-         
-        public override string ToString()
 
-        {
-            return "License: " + MyLicensePlate + " Account: " + MyAccount + " Day: " + MyDay 
-                + " TimeIn: " + MyInitHour + " TimFin: " + MyFinHour;
-        }
         public override bool Equals(Object obj)
         {
             Purchase otherPurchase = (Purchase)obj;
             return (otherPurchase.MyLicensePlate == this.MyLicensePlate) &&
-                (otherPurchase.MyInitHour==this.MyInitHour) && (otherPurchase.MyFinHour==this.MyFinHour);
+                (otherPurchase.MyInitHour == this.MyInitHour) && (otherPurchase.MyFinHour == this.MyFinHour);
         }
     }
 }
