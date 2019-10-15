@@ -65,6 +65,7 @@
             this.CheckLicenseButton.TabIndex = 2;
             this.CheckLicenseButton.Text = "Check License";
             this.CheckLicenseButton.UseVisualStyleBackColor = true;
+            this.CheckLicenseButton.Click += new System.EventHandler(this.CheckLicenseButton_Click);
             // 
             // BuyParkingButton
             // 

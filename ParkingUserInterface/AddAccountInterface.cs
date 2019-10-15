@@ -1,4 +1,5 @@
-﻿using ParkingBusinessLogic;
+﻿using Contracts;
+using ParkingBusinessLogic;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -38,22 +39,29 @@ namespace ParkingUserInterface
             }
             else
             {
-                String number = textBoxNumber.Text;
-                String balance = textBoxBalance.Text;
-                Account account = MyController.FindAccount(number);
-                if (MyController.IsAccountEmpty(account))
+                try
                 {
-                    MessageBox.Show("Theres no account with that number, try to add it first.");
+                    String number = textBoxNumber.Text;
+                    String balance = textBoxBalance.Text;
+                    Account account = MyController.FindAccount(number);
+                    if (MyController.IsAccountEmpty(account))
+                    {
+                        MessageBox.Show("Theres no account with that number, try to add it first.");
+                    }
+                    else if (balance.All(char.IsDigit))
+                    {
+                        MyController.AddBalanceInAccount(account, Int32.Parse(balance));
+                        MessageBox.Show("The balance was added to the account.");
+                        GoToFirstInterface(MyController);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The amount to add in balance should be in number.");
+                    }
                 }
-                else if (balance.All(char.IsDigit))
+                catch (LogicException exMessage)
                 {
-                    MyController.AddBalanceInAccount(account, Int32.Parse(balance));
-                    MessageBox.Show("The balance was added to the account.");
-                    GoToFirstInterface(MyController);
-                }
-                else
-                {
-                    MessageBox.Show("The amount to add in balance should be in number.");
+                    MessageBox.Show(exMessage.ToString());
                 }
             }
         }
@@ -64,18 +72,23 @@ namespace ParkingUserInterface
             string balance = textBoxBalance.Text;
             if (Number.Length != 0 && balance.Length != 0 && balance.All(char.IsDigit))
             {
-
-                Account myAccount = MyController.FindAccount(Number);
-                if (MyController.IsAccountEmpty(myAccount))
-                {
-                    myAccount = new Account(Number, Int32.Parse(balance));
-                    MyController.RegisterAccount(myAccount);
-                    MessageBox.Show("The account was successfully added.");
-                    GoToFirstInterface(MyController);
+                try { 
+                    Account myAccount = MyController.FindAccount(Number);
+                    if (MyController.IsAccountEmpty(myAccount))
+                    {
+                        myAccount = new Account(Number, Int32.Parse(balance));
+                        MyController.RegisterAccount(myAccount);
+                        MessageBox.Show("The account was successfully added.");
+                        GoToFirstInterface(MyController);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The account already exist, try to add balance and not add account.");
+                    }
                 }
-                else
+                catch (LogicException exMessage)
                 {
-                    MessageBox.Show("The account already exist, try to add balance and not add account.");
+                    MessageBox.Show(exMessage.ToString());
                 }
             }
             else

@@ -1,4 +1,5 @@
-﻿using ParkingBusinessLogic;
+﻿using Contracts;
+using ParkingBusinessLogic;
 using System;
 using System.Windows.Forms;
 
@@ -48,9 +49,45 @@ namespace ParkingUserInterface
         {
             if (TextBoxNumber.Text.Length != 0 && TextBoxText.Text.Length != 0)
             {
-                MyController.BuyParking(TextBoxNumber.Text, TextBoxText.Text);
-                MessageBox.Show("The parking was succesfully purchase.");
-                GoFirst();
+                try 
+                { 
+                    MyController.BuyParking(TextBoxNumber.Text, TextBoxText.Text);
+                    MessageBox.Show("The parking was succesfully purchase.");
+                    GoFirst();
+                }
+                catch (LogicException exMessage)
+                {
+                    MessageBox.Show(exMessage.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("To continue you need to fill all empty boxes");
+            }
+        }
+
+        private void CheckLicenseButton_Click(object sender, EventArgs e)
+        {
+            if (TextBoxLicense.Text.Length != 0 && TextBoxTime.Text.Length != 0)
+            {
+                string myLicense = TextBoxLicense.Text;
+                string myDate = TextBoxTime.Text;
+                try
+                {
+                    if (MyController.ChekPurchase(myLicense,myDate))
+                    {
+                        MessageBox.Show("There is a purchase to that time with the license plate.");
+                    } 
+                    else
+                    {
+                        MessageBox.Show("There is not a purchase to that time with the license plate.");
+                    }
+                    GoFirst();
+                }
+                catch (LogicException exMessage)
+                {
+                    MessageBox.Show(exMessage.ToString());
+                }
             }
             else
             {
