@@ -1,4 +1,5 @@
-﻿using ParkingBusinessLogic;
+﻿using Contracts;
+using ParkingBusinessLogic;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -22,10 +23,17 @@ namespace ParkingUserInterface
             }
             else if (TextBoxCost.Text.All(char.IsDigit))
             {
-                int NewValue = Int32.Parse(TextBoxCost.Text);
-                MyController.ChageValueMinute(NewValue);
-                MessageBox.Show("The cost was change.");
-                GoToFirst();
+                try
+                {
+                    int NewValue = Int32.Parse(TextBoxCost.Text);
+                    MyController.ChageValueMinute(NewValue);
+                    MessageBox.Show("The cost was change.");
+                    GoToFirst();
+                } 
+                catch (LogicException exMessage)
+                {
+                    MessageBox.Show(exMessage.Message);
+                }
             }
             else
             {

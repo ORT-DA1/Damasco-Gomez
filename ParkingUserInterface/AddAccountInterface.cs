@@ -61,7 +61,7 @@ namespace ParkingUserInterface
                 }
                 catch (LogicException exMessage)
                 {
-                    MessageBox.Show(exMessage.ToString());
+                    MessageBox.Show(exMessage.Message);
                 }
             }
         }
@@ -88,7 +88,7 @@ namespace ParkingUserInterface
                 }
                 catch (LogicException exMessage)
                 {
-                    MessageBox.Show(exMessage.ToString());
+                    MessageBox.Show(exMessage.Message);
                 }
             }
             else
