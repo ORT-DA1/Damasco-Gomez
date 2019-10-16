@@ -135,10 +135,6 @@ namespace ParkingBusinessLogic
                 (otherPurchase.MyInitHour == this.MyInitHour) && (otherPurchase.MyFinHour == this.MyFinHour);
         }
 
-        public override string ToString()
-        {
-            return "Purchase with Account Number: "+MyAccount + " and Init: "+MyInitHour+" and FinHour: " + MyFinHour 
-                + " with License: "+MyLicensePlate;
-        }
+
     }
 }
