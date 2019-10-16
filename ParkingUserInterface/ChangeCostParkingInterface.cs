@@ -28,7 +28,6 @@ namespace ParkingUserInterface
                     int NewValue = Int32.Parse(TextBoxCost.Text);
                     MyController.ChageValueMinute(NewValue);
                     MessageBox.Show("The cost was change.");
-                    Console.WriteLine(MyController.ValueOfMinute.ToString());
                     GoToFirst();
                 } 
                 catch (LogicException exMessage)
