@@ -40,7 +40,12 @@ namespace ParkingBusinessLogic
 
         public void ChangeValue(int NewValue)
         {
-            ValuePerMinutes = NewValue;
+            valuePerMinutes = NewValue;
+        }
+
+        public override string ToString()
+        {
+            return "Value is:" + ValuePerMinutes;
         }
     }
 }

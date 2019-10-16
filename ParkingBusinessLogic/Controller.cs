@@ -90,9 +90,8 @@ namespace ParkingBusinessLogic
             {
                 Purchase newPurchase = new Purchase(msg, myAccount);
                 MinuteParser minuteParser = new MinuteParser();
-                ValueMinute valueMinute = new ValueMinute();
                 int cantMinutes = minuteParser.CalculateCantMinutesFromPurchase(newPurchase.MyInitHour, newPurchase.MyFinHour);
-                int amountToDiscont = valueMinute.TotalPrice(cantMinutes);
+                int amountToDiscont = valueOfMinute.TotalPrice(cantMinutes);
                 myAccount.DiscountBalance(amountToDiscont);
                 RegisterPurchase(newPurchase);
             }
@@ -100,7 +99,7 @@ namespace ParkingBusinessLogic
 
         public void ChageValueMinute(int value)
         {
-            ValueOfMinute.ChangeValue(value);
+            valueOfMinute.ChangeValue(value);
         }
 
         public void AddBalanceInAccount(Account MyAccount, int value)
@@ -131,6 +130,19 @@ namespace ParkingBusinessLogic
 
         }
 
+        public override string ToString()
+        {
+            foreach (Account s in Accounts)
+            {
+                Console.WriteLine(s);
+            }
+            foreach (Purchase t in Purchases)
+            {
+                Console.WriteLine(t);
+            }
+            ;
+            return "Controller was. And value"+ valueOfMinute.ToString();
+        }
 
     }
 

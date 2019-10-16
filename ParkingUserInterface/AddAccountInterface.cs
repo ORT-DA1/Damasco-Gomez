@@ -99,6 +99,7 @@ namespace ParkingUserInterface
 
         public void GoToFirstInterface(Controller MyController)
         {
+            Console.WriteLine(MyController);
             this.Hide();
             First sistema = new First(MyController);
             sistema.ShowDialog();

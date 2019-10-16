@@ -107,7 +107,7 @@ namespace ParkingBusinessLogic
             bool result = false;
             if (MyLicensePlate == licensePlate)
             {
-                if ((MyDay == date) && CompareHours(MyFinHour, initTime))
+                if ((MyDay == date) && CompareHours( MyInitHour, MyFinHour, initTime))
                 {
                     result = true;
 
@@ -117,12 +117,15 @@ namespace ParkingBusinessLogic
         }
 
 
-        public bool CompareHours(string finHour, string initHour)
+        public bool CompareHours(string initHour, string finHour,  string compareHour)
         {
             string[] parserFin = finHour.Split(':');
             string[] parserIni = initHour.Split(':');
-            return (Int32.Parse(parserFin[0]) > Int32.Parse(parserIni[0]) ||
-                (Int32.Parse(parserFin[0]) == Int32.Parse(parserIni[0]) && Int32.Parse(parserFin[1]) >= Int32.Parse(parserIni[1])));
+            string[] parseCompare = compareHour.Split(':');
+            bool betweenHours = Int32.Parse(parserFin[0]) > Int32.Parse(parseCompare[0]) && Int32.Parse(parserIni[0]) < Int32.Parse(parseCompare[0]);
+            bool sameHourInit = Int32.Parse(parserIni[0]) == Int32.Parse(parseCompare[0]) && Int32.Parse(parserIni[1]) <= Int32.Parse(parseCompare[1]);
+            bool sameHourFinit = Int32.Parse(parserFin[0]) == Int32.Parse(parseCompare[0]) && Int32.Parse(parserFin[1]) > Int32.Parse(parseCompare[1]);
+            return betweenHours || sameHourInit || sameHourFinit;
         }
 
         public override bool Equals(Object obj)
@@ -130,6 +133,12 @@ namespace ParkingBusinessLogic
             Purchase otherPurchase = (Purchase)obj;
             return (otherPurchase.MyLicensePlate == this.MyLicensePlate) &&
                 (otherPurchase.MyInitHour == this.MyInitHour) && (otherPurchase.MyFinHour == this.MyFinHour);
+        }
+
+        public override string ToString()
+        {
+            return "Purchase with Account Number: "+MyAccount + " and Init: "+MyInitHour+" and FinHour: " + MyFinHour 
+                + " with License: "+MyLicensePlate;
         }
     }
 }

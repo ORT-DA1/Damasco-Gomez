@@ -79,7 +79,8 @@ namespace ParkingBusinessLogic
                 string[] hourmin = startTime.Split(':');
                 string hour = hourmin[0];
                 int hours = Int32.Parse(hour);
-                if ((hours >= 10) && (hours <= 18))
+                int minutes = Int32.Parse(hourmin[1]);
+                if ((hours >= 10) && (hours <= 18) && (minutes>=0) && (minutes<=60))
                 {
                     return true;
 
