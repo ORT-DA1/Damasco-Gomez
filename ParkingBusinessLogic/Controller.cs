@@ -89,7 +89,7 @@ namespace ParkingBusinessLogic
             else
             {
                 Purchase newPurchase = new Purchase(msg, myAccount);
-                MinuteParser minuteParser = new MinuteParser();
+                MinuteParserUruguay minuteParser = new MinuteParserUruguay();
                 int cantMinutes = minuteParser.CalculateCantMinutesFromPurchase(newPurchase.MyInitHour, newPurchase.MyFinHour);
                 int amountToDiscont = valueOfMinute.TotalPrice(cantMinutes);
                 myAccount.DiscountBalance(amountToDiscont);
