@@ -52,6 +52,8 @@
     <Compile Include="Exceptions\NotAccountException.cs" />
     <Compile Include="LicensePlateParser.cs" />
     <Compile Include="MinuteParser.cs" />
+    <Compile Include="MinuteParserArgentina.cs" />
+    <Compile Include="MinuteParserUruguay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Purchase.cs" />
     <Compile Include="ValueMinute.cs" />

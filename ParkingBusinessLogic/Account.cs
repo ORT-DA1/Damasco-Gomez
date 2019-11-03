@@ -154,10 +154,7 @@ namespace ParkingBusinessLogic
 
         }
 
-        public override string ToString()
-        {
-            return "Account number: " + Number + " Balance in the account: " + Balance;
-        }
+ 
 
     }
 }

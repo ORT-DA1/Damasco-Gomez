@@ -28,7 +28,7 @@ namespace ParkingBusinessLogic
         {
             txt = txt.Trim();
             LicensePlateParser lp = new LicensePlateParser();
-            MinuteParser mp = new MinuteParser();
+            MinuteParserUruguay mp = new MinuteParserUruguay();
             string parserLicensePlate = lp.ParseLicensePlate(txt);
             string parserMinutes = mp.ParseCantMinutes(txt);
             string starTime = "";
@@ -48,7 +48,7 @@ namespace ParkingBusinessLogic
                 }
 
             }
-            else if (lp.ValidateLicensePlate(parserLicensePlate) && mp.ValidateMinutesMultiple30(mp.ValidateDigit(parserMinutes)))
+            else if (lp.ValidateLicensePlate(parserLicensePlate) && mp.ValidateMinutesMultiple30(mp.ValidateDigitAndGraterThanZero(parserMinutes)))
             {
                 starTime = DateTime.Now.ToString("HH:mm");
             }

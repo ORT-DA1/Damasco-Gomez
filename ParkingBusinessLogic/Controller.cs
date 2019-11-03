@@ -89,7 +89,7 @@ namespace ParkingBusinessLogic
             else
             {
                 Purchase newPurchase = new Purchase(msg, myAccount);
-                MinuteParser minuteParser = new MinuteParser();
+                MinuteParserUruguay minuteParser = new MinuteParserUruguay();
                 int cantMinutes = minuteParser.CalculateCantMinutesFromPurchase(newPurchase.MyInitHour, newPurchase.MyFinHour);
                 int amountToDiscont = valueOfMinute.TotalPrice(cantMinutes);
                 myAccount.DiscountBalance(amountToDiscont);
@@ -130,19 +130,7 @@ namespace ParkingBusinessLogic
 
         }
 
-        public override string ToString()
-        {
-            foreach (Account s in Accounts)
-            {
-                Console.WriteLine(s);
-            }
-            foreach (Purchase t in Purchases)
-            {
-                Console.WriteLine(t);
-            }
-            ;
-            return "Controller was. And value"+ valueOfMinute.ToString();
-        }
+
 
     }
 

@@ -1,40 +1,16 @@
-﻿using ParkingBusinessLogic.Exceptions;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ParkingBusinessLogic
 {
-    public class MinuteParser
+    public abstract class MinuteParser
     {
-        public MinuteParser() { }
-        public bool ValidateMinutesMultiple30(int minutes)
-        {
-            if ((minutes % 30) == 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
-        public int GetCantMinutes(string msg)
-        {
-            string cantMinutes = ParseCantMinutes(msg);
-            int intCantMinutes = ValidateDigit(cantMinutes);
-
-
-            if (ValidateMinutesMultiple30(intCantMinutes))
-            {
-                return intCantMinutes;
-            }
-            else
-            {
-                throw new InvalidTextException();
-            }
-        }
-
+        public abstract int GetCantMinutes(string msg);
+    
         public String ParseCantMinutes(string msg)
         {
             string minutes = "";
@@ -54,10 +30,9 @@ namespace ParkingBusinessLogic
             }
             return minutes;
         }
-
-        public int ValidateDigit(String minutes)
+        public int ValidateDigitAndGraterThanZero(String minutes)
         {
-            if (minutes.All(char.IsDigit))
+            if (minutes.All(char.IsDigit) && (Int32.Parse(minutes) > 0))
             {
                 return Int32.Parse(minutes);
             }
@@ -67,7 +42,6 @@ namespace ParkingBusinessLogic
             }
 
         }
-
         public int CalculateCantMinutesFromPurchase(string initHour, string finishHour)
         {
             string[] parserInit = initHour.Split(':');
@@ -75,5 +49,6 @@ namespace ParkingBusinessLogic
             int canMinutes = ((Int32.Parse(parserFin[0]) - Int32.Parse(parserInit[0])) * 60) + (Int32.Parse(parserFin[1]) - Int32.Parse(parserInit[1]));
             return canMinutes;
         }
+
     }
 }
