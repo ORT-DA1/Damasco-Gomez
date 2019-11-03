@@ -77,7 +77,7 @@ namespace TestParkingBusinessLogic
         public void TestParserDayOk()
         {
             string checkMsg = "14/10 13:00 ";
-            string output = dateParser.ParserDay(checkMsg);
+            string output = dateParser.ParserDayFromCheck(checkMsg);
             string expected = "14/10";
             Assert.AreEqual(expected, output);
         }
@@ -85,7 +85,7 @@ namespace TestParkingBusinessLogic
         public void TestParserDayFail()
         {
             string checkMsg = "notValid";
-            string output = dateParser.ParserDay(checkMsg);
+            string output = dateParser.ParserDayFromCheck(checkMsg);
             string expected = "";
             Assert.AreEqual(expected, output);
         }
@@ -121,21 +121,21 @@ namespace TestParkingBusinessLogic
         {
             string MyDay = "55";
             string MyMonth = "1";
-            Assert.IsFalse(dateParser.ValidateDateNumber(MyMonth, MyDay));
+            Assert.IsFalse(dateParser.ValidateDateNumberFromCheck(MyMonth, MyDay));
         }
         [TestMethod]
         public void TestValidateDateNumberFail1()
         {
             string MyDay = "1";
             string MyMonth = "55";
-            Assert.IsFalse(dateParser.ValidateDateNumber(MyMonth, MyDay));
+            Assert.IsFalse(dateParser.ValidateDateNumberFromCheck(MyMonth, MyDay));
         }
         [TestMethod]
         public void TestValidateDateNumberFail2()
         {
             string MyDay = "55";
             string MyMonth = "55";
-            Assert.IsFalse(dateParser.ValidateDateNumber(MyMonth, MyDay));
+            Assert.IsFalse(dateParser.ValidateDateNumberFromCheck(MyMonth, MyDay));
         }
 
         [TestMethod]
@@ -143,75 +143,75 @@ namespace TestParkingBusinessLogic
         {
             string MyDay = "1";
             string MyMonth = "1";
-            Assert.IsTrue(dateParser.ValidateDateNumber(MyMonth, MyDay));
+            Assert.IsTrue(dateParser.ValidateDateNumberFromCheck(MyMonth, MyDay));
         }
         [TestMethod]
         public void TestValidateNumberArray()
         {
             string[] input = { "2", "4", "5", "8" };
-            Assert.IsTrue(dateParser.ValidateNumberArray(input));
+            Assert.IsTrue(dateParser.ValidateNumberArrayFromCheck(input));
         }
         [TestMethod]
         public void TestValidateNumberArray1()
         {
             string[] input = { "3", "4", "b" };
-            Assert.IsFalse(dateParser.ValidateNumberArray(input));
+            Assert.IsFalse(dateParser.ValidateNumberArrayFromCheck(input));
         }
         [TestMethod]
         public void TestValidateNumberArray2()
         {
             string[] input = { "b", "b", "b" };
-            Assert.IsFalse(dateParser.ValidateNumberArray(input));
+            Assert.IsFalse(dateParser.ValidateNumberArrayFromCheck(input));
         }
         [TestMethod]
         public void TestValidateDayOk()
         {
             string input = "1/1";
-            Assert.IsTrue(dateParser.ValidateDay(input));
+            Assert.IsTrue(dateParser.ValidateDayFromCheck(input));
         }
         [TestMethod]
         public void TestValidateDayFalse()
         {
             string input = "12/12";
-            Assert.IsFalse(dateParser.ValidateDay(input));
+            Assert.IsFalse(dateParser.ValidateDayFromCheck(input));
         }
         [TestMethod]
         public void TestValidateDayFalse1()
         {
             string input = "55/12";
-            Assert.IsFalse(dateParser.ValidateDay(input));
+            Assert.IsFalse(dateParser.ValidateDayFromCheck(input));
         }
         [TestMethod]
         public void TestValidateDayFalse2()
         {
             string input = "11/22/44";
-            Assert.IsFalse(dateParser.ValidateDay(input));
+            Assert.IsFalse(dateParser.ValidateDayFromCheck(input));
         }
         [TestMethod]
         public void TestValidateDayFalse3()
         {
             string input = "11/28";
-            Assert.IsFalse(dateParser.ValidateDay(input));
+            Assert.IsFalse(dateParser.ValidateDayFromCheck(input));
         }
         [TestMethod]
         public void TestValidateDayFalse4()
         {
             string input = "a/b";
-            Assert.IsFalse(dateParser.ValidateDay(input));
+            Assert.IsFalse(dateParser.ValidateDayFromCheck(input));
         }
 
         [TestMethod]
         public void TestValidateDayFail()
         {
             string input = "novalido";
-            Assert.IsFalse(dateParser.ValidateDay(input));
+            Assert.IsFalse(dateParser.ValidateDayFromCheck(input));
         }
         [TestMethod]
         public void TestFormatDay()
         {
             string input = "11/11";
             string expected = "11-11";
-            string output = dateParser.FormatDay(input);
+            string output = dateParser.FormatDayFromCheck(input);
             Assert.AreEqual(expected, output);
         }
         [TestMethod]
