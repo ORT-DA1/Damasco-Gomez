@@ -58,7 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestAccount.cs" />
+    <Compile Include="TestAccountUruguay.cs" />
     <Compile Include="TestController.cs" />
     <Compile Include="TestDateParser.cs" />
     <Compile Include="TestLicensePlateParser.cs" />

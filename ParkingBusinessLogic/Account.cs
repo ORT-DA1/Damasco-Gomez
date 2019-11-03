@@ -1,13 +1,14 @@
 
 using ParkingBusinessLogic.Exceptions;
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 
 
 namespace ParkingBusinessLogic
 {
-    public class Account
+    public abstract class Account
     {
 
         private string number;
@@ -19,14 +20,7 @@ namespace ParkingBusinessLogic
             }
             private set
             {
-                if (ValidateFormat(value))
-                {
-                    number = Format(value);
-                }
-                else
-                {
-                    throw new InvalidNumberException();
-                }
+                number = value;                
             }
         }
         private int balance;
@@ -40,42 +34,34 @@ namespace ParkingBusinessLogic
             {
                 balance = value;
             }
-
-
-
         }
-        public Account(String num, int balance)
+
+        public void setNumber (string num)
         {
             Number = num;
+        }
+
+        public void setBalance(int balance)
+        {
             Balance = balance;
-
         }
 
-        public string Format(string num)
+
+        public abstract string FormatNum(string num);
+
+        public bool ValidateBalance(string balance)
         {
-            num = num.Replace(" ", "");
-            if (num.Length == 9)
-            {
-                num = num.Insert(6, " ");
-                num = num.Insert(3, " ");
-            }
-            else if (num.Length == 8)
-            {
-                num = num.Insert(5, " ");
-                num = num.Insert(2, " ");
-            }
-            else
-            {
-                throw new InvalidNumberException();
-            }
-            return num;
+            return balance.All(char.IsDigit) && (Int32.Parse(balance)>0);
         }
 
-        public Account()
+        public int FormatBalance(string balance)
         {
-            this.number = "";
-            Balance = 0;
+            return Int32.Parse(balance);
         }
+        
+        
+
+
 
 
 
@@ -96,11 +82,8 @@ namespace ParkingBusinessLogic
         }
 
 
-        public bool ValidateFormat(string num)
-        {
-            num = num.Replace(" ", "");
-            return Regex.IsMatch(num, @"^0?[9][^3]\d{6}");
-        }
+        public abstract bool ValidateFormatNum(string num);
+
 
         public bool EnoughBalance(int value)
         {
@@ -154,10 +137,7 @@ namespace ParkingBusinessLogic
 
         }
 
-        public override string ToString()
-        {
-            return "Account number: " + Number + " Balance in the account: " + Balance;
-        }
+ 
 
     }
 }

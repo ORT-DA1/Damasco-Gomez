@@ -20,14 +20,14 @@ namespace TestParkingBusinessLogic
         public void InitTest()
         {
             myController = new Controller();
-            account1 = new Account("099 111 111", 1000);
+            account1 = new AccountUruguay("099 111 111", "1000");
             myController.RegisterAccount(account1);
         }
 
         [TestMethod]
         public void TestRegisterAccountOk()
         {
-            Account expected = new Account("098567890", 500);
+            Account expected = new AccountUruguay("098567890", "500");
             myController.RegisterAccount(expected);
             Account output = myController.Accounts.ElementAt(1);
             Assert.AreEqual(output, expected);
@@ -36,7 +36,7 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestFindAccountOk()
         {
-            Account wanted = new Account("098567890", 500);
+            Account wanted = new AccountUruguay("098567890", "500");
             myController.RegisterAccount(wanted);
             Account expected = myController.FindAccount("098 567 890");
             Assert.AreEqual(wanted, expected);
@@ -45,7 +45,7 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestisAccountEmpty()
         {
-            Account myAccount = new Account();
+            Account myAccount = new AccountUruguay();
             myController.RegisterAccount(myAccount);
             bool expected = myController.IsAccountEmpty(myAccount);
             Assert.IsTrue(expected);
@@ -149,7 +149,7 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestFindAddBalanceInAccount()
         {
-            Account account = new Account();
+            Account account = new AccountUruguay();
             myController.AddBalanceInAccount(account, 800);
             int balance = account.Balance;
             Assert.AreEqual(balance, 800);

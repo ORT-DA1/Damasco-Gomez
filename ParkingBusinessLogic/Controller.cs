@@ -63,8 +63,8 @@ namespace ParkingBusinessLogic
         public Account FindAccount(string text)
         {
 
-            Account myAccount = new Account();
-            Account auxiliar = new Account(text, 0);
+            Account myAccount = new AccountUruguay();
+            Account auxiliar = new AccountUruguay(text, "0");
             foreach (Account element in Accounts)
             {
                 if (element.Number == auxiliar.Number)
