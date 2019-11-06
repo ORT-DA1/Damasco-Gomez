@@ -37,9 +37,10 @@
             // 
             // AddAccountButton
             // 
-            this.AddAccountButton.Location = new System.Drawing.Point(303, 40);
+            this.AddAccountButton.Location = new System.Drawing.Point(186, 26);
+            this.AddAccountButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AddAccountButton.Name = "AddAccountButton";
-            this.AddAccountButton.Size = new System.Drawing.Size(191, 55);
+            this.AddAccountButton.Size = new System.Drawing.Size(162, 35);
             this.AddAccountButton.TabIndex = 0;
             this.AddAccountButton.Text = "Add Account";
             this.AddAccountButton.UseVisualStyleBackColor = true;
@@ -47,9 +48,10 @@
             // 
             // AddBalanceButton
             // 
-            this.AddBalanceButton.Location = new System.Drawing.Point(303, 128);
+            this.AddBalanceButton.Location = new System.Drawing.Point(186, 82);
+            this.AddBalanceButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.AddBalanceButton.Name = "AddBalanceButton";
-            this.AddBalanceButton.Size = new System.Drawing.Size(191, 55);
+            this.AddBalanceButton.Size = new System.Drawing.Size(162, 35);
             this.AddBalanceButton.TabIndex = 1;
             this.AddBalanceButton.Text = "Add Balance";
             this.AddBalanceButton.UseVisualStyleBackColor = true;
@@ -57,9 +59,10 @@
             // 
             // CheckParkingButton
             // 
-            this.CheckParkingButton.Location = new System.Drawing.Point(279, 296);
+            this.CheckParkingButton.Location = new System.Drawing.Point(186, 189);
+            this.CheckParkingButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CheckParkingButton.Name = "CheckParkingButton";
-            this.CheckParkingButton.Size = new System.Drawing.Size(243, 55);
+            this.CheckParkingButton.Size = new System.Drawing.Size(162, 35);
             this.CheckParkingButton.TabIndex = 2;
             this.CheckParkingButton.Text = "Check Licence Parking";
             this.CheckParkingButton.UseVisualStyleBackColor = true;
@@ -67,9 +70,10 @@
             // 
             // BuyParkingButton
             // 
-            this.BuyParkingButton.Location = new System.Drawing.Point(303, 212);
+            this.BuyParkingButton.Location = new System.Drawing.Point(186, 136);
+            this.BuyParkingButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BuyParkingButton.Name = "BuyParkingButton";
-            this.BuyParkingButton.Size = new System.Drawing.Size(191, 55);
+            this.BuyParkingButton.Size = new System.Drawing.Size(162, 35);
             this.BuyParkingButton.TabIndex = 3;
             this.BuyParkingButton.Text = "Buy Parking";
             this.BuyParkingButton.UseVisualStyleBackColor = true;
@@ -77,9 +81,10 @@
             // 
             // CostParkingButton
             // 
-            this.CostParkingButton.Location = new System.Drawing.Point(303, 373);
+            this.CostParkingButton.Location = new System.Drawing.Point(186, 239);
+            this.CostParkingButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CostParkingButton.Name = "CostParkingButton";
-            this.CostParkingButton.Size = new System.Drawing.Size(201, 55);
+            this.CostParkingButton.Size = new System.Drawing.Size(162, 35);
             this.CostParkingButton.TabIndex = 4;
             this.CostParkingButton.Text = "Set Cost Parking";
             this.CostParkingButton.UseVisualStyleBackColor = true;
@@ -87,14 +92,15 @@
             // 
             // First
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(533, 288);
             this.Controls.Add(this.CostParkingButton);
             this.Controls.Add(this.BuyParkingButton);
             this.Controls.Add(this.CheckParkingButton);
             this.Controls.Add(this.AddBalanceButton);
             this.Controls.Add(this.AddAccountButton);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "First";
             this.Text = "Welcome!";
             this.ResumeLayout(false);

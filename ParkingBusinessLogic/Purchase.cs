@@ -69,7 +69,7 @@ namespace ParkingBusinessLogic
         {
             DateParser dateParser = new DateParser();
             string startTime = dateParser.GetTimeFromTxt(msg);
-            MinuteParser minuteParser = new MinuteParser();
+            MinuteParserUruguay minuteParser = new MinuteParserUruguay();
             LicensePlateParser myParserLicense = new LicensePlateParser();
             string licensePlate = myParserLicense.GetLicensePlate(msg);
 
