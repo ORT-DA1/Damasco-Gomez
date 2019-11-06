@@ -24,7 +24,7 @@ namespace ParkingBusinessLogic
             }
             else
             {
-                throw new InvalidAccountException();
+                throw new InvalidAccountUruguayException();
             }
 
         }
@@ -44,7 +44,7 @@ namespace ParkingBusinessLogic
             }
             else
             {
-                throw new InvalidAccountException();
+                throw new InvalidAccountUruguayException();
             }
             return num;
         }

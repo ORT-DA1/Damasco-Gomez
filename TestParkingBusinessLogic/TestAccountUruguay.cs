@@ -35,7 +35,7 @@ namespace TestParkingBusinessLogic
 
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidAccountException))]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
         public void TestValidateFormatFalse1()
         {
             String num = "9f03uf134";
@@ -44,7 +44,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidAccountException))]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
         public void TestValidateFormatFalse2()
         {
             string num = "19042";
@@ -52,7 +52,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidAccountException))]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
         public void TestValidateFormatFalse3()
         {
             string num = "093457869";
@@ -60,7 +60,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidAccountException))]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
         public void TestValidateFormatFalse4()
         {
             string num = "0998473647875";
@@ -68,7 +68,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidAccountException))]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
         public void TestValidateFormatFalse5()
         {
             string num = "095 77 88 99 34";
@@ -76,7 +76,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidAccountException))]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
         public void TestValidateFormatFalse6()
         {
             string num = " 09577889934 ";
@@ -84,7 +84,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidAccountException))]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
         public void TestValidateFormatFalse7()
         {
             string num = "098893898";
@@ -156,7 +156,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidAccountException))]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
         public void TestValidateFormatNum()
         {
             string numer = " 095 778 899 348 8965 ";
