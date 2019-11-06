@@ -42,11 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
+    <Compile Include="AccountArgentina.cs" />
+    <Compile Include="AccountUruguay.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="DateParser.cs" />
     <Compile Include="Exceptions\InsufficientBalanceException.cs" />
+    <Compile Include="Exceptions\InvalidAccountArgentinaException.cs" />
     <Compile Include="Exceptions\InvalidTextException.cs" />
-    <Compile Include="Exceptions\InvalidNumberException.cs" />
+    <Compile Include="Exceptions\InvalidAccountUruguayException.cs" />
     <Compile Include="Exceptions\InvalidTextCheckException.cs" />
     <Compile Include="Exceptions\NegativeNumberException.cs" />
     <Compile Include="Exceptions\NotAccountException.cs" />

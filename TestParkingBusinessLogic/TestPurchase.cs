@@ -16,7 +16,7 @@ namespace TestParkingBusinessLogic
         [TestInitialize]
         public void InitTest()
         {
-            emptyAccount = new Account();
+            emptyAccount = new AccountUruguay();
 
             myPurchase = new Purchase(text, emptyAccount);
         }
@@ -37,14 +37,14 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestGetAccount()
         {
-            Account otherAccount = new Account();
+            Account otherAccount = new AccountUruguay();
             Purchase newPurchase = new Purchase(text, otherAccount);
             Account output = newPurchase.MyAccount;
             Assert.AreEqual(otherAccount, output);
 
         }
         [TestMethod]
-        [Ignore]
+        //[Ignore]
         public void TestCreatePurchaseWithoutTime()
         {
             string text = "SBN 2208 150";

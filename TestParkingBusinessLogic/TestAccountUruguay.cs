@@ -8,79 +8,87 @@ namespace TestParkingBusinessLogic
 {
     [ExcludeFromCodeCoverage]
     [TestClass]
-    public class TestAccount
+    public class TestAccountUruguay
     {
+        public Account myAccount;
 
         [TestInitialize]
+        public void InitAccount()
+        {
+            myAccount = new AccountUruguay("098456783", "110");
+        }
 
 
         [TestMethod]
         public void TestAddBalanceCorrect()
         {
-
-            Account myAccount = new Account("098456783", 0);
             bool output = myAccount.AddBalance(200);
-
             Assert.IsTrue(output);
         }
+
         [TestMethod]
         [ExpectedException(typeof(NegativeNumberException))]
         public void TestAddBalanceNegativeNumber()
         {
-
-            Account myAccount = new Account("098456783", 0);
             myAccount.AddBalance(-200);
-
         }
 
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidNumberException))]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
         public void TestValidateFormatFalse1()
         {
             String num = "9f03uf134";
-            Account myAccount = new Account(num, 0);
+            myAccount = new AccountUruguay(num, "0");
 
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidNumberException))]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
         public void TestValidateFormatFalse2()
         {
             string num = "19042";
-            Account myAccount = new Account(num, 0);
+            myAccount = new AccountUruguay(num, "0");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidNumberException))]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
         public void TestValidateFormatFalse3()
         {
             string num = "093457869";
-            Account myAccount = new Account(num, 0);
+            myAccount = new AccountUruguay(num, "0");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidNumberException))]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
         public void TestValidateFormatFalse4()
         {
             string num = "0998473647875";
-            Account myAccount = new Account(num, 0);
+            myAccount = new AccountUruguay(num, "0");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidNumberException))]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
         public void TestValidateFormatFalse5()
         {
             string num = "095 77 88 99 34";
-            Account myAccount = new Account(num, 0);
+            Account myAccount = new AccountUruguay(num, "0");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidNumberException))]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
         public void TestValidateFormatFalse6()
         {
             string num = " 09577889934 ";
-            Account myAccount = new Account(num, 0);
+            myAccount = new AccountUruguay(num, "0");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
+        public void TestValidateFormatFalse7()
+        {
+            string num = "098893898";
+            myAccount = new AccountUruguay(num, "-150");
         }
 
 
@@ -88,7 +96,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatTrue1()
         {
             string num = "99673647";
-            Account myAccount = new Account(num, 0);
+            myAccount = new AccountUruguay(num, "110");
             string output = myAccount.Number;
             string expected = "99 673 647";
 
@@ -100,7 +108,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatTrue2()
         {
             string num = "099673647";
-            Account myAccount = new Account(num, 0);
+            myAccount = new AccountUruguay(num, "110");
             string output = myAccount.Number;
             string expected = "099 673 647";
 
@@ -111,7 +119,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatTrue3()
         {
             string num = "99 67 364 7";
-            Account myAccount = new Account(num, 0);
+            myAccount = new AccountUruguay(num, "110");
             string output = myAccount.Number;
             string expected = "99 673 647";
 
@@ -121,7 +129,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatTrue4()
         {
             string num = "   99673647  ";
-            Account myAccount = new Account(num, 0);
+            myAccount = new AccountUruguay(num, "110");
             string output = myAccount.Number;
             string expected = "99 673 647";
 
@@ -131,7 +139,7 @@ namespace TestParkingBusinessLogic
         public void TestValidateFormatTrue5()
         {
             string num = "09 96 73 6 47";
-            Account myAccount = new Account(num, 0);
+            myAccount = new AccountUruguay(num, "110");
             string output = myAccount.Number;
             string expected = "099 673 647";
 
@@ -141,16 +149,24 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestEnoughBalance()
         {
-            Account myAccount = new Account("098878989", 200);
+            myAccount = new AccountUruguay("098878989", "200");
             bool output = myAccount.EnoughBalance(99);
 
             Assert.IsTrue(output);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(InvalidAccountUruguayException))]
+        public void TestValidateFormatNum()
+        {
+            string numer = " 095 778 899 348 8965 ";
+            myAccount.FormatNum(numer);
+        }
+
+        [TestMethod]
         public void TestNotEnoughBalance()
         {
-            Account myAccount = new Account("098878989", 98);
+            myAccount = new AccountUruguay("098878989", "98");
             bool output = myAccount.EnoughBalance(99);
             Assert.IsFalse(output);
         }
@@ -158,7 +174,7 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestDiscountBalancePositiveNumberandEnoughBalance()
         {
-            Account myAccount = new Account("098878989", 300);
+            myAccount = new AccountUruguay("098878989", "300");
             int amount = 200;
             bool output = myAccount.DiscountBalance(amount);
             Assert.IsTrue(output);
@@ -168,7 +184,7 @@ namespace TestParkingBusinessLogic
         [ExpectedException(typeof(InsufficientBalanceException))]
         public void TestDiscountBalancePositiveNumberandInsufficientBalance()
         {
-            Account myAccount = new Account("098878989", 100);
+            myAccount = new AccountUruguay("098878989", "100");
             int amount = 200;
             bool output = myAccount.DiscountBalance(amount);
 
@@ -178,18 +194,24 @@ namespace TestParkingBusinessLogic
         [ExpectedException(typeof(NegativeNumberException))]
         public void TestDiscountBalanceNegativeNumber()
         {
-            Account myAccount = new Account("098878989", 100);
+            myAccount = new AccountUruguay("098878989", "100");
             int amount = -50;
             bool output = myAccount.DiscountBalance(amount);
 
         }
         [TestMethod]
-        public void TestAccountEmpty()
+        public void TestAccountEmptyTrue()
         {
 
-            Account myAccount = new Account();
+            Account myAccount = new AccountUruguay();
             bool expected = myAccount.AccountEmpty();
             Assert.IsTrue(expected);
+        }
+        [TestMethod]
+        public void TestAccountEmptyFalse()
+        {
+            bool expected = myAccount.AccountEmpty();
+            Assert.IsFalse(expected);
         }
 
 
