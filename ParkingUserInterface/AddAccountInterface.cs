@@ -76,7 +76,7 @@ namespace ParkingUserInterface
                     Account myAccount = MyController.FindAccount(Number);
                     if (MyController.IsAccountEmpty(myAccount))
                     {
-                        myAccount = new Account(Number, Int32.Parse(balance));
+                        myAccount = new AccountUruguay(Number,balance);
                         MyController.RegisterAccount(myAccount);
                         MessageBox.Show("The account was successfully added.");
                         GoToFirstInterface(MyController);

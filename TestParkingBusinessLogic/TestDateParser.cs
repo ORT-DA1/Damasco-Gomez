@@ -58,6 +58,22 @@ namespace TestParkingBusinessLogic
             Assert.AreEqual(expected, output);
         }
         [TestMethod]
+        public void TestParserTimeFromTxt4()
+        {
+            string txt = "SBD 1345 13:00 120";
+            string output = dateParser.ParserTimeFromTxt(txt);
+            string expected = "13:00";
+            Assert.AreEqual(expected, output);
+        }
+        [TestMethod]
+        public void TestParserTimeFromTxt5()
+        {
+            string txt = "SBD1345 13:00 120";
+            string output = dateParser.ParserTimeFromTxt(txt);
+            string expected = "13:00";
+            Assert.AreEqual(expected, output);
+        }
+        [TestMethod]
         public void TestParserTimeFromTxtFail()
         {
             string txt = "SBD345 120";

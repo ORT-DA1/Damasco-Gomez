@@ -188,6 +188,7 @@ namespace TestParkingBusinessLogic
             int amount = 200;
             bool output = myAccount.DiscountBalance(amount);
 
+
         }
 
         [TestMethod]

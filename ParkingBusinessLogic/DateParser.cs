@@ -36,15 +36,12 @@ namespace ParkingBusinessLogic
             string[] msgList = txt.Split(' ');
             if (txt.Contains(':'))
             {
-
-                if (msgList.Length == 3)
+                foreach (var i in msgList)
                 {
-                    starTime = msgList[2];
-
-                }
-                else if (msgList.Length == 4)
-                {
-                    starTime = msgList[3];
+                    if (i.Contains(':') )
+                    {
+                        starTime = i;
+                    }
                 }
 
             }
