@@ -9,7 +9,7 @@ namespace TestParkingBusinessLogic
 {
     [ExcludeFromCodeCoverage]
     [TestClass]
-    public class TestController
+    class TestController
     {
         private Controller myController;
         private Account account1;
