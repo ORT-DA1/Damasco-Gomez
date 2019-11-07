@@ -10,26 +10,9 @@ namespace ParkingBusinessLogic
     {
 
         public abstract int GetCantMinutes(string msg);
+
+        public abstract string ParseCantMinutes(string msg);
     
-        public String ParseCantMinutes(string msg)
-        {
-            string minutes = "";
-            if (msg.Contains(' '))
-            {
-                string[] msgList = msg.Split(' ');
-
-                if (msgList[msgList.Length - 1].Contains(':'))
-                {
-                    minutes = msgList[msgList.Length - 2];
-                }
-                else
-                {
-                    minutes = msgList[msgList.Length - 1];
-                }
-
-            }
-            return minutes;
-        }
         public int ValidateDigitAndGraterThanZero(String minutes)
         {
             if (minutes.All(char.IsDigit) && (Int32.Parse(minutes) > 0))

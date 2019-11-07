@@ -13,18 +13,29 @@ namespace ParkingBusinessLogic
         {
             string cantMinutes = ParseCantMinutes(msg);
             int intCantMinutes = ValidateDigitAndGraterThanZero(cantMinutes);
-            if (intCantMinutes != -1){
+            if (intCantMinutes != -1)
+            {
                 return intCantMinutes;
             }
             else
             {
-                 throw new InvalidTextException();
+                throw new InvalidTextException();
             }
+        }
 
-
+            public override String ParseCantMinutes(string msg)
+            {
+                string minutes = "";
+                if (msg.Contains(' '))
+                {
+                    string[] msgList = msg.Split(' ');
+                    minutes = msgList[msgList.Length-1];
+                }
+                return minutes;
+            }
 
 
         }
 
     }
-}
+
