@@ -61,6 +61,8 @@
     <Compile Include="TestAccountArgentina.cs" />
     <Compile Include="TestAccountUruguay.cs" />
     <Compile Include="TestController.cs" />
+    <Compile Include="TestControllerAccount.cs" />
+    <Compile Include="TestControllerPurchase.cs" />
     <Compile Include="TestDateParser.cs" />
     <Compile Include="TestLicensePlateParser.cs" />
     <Compile Include="TestMinuteParserArgentina.cs" />
