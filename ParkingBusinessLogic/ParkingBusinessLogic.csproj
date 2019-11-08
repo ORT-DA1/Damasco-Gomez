@@ -59,6 +59,8 @@
     <Compile Include="MinuteParserUruguay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Purchase.cs" />
+    <Compile Include="PurchaseArgentina.cs" />
+    <Compile Include="PurchaseUruguay.cs" />
     <Compile Include="ValueMinute.cs" />
   </ItemGroup>
   <ItemGroup>

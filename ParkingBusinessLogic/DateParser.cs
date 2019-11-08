@@ -141,7 +141,7 @@ namespace ParkingBusinessLogic
             {
                 return parserTime;
             }
-            throw new InvalidTextException();
+            throw new InvalidTextExceptionArgentina();
         }
 
         public string GetDayFromCheck(string myDay)

@@ -52,7 +52,7 @@ namespace ParkingBusinessLogic
             }
             else
             {
-                throw new InvalidTextException();
+                throw new InvalidTextExceptionArgentina();
             }
         }
 
@@ -65,7 +65,7 @@ namespace ParkingBusinessLogic
             }
             else
             {
-                throw new InvalidTextException();
+                throw new InvalidTextExceptionArgentina();
             }
 
         }

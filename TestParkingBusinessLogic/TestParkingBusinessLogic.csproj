@@ -64,7 +64,8 @@
     <Compile Include="TestDateParser.cs" />
     <Compile Include="TestLicensePlateParser.cs" />
     <Compile Include="TestMinuteParserArgentina.cs" />
-    <Compile Include="TestPurchase.cs" />
+    <Compile Include="TestPurchaseArgentina.cs" />
+    <Compile Include="TestPurchaseUruguay.cs" />
     <Compile Include="TestMinuteParserUruguay.cs" />
     <Compile Include="TestValueMinute.cs" />
   </ItemGroup>

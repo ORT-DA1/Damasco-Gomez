@@ -280,7 +280,7 @@ namespace TestParkingBusinessLogic
 
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
+        [ExpectedException(typeof(InvalidTextExceptionArgentina))]
         public void TestGetTimeFromTxtFail()
         {
             string input = "SB 123 147";

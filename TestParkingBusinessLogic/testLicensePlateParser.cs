@@ -74,14 +74,14 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
+        [ExpectedException(typeof(InvalidTextExceptionArgentina))]
         public void TestFormatAndValidateLicensePlate2NotValid()
         {
             string licensePlateParserResult = licensePlateParser.FormatAndValidateLicensePlate("SBN208");
 
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
+        [ExpectedException(typeof(InvalidTextExceptionArgentina))]
         public void TestFormatAndValidateLicensePlate2NotValid2()
         {
             string licensePlateParserResult = licensePlateParser.FormatAndValidateLicensePlate("SN2080");
