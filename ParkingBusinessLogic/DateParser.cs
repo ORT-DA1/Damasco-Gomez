@@ -27,10 +27,10 @@ namespace ParkingBusinessLogic
         public String ParserTimeFromTxt(string txt)
         {
             txt = txt.Trim();
-            LicensePlateParser lp = new LicensePlateParser();
-            MinuteParserUruguay mp = new MinuteParserUruguay();
-            string parserLicensePlate = lp.ParseLicensePlate(txt);
-            string parserMinutes = mp.ParseCantMinutes(txt);
+            //LicensePlateParser lp = new LicensePlateParser();
+            //MinuteParserUruguay mp = new MinuteParserUruguay();
+            //string parserLicensePlate = lp.ParseLicensePlate(txt);
+            //string parserMinutes = mp.ParseCantMinutes(txt);
             string starTime = "";
 
             string[] msgList = txt.Split(' ');
@@ -45,7 +45,7 @@ namespace ParkingBusinessLogic
                 }
 
             }
-            else if (lp.ValidateLicensePlate(parserLicensePlate) && mp.ValidateMinutesMultiple30(mp.ValidateDigitAndGraterThanZero(parserMinutes)))
+            else //if (lp.ValidateLicensePlate(parserLicensePlate) && mp.ValidateMinutesMultiple30(mp.ValidateDigitAndGraterThanZero(parserMinutes)))
             {
                 starTime = DateTime.Now.ToString("HH:mm");
             }
@@ -141,7 +141,7 @@ namespace ParkingBusinessLogic
             {
                 return parserTime;
             }
-            throw new InvalidTextExceptionArgentina();
+            throw new InvalidTextException();
         }
 
         public string GetDayFromCheck(string myDay)

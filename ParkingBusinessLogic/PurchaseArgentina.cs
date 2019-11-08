@@ -25,9 +25,8 @@ namespace ParkingBusinessLogic
                 LicensePlateParser myParserLicense = new LicensePlateParser();
                 string licensePlate = myParserLicense.GetLicensePlate(msg);
 
-
                 string finishTime = AddMinHour(minuteParser.GetCantMinutes(msg), startTime);
-
+                
                 MyAccount = myA;
                 MyLicensePlate = licensePlate;
                 MyDay = MyDay;

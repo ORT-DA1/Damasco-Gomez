@@ -13,11 +13,12 @@ namespace ParkingBusinessLogic
 
         public abstract string ParseCantMinutes(string msg);
     
-        public int ValidateDigitAndGraterThanZero(String minutes)
+        public int ValidateDigitAndGraterThanZero(string minutes)
         {
             if (minutes.All(char.IsDigit) && (Int32.Parse(minutes) > 0))
             {
-                return Int32.Parse(minutes);
+                int value = Int32.Parse(minutes);
+                return value;
             }
             else
             {

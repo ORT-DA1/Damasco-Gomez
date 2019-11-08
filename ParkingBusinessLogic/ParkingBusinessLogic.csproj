@@ -49,6 +49,8 @@
     <Compile Include="Exceptions\InsufficientBalanceException.cs" />
     <Compile Include="Exceptions\InvalidAccountArgentinaException.cs" />
     <Compile Include="Exceptions\InvalidTextException.cs" />
+    <Compile Include="Exceptions\InvalidTextExceptionArgentina.cs" />
+    <Compile Include="Exceptions\InvalidTextExceptionUruguay.cs" />
     <Compile Include="Exceptions\InvalidAccountUruguayException.cs" />
     <Compile Include="Exceptions\InvalidTextCheckException.cs" />
     <Compile Include="Exceptions\NegativeNumberException.cs" />

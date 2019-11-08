@@ -49,7 +49,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        //[Ignore]
+        [Ignore]
         public void TestCreatePurchaseWithoutTime()
         {
             string text = "SBN 2208 150";

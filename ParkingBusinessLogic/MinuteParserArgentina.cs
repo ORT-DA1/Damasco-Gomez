@@ -32,6 +32,7 @@ namespace ParkingBusinessLogic
                     minutes = msgList[msgList.Length-1];
                 }
                 return minutes;
+           
             }
 
 
