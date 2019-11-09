@@ -24,7 +24,7 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestGetCantMinutesCorrectArg()
         {
-            string msg = ("ABC 1234 35 10:00");
+            string msg = ("ABC 1234 10:00 35");
             int output = myMinParArg.GetCantMinutes(msg);
             int expected = 35;
             Assert.AreEqual(output, expected);
@@ -43,7 +43,7 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestParseTxtArg()
         {
-            string msg = ("ABC 1234 45 10:00");
+            string msg = ("ABC 1234 10:00 45");
             string output = myMinParArg.ParseCantMinutes(msg);
             string expected = "45";
             Assert.AreEqual(output, expected);

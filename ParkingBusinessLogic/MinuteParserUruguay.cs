@@ -35,10 +35,28 @@ namespace ParkingBusinessLogic
             }
         }
 
-       
+        public override string ParseCantMinutes(string msg)
+        {
+            string minutes = "";
+            if (msg.Contains(' '))
+            {
+                string[] msgList = msg.Split(' ');
 
-       
+                if (msgList[msgList.Length - 1].Contains(':'))
+                {
+                    minutes = msgList[msgList.Length - 2];
+                }
+                else
+                {
+                    minutes = msgList[msgList.Length - 1];
+                }
 
-        
+            }
+            return minutes;
+        }
+
+
+
+
     }
 }
