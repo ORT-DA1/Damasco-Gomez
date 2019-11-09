@@ -12,16 +12,16 @@ namespace ParkingBusinessLogic
     {
         public AccountArgentina()
         {
-            setNumber("");
-            setBalance(0);
+            Number = "";
+            Balance = 0;
         }
 
         public AccountArgentina(String num, string balance)
         {
             if (ValidateFormatNum(num) && ValidateBalance(balance))
             {
-                setNumber(FormatNum(num));
-                setBalance(FormatBalance(balance));
+                Number = FormatNum(num);
+                Balance = FormatBalance(balance);
             }
             else
             {

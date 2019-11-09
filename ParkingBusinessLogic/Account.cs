@@ -18,7 +18,7 @@ namespace ParkingBusinessLogic
             {
                 return number;
             }
-            private set
+            set
             {
                 number = value;                
             }
@@ -30,20 +30,10 @@ namespace ParkingBusinessLogic
             {
                 return balance;
             }
-            private set
+            set
             {
                 balance = value;
             }
-        }
-
-        public void setNumber (string num)
-        {
-            Number = num;
-        }
-
-        public void setBalance(int balance)
-        {
-            Balance = balance;
         }
 
 
