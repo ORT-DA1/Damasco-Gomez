@@ -15,7 +15,7 @@ namespace ParkingBusinessLogic
     
         public int ValidateDigitAndGraterThanZero(string minutes)
         {
-            if (minutes.All(char.IsDigit) && (Int32.Parse(minutes) > 0))
+            if (!minutes.Equals("") && minutes.All(char.IsDigit) && (Int32.Parse(minutes) > 0))
             {
                 int value = Int32.Parse(minutes);
                 return value;

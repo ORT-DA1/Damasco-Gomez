@@ -9,6 +9,7 @@ namespace TestParkingBusinessLogic
 {
     [ExcludeFromCodeCoverage]
     [TestClass]
+    [Ignore]
     public class TestController
     {
         private Controller myController;

@@ -73,22 +73,7 @@ namespace TestParkingBusinessLogic
             string expected = "13:00";
             Assert.AreEqual(expected, output);
         }
-        [TestMethod]
-        public void TestParserTimeFromTxtFail()
-        {
-            string txt = "SBD345 120";
-            string output = dateParser.ParserTimeFromTxt(txt);
-            string expected = "";
-            Assert.AreEqual(expected, output);
-        }
-        [TestMethod]
-        public void TestParserTimeFromTxtFail2()
-        {
-            string txt = "SBD1345 10";
-            string output = dateParser.ParserTimeFromTxt(txt);
-            string expected = "";
-            Assert.AreEqual(expected, output);
-        }
+
         [TestMethod]
         public void TestParserDayOk()
         {
@@ -261,24 +246,7 @@ namespace TestParkingBusinessLogic
             string output = dateParser.ParserTimeFromTxt(input);
             Assert.AreEqual(expected, output);
         }
-        [TestMethod]
-        public void TestGetTimeNowLicensePlateInvalid()
-        {
-            string input = "SB 1234 120 ";
-            string output = dateParser.ParserTimeFromTxt(input);
-            string expected = "";
-            Assert.AreEqual(expected, output);
-        }
 
-        [TestMethod]
-        public void TestGetTimeNowCantMinutesInvalid()
-        {
-            string input = "SBN 1234 147 ";
-            string output = dateParser.ParserTimeFromTxt(input);
-            string expected = "";
-            Assert.AreEqual(expected, output);
-
-        }
         [TestMethod]
         [ExpectedException(typeof(InvalidTextException))]
         public void TestGetTimeFromTxtFail()
