@@ -21,9 +21,9 @@ namespace ParkingBusinessLogic
             return true;
 
         }
-        public int BuyParkingPurchaseUru(string msg, Account myAccount)
+        public int BuyParkingPurchaseUru(string msg, AccountUruguay myAccount)
         {
-            Purchase newPurchase = new Purchase(msg, myAccount);
+            Purchase newPurchase = new PurchaseUruguay(msg, myAccount);
             MinuteParser minuteParser = new MinuteParserUruguay();
             int cantMinutes = minuteParser.CalculateCantMinutesFromPurchase(newPurchase.MyInitHour, newPurchase.MyFinHour);
             int amountToDiscont = valueOfMinuteUru.TotalPrice(cantMinutes);

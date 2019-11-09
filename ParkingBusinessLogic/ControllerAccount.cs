@@ -33,8 +33,8 @@ namespace ParkingBusinessLogic
             return auxiliar;
         }
         public void BuyParkingAccount(String num, String msg)
-        {
-            Account myAccount = FindAccount(num);
+        {/*
+            AccountUruguay myAccount = FindAccount(num);
             if (IsAccountEmpty(myAccount))
             {
                 throw new NotAccountException();
@@ -45,6 +45,7 @@ namespace ParkingBusinessLogic
                 int amountToDiscont = controllerPurchase.BuyParkingPurchaseUru(msg, myAccount);
                 myAccount.DiscountBalance(amountToDiscont);
             }
+            */
         }
     }
 }
