@@ -8,7 +8,7 @@ namespace ParkingBusinessLogic
     public class Controller
     {
         private List<Account> accounts;
-        private List<Purchase> purchases;
+        private List<PurchaseUruguay> purchases;
         public ValueMinute valueOfMinute;
 
         public List<Account> Accounts
@@ -19,7 +19,7 @@ namespace ParkingBusinessLogic
             }
         }
 
-        public List<Purchase> Purchases
+        public List<PurchaseUruguay> Purchases
         {
             get
             {
@@ -36,7 +36,7 @@ namespace ParkingBusinessLogic
         public Controller()
         {
             accounts = new List<Account>();
-            purchases = new List<Purchase>();
+            purchases = new List<PurchaseUruguay>();
             valueOfMinute = new ValueMinute();
         }
 
@@ -53,19 +53,19 @@ namespace ParkingBusinessLogic
             return true;
 
         }
-        public bool RegisterPurchase(Purchase purchase)
+        public bool RegisterPurchase(PurchaseUruguay purchase)
         {
             Purchases.Add(purchase);
             return true;
 
         }
 
-        public Account FindAccount(string text)
+        public AccountUruguay FindAccount(string text)
         {
 
-            Account myAccount = new AccountUruguay();
-            Account auxiliar = new AccountUruguay(text, "0");
-            foreach (Account element in Accounts)
+            AccountUruguay myAccount = new AccountUruguay();
+            AccountUruguay auxiliar = new AccountUruguay(text, "0");
+            foreach (AccountUruguay element in Accounts)
             {
                 if (element.Number == auxiliar.Number)
                 {
@@ -81,14 +81,14 @@ namespace ParkingBusinessLogic
         public void BuyParking(String num, String msg)
 
         {
-            Account myAccount = FindAccount(num);
+            AccountUruguay myAccount = FindAccount(num);
             if (IsAccountEmpty(myAccount))
             {
                 throw new NotAccountException();
             }
             else
             {
-                Purchase newPurchase = new Purchase(msg, myAccount);
+                PurchaseUruguay newPurchase = new PurchaseUruguay(msg, myAccount);
                 MinuteParserUruguay minuteParser = new MinuteParserUruguay();
                 int cantMinutes = minuteParser.CalculateCantMinutesFromPurchase(newPurchase.MyInitHour, newPurchase.MyFinHour);
                 int amountToDiscont = valueOfMinute.TotalPrice(cantMinutes);
@@ -119,7 +119,7 @@ namespace ParkingBusinessLogic
         public bool FindPurchase(string licensePlate, string date, string initTime)
         {
             bool result = false;
-            foreach (Purchase element in Purchases)
+            foreach (PurchaseUruguay element in Purchases)
             {
                 if (element.ContainValues(licensePlate, date, initTime))
                 {

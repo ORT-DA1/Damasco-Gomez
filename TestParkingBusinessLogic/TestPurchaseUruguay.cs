@@ -8,90 +8,82 @@ namespace TestParkingBusinessLogic
 {
     [ExcludeFromCodeCoverage]
     [TestClass]
-    public class TestPurchase
+    public class TestPurchaseUruguay
     {
-        private Purchase myPurchase;
-        private Account emptyAccount;
+        private PurchaseUruguay myPurchase;
+        private AccountUruguay emptyAccount;
         private string text = "SBN 2208 150 10:00";
         [TestInitialize]
         public void InitTest()
         {
             emptyAccount = new AccountUruguay();
 
-            myPurchase = new Purchase(text, emptyAccount);
+            myPurchase = new PurchaseUruguay(text, emptyAccount);
         }
 
         [TestMethod]
         public void TestCreatePurchase()
         {
             string text = "SBN 2208 150 10:00";
-            myPurchase = new Purchase(text, emptyAccount);
+            myPurchase = new PurchaseUruguay(text, emptyAccount);
 
         }
         [TestMethod]
         public void TestCreatePurchase2()
         {
-            myPurchase = new Purchase();
+            myPurchase = new PurchaseUruguay();
 
         }
+      
         [TestMethod]
-        public void TestGetAccount()
-        {
-            Account otherAccount = new AccountUruguay();
-            Purchase newPurchase = new Purchase(text, otherAccount);
-            Account output = newPurchase.MyAccount;
-            Assert.AreEqual(otherAccount, output);
-
-        }
-        [TestMethod]
-        //[Ignore]
+        [Ignore]
         public void TestCreatePurchaseWithoutTime()
         {
             string text = "SBN 2208 150";
-            myPurchase = new Purchase(text, emptyAccount);
+            myPurchase = new PurchaseUruguay(text, emptyAccount);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
+        [ExpectedException(typeof(InvalidTextExceptionUruguay))]
         public void TestCreatePurchaseWrongTxt()
         {
             string text = "not there";
-            myPurchase = new Purchase(text, emptyAccount);
+            myPurchase = new PurchaseUruguay(text, emptyAccount);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
+        [ExpectedException(typeof(InvalidTextExceptionUruguay))]
         public void TestCreatePurchaseWithWrongTime()
         {
             string text = "SBN 2208 150 19:00";
-            myPurchase = new Purchase(text, emptyAccount);
+            myPurchase = new PurchaseUruguay(text, emptyAccount);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
+        [ExpectedException(typeof(InvalidTextExceptionUruguay))]
         public void TestCreatePurchaseWithWrongLincense1()
         {
             string text = "SBN P208 150 15:00";
-            Purchase myPurchase = new Purchase(text, emptyAccount);
+            PurchaseUruguay myPurchase = new PurchaseUruguay(text, emptyAccount);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
+        [ExpectedException(typeof(InvalidTextExceptionUruguay))]
         public void TestCreatePurchaseWithWrongLincense2()
         {
             string text = "SBN208 150 13:00";
-            Purchase myPurchase = new Purchase(text, emptyAccount);
+            PurchaseUruguay myPurchase = new PurchaseUruguay(text, emptyAccount);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
+        [ExpectedException(typeof(InvalidTextExceptionUruguay))]
         public void TestCreatePurchaseWithWrongMinutes()
         {
             string text = "SBN208 170 13:00";
-            Purchase myPurchase = new Purchase(text, emptyAccount);
+            PurchaseUruguay myPurchase = new PurchaseUruguay(text, emptyAccount);
         }
 
         [TestMethod]
         public void TestCheckLicensePlate()
         {
             string text = "SBN 2208 150 10:00";
-            myPurchase = new Purchase(text, emptyAccount);
+            myPurchase = new PurchaseUruguay(text, emptyAccount);
             string expected = "SBN2208";
             string output = myPurchase.MyLicensePlate;
             Assert.AreEqual(output, expected);
@@ -101,7 +93,7 @@ namespace TestParkingBusinessLogic
         public void TestCheckStartTime()
         {
             string text = "SBN 2208 150 10:00";
-            myPurchase = new Purchase(text, emptyAccount);
+            myPurchase = new PurchaseUruguay(text, emptyAccount);
             string expected = "10:00";
             string output = myPurchase.MyInitHour;
             Assert.AreEqual(output, expected);
@@ -111,7 +103,7 @@ namespace TestParkingBusinessLogic
         public void TestCheckFinTime()
         {
             string text = "SBN 2208 150 10:30";
-            Purchase myPurchase = new Purchase(text, emptyAccount);
+            PurchaseUruguay myPurchase = new PurchaseUruguay(text, emptyAccount);
             string expected = "13:00";
             string output = myPurchase.MyFinHour;
             Assert.AreEqual(expected, output);
@@ -121,7 +113,7 @@ namespace TestParkingBusinessLogic
         public void TestCheckFinTimeMore18()
         {
             string text = "SBN 2208 150 17:00";
-            Purchase myPurchase = new Purchase(text, emptyAccount);
+            PurchaseUruguay myPurchase = new PurchaseUruguay(text, emptyAccount);
             string expected = "18:00";
             string output = myPurchase.MyFinHour;
             Assert.AreEqual(output, expected);
@@ -177,7 +169,7 @@ namespace TestParkingBusinessLogic
         public void TestCheckDay()
         {
             string text = "SBN 2208 150 10:00";
-            Purchase myPurchase = new Purchase(text, emptyAccount);
+            PurchaseUruguay myPurchase = new PurchaseUruguay(text, emptyAccount);
             string expected = DateTime.Now.ToString("dd-MM");
             string output = myPurchase.MyDay;
             Assert.AreEqual(output, expected);
@@ -278,7 +270,7 @@ namespace TestParkingBusinessLogic
         public void TestEqualsTrue()
         {
             string text = "SBN 2208 150 10:00";
-            Purchase otherPurchase = new Purchase(text, emptyAccount);
+            PurchaseUruguay otherPurchase = new PurchaseUruguay(text, emptyAccount);
             bool output = myPurchase.Equals(otherPurchase);
             Assert.IsTrue(output);
         }
@@ -286,7 +278,7 @@ namespace TestParkingBusinessLogic
         public void TestEqualsFalse()
         {
             string text = "SBN 2208 120 10:00";
-            Purchase otherPurchase = new Purchase(text, emptyAccount);
+            PurchaseUruguay otherPurchase = new PurchaseUruguay(text, emptyAccount);
             bool output = myPurchase.Equals(otherPurchase);
             Assert.IsFalse(output);
         }
@@ -294,7 +286,7 @@ namespace TestParkingBusinessLogic
         public void TestEqualsFalse2()
         {
             string text = "SBN 2208 150 12:00";
-            Purchase otherPurchase = new Purchase(text, emptyAccount);
+            PurchaseUruguay otherPurchase = new PurchaseUruguay(text, emptyAccount);
             bool output = myPurchase.Equals(otherPurchase);
             Assert.IsFalse(output);
         }
@@ -302,7 +294,7 @@ namespace TestParkingBusinessLogic
         public void TestEqualsFalse3()
         {
             string text = "SBN 2508 150 10:00";
-            Purchase otherPurchase = new Purchase(text, emptyAccount);
+            PurchaseUruguay otherPurchase = new PurchaseUruguay(text, emptyAccount);
             bool output = myPurchase.Equals(otherPurchase);
             Assert.IsFalse(output);
         }

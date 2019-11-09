@@ -31,7 +31,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
+        [ExpectedException(typeof(InvalidTextExceptionArgentina))]
         public void TestErrorGetMinutesArg()
         {
             string msg = ("wrong text");
@@ -59,7 +59,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
+        [ExpectedException(typeof(InvalidTextExceptionArgentina))]
         public void TestParseTxtErrorArg()
         {
             string msg = ("ABC rwt");

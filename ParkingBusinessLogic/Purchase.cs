@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ParkingBusinessLogic
 {
-    public class Purchase
+    public abstract class Purchase
     {
         Account myAccount;
         string myLicensePlate;
@@ -15,7 +19,7 @@ namespace ParkingBusinessLogic
             {
                 return myLicensePlate;
             }
-            private set
+             set
             {
                 myLicensePlate = value;
             }
@@ -26,6 +30,11 @@ namespace ParkingBusinessLogic
             {
                 return myAccount;
             }
+            set
+            {
+                myAccount = value;
+
+            }
 
         }
         public string MyDay
@@ -34,7 +43,7 @@ namespace ParkingBusinessLogic
             {
                 return myDay;
             }
-            private set
+             set
             {
                 myDay = DateTime.Now.ToString("dd-MM");
             }
@@ -45,7 +54,7 @@ namespace ParkingBusinessLogic
             {
                 return myInitHour;
             }
-            private set
+             set
             {
                 myInitHour = value;
             }
@@ -56,33 +65,13 @@ namespace ParkingBusinessLogic
             {
                 return myFinHour;
             }
-            private set
+             set
             {
                 myFinHour = value;
 
             }
         }
-        public Purchase()
-        {
-        }
-        public Purchase(string msg, Account myA)
-        {
-            DateParser dateParser = new DateParser();
-            string startTime = dateParser.GetTimeFromTxt(msg);
-            MinuteParserUruguay minuteParser = new MinuteParserUruguay();
-            LicensePlateParser myParserLicense = new LicensePlateParser();
-            string licensePlate = myParserLicense.GetLicensePlate(msg);
-
-
-            string finishTime = AddMinHour(minuteParser.GetCantMinutes(msg), startTime);
-
-            myAccount = myA;
-            MyLicensePlate = licensePlate;
-            MyDay = MyDay;
-            MyInitHour = startTime;
-            MyFinHour = finishTime;
-        }
-
+      
         public string AddMinHour(int cantMin, string startTime)
         {
             double cantAddHour = ((double)cantMin / 60);
@@ -102,12 +91,13 @@ namespace ParkingBusinessLogic
             return ((Int32.Parse(parserTime[0]) > 18) || ((Int32.Parse(parserTime[0]) == 18) && (Int32.Parse(parserTime[1]) > 0)));
 
         }
+
         public bool ContainValues(string licensePlate, string date, string initTime)
         {
             bool result = false;
             if (MyLicensePlate == licensePlate)
             {
-                if ((MyDay == date) && CompareHours( MyInitHour, MyFinHour, initTime))
+                if ((MyDay == date) && CompareHours(MyInitHour, MyFinHour, initTime))
                 {
                     result = true;
 
@@ -115,9 +105,7 @@ namespace ParkingBusinessLogic
             }
             return result;
         }
-
-
-        public bool CompareHours(string initHour, string finHour,  string compareHour)
+        public bool CompareHours(string initHour, string finHour, string compareHour)
         {
             string[] parserFin = finHour.Split(':');
             string[] parserIni = initHour.Split(':');
@@ -134,7 +122,5 @@ namespace ParkingBusinessLogic
             return (otherPurchase.MyLicensePlate == this.MyLicensePlate) &&
                 (otherPurchase.MyInitHour == this.MyInitHour) && (otherPurchase.MyFinHour == this.MyFinHour);
         }
-
-
     }
 }

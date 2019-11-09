@@ -19,7 +19,7 @@ namespace ParkingBusinessLogic
             }
             else
             {
-                throw new InvalidTextException();
+                throw new InvalidTextExceptionArgentina();
             }
         }
 
@@ -32,6 +32,7 @@ namespace ParkingBusinessLogic
                     minutes = msgList[msgList.Length-1];
                 }
                 return minutes;
+           
             }
 
 
