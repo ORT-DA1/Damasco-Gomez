@@ -32,14 +32,15 @@ namespace ParkingBusinessLogic
 
         public override string FormatNum(string num)
         {
-            num = num.Replace("-", "").Trim();            
+            num = num.Replace("-", "").Trim();     
             return num;
         }
 
         public override bool ValidateFormatNum(string num)
         {
-            num = num.Replace("-", "").Trim();
-            return Regex.IsMatch(num, @"^\d{6,8}$");
+            num = num.Trim();
+            return Regex.IsMatch(num, @"^\d(\d|-\d){5}(\d|-\d)?(\d|-\d)?$");
+         
         }
     }
 }

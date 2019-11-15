@@ -17,13 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingUserInterface", "Par
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{64AB2389-4DA9-4099-B289-BD96E25F5592}"
-	ProjectSection(SolutionItems) = preProject
-		ParkingBusinessLogic\Purchase.cs = ParkingBusinessLogic\Purchase.cs
-		TestParkingBusinessLogic\TestPurchase.cs = TestParkingBusinessLogic\TestPurchase.cs
-		ParkingBusinessLogic\Tools.cs = ParkingBusinessLogic\Tools.cs
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework", "EntityFramework\EntityFramework.csproj", "{D85E2F0E-4CE6-47F4-BA35-B242B11E25D6}"
 EndProject
 Global

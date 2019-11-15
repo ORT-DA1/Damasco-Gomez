@@ -43,11 +43,20 @@ namespace TestParkingBusinessLogic
             Assert.IsTrue(output);
         }
         [TestMethod]
-        public void TestValidateFormatNumTrue2()
+        public void TestValidateFormatNumFalse()
         {
             string num = "12--345-6--7";
             bool output = emptyAccount.ValidateFormatNum(num);
-            Assert.IsTrue(output);
+            Assert.IsFalse(output);
+            
+        }
+        [TestMethod]
+        public void TestValidateFormatNumFalse2()
+        {
+            string num = "123--4567";
+            bool output = emptyAccount.ValidateFormatNum(num);
+            Assert.IsFalse(output);
+
         }
         [TestMethod]
         public void TestValidateFormatNumTrue3()
@@ -64,49 +73,49 @@ namespace TestParkingBusinessLogic
             Assert.IsTrue(output);
         }
         [TestMethod]
-        public void TestValidateFormatNumFalse()
+        public void TestValidateFormatNumFalse3()
         {
             string num = "letras";
             bool output = emptyAccount.ValidateFormatNum(num);
             Assert.IsFalse(output);
         }
         [TestMethod]
-        public void TestValidateFormatNumFalse1()
+        public void TestValidateFormatNumFalse4()
         {
             string num = "123456789";
             bool output = emptyAccount.ValidateFormatNum(num);
             Assert.IsFalse(output);
         }
         [TestMethod]
-        public void TestValidateFormatNumFalse2()
+        public void TestValidateFormatNumFalse5()
         {
             string num = "12345";
             bool output = emptyAccount.ValidateFormatNum(num);
             Assert.IsFalse(output);
         }
         [TestMethod]
-        public void TestValidateFormatNumFalse3()
+        public void TestValidateFormatNumFalse6()
         {
             string num = "1-2-3-4-5 -6";
             bool output = emptyAccount.ValidateFormatNum(num);
             Assert.IsFalse(output);
         }
         [TestMethod]
-        public void TestValidateFormatNumFalse4()
+        public void TestValidateFormatNumFalse7()
         {
             string num = "1 2 3 4 5 6";
             bool output = emptyAccount.ValidateFormatNum(num);
             Assert.IsFalse(output);
         }
         [TestMethod]
-        public void TestValidateFormatNumFalse5()
+        public void TestValidateFormatNumFalse8()
         {
             string num = "1234567 8";
             bool output = emptyAccount.ValidateFormatNum(num);
             Assert.IsFalse(output);
         }
         [TestMethod]
-        public void TestValidateFormatNumFalse6()
+        public void TestValidateFormatNumFalse9()
         {
             string num = "123-45 6-78";
             bool output = emptyAccount.ValidateFormatNum(num);
@@ -177,7 +186,7 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestCreateAccount2()
         {
-            string num = "12-3-45-6-7-8   ";
+            string num = "12-3-45-6-7-8  ";
             string balance = "100";
             myAccount = new AccountArgentina(num, balance);
         }
@@ -218,7 +227,7 @@ namespace TestParkingBusinessLogic
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidAccountArgentinaException))]
-        public void TestCantCreateAccount()
+        public void TestCantCreateAccount8()
         {
             string num = "1 2-3-4567";
             string balance = "100";
@@ -226,7 +235,23 @@ namespace TestParkingBusinessLogic
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidAccountArgentinaException))]
-        public void TestCantCreateAccount2()
+        public void TestCantCreateAccount9()
+        {
+            string num = "12--3-4567";
+            string balance = "100";
+            myAccount = new AccountArgentina(num, balance);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidAccountArgentinaException))]
+        public void TestCantCreateAccount10()
+        {
+            string num = "12-3-45--67";
+            string balance = "100";
+            myAccount = new AccountArgentina(num, balance);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidAccountArgentinaException))]
+        public void TestCantCreateAccount11()
         {
             string num = "12-3-4567";
             string balance = "-100";
@@ -234,7 +259,7 @@ namespace TestParkingBusinessLogic
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidAccountArgentinaException))]
-        public void TestCantCreateAccount3()
+        public void TestCantCreateAccount12()
         {
             string num = "12-3-4567";
             string balance = "0";
@@ -242,7 +267,7 @@ namespace TestParkingBusinessLogic
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidAccountArgentinaException))]
-        public void TestCantCreateAccount4()
+        public void TestCantCreateAccount13()
         {
             string num = "12-3-45 67";
             string balance = "100";
@@ -250,7 +275,7 @@ namespace TestParkingBusinessLogic
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidAccountArgentinaException))]
-        public void TestCantCreateAccount5()
+        public void TestCantCreateAccount14()
         {
             string num = "12-3-4567";
             string balance = "letras";
@@ -258,7 +283,7 @@ namespace TestParkingBusinessLogic
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidAccountArgentinaException))]
-        public void TestCantCreateAccount6()
+        public void TestCantCreateAccount15()
         {
             string num = "12-3-456789";
             string balance = "100";
@@ -266,7 +291,7 @@ namespace TestParkingBusinessLogic
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidAccountArgentinaException))]
-        public void TestCantCreateAccount7()
+        public void TestCantCreateAccount16()
         {
             string num = "12-3-    4567";
             string balance = "100";
@@ -274,9 +299,17 @@ namespace TestParkingBusinessLogic
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidAccountArgentinaException))]
-        public void TestCantCreateAccount8()
+        public void TestCantCreateAccount17()
         {
             string num = "12-3-4f567";
+            string balance = "100";
+            myAccount = new AccountArgentina(num, balance);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidAccountArgentinaException))]
+        public void TestCantCreateAccount18()
+        {
+            string num = "-12234567-";
             string balance = "100";
             myAccount = new AccountArgentina(num, balance);
         }
