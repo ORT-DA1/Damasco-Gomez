@@ -9,5 +9,8 @@ namespace EntityFramework
     public class DataAccess
     {
         private MyContext context;
+        public DataAccess()
+        {
+        }
     }
 }
