@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessEF
+namespace EFramework
 {
     public class ServicePurchase
     {
@@ -20,7 +20,7 @@ namespace DataAccessEF
             return purchases;
 
         }
-    
+
         public List<Purchase> GetSaleByCountryAndPeriod(string fecha, int horaIni, int horaFin, string pais)
         {
             List<Purchase> purchases = new List<Purchase>();

@@ -1,12 +1,12 @@
-﻿using ParkingBusinessLogic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ParkingBusinessLogic;
 
-namespace DataAccessEF
+namespace EFramework
 {
     public class MyContext : DbContext
     {
@@ -20,5 +20,4 @@ namespace DataAccessEF
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Purchase> Purchases { get; set; }
     }
-
 }

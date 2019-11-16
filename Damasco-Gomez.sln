@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingUserInterface", "Par
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFramework", "EntityFramework\EntityFramework.csproj", "{D85E2F0E-4CE6-47F4-BA35-B242B11E25D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFramework", "EFramework\EFramework.csproj", "{4EB89AED-01B2-491C-B3D8-9C0B26C6C66D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D85E2F0E-4CE6-47F4-BA35-B242B11E25D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D85E2F0E-4CE6-47F4-BA35-B242B11E25D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D85E2F0E-4CE6-47F4-BA35-B242B11E25D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D85E2F0E-4CE6-47F4-BA35-B242B11E25D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EB89AED-01B2-491C-B3D8-9C0B26C6C66D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EB89AED-01B2-491C-B3D8-9C0B26C6C66D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EB89AED-01B2-491C-B3D8-9C0B26C6C66D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EB89AED-01B2-491C-B3D8-9C0B26C6C66D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
