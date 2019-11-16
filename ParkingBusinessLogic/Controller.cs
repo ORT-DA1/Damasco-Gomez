@@ -59,7 +59,7 @@ namespace ParkingBusinessLogic
             return true;
 
         }
-
+        /*
         public AccountUruguay FindAccount(string text)
         {
 
@@ -75,12 +75,12 @@ namespace ParkingBusinessLogic
             }
             return myAccount;
         }
-
+        */
 
 
         public void BuyParking(String num, String msg)
 
-        {
+        {/*
             AccountUruguay myAccount = FindAccount(num);
             if (IsAccountEmpty(myAccount))
             {
@@ -95,6 +95,7 @@ namespace ParkingBusinessLogic
                 myAccount.DiscountBalance(amountToDiscont);
                 RegisterPurchase(newPurchase);
             }
+            */
         }
 
         public void ChageValueMinute(int value)

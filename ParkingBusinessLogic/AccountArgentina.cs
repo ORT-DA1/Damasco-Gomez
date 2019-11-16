@@ -20,6 +20,21 @@ namespace ParkingBusinessLogic
         {
             if (ValidateFormatNum(num) && ValidateBalance(balance))
             {
+                Id = Guid.NewGuid();
+                Number = FormatNum(num);
+                Balance = FormatBalance(balance);
+            }
+            else
+            {
+                throw new InvalidAccountArgentinaException();
+            }
+
+        }
+        public AccountArgentina(Guid id, String num, string balance)
+        {
+            if (ValidateFormatNum(num) && ValidateBalance(balance))
+            {
+                Id = id;
                 Number = FormatNum(num);
                 Balance = FormatBalance(balance);
             }

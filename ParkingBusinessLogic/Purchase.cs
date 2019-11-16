@@ -9,36 +9,11 @@ namespace ParkingBusinessLogic
     public abstract class Purchase
     {
         public Guid Id { get; set; }
-
-        Account myAccount;
-        string myLicensePlate;
+        public string MyLicensePlate { get; set; }       
+        public Account MyAccount { get; set; }
+        public string MyInitHour { get; set; }
+        public string MyFinHour { get; set; }
         string myDay;
-        string myInitHour;
-        string myFinHour;
-        public string MyLicensePlate
-        {
-            get
-            {
-                return myLicensePlate;
-            }
-             set
-            {
-                myLicensePlate = value;
-            }
-        }
-        public Account MyAccount
-        {
-            get
-            {
-                return myAccount;
-            }
-            set
-            {
-                myAccount = value;
-
-            }
-
-        }
         public string MyDay
         {
             get
@@ -50,29 +25,7 @@ namespace ParkingBusinessLogic
                 myDay = DateTime.Now.ToString("dd-MM");
             }
         }
-        public string MyInitHour
-        {
-            get
-            {
-                return myInitHour;
-            }
-             set
-            {
-                myInitHour = value;
-            }
-        }
-        public string MyFinHour
-        {
-            get
-            {
-                return myFinHour;
-            }
-             set
-            {
-                myFinHour = value;
-
-            }
-        }
+        
       
         public string AddMinHour(int cantMin, string startTime)
         {

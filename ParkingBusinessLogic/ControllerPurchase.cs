@@ -8,12 +8,13 @@ namespace ParkingBusinessLogic
 {
     public class ControllerPurchase
     {
-        private ValueMinute valueOfMinuteUru;
-        private ValueMinute valueOfMinuteArg;
+        public ValueMinute valueOfMinuteUru { get; set; }
+        public ValueMinute valueOfMinuteArg { get; set; }
 
         public ControllerPurchase()
         {
-
+            valueOfMinuteUru = new ValueMinute();
+            valueOfMinuteArg = new ValueMinute();
         }
         public bool RegisterPurchase(Purchase purchase)
         {
@@ -22,14 +23,15 @@ namespace ParkingBusinessLogic
 
         }
         public int BuyParkingPurchaseUru(string msg, AccountUruguay myAccount)
-        {
+        {/*
             Purchase newPurchase = new PurchaseUruguay(msg, myAccount);
             MinuteParser minuteParser = new MinuteParserUruguay();
             int cantMinutes = minuteParser.CalculateCantMinutesFromPurchase(newPurchase.MyInitHour, newPurchase.MyFinHour);
             int amountToDiscont = valueOfMinuteUru.TotalPrice(cantMinutes);
             myAccount.DiscountBalance(amountToDiscont);
             RegisterPurchase(newPurchase);
-            return amountToDiscont;
+            return amountToDiscont;*/
+            return 0;
         }
     }
 }

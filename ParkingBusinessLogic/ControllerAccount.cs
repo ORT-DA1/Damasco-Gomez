@@ -25,13 +25,14 @@ namespace ParkingBusinessLogic
             return true;
         }
 
+        /*
         public Account FindAccount(string text)
         {
-
+            
             Account auxiliar = new AccountUruguay(text, "110");
             
             return auxiliar;
-        }
+        }*/
         public void BuyParkingAccount(String num, String msg)
         {/*
             AccountUruguay myAccount = FindAccount(num);

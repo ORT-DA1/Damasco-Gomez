@@ -15,6 +15,20 @@ namespace ParkingBusinessLogic
             Number = "";
             Balance = 0;
         }
+        public AccountUruguay( String num, string balance)
+        {
+            if (ValidateFormatNum(num) && ValidateBalance(balance))
+            {
+                Id = Guid.NewGuid();
+                Number = FormatNum(num);
+                Balance = FormatBalance(balance);
+            }
+            else
+            {
+                throw new InvalidAccountUruguayException();
+            }
+
+        }
 
         public AccountUruguay(Guid id, String num, string balance)
         {
