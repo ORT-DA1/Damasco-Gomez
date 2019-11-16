@@ -11,9 +11,14 @@ namespace EFramework
     {
         private MyContext context;
 
-        public void InsertAccount(Account account)
+        public DataAccess()
         {
             context = new MyContext();
+        }
+
+        public void InsertAccount(Account account)
+        {
+            //context = new MyContext();
             context.Accounts.Add(account);
             context.SaveChanges();
             context.Dispose();

@@ -12,7 +12,7 @@ namespace TestEntityFramework
         public void TestMethod1()
         {
             DataAccess myDA = new DataAccess();
-            Account myAccount = new AccountUruguay("098872898", "100");
+            Account myAccount = new AccountUruguay();
             myDA.InsertAccount(myAccount);
         }
     }
