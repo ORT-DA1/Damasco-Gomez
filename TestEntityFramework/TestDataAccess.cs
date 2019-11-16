@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace TestEntityFramework
 {
     [TestClass]
-    public class UnitTest1
+    public class TestDataAccess
     {
         [TestMethod]
         public void TestMethod1()

@@ -13,10 +13,7 @@ namespace EFramework
         public MyContext() : base("name=MyContext")
         {
         }
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
+        
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Purchase> Purchases { get; set; }
     }
