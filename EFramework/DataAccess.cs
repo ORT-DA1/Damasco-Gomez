@@ -18,9 +18,18 @@ namespace EFramework
 
         public void InsertAccount(Account account)
         {
-            //context = new MyContext();
             context.Accounts.Add(account);
             context.SaveChanges();
+        }
+
+        public Account FindByNum(string num)
+        {
+            Account myA = context.Accounts.Where(b => b.Number == num).FirstOrDefault();            
+            return myA;
+        }
+
+        public void DisposeMyContext()
+        {
             context.Dispose();
         }
     }
