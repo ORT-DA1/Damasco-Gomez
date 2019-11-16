@@ -10,7 +10,7 @@ namespace ParkingBusinessLogic
 {
     public abstract class Account
     {
-
+        public Guid Id { get; set; }
         private string number;
         public string Number
         {
@@ -34,6 +34,19 @@ namespace ParkingBusinessLogic
             {
                 balance = value;
             }
+        }
+
+        public Account()
+        {
+            Id = new Guid();
+            Balance = 0;
+            Number = "";
+        }
+        public Account (Guid id, string num, int balance)
+        {
+            Id = id;
+            Number = num;
+            Balance = balance;
         }
 
 

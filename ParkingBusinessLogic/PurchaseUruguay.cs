@@ -10,10 +10,11 @@ namespace ParkingBusinessLogic
         public PurchaseUruguay()
         {
         }
-        public PurchaseUruguay(string msg, AccountUruguay myA)
+        public PurchaseUruguay(Guid id, string msg, AccountUruguay myA)
         {
             try
             {
+                Id = id;
                 DateParser dateParser = new DateParser();
                 string startTime = dateParser.GetTimeFromTxt(msg);
                 MinuteParserUruguay minuteParser = new MinuteParserUruguay();

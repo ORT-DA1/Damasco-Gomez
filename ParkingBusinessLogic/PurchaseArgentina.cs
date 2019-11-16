@@ -14,11 +14,13 @@ namespace ParkingBusinessLogic
 
         public PurchaseArgentina()
         {
+
         }
-        public PurchaseArgentina(string msg, AccountArgentina myA)
+        public PurchaseArgentina(Guid id , string msg, AccountArgentina myA)
         {
             try
             {
+                Id = id;
                 DateParser dateParser = new DateParser();
                 string startTime = dateParser.GetTimeFromTxt(msg);
                 MinuteParserArgentina minuteParser = new MinuteParserArgentina();

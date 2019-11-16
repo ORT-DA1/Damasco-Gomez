@@ -8,6 +8,8 @@ namespace ParkingBusinessLogic
 {
     public abstract class Purchase
     {
+        public Guid Id { get; set; }
+
         Account myAccount;
         string myLicensePlate;
         string myDay;

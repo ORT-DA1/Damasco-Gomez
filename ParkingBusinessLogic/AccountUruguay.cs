@@ -16,9 +16,10 @@ namespace ParkingBusinessLogic
             Balance = 0;
         }
 
-        public AccountUruguay(String num, string balance)
+        public AccountUruguay(Guid id, String num, string balance)
         {
             if (ValidateFormatNum(num) && ValidateBalance(balance)) {
+                Id = id;
                 Number = FormatNum(num);
                 Balance = FormatBalance(balance);
             }
