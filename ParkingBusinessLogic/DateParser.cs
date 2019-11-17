@@ -27,12 +27,7 @@ namespace ParkingBusinessLogic
         public String ParserTimeFromTxt(string txt)
         {
             txt = txt.Trim();
-            //LicensePlateParser lp = new LicensePlateParser();
-            //MinuteParserUruguay mp = new MinuteParserUruguay();
-            //string parserLicensePlate = lp.ParseLicensePlate(txt);
-            //string parserMinutes = mp.ParseCantMinutes(txt);
             string starTime = "";
-
             string[] msgList = txt.Split(' ');
             if (txt.Contains(':'))
             {
@@ -45,7 +40,7 @@ namespace ParkingBusinessLogic
                 }
 
             }
-            else //if (lp.ValidateLicensePlate(parserLicensePlate) && mp.ValidateMinutesMultiple30(mp.ValidateDigitAndGraterThanZero(parserMinutes)))
+            else
             {
                 starTime = DateTime.Now.ToString("HH:mm");
             }
@@ -90,7 +85,9 @@ namespace ParkingBusinessLogic
         {
             int ThisDay = Int32.Parse(DateTime.Now.ToString("dd"));
             int ThisMonth = Int32.Parse(DateTime.Now.ToString("MM"));
-            return (Int32.Parse(MyMonth.Replace("0", "")) <= ThisMonth) && (Int32.Parse(MyDay.Replace("0", "")) <= ThisDay);
+            int month = Int32.Parse(MyMonth);
+            int day = Int32.Parse(MyDay);
+            return (month <= ThisMonth) && (day <= ThisDay);
         }
 
         public bool ValidateNumberArrayFromCheck(string[] stringArray)

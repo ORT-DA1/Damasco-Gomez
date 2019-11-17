@@ -247,13 +247,7 @@ namespace TestParkingBusinessLogic
             Assert.AreEqual(expected, output);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(InvalidTextException))]
-        public void TestGetTimeFromTxtFail()
-        {
-            string input = "SB 123 147";
-            string output = dateParser.GetTimeFromTxt(input);
-        }
+
         [TestMethod]
         public void TestGetDayFromCheckOk()
         {
