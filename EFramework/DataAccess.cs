@@ -22,17 +22,26 @@ namespace EFramework
             Context.SaveChanges();
         }
 
+        public void InsertPurchase(Purchase purchase)
+        {
+            Context.Purchases.Add(purchase);
+            Context.SaveChanges();
+        }
+
         public Account FindAccountByNum(string num)
         {
             Account myA = Context.Accounts.Where(b => b.Number == num).FirstOrDefault();            
             return myA;
         }
 
-        public Purchase FindPurchaseByLicenseAndTime(string license, string time)
+        public List<Purchase> FindPurchaseByLicense(string license)
         {
-            Purchase p = new PurchaseUruguay();
-            Purchase myA = Context.Purchases.Where(b => b.MyLicensePlate == license &&
-                            p.CompareHours(b.MyInitHour ,b.MyFinHour ,time) ).FirstOrDefault();
+            List<Purchase> myA = new List<Purchase>();
+            var purchases = Context.Purchases.Where(b => b.MyLicensePlate == license );
+            foreach(var purchase in purchases)
+            {
+                myA.Add(purchase);
+            }
             return myA;
         }
 
