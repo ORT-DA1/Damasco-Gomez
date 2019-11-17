@@ -26,7 +26,7 @@ namespace ParkingBusinessLogic
             }
         }
         
-      
+       
         public string AddMinHour(int cantMin, string startTime)
         {
             double cantAddHour = ((double)cantMin / 60);

@@ -22,9 +22,17 @@ namespace EFramework
             Context.SaveChanges();
         }
 
-        public Account FindByNum(string num)
+        public Account FindAccountByNum(string num)
         {
             Account myA = Context.Accounts.Where(b => b.Number == num).FirstOrDefault();            
+            return myA;
+        }
+
+        public Purchase FindPurchaseByLicenseAndTime(string license, string time)
+        {
+            Purchase p = new PurchaseUruguay();
+            Purchase myA = Context.Purchases.Where(b => b.MyLicensePlate == license &&
+                            p.CompareHours(b.MyInitHour ,b.MyFinHour ,time) ).FirstOrDefault();
             return myA;
         }
 

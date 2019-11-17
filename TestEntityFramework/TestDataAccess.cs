@@ -17,7 +17,8 @@ namespace TestEntityFramework
         public void InitTest()
         {
             GuidList = new List<Guid>();
-            myDA = new DataAccess();            
+            myDA = new DataAccess();
+            
         }
         [TestCleanup]
         public void FinishTest()
@@ -34,13 +35,18 @@ namespace TestEntityFramework
         {
             Guid id = Guid.NewGuid();
             GuidList.Add(id);
-            myAccount = new AccountUruguay(id, "098872898", "100");
+            myAccount = new AccountUruguay(id, "091134827", "100");
             myDA.InsertAccount(myAccount);
         }
         [TestMethod]
-        public void FindAcccountByNum() { 
+        public void FindAcccountByNum()
+        {
+            Guid id = Guid.NewGuid();
+            GuidList.Add(id);
+            myAccount = new AccountUruguay(id, "098872898", "100");
+            myDA.InsertAccount(myAccount);
             Account accountUruguay = myDA.FindByNum("098 872 898");
-            Assert.AreEqual(myAccount.Number, accountUruguay.Number);        
+            Assert.AreEqual(myAccount.Number, accountUruguay.Number);
         }
 
 
