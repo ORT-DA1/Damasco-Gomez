@@ -5,19 +5,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C6916B87-03A5-4A72-A36A-B98E0BA4036D}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>ParkingUserInterface</RootNamespace>
-    <AssemblyName>ParkingUserInterface</AssemblyName>
+    <ProjectGuid>{4EB89AED-01B2-491C-B3D8-9C0B26C6C66D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EFramework</RootNamespace>
+    <AssemblyName>EFramework</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -27,7 +26,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -49,79 +47,21 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddAccountInterface.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddAccountInterface.Designer.cs">
-      <DependentUpon>AddAccountInterface.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BuyParkingInterface.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BuyParkingInterface.Designer.cs">
-      <DependentUpon>BuyParkingInterface.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ChangeCostParkingInterface.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ChangeCostParkingInterface.Designer.cs">
-      <DependentUpon>ChangeCostParkingInterface.cs</DependentUpon>
-    </Compile>
-    <Compile Include="First.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="First.Designer.cs">
-      <DependentUpon>First.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
+    <Compile Include="DataAccess.cs" />
+    <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddAccountInterface.resx">
-      <DependentUpon>AddAccountInterface.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BuyParkingInterface.resx">
-      <DependentUpon>BuyParkingInterface.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ChangeCostParkingInterface.resx">
-      <DependentUpon>ChangeCostParkingInterface.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="First.resx">
-      <DependentUpon>First.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contracts\Contracts.csproj">
-      <Project>{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ParkingBusinessLogic\ParkingBusinessLogic.csproj">
       <Project>{36A1DF78-CD90-4610-B474-ED203C1F5879}</Project>
       <Name>ParkingBusinessLogic</Name>

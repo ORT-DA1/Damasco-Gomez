@@ -10,11 +10,12 @@ namespace EFramework
 {
     public class MyContext : DbContext
     {
+        
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
+
         public MyContext() : base("name=MyContext")
         {
         }
-        
-        public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<Purchase> Purchases { get; set; }
     }
 }

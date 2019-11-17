@@ -10,30 +10,21 @@ namespace ParkingBusinessLogic
 {
     public abstract class Account
     {
+        public Guid Id { get; set; }
+        public string Number { get; set; }
+        public int Balance { get; set; }
 
-        private string number;
-        public string Number
+        public Account()
         {
-            get
-            {
-                return number;
-            }
-            set
-            {
-                number = value;                
-            }
+            Id = new Guid();
+            Balance = 0;
+            Number = "";
         }
-        private int balance;
-        public int Balance
+        public Account (Guid id, string num, int balance)
         {
-            get
-            {
-                return balance;
-            }
-            set
-            {
-                balance = value;
-            }
+            Id = id;
+            Number = num;
+            Balance = balance;
         }
 
 
@@ -49,12 +40,6 @@ namespace ParkingBusinessLogic
             return Int32.Parse(balance);
         }
         
-        
-
-
-
-
-
         public bool AddBalance(int cant)
         {
 
@@ -70,8 +55,6 @@ namespace ParkingBusinessLogic
             }
 
         }
-
-
         public abstract bool ValidateFormatNum(string num);
 
 

@@ -40,7 +40,7 @@ namespace ParkingUserInterface
             else
             {
                 try
-                {
+                {/*
                     String number = textBoxNumber.Text;
                     String balance = textBoxBalance.Text;
                     Account account = MyController.FindAccount(number);
@@ -57,7 +57,7 @@ namespace ParkingUserInterface
                     else
                     {
                         MessageBox.Show("The amount to add in balance should be in number.");
-                    }
+                    }*/
                 }
                 catch (LogicException exMessage)
                 {
@@ -72,7 +72,7 @@ namespace ParkingUserInterface
             string balance = textBoxBalance.Text;
             if (Number.Length != 0 && balance.Length != 0 && balance.All(char.IsDigit))
             {
-                try { 
+                try { /*
                     Account myAccount = MyController.FindAccount(Number);
                     if (MyController.IsAccountEmpty(myAccount))
                     {
@@ -84,7 +84,7 @@ namespace ParkingUserInterface
                     else
                     {
                         MessageBox.Show("The account already exist, try to add balance and not add account.");
-                    }
+                    }*/
                 }
                 catch (LogicException exMessage)
                 {

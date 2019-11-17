@@ -8,35 +8,12 @@ namespace ParkingBusinessLogic
 {
     public abstract class Purchase
     {
-        Account myAccount;
-        string myLicensePlate;
+        public Guid Id { get; set; }
+        public string MyLicensePlate { get; set; }       
+        public Account MyAccount { get; set; }
+        public string MyInitHour { get; set; }
+        public string MyFinHour { get; set; }
         string myDay;
-        string myInitHour;
-        string myFinHour;
-        public string MyLicensePlate
-        {
-            get
-            {
-                return myLicensePlate;
-            }
-             set
-            {
-                myLicensePlate = value;
-            }
-        }
-        public Account MyAccount
-        {
-            get
-            {
-                return myAccount;
-            }
-            set
-            {
-                myAccount = value;
-
-            }
-
-        }
         public string MyDay
         {
             get
@@ -48,30 +25,8 @@ namespace ParkingBusinessLogic
                 myDay = DateTime.Now.ToString("dd-MM");
             }
         }
-        public string MyInitHour
-        {
-            get
-            {
-                return myInitHour;
-            }
-             set
-            {
-                myInitHour = value;
-            }
-        }
-        public string MyFinHour
-        {
-            get
-            {
-                return myFinHour;
-            }
-             set
-            {
-                myFinHour = value;
-
-            }
-        }
-      
+        
+       
         public string AddMinHour(int cantMin, string startTime)
         {
             double cantAddHour = ((double)cantMin / 60);
@@ -115,7 +70,15 @@ namespace ParkingBusinessLogic
             bool sameHourFinit = Int32.Parse(parserFin[0]) == Int32.Parse(parseCompare[0]) && Int32.Parse(parserFin[1]) > Int32.Parse(parseCompare[1]);
             return betweenHours || sameHourInit || sameHourFinit;
         }
-
+        public bool ContainsLicense(List<Purchase> obj, string license)
+        {
+            bool itContains = false;
+            foreach(var purchase in obj)
+            {
+                itContains = itContains || purchase.MyLicensePlate == license;
+            }
+            return itContains;
+        }
         public override bool Equals(Object obj)
         {
             Purchase otherPurchase = (Purchase)obj;
