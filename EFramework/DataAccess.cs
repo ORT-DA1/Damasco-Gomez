@@ -9,28 +9,28 @@ namespace EFramework
 {
     public class DataAccess
     {
-        private MyContext context;
+        public MyContext Context { get; private set; }
 
         public DataAccess()
         {
-            context = new MyContext();
+            Context = new MyContext();
         }
 
         public void InsertAccount(Account account)
         {
-            context.Accounts.Add(account);
-            context.SaveChanges();
+            Context.Accounts.Add(account);
+            Context.SaveChanges();
         }
 
         public Account FindByNum(string num)
         {
-            Account myA = context.Accounts.Where(b => b.Number == num).FirstOrDefault();            
+            Account myA = Context.Accounts.Where(b => b.Number == num).FirstOrDefault();            
             return myA;
         }
 
         public void DisposeMyContext()
         {
-            context.Dispose();
+            Context.Dispose();
         }
     }
 }
