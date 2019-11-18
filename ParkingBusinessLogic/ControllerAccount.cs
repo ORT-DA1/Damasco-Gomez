@@ -12,8 +12,8 @@ namespace ParkingBusinessLogic
 {
     public class ControllerAccount
     {
-        public IDataAccess<Account> dataAccessAccount;
-        public IFindAccount<Account> dataFindAccount;
+        public IDataAccess<Account> dataAccessAccount { get; set; }
+        public IFindAccount<Account> dataFindAccount { get; set; }
 
         public ControllerAccount(IDataAccess<Account> dataInsert, IFindAccount<Account> dataFind)
         {

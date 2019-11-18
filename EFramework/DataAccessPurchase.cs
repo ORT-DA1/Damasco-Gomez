@@ -26,5 +26,11 @@ namespace EFramework
             Context.Purchases.Add(purchase);
             Context.SaveChanges();
         }
+        public void DeleteDataBase()
+        {
+            Context.Database.ExecuteSqlCommand("delete from Purchases;");
+            Context.Database.ExecuteSqlCommand("delete from Accounts;");
+
+        }
     }
 }

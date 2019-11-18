@@ -13,5 +13,7 @@ namespace ContractDataBase
 
         public void DisposeMyContext();
 
+        public void DeleteDataBase();
+
     }
 }

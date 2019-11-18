@@ -28,6 +28,12 @@ namespace EFramework
             Context.Dispose();
         }
 
+        public void DeleteDataBase()
+        {
+            Context.Database.ExecuteSqlCommand("delete from Purchases;");
+            Context.Database.ExecuteSqlCommand("delete from Accounts;");
+
+        }
 
     }
 }
