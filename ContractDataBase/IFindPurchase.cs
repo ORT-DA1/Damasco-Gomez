@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace ContractDataBase
 {
-    public interface IDataAccessPurchase<T>
+    public interface IFindPurchase<T>
     {
-
-        public void InsertPurchase(T purchase);
-
 
         public List<T> FindPurchaseByLicense(string license);
 

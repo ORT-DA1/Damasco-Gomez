@@ -53,8 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDataAccessAccount.cs" />
-    <Compile Include="IDataAccessPurchase.cs" />
+    <Compile Include="IDataAccess.cs" />
+    <Compile Include="IFindAccount.cs" />
+    <Compile Include="IFindPurchase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

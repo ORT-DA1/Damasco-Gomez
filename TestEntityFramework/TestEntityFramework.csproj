@@ -64,6 +64,8 @@
     <Compile Include="TestDataAccessAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDataAccessPurchase.cs" />
+    <Compile Include="TestDataFindAccount.cs" />
+    <Compile Include="TestDataFindPurchase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

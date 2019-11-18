@@ -19,7 +19,9 @@ namespace TestParkingBusinessLogic
         [TestInitialize]
         public void Init()
         {
-            myController = new ControllerAccount(new DataAccessAccount());
+            MyContext myContext = new MyContext();
+            myController = new ControllerAccount(new DataAccessAccount(myContext), new DataFindAccount(myContext));
+            myController.dataAccessAccount.DeleteDataBase();
         }
         [TestMethod]
         public void TestRegisterAccountUru()
@@ -49,7 +51,7 @@ namespace TestParkingBusinessLogic
         {
             Account wanted = new AccountArgentina("123-456-78", "110");
             myController.RegisterAccount(wanted);
-            Account expected = myController.FindAccountByNum("098 567 890");
+            Account expected = myController.FindAccountByNum("12345678");
             Assert.AreEqual(wanted.Number, expected.Number);
 
         }

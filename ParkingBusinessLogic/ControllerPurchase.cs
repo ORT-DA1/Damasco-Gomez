@@ -12,8 +12,10 @@ namespace ParkingBusinessLogic
         public ValueMinute valueOfMinuteUru { get; set; }
         public ValueMinute valueOfMinuteArg { get; set; }
 
-        public IDataAccessPurchase<Purchase> dataAccessPurchase;
-        public IDataAccessAccount<Account> dataAccessAccount;
+        public IDataAccess<Purchase> dataAccessPurchase;
+        public IDataAccess<Account> dataAccessAccount;
+        public IFindAccount<Account> dataFindAccount;
+        public IFindPurchase<Purchase> dataFindPurchase;
 
         public ControllerPurchase()
         {
@@ -22,7 +24,7 @@ namespace ParkingBusinessLogic
         }
         public bool RegisterPurchase(Purchase purchase)
         {
-            dataAccessPurchase.InsertPurchase(purchase);
+            dataAccessPurchase.Insert(purchase);
             return true;
         }
         public void ChangeValueMinuteUru(int newValue)
@@ -35,14 +37,14 @@ namespace ParkingBusinessLogic
         }
         public void BuyParkingPurchaseUru(string msg, Account myAccount)
         {
-            Account myA = dataAccessAccount.FindAccountByNumber(myAccount.Number);
+            Account myA = dataFindAccount.FindAccountByNumber(myAccount.Number);
             Purchase myP = new PurchaseUruguay(msg, myA);
             FindAndDiscount(myA, myP);
             RegisterPurchase(myP);
         }
         public void BuyParkingPurchaseArg(string msg, Account myAccount)
         {
-            Account myA = dataAccessAccount.FindAccountByNumber(myAccount.Number);
+            Account myA = dataFindAccount.FindAccountByNumber(myAccount.Number);
             Purchase myP = new PurchaseArgentina(msg, myA);
             FindAndDiscount(myA, myP);
             RegisterPurchase(myP);

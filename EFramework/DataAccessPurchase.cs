@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EFramework
 {
-    public class DataAccessPurchase : IDataAccessPurchase<Purchase>
+    public class DataAccessPurchase : IDataAccess<Purchase>
     {
         public MyContext Context { get;  set; }
 
@@ -21,21 +21,16 @@ namespace EFramework
             Context.Dispose();
         }
 
-        public List<Purchase> FindPurchaseByLicense(string license)
-        {
-            List<Purchase> myA = new List<Purchase>();
-            var purchases = Context.Purchases.Where(b => b.MyLicensePlate == license);
-            foreach (var purchase in purchases)
-            {
-                myA.Add(purchase);
-            }
-            return myA;
-        }
-
-        public void InsertPurchase(Purchase purchase)
+        public void Insert(Purchase purchase)
         {
             Context.Purchases.Add(purchase);
             Context.SaveChanges();
+        }
+        public void DeleteDataBase()
+        {
+            Context.Database.ExecuteSqlCommand("delete from Purchases;");
+            Context.Database.ExecuteSqlCommand("delete from Accounts;");
+
         }
     }
 }
