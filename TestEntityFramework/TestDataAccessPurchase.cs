@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using EFramework;
+﻿using EFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace TestEntityFramework
 {
-    [TestClass]
-    public class TestDataAccess
+    public class TestDataAccessPurchase
     {
-        DataAccess myDA;
-        AccountUruguay myAccountUru;
-        AccountArgentina myAccountArg;
+        DataAccessPurchase myDA;
         PurchaseUruguay myPurchaseUru;
         PurchaseArgentina myPurchaseArg;
         string msg = "SBN1234 120 13:00";
@@ -20,30 +20,16 @@ namespace TestEntityFramework
         [TestInitialize]
         public void InitTest()
         {
-            myDA = new DataAccess();
+            myDA = new DataAccessPurchase();
 
-
-            myAccountUru = new AccountUruguay("094485968", "100");
             AccountUruguay myAccountUru2 = new AccountUruguay("098872898", "100");
 
-            myAccountArg = new AccountArgentina("123-456-78", "100");
             AccountArgentina myAccountArg2 = new AccountArgentina("234-456-78", "100");
 
-            myPurchaseUru = new PurchaseUruguay(msg, myAccountUru2);    
-            
+            myPurchaseUru = new PurchaseUruguay(msg, myAccountUru2);
+
             myPurchaseArg = new PurchaseArgentina(msg2, myAccountArg2);
 
-        }
-
-        [TestMethod]
-        public void InsertAccountUru()
-        {
-            myDA.InsertAccount(myAccountUru);
-        }
-        [TestMethod]
-        public void InsertAccountArg()
-        {
-            myDA.InsertAccount(myAccountArg);
         }
         [TestMethod]
         public void InsertPurchaseUru()
@@ -56,24 +42,11 @@ namespace TestEntityFramework
             myDA.InsertPurchase(myPurchaseArg);
         }
         [TestMethod]
-        public void TestFindAcccountUruByNum()
-        {
-            Account accountUruguay = myDA.FindAccountByNum("094 485 968");
-            Assert.AreEqual(myAccountUru.Number, accountUruguay.Number);
-        }
-        [TestMethod]
-        public void TestFindAcccountArgByNum()
-        {
-            Account accountArgentina = myDA.FindAccountByNum("12345678");
-            Assert.AreEqual(myAccountArg.Number, accountArgentina.Number);
-        }
-
-        [TestMethod]
         public void TestFindPurchaseUruByLicenseAndTime()
         {
             string license = "SBN1234";
             List<Purchase> purchaseUruguay = myDA.FindPurchaseByLicense(license);
-            Assert.IsTrue(myPurchaseUru.ContainsLicense(purchaseUruguay,license));
+            Assert.IsTrue(myPurchaseUru.ContainsLicense(purchaseUruguay, license));
         }
         [TestMethod]
         public void TestFindPurchaseArgByLicenseAndTime()
@@ -92,6 +65,5 @@ namespace TestEntityFramework
             */
             myDA.DisposeMyContext();
         }
-
     }
 }

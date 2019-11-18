@@ -1,4 +1,5 @@
-﻿using ParkingBusinessLogic.Exceptions;
+﻿using ContractDataBase;
+using ParkingBusinessLogic.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,15 @@ namespace ParkingBusinessLogic
 {
     public class ControllerAccount
     {
+        public IDataAccessAccount<Account> dataAccessAccount;
+
         public ControllerAccount()
         {
-
+            
         }
         public bool RegisterAccount(Account account)
         {
-            //Accounts.Add(account);
+            dataAccessAccount.InsertAccount(account);
             return true;
 
         }
