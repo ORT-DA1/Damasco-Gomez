@@ -24,6 +24,9 @@ namespace TestEntityFramework
 
             myAccountArg = new AccountArgentina("123-456-78", "100");
 
+            myDA.Context.Database.ExecuteSqlCommand("delete from Purchases;");
+            myDA.Context.Database.ExecuteSqlCommand("delete from Accounts;");
+
         }
 
         [TestMethod]
@@ -40,21 +43,20 @@ namespace TestEntityFramework
         [TestMethod]
         public void TestFindAcccountUruByNum()
         {
+            myDA.InsertAccount(myAccountUru);
             Account accountUruguay = myDA.FindAccountByNumber("094 485 968");
             Assert.AreEqual(myAccountUru.Number, accountUruguay.Number);
         }
         [TestMethod]
         public void TestFindAcccountArgByNum()
         {
+            myDA.InsertAccount(myAccountArg);
             Account accountArgentina = myDA.FindAccountByNumber("12345678");
             Assert.AreEqual(myAccountArg.Number, accountArgentina.Number);
         }
         [TestCleanup]
         public void FinishTest()
         {
-            //myDA.Context.Database.ExecuteSqlCommand("DELETE FROM Accounts;");
-            //myDA.Context.Database.ExecuteSqlCommand("DELETE FROM Purchases;");
-
             myDA.DisposeMyContext();
         }
 

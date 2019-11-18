@@ -12,11 +12,11 @@ namespace ParkingBusinessLogic
 {
     public class ControllerAccount
     {
-        public IDataAccessAccount<Account> dataAccessAccount { get; set; }
+        public IDataAccessAccount<Account> dataAccessAccount;
 
-        public ControllerAccount()
+        public ControllerAccount(IDataAccessAccount<Account> dataAccess)
         {
-            
+            dataAccessAccount = dataAccess;
         }
         public bool RegisterAccount(Account account)
         {
@@ -24,12 +24,13 @@ namespace ParkingBusinessLogic
             return true;
 
         }
-
         public Account FindAccountByNum(string num)
         {
             Account myA = dataAccessAccount.FindAccountByNumber(num);
             return myA;
         }
-        
+
+
+
     }
 }

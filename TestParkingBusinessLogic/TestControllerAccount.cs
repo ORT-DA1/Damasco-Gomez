@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using EFramework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace TestParkingBusinessLogic
         [TestInitialize]
         public void Init()
         {
-            myController = new ControllerAccount();
+            myController = new ControllerAccount(new DataAccessAccount());
         }
         [TestMethod]
         public void TestRegisterAccountUru()

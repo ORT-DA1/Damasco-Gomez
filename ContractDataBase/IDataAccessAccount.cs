@@ -8,7 +8,6 @@ namespace ContractDataBase
 {
     public interface IDataAccessAccount<T>
     {
-
         public void InsertAccount(T account);
 
 

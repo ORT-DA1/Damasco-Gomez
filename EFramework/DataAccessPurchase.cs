@@ -10,11 +10,11 @@ namespace EFramework
 {
     public class DataAccessPurchase : IDataAccessPurchase<Purchase>
     {
-        public MyContext Context { get; private set; }
+        public MyContext Context { get;  set; }
 
-        public DataAccessPurchase()
+        public DataAccessPurchase(MyContext context)
         {
-            Context = new MyContext();
+            Context = context;
         }
         public void DisposeMyContext()
         {

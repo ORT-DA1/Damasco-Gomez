@@ -61,5 +61,7 @@ namespace ParkingBusinessLogic
             int amountToDiscont = valueOfMinuteUru.TotalPrice(cantMinutes);
             return amountToDiscont;
         }
+
+
     }
 }

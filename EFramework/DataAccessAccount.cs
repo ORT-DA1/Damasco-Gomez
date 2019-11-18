@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EFramework
 {
-    public class DataAccessAccount : IDataAccessAccount<Account>
+    public class DataAccessAccount : IDataAccessAccount<Account>//, IFindList<Purchase>
     {
         public MyContext Context { get; private set; }
 

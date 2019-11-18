@@ -73,9 +73,17 @@
     <Compile Include="TestValueMinute.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ContractDataBase\ContractDataBase.csproj">
+      <Project>{109CBAB0-1343-4968-A48D-682047E0A8BC}</Project>
+      <Name>ContractDataBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Contracts\Contracts.csproj">
       <Project>{eb8815bb-2763-4a50-bedd-65c0b31efa20}</Project>
       <Name>Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EFramework\EFramework.csproj">
+      <Project>{4EB89AED-01B2-491C-B3D8-9C0B26C6C66D}</Project>
+      <Name>EFramework</Name>
     </ProjectReference>
     <ProjectReference Include="..\ParkingBusinessLogic\ParkingBusinessLogic.csproj">
       <Project>{36a1df78-cd90-4610-b474-ed203c1f5879}</Project>

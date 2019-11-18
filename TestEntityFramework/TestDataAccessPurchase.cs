@@ -23,15 +23,16 @@ namespace TestEntityFramework
         [TestInitialize]
         public void InitTest()
         {
-            myDA = new DataAccessPurchase();
+            myDA = new DataAccessPurchase(new MyContext());
 
             AccountUruguay myAccountUru2 = new AccountUruguay("098872898", "100");
-
             AccountArgentina myAccountArg2 = new AccountArgentina("234-456-78", "100");
-
             myPurchaseUru = new PurchaseUruguay(msg, myAccountUru2);
-
             myPurchaseArg = new PurchaseArgentina(msg2, myAccountArg2);
+
+
+            myDA.Context.Database.ExecuteSqlCommand("delete from Purchases;");
+            myDA.Context.Database.ExecuteSqlCommand("delete from Accounts;");
 
         }
         [TestMethod]
@@ -47,6 +48,7 @@ namespace TestEntityFramework
         [TestMethod]
         public void TestFindPurchaseUruByLicenseAndTime()
         {
+            myDA.InsertPurchase(myPurchaseUru);
             string license = "SBN1234";
             List<Purchase> purchaseUruguay = myDA.FindPurchaseByLicense(license);
             Assert.IsTrue(myPurchaseUru.ContainsLicense(purchaseUruguay, license));
@@ -54,7 +56,8 @@ namespace TestEntityFramework
         [TestMethod]
         public void TestFindPurchaseArgByLicenseAndTime()
         {
-            string license = "SBN1234";
+            myDA.InsertPurchase(myPurchaseArg);
+            string license = "SBN2345";
             List<Purchase> purchaseArgentina = myDA.FindPurchaseByLicense(license);
             Assert.IsTrue(myPurchaseArg.ContainsLicense(purchaseArgentina, license));
         }
@@ -63,9 +66,6 @@ namespace TestEntityFramework
         [TestCleanup]
         public void FinishTest()
         {
-            //myDA.Context.Database.ExecuteSqlCommand("DELETE FROM Accounts;");
-            //myDA.Context.Database.ExecuteSqlCommand("DELETE FROM Purchases;");
-            
             myDA.DisposeMyContext();
         }
     }
