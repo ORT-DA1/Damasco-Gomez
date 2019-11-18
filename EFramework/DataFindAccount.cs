@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace EFramework
 {
-    public class DataAccessPurchase : IDataAccess<Purchase>
+    public class DataFindAccount: IFindAccount<Account>
     {
-        public MyContext Context { get;  set; }
+        public MyContext Context { get; set; }
 
-        public DataAccessPurchase(MyContext context)
+        public DataFindAccount(MyContext context)
         {
             Context = context;
         }
@@ -21,10 +21,10 @@ namespace EFramework
             Context.Dispose();
         }
 
-        public void Insert(Purchase purchase)
+        public Account FindAccountByNumber(string num)
         {
-            Context.Purchases.Add(purchase);
-            Context.SaveChanges();
+            Account myA = Context.Accounts.Where(b => b.Number == num).FirstOrDefault();
+            return myA;
         }
     }
 }

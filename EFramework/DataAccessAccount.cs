@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace EFramework
 {
-    public class DataAccessAccount : IDataAccessAccount<Account>//, IFindList<Purchase>
+    public class DataAccessAccount : IDataAccess<Account>//, IFindList<Purchase>
     {
         public MyContext Context { get; private set; }
 
-        public DataAccessAccount()
+        public DataAccessAccount(MyContext context)
         {
-            Context = new MyContext();
+            Context = context;
         }
 
-        public void InsertAccount(Account account)
+        public void Insert(Account account)
         {
             Context.Accounts.Add(account);
             Context.SaveChanges();
@@ -28,10 +28,6 @@ namespace EFramework
             Context.Dispose();
         }
 
-        public Account FindAccountByNumber(string num)
-        {
-            Account myA = Context.Accounts.Where(b => b.Number == num).FirstOrDefault();
-            return myA;
-        }
+
     }
 }

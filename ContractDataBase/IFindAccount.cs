@@ -6,15 +6,10 @@ using System.Threading.Tasks;
 
 namespace ContractDataBase
 {
-    public interface IDataAccessAccount<T>
+    public interface IFindAccount<T>
     {
-        public void InsertAccount(T account);
-
-
         public T FindAccountByNumber(string num);
 
-
         public void DisposeMyContext();
-
     }
 }

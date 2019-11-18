@@ -53,6 +53,8 @@
   <ItemGroup>
     <Compile Include="DataAccessAccount.cs" />
     <Compile Include="DataAccessPurchase.cs" />
+    <Compile Include="DataFindAccount.cs" />
+    <Compile Include="DataFindPurchase.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
