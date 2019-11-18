@@ -1,14 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{36A1DF78-CD90-4610-B474-ED203C1F5879}</ProjectGuid>
+    <ProjectGuid>{109CBAB0-1343-4968-A48D-682047E0A8BC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ParkingBusinessLogic</RootNamespace>
-    <AssemblyName>ParkingBusinessLogic</AssemblyName>
+    <RootNamespace>ContractDataBase</RootNamespace>
+    <AssemblyName>ContractDataBase</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -23,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,8 +33,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -44,44 +53,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
-    <Compile Include="AccountArgentina.cs" />
-    <Compile Include="AccountUruguay.cs" />
-    <Compile Include="Controller.cs" />
-    <Compile Include="ControllerAccount.cs" />
-    <Compile Include="ControllerPurchase.cs" />
-    <Compile Include="DateParser.cs" />
-    <Compile Include="Exceptions\InsufficientBalanceException.cs" />
-    <Compile Include="Exceptions\InvalidAccountArgentinaException.cs" />
-    <Compile Include="Exceptions\InvalidTextException.cs" />
-    <Compile Include="Exceptions\InvalidTextExceptionArgentina.cs" />
-    <Compile Include="Exceptions\InvalidTextExceptionUruguay.cs" />
-    <Compile Include="Exceptions\InvalidAccountUruguayException.cs" />
-    <Compile Include="Exceptions\InvalidTextCheckException.cs" />
-    <Compile Include="Exceptions\NegativeNumberException.cs" />
-    <Compile Include="Exceptions\NotAccountException.cs" />
-    <Compile Include="LicensePlateParser.cs" />
-    <Compile Include="MinuteParser.cs" />
-    <Compile Include="MinuteParserArgentina.cs" />
-    <Compile Include="MinuteParserUruguay.cs" />
+    <Compile Include="IDataAccessAccount.cs" />
+    <Compile Include="IDataAccessPurchase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Purchase.cs" />
-    <Compile Include="PurchaseArgentina.cs" />
-    <Compile Include="PurchaseUruguay.cs" />
-    <Compile Include="ValueMinute.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ContractDataBase\ContractDataBase.csproj">
-      <Project>{109CBAB0-1343-4968-A48D-682047E0A8BC}</Project>
-      <Name>ContractDataBase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Contracts\Contracts.csproj">
-      <Project>{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
 </Project>

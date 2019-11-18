@@ -14,6 +14,7 @@ namespace TestParkingBusinessLogic
     public class TestControllerAccount
     {
         private ControllerAccount myController;
+
         [TestInitialize]
         public void Init()
         {
@@ -22,45 +23,34 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestRegisterAccountUru()
         {
-            Account myAccount = new AccountUruguay();
+            Account myAccount = new AccountUruguay("098123456","100");
             bool expected = myController.RegisterAccount(myAccount);
-            Assert.IsTrue(expected);
 
         }
         [TestMethod]
         public void TestRegisterAccountArg()
         {
-            Account myAccount = new AccountArgentina();
+            Account myAccount = new AccountArgentina("123456","100");
             bool expected = myController.RegisterAccount(myAccount);
-            Assert.IsTrue(expected);
-
-        }
-        [TestMethod]
-        public void TestisAccountUruEmpty()
-        {
-            Account myAccount = new AccountUruguay();
-            //myController.RegisterAccount(myAccount);
-            bool expected = myController.IsAccountEmpty(myAccount);
-            Assert.IsTrue(expected);
-
-        }
-        [TestMethod]
-        public void TestisAccountArgEmpty()
-        {
-            Account myAccount = new AccountArgentina();
-            //myController.RegisterAccount(myAccount);
-            bool expected = myController.IsAccountEmpty(myAccount);
-            Assert.IsTrue(expected);
 
         }
         [TestMethod]
         public void TestFindAccountUruOk()
-        {/*
+        {
             Account wanted = new AccountUruguay("098 567 890", "110");
-            //myController.RegisterAccount(wanted);
-            Account expected = myController.FindAccount("098 567 890");
+            myController.RegisterAccount(wanted);
+            Account expected = myController.FindAccountByNum("098 567 890");
             Assert.AreEqual(wanted.Number, expected.Number);
-            */
+
+        }
+        [TestMethod]
+        public void TestFindAccountArgOk()
+        {
+            Account wanted = new AccountArgentina("123-456-78", "110");
+            myController.RegisterAccount(wanted);
+            Account expected = myController.FindAccountByNum("098 567 890");
+            Assert.AreEqual(wanted.Number, expected.Number);
+
         }
     }
 }

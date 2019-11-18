@@ -16,7 +16,7 @@ namespace ParkingBusinessLogic
         {
 
         }
-        public PurchaseArgentina(string msg, AccountArgentina myA)
+        public PurchaseArgentina(string msg, Account myA)
         {
             try
             {

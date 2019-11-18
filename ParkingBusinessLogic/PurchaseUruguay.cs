@@ -10,7 +10,7 @@ namespace ParkingBusinessLogic
         public PurchaseUruguay()
         {
         }
-        public PurchaseUruguay( string msg, AccountUruguay myA)
+        public PurchaseUruguay( string msg, Account myA)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace ParkingBusinessLogic
             }
 
         }
-        public PurchaseUruguay(Guid id, string msg, AccountUruguay myA)
+        public PurchaseUruguay(Guid id, string msg, Account myA)
         {
             try
             {
