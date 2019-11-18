@@ -12,7 +12,7 @@ namespace ParkingBusinessLogic
 {
     public class ControllerAccount
     {
-        public IDataAccessAccount<Account> dataAccessAccount;
+        public IDataAccessAccount<Account> dataAccessAccount { get; set; }
 
         public ControllerAccount()
         {
@@ -24,34 +24,12 @@ namespace ParkingBusinessLogic
             return true;
 
         }
-        public bool IsAccountEmpty(Account account)
-        {
-            //return account.AccountEmpty();
-            return true;
-        }
 
-        /*
-        public Account FindAccount(string text)
+        public Account FindAccountByNum(string num)
         {
-            
-            Account auxiliar = new AccountUruguay(text, "110");
-            
-            return auxiliar;
-        }*/
-        public void BuyParkingAccount(String num, String msg)
-        {/*
-            AccountUruguay myAccount = FindAccount(num);
-            if (IsAccountEmpty(myAccount))
-            {
-                throw new NotAccountException();
-            }
-            else
-            {
-                ControllerPurchase controllerPurchase = new ControllerPurchase();
-                int amountToDiscont = controllerPurchase.BuyParkingPurchaseUru(msg, myAccount);
-                myAccount.DiscountBalance(amountToDiscont);
-            }
-            */
+            Account myA = dataAccessAccount.FindAccountByNumber(num);
+            return myA;
         }
+        
     }
 }

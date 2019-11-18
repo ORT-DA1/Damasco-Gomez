@@ -25,8 +25,7 @@ namespace ParkingBusinessLogic
                 myDay = DateTime.Now.ToString("dd-MM");
             }
         }
-        
-       
+
         public string AddMinHour(int cantMin, string startTime)
         {
             double cantAddHour = ((double)cantMin / 60);

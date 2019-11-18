@@ -3,12 +3,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TestEntityFramework
 {
+    [ExcludeFromCodeCoverage]
+    [TestClass]
     public class TestDataAccessPurchase
     {
         DataAccessPurchase myDA;
@@ -59,10 +62,10 @@ namespace TestEntityFramework
 
         [TestCleanup]
         public void FinishTest()
-        {/*
-            myDA.Context.Database.ExecuteSqlCommand("DELETE FROM Accounts;");
-            myDA.Context.Database.ExecuteSqlCommand("DELETE FROM Purchases;");
-            */
+        {
+            //myDA.Context.Database.ExecuteSqlCommand("DELETE FROM Accounts;");
+            //myDA.Context.Database.ExecuteSqlCommand("DELETE FROM Purchases;");
+            
             myDA.DisposeMyContext();
         }
     }

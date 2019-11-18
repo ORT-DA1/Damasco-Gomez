@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using EFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
 
 namespace TestEntityFramework
 {
+    [ExcludeFromCodeCoverage]
     [TestClass]
     public class TestDataAccessAccount
     {
         DataAccessAccount myDA;
         AccountUruguay myAccountUru;
         AccountArgentina myAccountArg;
-        PurchaseUruguay myPurchaseUru;
-        PurchaseArgentina myPurchaseArg;
-        string msg = "SBN1234 120 13:00";
-        string msg2 = "SBN2345 13:00 120";
 
         [TestInitialize]
         public void InitTest()
@@ -51,7 +49,14 @@ namespace TestEntityFramework
             Account accountArgentina = myDA.FindAccountByNumber("12345678");
             Assert.AreEqual(myAccountArg.Number, accountArgentina.Number);
         }
+        [TestCleanup]
+        public void FinishTest()
+        {
+            //myDA.Context.Database.ExecuteSqlCommand("DELETE FROM Accounts;");
+            //myDA.Context.Database.ExecuteSqlCommand("DELETE FROM Purchases;");
 
+            myDA.DisposeMyContext();
+        }
 
 
     }
