@@ -21,21 +21,9 @@ namespace EFramework
 
         public void InsertAccount(Account account)
         {
-            try
-            {
+           
                 Context.Accounts.Add(account);
                 Context.SaveChanges();
-
-            }
-            catch (DbException e)
-            {
-                throw new DataBaseException(); // error d conexion
-            }
-            catch (EntityException e) {
-            }
-
-            catch (UpdateException e) { }
-
         }
 
         public void DisposeMyContext()
