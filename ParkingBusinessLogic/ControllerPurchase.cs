@@ -17,8 +17,13 @@ namespace ParkingBusinessLogic
         public IFindAccount<Account> dataFindAccount;
         public IFindPurchase<Purchase> dataFindPurchase;
 
-        public ControllerPurchase()
+        public ControllerPurchase(IDataAccess<Purchase> accessPurchase, IDataAccess<Account> accessAccount, 
+            IFindAccount<Account> findAccount, IFindPurchase<Purchase> findPurchase)
         {
+            dataAccessPurchase = accessPurchase;
+            dataAccessAccount = accessAccount;
+            dataFindAccount = findAccount;
+            dataFindPurchase = findPurchase;
             valueOfMinuteUru = new ValueMinute();
             valueOfMinuteArg = new ValueMinute();
         }
