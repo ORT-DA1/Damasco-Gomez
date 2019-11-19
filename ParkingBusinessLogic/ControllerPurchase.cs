@@ -12,20 +12,34 @@ namespace ParkingBusinessLogic
         public ValueMinute valueOfMinuteUru { get; set; }
         public ValueMinute valueOfMinuteArg { get; set; }
 
-        public IDataAccess<Purchase> dataAccessPurchase;
-        public IDataAccess<Account> dataAccessAccount;
-        public IFindAccount<Account> dataFindAccount;
-        public IFindPurchase<Purchase> dataFindPurchase;
+        public IDataAccess<Purchase> dataAccessPurchase { get; set; }
+        public IDataAccess<Account> dataAccessAccount { get; set; }
+        public IFindAccount<Account> dataFindAccount { get; set; }
+        public IFindPurchase<Purchase> dataFindPurchase { get; set; }
 
-        public ControllerPurchase()
+        public ControllerPurchase(IDataAccess<Purchase> accessPurchase, IDataAccess<Account> accessAccount, 
+            IFindAccount<Account> findAccount, IFindPurchase<Purchase> findPurchase)
         {
+            dataAccessPurchase = accessPurchase;
+            dataAccessAccount = accessAccount;
+            dataFindAccount = findAccount;
+            dataFindPurchase = findPurchase;
             valueOfMinuteUru = new ValueMinute();
             valueOfMinuteArg = new ValueMinute();
         }
-        public bool RegisterPurchase(Purchase purchase)
+        public Purchase RegisterPurchaseUru(string txtUru, string num)
         {
+            Account account = dataFindAccount.FindAccountByNumber(num);
+            Purchase purchase = new PurchaseUruguay(txtUru, account);
             dataAccessPurchase.Insert(purchase);
-            return true;
+            return purchase;
+        }
+        public Purchase RegisterPurchaseArg(string txtArg, string num)
+        {
+            Account account = dataFindAccount.FindAccountByNumber(num);
+            Purchase purchase = new PurchaseArgentina(txtArg, account);
+            dataAccessPurchase.Insert(purchase);
+            return purchase;
         }
         public void ChangeValueMinuteUru(int newValue)
         {
@@ -35,28 +49,28 @@ namespace ParkingBusinessLogic
         {
             valueOfMinuteArg.ChangeValue(newValue);
         }
-        public void BuyParkingPurchaseUru(string msg, Account myAccount)
+        public void BuyParkingPurchaseUru(string msg, string num)
         {
-            Account myA = dataFindAccount.FindAccountByNumber(myAccount.Number);
-            Purchase myP = new PurchaseUruguay(msg, myA);
+
+            Account myA = new AccountUruguay();
+            myA = dataFindAccount.FindAccountByNumber(myA.FormatNum(num));
+            Purchase  myP = RegisterPurchaseUru(msg,num);
             FindAndDiscount(myA, myP);
-            RegisterPurchase(myP);
         }
-        public void BuyParkingPurchaseArg(string msg, Account myAccount)
+        public void BuyParkingPurchaseArg(string msg, string num)
         {
-            Account myA = dataFindAccount.FindAccountByNumber(myAccount.Number);
-            Purchase myP = new PurchaseArgentina(msg, myA);
-            FindAndDiscount(myA, myP);
-            RegisterPurchase(myP);
+            Account myA = dataFindAccount.FindAccountByNumber(num);
+            Purchase myP = RegisterPurchaseArg(msg, num);
+            FindAndDiscount(myA, myP);            
         }
 
-        public void FindAndDiscount(Account account, Purchase purchase)
+        private void FindAndDiscount(Account account, Purchase purchase)
         {
             int amountToDiscont = FindAmountFromPurchase(purchase);
             account.DiscountBalance(amountToDiscont);
         }
 
-        public int FindAmountFromPurchase(Purchase purchase)
+        private int FindAmountFromPurchase(Purchase purchase)
         {
             MinuteParser minuteParser = new MinuteParserUruguay();
             int cantMinutes = minuteParser.CalculateCantMinutesFromPurchase(purchase.MyInitHour, purchase.MyFinHour);
