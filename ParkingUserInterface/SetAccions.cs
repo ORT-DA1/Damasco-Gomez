@@ -9,6 +9,7 @@ namespace ParkingUserInterface
 {
     public class SetAccions : Form
     {
+        private string country;
         private TextBox textBoxChange1;
         private Label labelChange2;
         private TextBox textBoxChange2;
@@ -24,6 +25,7 @@ namespace ParkingUserInterface
             textBoxChange1.Hide();
             textBoxChange2.Hide();
             btnMoveAlong.Hide();
+            this.country = country;
             
 
             if (accion=="AddAccount")
@@ -144,6 +146,7 @@ namespace ParkingUserInterface
             this.btnBack.TabIndex = 6;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
             // SetAccions
             // 
@@ -169,6 +172,19 @@ namespace ParkingUserInterface
         private void BtnAddAccountSecond_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnBack_Click(object sender, EventArgs e)
+        {
+            goPrincipal();
+
+        }
+        public void goPrincipal()
+        {
+            this.Hide();
+            FirstAndPrincipal firstAndPrincipal = new FirstAndPrincipal(country);
+            firstAndPrincipal.ShowDialog();
+            this.Close();
         }
     }
 }

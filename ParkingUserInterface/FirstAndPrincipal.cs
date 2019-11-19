@@ -20,7 +20,7 @@ namespace ParkingUserInterface
         private Button btnSetCostParking;
         private Button btnUruguay;
 
-        public FirstAndPrincipal()
+        public FirstAndPrincipal(string country)
         {
             InitializeComponent();
             country = "None";
@@ -135,7 +135,6 @@ namespace ParkingUserInterface
         {
             if (country== "None") 
             {
-                
                 MessageBox.Show(new SelectCountryException().Message);
             }
         }
@@ -148,6 +147,7 @@ namespace ParkingUserInterface
             SetAccions second = new SetAccions("AddAccount",country);
             second.ShowDialog();
             this.Close();
+            Console.WriteLine(country);
            
         }
 
