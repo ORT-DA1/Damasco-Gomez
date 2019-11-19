@@ -60,6 +60,7 @@
     <Compile Include="Exceptions\InvalidTextCheckException.cs" />
     <Compile Include="Exceptions\NegativeNumberException.cs" />
     <Compile Include="Exceptions\NotAccountException.cs" />
+    <Compile Include="Exceptions\SelectCountryException.cs" />
     <Compile Include="LicensePlateParser.cs" />
     <Compile Include="MinuteParser.cs" />
     <Compile Include="MinuteParserArgentina.cs" />

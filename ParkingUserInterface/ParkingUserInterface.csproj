@@ -56,54 +56,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddAccountInterface.cs">
+    <Compile Include="FirstAndPrincipal.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddAccountInterface.Designer.cs">
-      <DependentUpon>AddAccountInterface.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BuyParkingInterface.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BuyParkingInterface.Designer.cs">
-      <DependentUpon>BuyParkingInterface.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ChangeCostParkingInterface.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ChangeCostParkingInterface.Designer.cs">
-      <DependentUpon>ChangeCostParkingInterface.cs</DependentUpon>
-    </Compile>
-    <Compile Include="First.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="First.Designer.cs">
-      <DependentUpon>First.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AddAccountInterface.resx">
-      <DependentUpon>AddAccountInterface.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BuyParkingInterface.resx">
-      <DependentUpon>BuyParkingInterface.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ChangeCostParkingInterface.resx">
-      <DependentUpon>ChangeCostParkingInterface.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="First.resx">
-      <DependentUpon>First.cs</DependentUpon>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SetAccions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="FirstAndPrincipal.resx">
+      <DependentUpon>FirstAndPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <EmbeddedResource Include="SetAccions.resx">
+      <DependentUpon>SetAccions.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -123,6 +99,10 @@
       <Project>{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EFramework\EFramework.csproj">
+      <Project>{4EB89AED-01B2-491C-B3D8-9C0B26C6C66D}</Project>
+      <Name>EFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ParkingBusinessLogic\ParkingBusinessLogic.csproj">
       <Project>{36A1DF78-CD90-4610-B474-ED203C1F5879}</Project>
       <Name>ParkingBusinessLogic</Name>
@@ -133,6 +113,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Imagenes\BANDERAARG.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagenes\argflaag.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagenes\uruflaag.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagenes\argflaag2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagenes\uruflaag2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
