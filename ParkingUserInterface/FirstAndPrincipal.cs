@@ -26,7 +26,15 @@ namespace ParkingUserInterface
             country = "None";
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-
+            if (country== "None")
+            {
+                btnArgentina.FlatAppearance.BorderColor = System.Drawing.Color.White;
+                btnUruguay.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            }
+           
+            Console.WriteLine(country);
+            Console.WriteLine(btnArgentina.FlatAppearance.BorderColor);
+            Console.WriteLine(btnUruguay.FlatAppearance.BorderColor);
         }
 
        
