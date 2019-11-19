@@ -22,6 +22,7 @@ namespace ParkingUserInterface
         {
         }
 
+       
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FirstAndPrincipal));
@@ -42,6 +43,7 @@ namespace ParkingUserInterface
             this.btnArgentina.Size = new System.Drawing.Size(127, 87);
             this.btnArgentina.TabIndex = 2;
             this.btnArgentina.UseVisualStyleBackColor = true;
+            this.btnArgentina.Click += new System.EventHandler(this.BtnArgentina_Click);
             // 
             // btnUruguay
             // 
@@ -72,6 +74,7 @@ namespace ParkingUserInterface
             this.btnAddBalance.TabIndex = 5;
             this.btnAddBalance.Text = "Add Balance";
             this.btnAddBalance.UseVisualStyleBackColor = true;
+            this.btnAddBalance.Click += new System.EventHandler(this.BtnAddBalance_Click);
             // 
             // btnCheckParking
             // 
@@ -81,6 +84,7 @@ namespace ParkingUserInterface
             this.btnCheckParking.TabIndex = 6;
             this.btnCheckParking.Text = "Check Parking";
             this.btnCheckParking.UseVisualStyleBackColor = true;
+            this.btnCheckParking.Click += new System.EventHandler(this.BtnCheckParking_Click);
             // 
             // btnBuyParking
             // 
@@ -90,6 +94,7 @@ namespace ParkingUserInterface
             this.btnBuyParking.TabIndex = 7;
             this.btnBuyParking.Text = "Buy Parking";
             this.btnBuyParking.UseVisualStyleBackColor = true;
+            this.btnBuyParking.Click += new System.EventHandler(this.BtnBuyParking_Click);
             // 
             // btnSetCostParking
             // 
@@ -99,6 +104,7 @@ namespace ParkingUserInterface
             this.btnSetCostParking.TabIndex = 8;
             this.btnSetCostParking.Text = "Set Cost Parking";
             this.btnSetCostParking.UseVisualStyleBackColor = true;
+            this.btnSetCostParking.Click += new System.EventHandler(this.BtnSetCostParking_Click);
             // 
             // FirstAndPrincipal
             // 
@@ -112,28 +118,24 @@ namespace ParkingUserInterface
             this.Controls.Add(this.btnArgentina);
             this.Name = "FirstAndPrincipal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FirstAndPrincipal_Load);
             this.ResumeLayout(false);
 
         }
 
+        private void ValidateIsSelectedCountry()
+        {
+            if (btnUruguay.FlatAppearance.BorderColor != System.Drawing.Color.Red)
+            {
+                throw new SelectCountryException();
 
-        
+            }
+        }
+
 
         private void BtnAddAccount_Click(object sender, EventArgs e)
         {
-            if ((btnArgentina.click ==false) || ((btnUruguay.click == false)))
-            {
-                throw new  SelectCountryException();
-               
-            }
-
-
-
-
-
-
-
-
+            ValidateIsSelectedCountry();
 
         }
 
@@ -141,10 +143,46 @@ namespace ParkingUserInterface
         {
             if (btnArgentina.FlatAppearance.BorderColor == System.Drawing.Color.Red)
             {
-                btnArgentina.FlatAppearance.BorderColor == System.Drawing.Color.White; 
+                btnArgentina.FlatAppearance.BorderColor = System.Drawing.Color.White;
             }
             btnUruguay.FlatAppearance.BorderColor = System.Drawing.Color.Red;
         }
+
+        private void FirstAndPrincipal_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnArgentina_Click(object sender, EventArgs e)
+        {
+            if (btnUruguay.FlatAppearance.BorderColor == System.Drawing.Color.Red)
+            {
+                btnArgentina.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            }
+            btnArgentina.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+        }
+
+        private void BtnAddBalance_Click(object sender, EventArgs e)
+        {
+            ValidateIsSelectedCountry();
+            
+        }
+
+        private void BtnBuyParking_Click(object sender, EventArgs e)
+        {
+            ValidateIsSelectedCountry();
+        }
+
+        private void BtnCheckParking_Click(object sender, EventArgs e)
+        {
+            ValidateIsSelectedCountry();
+        }
+
+        private void BtnSetCostParking_Click(object sender, EventArgs e)
+        {
+            ValidateIsSelectedCountry();
+        }
     }
-    }
-}
+
+  }
+
