@@ -15,12 +15,10 @@ namespace TestParkingBusinessLogic
     public class TestControllerPurchase
     {
         private ControllerPurchase myController;
-        private Purchase myPurchaseArg;
-        private Purchase myPurchaseUru;
         private string txtUru = "SBN1234 120 13:00";
         private string txtArg = "SBN2345 14:00 120";
-        private Account accountUru;
-        private Account accountArg;
+        private string numUru = "098872898";
+        private string numArg = "12345678";
 
         [TestInitialize]
         public void Init()
@@ -32,21 +30,22 @@ namespace TestParkingBusinessLogic
             DataFindPurchase findPurchase = new DataFindPurchase(myContext);
             myController = new ControllerPurchase(accessPurchase, accessAccount, findAccount, findPurchase);
             myController.dataAccessAccount.DeleteDataBase();
-            accountUru = new AccountUruguay("098872898", "100");
-            accountArg = new AccountArgentina("12345678", "100");
-            myPurchaseArg = new PurchaseArgentina(txtArg,accountArg);
-            myPurchaseUru = new PurchaseUruguay(txtUru, accountUru);
+
+            Account accountArg = new AccountArgentina(numArg, "150");
+            myController.dataAccessAccount.Insert(accountArg);
+            Account accountUru = new AccountUruguay(numUru, "100");
+            myController.dataAccessAccount.Insert(accountUru);
         }
 
         [TestMethod]
         public void TestRegisterPurchaseUru()
         {
-            myController.RegisterPurchase(myPurchaseUru);
+            myController.RegisterPurchaseUru(txtUru,numUru);
         }
         [TestMethod]
         public void TestRegisterPurchaseArg()
-        {
-            myController.RegisterPurchase(myPurchaseArg);
+        {            
+            myController.RegisterPurchaseArg(txtArg,numArg);
         }
         [TestMethod]
         public void TestRegisterPurchaseUruFail()
@@ -76,17 +75,17 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestBuyParkingPurchaseUru()
         {
-
+            myController.BuyParkingPurchaseUru(txtUru, numUru);
         }
         [TestMethod]
         public void TestBuyParkingPurchaseUruFail()
         {
-
+            
         }
         [TestMethod]
         public void TestBuyParkingPurchaseArg()
         {
-
+            myController.BuyParkingPurchaseArg(txtArg, numArg);
         }
         [TestMethod]
         public void TestBuyParkingPurchaseArgFail()

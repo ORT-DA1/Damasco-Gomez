@@ -27,9 +27,19 @@ namespace ParkingBusinessLogic
             valueOfMinuteUru = new ValueMinute();
             valueOfMinuteArg = new ValueMinute();
         }
-        public void RegisterPurchase(Purchase purchase)
+        public Purchase RegisterPurchaseUru(string txtUru, string num)
         {
+            Account account = dataFindAccount.FindAccountByNumber(num);
+            Purchase purchase = new PurchaseUruguay(txtUru, account);
             dataAccessPurchase.Insert(purchase);
+            return purchase;
+        }
+        public Purchase RegisterPurchaseArg(string txtArg, string num)
+        {
+            Account account = dataFindAccount.FindAccountByNumber(num);
+            Purchase purchase = new PurchaseArgentina(txtArg, account);
+            dataAccessPurchase.Insert(purchase);
+            return purchase;
         }
         public void ChangeValueMinuteUru(int newValue)
         {
@@ -39,19 +49,17 @@ namespace ParkingBusinessLogic
         {
             valueOfMinuteArg.ChangeValue(newValue);
         }
-        public void BuyParkingPurchaseUru(string msg, Account myAccount)
+        public void BuyParkingPurchaseUru(string msg, string num)
         {
-            Account myA = dataFindAccount.FindAccountByNumber(myAccount.Number);
-            Purchase myP = new PurchaseUruguay(msg, myA);
+            Account myA = dataFindAccount.FindAccountByNumber(num);
+            Purchase  myP = RegisterPurchaseUru(msg,num);
             FindAndDiscount(myA, myP);
-            RegisterPurchase(myP);
         }
-        public void BuyParkingPurchaseArg(string msg, Account myAccount)
+        public void BuyParkingPurchaseArg(string msg, string num)
         {
-            Account myA = dataFindAccount.FindAccountByNumber(myAccount.Number);
-            Purchase myP = new PurchaseArgentina(msg, myA);
-            FindAndDiscount(myA, myP);
-            RegisterPurchase(myP);
+            Account myA = dataFindAccount.FindAccountByNumber(num);
+            Purchase myP = RegisterPurchaseArg(msg, num);
+            FindAndDiscount(myA, myP);            
         }
 
         private void FindAndDiscount(Account account, Purchase purchase)
