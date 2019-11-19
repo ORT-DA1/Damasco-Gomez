@@ -58,5 +58,15 @@ namespace ParkingUserInterface
             sistema.ShowDialog();
             this.Close();
         }
+
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
