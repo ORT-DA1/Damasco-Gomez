@@ -1,6 +1,7 @@
 ﻿using EFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
+using ParkingBusinessLogic.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -17,8 +18,10 @@ namespace TestParkingBusinessLogic
         private ControllerPurchase myController;
         private string txtUru = "SBN1234 120 13:00";
         private string txtArg = "SBN2345 14:00 120";
-        private string numUru = "098872898";
+        private string numUru = "098 872 898";
         private string numArg = "12345678";
+        Account accountArg;
+        Account accountUru;
 
         [TestInitialize]
         public void Init()
@@ -31,9 +34,9 @@ namespace TestParkingBusinessLogic
             myController = new ControllerPurchase(accessPurchase, accessAccount, findAccount, findPurchase);
             myController.dataAccessAccount.DeleteDataBase();
 
-            Account accountArg = new AccountArgentina(numArg, "150");
+            accountArg = new AccountArgentina(numArg, "1500");
             myController.dataAccessAccount.Insert(accountArg);
-            Account accountUru = new AccountUruguay(numUru, "100");
+            accountUru = new AccountUruguay(numUru, "1000");
             myController.dataAccessAccount.Insert(accountUru);
         }
 
@@ -93,24 +96,38 @@ namespace TestParkingBusinessLogic
 
         }
         [TestMethod]
-        public void TestFindAndDiscount()
+        public void TestDiscountArg()
         {
-
+            int expected = accountArg.Balance - 120*3;
+            myController.BuyParkingPurchaseArg(txtArg, numArg);
+            int output = accountArg.Balance;
+            Assert.AreEqual(expected, output);
         }
         [TestMethod]
-        public void TestFindAndDiscountFail()
+        public void TestDiscountUru()
         {
-
+            int expected = accountUru.Balance - 120 * 3;
+            myController.BuyParkingPurchaseUru(txtUru, numUru);
+            int output = accountUru.Balance;
+            Assert.AreEqual(expected, output);
         }
         [TestMethod]
-        public void TestFindAmountFromPurchase()
+        [ExpectedException(typeof(InsufficientBalanceException))]
+        public void TestDiscountFailUru()
         {
-
+            numUru = "099155499";
+            accountUru = new AccountUruguay(numUru, "100");
+            myController.dataAccessAccount.Insert(accountUru);
+            myController.BuyParkingPurchaseUru(txtUru, numUru);
         }
         [TestMethod]
-        public void TestFindAmountFromPurchaseFail()
+        [ExpectedException(typeof(InsufficientBalanceException))]
+        public void TestDiscountFailArg()
         {
-
+            numArg = "23456789";
+            accountArg = new AccountArgentina(numArg, "100");
+            myController.dataAccessAccount.Insert(accountArg);
+            myController.BuyParkingPurchaseArg(txtArg, numArg);
         }
     }
 }

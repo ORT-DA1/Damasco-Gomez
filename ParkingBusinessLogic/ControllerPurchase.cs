@@ -51,7 +51,9 @@ namespace ParkingBusinessLogic
         }
         public void BuyParkingPurchaseUru(string msg, string num)
         {
-            Account myA = dataFindAccount.FindAccountByNumber(num);
+
+            Account myA = new AccountUruguay();
+            myA = dataFindAccount.FindAccountByNumber(myA.FormatNum(num));
             Purchase  myP = RegisterPurchaseUru(msg,num);
             FindAndDiscount(myA, myP);
         }
