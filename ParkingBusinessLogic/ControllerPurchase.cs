@@ -18,6 +18,9 @@ namespace ParkingBusinessLogic
         public IFindAccount<Account> dataFindAccount { get; set; }
         public IFindPurchase<Purchase> dataFindPurchase { get; set; }
 
+        const string correctNumUruguay = "098 786 898 or 98 765 678";
+        const string correctNumArgentina = "123-456-78 or 12345678";
+
         public ControllerPurchase(IDataAccess<Purchase> accessPurchase, IDataAccess<Account> accessAccount, 
             IFindAccount<Account> findAccount, IFindPurchase<Purchase> findPurchase)
         {
@@ -30,14 +33,19 @@ namespace ParkingBusinessLogic
         }
         public Purchase RegisterPurchaseUru(string txtUru, string num)
         {
-            Account account = dataFindAccount.FindAccountByNumber(num);
+            Account account = new AccountUruguay();
+            num = account.ValidateAndFormat(num, correctNumUruguay);
+            account = dataFindAccount.FindAccountByNumber(num);
             Purchase purchase = new PurchaseUruguay(txtUru, account);
             dataAccessPurchase.Insert(purchase);
             return purchase;
         }
         public Purchase RegisterPurchaseArg(string txtArg, string num)
         {
-            Account account = dataFindAccount.FindAccountByNumber(num);
+
+            Account account = new AccountArgentina();
+            num = account.ValidateAndFormat(num,correctNumArgentina);
+            account = dataFindAccount.FindAccountByNumber(num);
             Purchase purchase = new PurchaseArgentina(txtArg, account);
             dataAccessPurchase.Insert(purchase);
             return purchase;
@@ -55,10 +63,7 @@ namespace ParkingBusinessLogic
             string formatNum = "098 898 987";
             Account myA = new AccountUruguay();
             myA = dataFindAccount.FindAccountByNumber(myA.ValidateAndFormat(num, formatNum));
-            if (myA.Equals(null))
-            {
-                throw new NotAccountException();
-            }
+            
             Purchase  myP = RegisterPurchaseUru(msg,num);
             FindAndDiscount(myA, myP);
         }
@@ -67,10 +72,7 @@ namespace ParkingBusinessLogic
             string formatNum = "123-456-78";
             Account myA = new AccountArgentina();
             myA = dataFindAccount.FindAccountByNumber(myA.ValidateAndFormat(num, formatNum));
-            if (myA.Equals(null))
-            {
-                throw new NotAccountException();
-            }
+            
             Purchase myP = RegisterPurchaseArg(msg, num);
             FindAndDiscount(myA, myP);            
         }

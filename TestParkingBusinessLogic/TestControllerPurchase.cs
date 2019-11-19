@@ -43,7 +43,7 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestRegisterPurchaseUru()
         {
-            myController.RegisterPurchaseUru(txtUru,numUru);
+            myController.RegisterPurchaseUru(txtUru, numUru);
         }
         [TestMethod]
         public void TestRegisterPurchaseArg()
@@ -130,9 +130,9 @@ namespace TestParkingBusinessLogic
         public void TestDiscountFailUru()
         {
             numUru = "099155499";
-            accountUru = new AccountUruguay(numUru, "100");
+            accountUru = new AccountUruguay(numUru, "10");
             myController.dataAccessAccount.Insert(accountUru);
-            myController.BuyParkingPurchaseUru(txtUru, numUru);
+            myController.BuyParkingPurchaseUru(txtUru,accountUru.ValidateAndFormat(numUru, numUru));
         }
         [TestMethod]
         [ExpectedException(typeof(InsufficientBalanceException))]
