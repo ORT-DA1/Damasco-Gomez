@@ -11,7 +11,7 @@ namespace ParkingUserInterface
 {
     public class FirstAndPrincipal : Form
     {
-        private string country { get; set; }
+        private string Country { get; set; }
         private Button btnAddAccount;
         private Button btnAddBalance;
         private Button btnCheckParking;
@@ -22,20 +22,27 @@ namespace ParkingUserInterface
         public FirstAndPrincipal(string country)
         {
             InitializeComponent();
-            country = "None";
+            Country = country;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             comboBoxCountry.Items.Add("Uruguay");
             comboBoxCountry.Items.Add("Argentina");
-            if (country== "None")
+            if (country == "None")
             {
-                btnArgentina.FlatAppearance.BorderColor = System.Drawing.Color.White;
-                btnUruguay.FlatAppearance.BorderColor = System.Drawing.Color.White;
+                string Country = (string)comboBoxCountry.SelectedValue;
             }
+            else if (country == "Uruguay")
+            {
+                comboBoxCountry.SelectedValue = "Uruguay";
+            }
+            else
+            {
+                comboBoxCountry.SelectedValue = "Argentina";
+
+            }
+            
            
-            Console.WriteLine(country);
-            Console.WriteLine(btnArgentina.FlatAppearance.BorderColor);
-            Console.WriteLine(btnUruguay.FlatAppearance.BorderColor);
+            
         }
 
        
@@ -125,7 +132,7 @@ namespace ParkingUserInterface
 
         private void ValidateIsSelectedCountry()
         {
-            if (country== "None") 
+            if (Country== "None") 
             {
                 MessageBox.Show(new SelectCountryException().Message);
             }
@@ -136,47 +143,26 @@ namespace ParkingUserInterface
         {
             this.Hide();
             ValidateIsSelectedCountry();
-            SetAccions second = new SetAccions("AddAccount",country);
+            SetAccions second = new SetAccions("AddAccount",Country);
             second.ShowDialog();
             this.Close();
-            Console.WriteLine(country);
+     
            
         }
 
-        private void BtnUruguay_Click_1(object sender, EventArgs e)
-        {
-            
-            if (btnArgentina.FlatAppearance.BorderColor == System.Drawing.Color.Blue)
-            {
-                btnArgentina.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            }
-            btnUruguay.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
-            this.country = "Uruguay";
-        }
-
+       
         private void FirstAndPrincipal_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void BtnArgentina_Click(object sender, EventArgs e)
-        {
-
-            if (btnUruguay.FlatAppearance.BorderColor == System.Drawing.Color.Blue)
-            {
-                btnUruguay.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            }
-            btnArgentina.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
-            
-            this.country = "Argentina"; 
-        }
-
+       
         private void BtnAddBalance_Click(object sender, EventArgs e)
         {
             
             this.Hide();
             ValidateIsSelectedCountry();
-            SetAccions second = new SetAccions("AddBalance", country);
+            SetAccions second = new SetAccions("AddBalance", Country);
             second.ShowDialog();
             this.Close();
 
@@ -187,7 +173,7 @@ namespace ParkingUserInterface
             
             this.Hide();
             ValidateIsSelectedCountry();
-            SetAccions second = new SetAccions("BuyParking", country);
+            SetAccions second = new SetAccions("BuyParking", Country);
             second.ShowDialog();
             this.Close();
         }
@@ -196,7 +182,7 @@ namespace ParkingUserInterface
         {
             this.Hide();
             ValidateIsSelectedCountry();
-            SetAccions second = new SetAccions("CheckParking", country);
+            SetAccions second = new SetAccions("CheckParking", Country);
             second.ShowDialog();
             this.Close();
 
@@ -206,7 +192,7 @@ namespace ParkingUserInterface
         {
             this.Hide();
             ValidateIsSelectedCountry();
-            SetAccions second = new SetAccions("SetCostParking", country);
+            SetAccions second = new SetAccions("SetCostParking", Country);
             second.ShowDialog();
             this.Close();
         }
@@ -218,6 +204,7 @@ namespace ParkingUserInterface
 
         private void ComboBoxCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string Country = (string)comboBoxCountry.SelectedValue;
         }
     }
 

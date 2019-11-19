@@ -15,7 +15,7 @@ namespace ParkingUserInterface
         private TextBox textBoxChange2;
         private Button btnMoveAlong;
         private Button btnBack;
-        private ComboBox comboBox1;
+        private ComboBox comboBoxCountry2;
         private Label labelChange1;
 
         public SetAccions(string accion, string country)
@@ -27,16 +27,10 @@ namespace ParkingUserInterface
             textBoxChange2.Hide();
             btnMoveAlong.Hide();
             Country = country;
-            if (country == "Uruguay")
-            {
-               
-                
-            }
-            else if (country== "Argentina")
-            {
-               
-            }
-
+            comboBoxCountry2.Items.Add("Uruguay");
+            comboBoxCountry2.Items.Add("Argentina");
+            comboBoxCountry2.SelectedValue = country;
+           
 
             if (accion=="AddAccount")
             {
@@ -105,7 +99,7 @@ namespace ParkingUserInterface
             this.textBoxChange2 = new System.Windows.Forms.TextBox();
             this.btnMoveAlong = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxCountry2 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // labelChange1
@@ -160,18 +154,18 @@ namespace ParkingUserInterface
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
-            // comboBox1
+            // comboBoxCountry2
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(212, 69);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 7;
+            this.comboBoxCountry2.FormattingEnabled = true;
+            this.comboBoxCountry2.Location = new System.Drawing.Point(212, 95);
+            this.comboBoxCountry2.Name = "comboBoxCountry2";
+            this.comboBoxCountry2.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxCountry2.TabIndex = 7;
             // 
             // SetAccions
             // 
             this.ClientSize = new System.Drawing.Size(549, 478);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxCountry2);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnMoveAlong);
             this.Controls.Add(this.textBoxChange2);
