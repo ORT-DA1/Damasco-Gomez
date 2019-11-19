@@ -12,10 +12,10 @@ namespace ParkingBusinessLogic
         public ValueMinute valueOfMinuteUru { get; set; }
         public ValueMinute valueOfMinuteArg { get; set; }
 
-        public IDataAccess<Purchase> dataAccessPurchase;
-        public IDataAccess<Account> dataAccessAccount;
-        public IFindAccount<Account> dataFindAccount;
-        public IFindPurchase<Purchase> dataFindPurchase;
+        public IDataAccess<Purchase> dataAccessPurchase { get; set; }
+        public IDataAccess<Account> dataAccessAccount { get; set; }
+        public IFindAccount<Account> dataFindAccount { get; set; }
+        public IFindPurchase<Purchase> dataFindPurchase { get; set; }
 
         public ControllerPurchase(IDataAccess<Purchase> accessPurchase, IDataAccess<Account> accessAccount, 
             IFindAccount<Account> findAccount, IFindPurchase<Purchase> findPurchase)
@@ -27,10 +27,9 @@ namespace ParkingBusinessLogic
             valueOfMinuteUru = new ValueMinute();
             valueOfMinuteArg = new ValueMinute();
         }
-        public bool RegisterPurchase(Purchase purchase)
+        public void RegisterPurchase(Purchase purchase)
         {
             dataAccessPurchase.Insert(purchase);
-            return true;
         }
         public void ChangeValueMinuteUru(int newValue)
         {
@@ -55,13 +54,13 @@ namespace ParkingBusinessLogic
             RegisterPurchase(myP);
         }
 
-        public void FindAndDiscount(Account account, Purchase purchase)
+        private void FindAndDiscount(Account account, Purchase purchase)
         {
             int amountToDiscont = FindAmountFromPurchase(purchase);
             account.DiscountBalance(amountToDiscont);
         }
 
-        public int FindAmountFromPurchase(Purchase purchase)
+        private int FindAmountFromPurchase(Purchase purchase)
         {
             MinuteParser minuteParser = new MinuteParserUruguay();
             int cantMinutes = minuteParser.CalculateCantMinutesFromPurchase(purchase.MyInitHour, purchase.MyFinHour);
