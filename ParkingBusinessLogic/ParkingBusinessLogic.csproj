@@ -51,6 +51,7 @@
     <Compile Include="ControllerAccount.cs" />
     <Compile Include="ControllerPurchase.cs" />
     <Compile Include="DateParser.cs" />
+    <Compile Include="Exceptions\ExceptionNumberIncorrectFormat.cs" />
     <Compile Include="Exceptions\InsufficientBalanceException.cs" />
     <Compile Include="Exceptions\InvalidAccountArgentinaException.cs" />
     <Compile Include="Exceptions\InvalidTextException.cs" />

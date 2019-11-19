@@ -19,7 +19,7 @@ namespace TestParkingBusinessLogic
         private string txtUru = "SBN1234 120 13:00";
         private string txtArg = "SBN2345 14:00 120";
         private string numUru = "098 872 898";
-        private string numArg = "12345678";
+        private string numArg = "123-45-678";
         Account accountArg;
         Account accountUru;
 
@@ -49,6 +49,20 @@ namespace TestParkingBusinessLogic
         public void TestRegisterPurchaseArg()
         {            
             myController.RegisterPurchaseArg(txtArg,numArg);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ExceptionNumberIncorrectFormat))]
+        public void TestRegisterPurchaseUruFailNum()
+        {
+            numUru = "9928731";
+            myController.BuyParkingPurchaseUru(txtUru, numUru);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ExceptionNumberIncorrectFormat))]
+        public void TestRegisterPurchaseArgFailNum()
+        {
+            numArg = "09--8654--98";
+            myController.BuyParkingPurchaseUru(txtArg, numArg);
         }
         [TestMethod]
         public void TestRegisterPurchaseUruFail()

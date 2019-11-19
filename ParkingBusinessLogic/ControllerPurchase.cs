@@ -1,4 +1,5 @@
 ﻿using ContractDataBase;
+using ParkingBusinessLogic.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,15 +52,25 @@ namespace ParkingBusinessLogic
         }
         public void BuyParkingPurchaseUru(string msg, string num)
         {
-
+            string formatNum = "098 898 987";
             Account myA = new AccountUruguay();
-            myA = dataFindAccount.FindAccountByNumber(myA.FormatNum(num));
+            myA = dataFindAccount.FindAccountByNumber(myA.ValidateAndFormat(num, formatNum));
+            if (myA.Equals(null))
+            {
+                throw new NotAccountException();
+            }
             Purchase  myP = RegisterPurchaseUru(msg,num);
             FindAndDiscount(myA, myP);
         }
         public void BuyParkingPurchaseArg(string msg, string num)
         {
-            Account myA = dataFindAccount.FindAccountByNumber(num);
+            string formatNum = "123-456-78";
+            Account myA = new AccountArgentina();
+            myA = dataFindAccount.FindAccountByNumber(myA.ValidateAndFormat(num, formatNum));
+            if (myA.Equals(null))
+            {
+                throw new NotAccountException();
+            }
             Purchase myP = RegisterPurchaseArg(msg, num);
             FindAndDiscount(myA, myP);            
         }
