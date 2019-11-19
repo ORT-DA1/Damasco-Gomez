@@ -14,8 +14,7 @@ namespace ParkingUserInterface
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Controller MyController = new Controller();
-            Application.Run(new First(MyController));
+            Application.Run(new First());
         }
     }
 }

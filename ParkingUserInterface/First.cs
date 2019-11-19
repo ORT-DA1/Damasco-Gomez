@@ -1,4 +1,5 @@
-﻿using ParkingBusinessLogic;
+﻿using EFramework;
+using ParkingBusinessLogic;
 using System;
 using System.Windows.Forms;
 
@@ -7,10 +8,12 @@ namespace ParkingUserInterface
     public partial class First : Form
     {
         Controller MyController;
-        public First(Controller controller)
+        MyContext myContext = new MyContext();
+        
+        public First()
         {
             InitializeComponent();
-            MyController = controller;
+            
 
         }
 
@@ -65,6 +68,16 @@ namespace ParkingUserInterface
         }
 
         private void PictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnUruguay_Click(object sender, EventArgs e)
         {
 
         }
