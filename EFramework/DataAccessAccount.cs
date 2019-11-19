@@ -2,6 +2,8 @@
 using ParkingBusinessLogic;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +21,21 @@ namespace EFramework
 
         public void InsertAccount(Account account)
         {
-            Context.Accounts.Add(account);
-            Context.SaveChanges();
+            try
+            {
+                Context.Accounts.Add(account);
+                Context.SaveChanges();
+
+            }
+            catch (DbException e)
+            {
+                throw new DataBaseException(); // error d conexion
+            }
+            catch (EntityException e) {
+            }
+
+            catch (UpdateException e) { }
+
         }
 
         public void DisposeMyContext()

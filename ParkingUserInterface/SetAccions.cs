@@ -15,6 +15,8 @@ namespace ParkingUserInterface
         private TextBox textBoxChange2;
         private Button btnMoveAlong;
         private Button btnBack;
+        private Button btnUruguay2;
+        private Button btnArgentina2;
         private Label labelChange1;
 
         public SetAccions(string accion, string country)
@@ -89,12 +91,15 @@ namespace ParkingUserInterface
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetAccions));
             this.labelChange1 = new System.Windows.Forms.Label();
             this.textBoxChange1 = new System.Windows.Forms.TextBox();
             this.labelChange2 = new System.Windows.Forms.Label();
             this.textBoxChange2 = new System.Windows.Forms.TextBox();
             this.btnMoveAlong = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.btnUruguay2 = new System.Windows.Forms.Button();
+            this.btnArgentina2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelChange1
@@ -148,9 +153,32 @@ namespace ParkingUserInterface
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
+            // btnUruguay2
+            // 
+            this.btnUruguay2.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnUruguay2.FlatAppearance.BorderSize = 5;
+            this.btnUruguay2.Image = ((System.Drawing.Image)(resources.GetObject("btnUruguay2.Image")));
+            this.btnUruguay2.Location = new System.Drawing.Point(12, 12);
+            this.btnUruguay2.Name = "btnUruguay2";
+            this.btnUruguay2.Size = new System.Drawing.Size(127, 87);
+            this.btnUruguay2.TabIndex = 7;
+            this.btnUruguay2.UseVisualStyleBackColor = true;
+            // 
+            // btnArgentina2
+            // 
+            this.btnArgentina2.FlatAppearance.BorderSize = 5;
+            this.btnArgentina2.Image = ((System.Drawing.Image)(resources.GetObject("btnArgentina2.Image")));
+            this.btnArgentina2.Location = new System.Drawing.Point(410, 12);
+            this.btnArgentina2.Name = "btnArgentina2";
+            this.btnArgentina2.Size = new System.Drawing.Size(127, 87);
+            this.btnArgentina2.TabIndex = 8;
+            this.btnArgentina2.UseVisualStyleBackColor = true;
+            // 
             // SetAccions
             // 
             this.ClientSize = new System.Drawing.Size(549, 478);
+            this.Controls.Add(this.btnArgentina2);
+            this.Controls.Add(this.btnUruguay2);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnMoveAlong);
             this.Controls.Add(this.textBoxChange2);
