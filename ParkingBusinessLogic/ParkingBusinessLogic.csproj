@@ -65,6 +65,7 @@
     <Compile Include="Exceptions\InvalidAccountUruguayException.cs" />
     <Compile Include="Exceptions\InvalidTextCheckException.cs" />
     <Compile Include="Exceptions\NegativeNumberException.cs" />
+    <Compile Include="Exceptions\NoPurchasewithDate.cs" />
     <Compile Include="Exceptions\NotAccountException.cs" />
     <Compile Include="Exceptions\NotPurchaseWithLicense.cs" />
     <Compile Include="Exceptions\SelectCountryException.cs" />

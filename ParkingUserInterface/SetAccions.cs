@@ -245,78 +245,119 @@ namespace ParkingUserInterface
         {
             try
             {
-
                 string valueTextBox1 = textBoxChange1.Text;
                 string valueTextBox2 = textBoxChange2.Text;
                 if (Action == "AddAccount")
                 {
-                    
-                    InitControllerAccount();
-                    Account newAccount = new AccountArgentina();
-                    if (Country == "Uruguay")
+                    try
                     {
-                        newAccount = new AccountUruguay(valueTextBox1, valueTextBox2);
-                    }
-                    else
-                    {
-                        newAccount = new AccountArgentina(valueTextBox1, valueTextBox2);
-                    }
-                    myControllerAccount.RegisterAccount(newAccount);
+                        InitControllerAccount();
+                        Account newAccount = new AccountArgentina();
+                        if (Country == "Uruguay")
+                        {
+                            newAccount = new AccountUruguay(valueTextBox1, valueTextBox2);
+                        }
+                        else
+                        {
+                            newAccount = new AccountArgentina(valueTextBox1, valueTextBox2);
+                        }
+                        myControllerAccount.RegisterAccount(newAccount);
 
-                    MessageBox.Show("Account registered successfully");
+                        MessageBox.Show("Account registered successfully");
+                    }
+                    catch () { }
+                   
 
                     
                 }
                 if (Action == "AddBalance")
                 {
-                    InitControllerAccount();
+                    try
+                    {
+                        InitControllerAccount();
+                        if (Country == "Uruguay")
+                        {
+                            myControllerAccount.AddAmountBalanceUru(valueTextBox2, valueTextBox1);
+                            MessageBox.Show("Balance added successfully");
+                        }
+                        else
+                        {
+                            myControllerAccount.AddAmountBalanceArg(valueTextBox2, valueTextBox1);
+                            MessageBox.Show("Balance added successfully");
+                        }
+                        
 
-                    myControllerAccount.AddAmountBalance(valueTextBox2, valueTextBox1);
+                        
+                    }
+                    catch (LogicException a)
+                    {
+                        MessageBox.Show(a.Message);
+                    }
 
-                    MessageBox.Show("Balance added successfully");
 
                 }
                 if (Action == "BuyParking")
                 {
-                    InitControllerPurchase();
+                    try
+                    {
+                        InitControllerPurchase();
 
-                    if (Country == "Uruguay")
-                    {
-                        myControllerPurchase.BuyParkingPurchaseUru(valueTextBox2, valueTextBox1);
-                        MessageBox.Show("Successful purchase");
+                        if (Country == "Uruguay")
+                        {
+                            myControllerPurchase.BuyParkingPurchaseUru(valueTextBox2, valueTextBox1);
+                            MessageBox.Show("Successful purchase");
+                        }
+                        else
+                        {
+                            myControllerPurchase.BuyParkingPurchaseArg(valueTextBox2, valueTextBox1);
+                            MessageBox.Show("Successful purchase");
+                        }
+
                     }
-                    else
+                    catch (LogicException a)
                     {
-                        myControllerPurchase.BuyParkingPurchaseArg(valueTextBox2, valueTextBox1);
-                        MessageBox.Show("Successful purchase");
-                    }   
+                        MessageBox.Show(a.Message);
+                    }
 
                 }
                 if (Action == "CheckParking")
                 {
-                    InitControllerPurchase();
+                    try
+                    {
+                        InitControllerPurchase();
 
-                    bool contain= myControllerPurchase.ContainPurchaseInHour(valueTextBox1, valueTextBox2);
-                    if (contain)
-                    {
+                        bool contain = myControllerPurchase.ContainPurchaseInHour(valueTextBox1, valueTextBox2);
+
                         MessageBox.Show("Purchase success");
+
                     }
-                    else
+                    catch (LogicException a)
                     {
-                        MessageBox.Show("Successful purchase");
+                        MessageBox.Show(a.Message);
                     }
+                    
+                    
                 }
                 if (Action == "SetCostParking")
                 {
-                    InitControllerPurchase();
+                    try
+                    {
 
-                    if (Country == "Uruguay")
-                    {
-                        myControllerPurchase.ChangeValueMinuteUru(valueTextBox1);
+                        InitControllerPurchase();
+
+                        if (Country == "Uruguay")
+                        {
+                            myControllerPurchase.ChangeValueMinuteUru(valueTextBox1);
+                        }
+                        else
+                        {
+                            myControllerPurchase.ChangeValueMinuteArg(valueTextBox1);
+                        }
+
                     }
-                    else
+                    catch (LogicException a)
                     {
-                        myControllerPurchase.ChangeValueMinuteArg(valueTextBox1);
+                        MessageBox.Show(a.Message);
                     }
                     myControllerPurchase.dataAccessPurchase.DisposeMyContext();
                     myControllerAccount.dataAccessAccount.DisposeMyContext();
