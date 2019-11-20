@@ -22,6 +22,8 @@ namespace ParkingUserInterface
         private Button btnBack;
         private ComboBox comboBoxCountry2;
         private Label labelChange1;
+        private ControllerAccount myControllerAccount;
+        private ControllerPurchase myControllerPurchase;
         private string Action { set; get; }
 
         public SetAccions(string action, string country)
@@ -221,45 +223,63 @@ namespace ParkingUserInterface
         {
 
         }
-
+        private void InitControllerAccount()
+        {
+            MyContext context = new MyContext();
+            myControllerAccount = new ControllerAccount(new DataAccessAccount(context), new DataFindAccount(context));
+            
+        }
+        private void InitControllerPurchase()
+        {
+            MyContext context = new MyContext();
+            myControllerPurchase =  new ControllerPurchase(new DataAccessPurchase(context),new DataAccessAccount(context),new DataFindAccount(context), new DataFindPurchase(context));
+        }
         private void BtnMoveAlong_Click(object sender, EventArgs e)
         {
             try
             {
-                MyContext context = new MyContext();
-                ControllerAccount controllerAccount = new ControllerAccount(new DataAccessAccount(context), new DataFindAccount(context));
-                string number = textBoxChange1.Text;
-                string balance = textBoxChange2.Text;
+
+                string valueTextBox1 = textBoxChange1.Text;
+                string valueTextBox2 = textBoxChange2.Text;
                 if (Action == "AddAccount")
                 {
-                    //ControllerPurchase controllerPurchase = new ControllerPurchase(new DataAccessPurchase(context),new DataAccessAccount(context),new DataFindAccount(context), new DataFindPurchase(context));
                     
+                    InitControllerAccount();
                     Account newAccount = new AccountArgentina();
                     if (Country == "Uruguay")
                     {
-                        newAccount = new AccountUruguay(number, balance);
+                        newAccount = new AccountUruguay(valueTextBox1, valueTextBox2);
                     }
                     else
                     {
-                        newAccount = new AccountArgentina(number, balance);
+                        newAccount = new AccountArgentina(valueTextBox1, valueTextBox2);
                     }
-                    controllerAccount.RegisterAccount(newAccount);
+                    myControllerAccount.RegisterAccount(newAccount);
 
                     MessageBox.Show("Account registered successfully");
 
-                    context.Dispose();
+                    
                 }
                 if (Action == "AddBalance")
                 {
-                    controllerAccount.AddAmountBalance(number,balance);
+                    InitControllerAccount();
+
+                    myControllerAccount.AddAmountBalance(valueTextBox2, valueTextBox1);
 
                     MessageBox.Show("Balance added successfully");
-
-                    context.Dispose();
 
                 }
                 if (Action == "BuyParking")
                 {
+                    InitControllerPurchase();
+                    if (Country == "Uruguay")
+                    {
+                        myControllerPurchase.BuyParkingPurchaseUru(valueTextBox2, valueTextBox1);
+                    }
+                    else
+                    {
+                        myControllerPurchase.BuyParkingPurchaseArg(valueTextBox2, valueTextBox1);
+                    }   
 
                 }
                 if (Action == "CheckParking")
@@ -279,6 +299,10 @@ namespace ParkingUserInterface
             {
 
             }
+            myControllerAccount.dataAccessAccount.DisposeMyContext();
+            myControllerPurchase.dataAccessPurchase.DisposeMyContext();
+
         }
+
     }
 }
