@@ -44,7 +44,10 @@ namespace EFramework
         {
             Context.Dispose();
         }
-
+        public void Update()
+        {
+            Context.SaveChanges();
+        }
         public void DeleteDataBase()
         {
             Context.Database.ExecuteSqlCommand("delete from Purchases;");

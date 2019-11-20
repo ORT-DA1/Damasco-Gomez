@@ -15,5 +15,7 @@ namespace ContractDataBase
 
         public void DeleteDataBase();
 
+        public void Update();
+
     }
 }

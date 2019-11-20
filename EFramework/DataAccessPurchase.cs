@@ -50,5 +50,10 @@ namespace EFramework
             Context.Database.ExecuteSqlCommand("delete from Accounts;");
 
         }
+        public void Update()
+        {
+            Context.SaveChanges();
+        }
+
     }
 }

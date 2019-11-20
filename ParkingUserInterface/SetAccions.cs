@@ -281,13 +281,13 @@ namespace ParkingUserInterface
                         InitControllerAccount();
                         if (Country == "Uruguay")
                         {
-                            myControllerAccount.AddAmountBalanceUru(valueTextBox2, valueTextBox1);
+                            myControllerAccount.AddAmountBalanceUru(valueTextBox1, valueTextBox2);
                             MessageBox.Show("Balance added successfully");
                             goPrincipal();
                         }
                         else
                         {
-                            myControllerAccount.AddAmountBalanceArg(valueTextBox2, valueTextBox1);
+                            myControllerAccount.AddAmountBalanceArg(valueTextBox1, valueTextBox2);
                             MessageBox.Show("Balance added successfully");
                         }
                         
