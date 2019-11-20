@@ -50,11 +50,11 @@ namespace ParkingBusinessLogic
             dataAccessPurchase.Insert(purchase);
             return purchase;
         }
-        public void ChangeValueMinuteUru(int newValue)
+        public void ChangeValueMinuteUru(string newValue)
         {
             valueOfMinuteUru.ChangeValue(newValue);
         }
-        public void ChangeValueMinuteArg(int newValue)
+        public void ChangeValueMinuteArg(string newValue)
         {
             valueOfMinuteArg.ChangeValue(newValue);
         }

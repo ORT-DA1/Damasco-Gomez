@@ -289,6 +289,18 @@ namespace ParkingUserInterface
                 }
                 if (Action == "SetCostParking")
                 {
+                    InitControllerPurchase();
+
+                    if (Country == "Uruguay")
+                    {
+                        myControllerPurchase.ChangeValueMinuteUru(valueTextBox1);
+                    }
+                    else
+                    {
+                        myControllerPurchase.ChangeValueMinuteArg(valueTextBox1);
+                    }
+
+
 
                 }
             }
