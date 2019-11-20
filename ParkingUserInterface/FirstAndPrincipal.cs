@@ -39,9 +39,6 @@ namespace ParkingUserInterface
             {
                 comboBoxCountry.Text = country;
             }
-            
-           
-            
         }
 
        
@@ -129,24 +126,30 @@ namespace ParkingUserInterface
 
         }
 
-        private void ValidateIsSelectedCountry()
+        private bool ValidateIsSelectedCountry()
         {
-            if (Country== "None") 
+            if (comboBoxCountry.Text == "")
             {
                 MessageBox.Show(new SelectCountryException().Message);
+                return false;
             }
+            else
+            {
+                return true;
+            }
+        
         }
 
 
         private void BtnAddAccount_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            ValidateIsSelectedCountry();
-            SetAccions second = new SetAccions("AddAccount",Country);
-            second.ShowDialog();
-            this.Close();
-     
-           
+            if (ValidateIsSelectedCountry())
+            {
+                this.Hide();
+                SetAccions second = new SetAccions("AddAccount", Country);
+                second.ShowDialog();
+                this.Close();
+            }
         }
 
        
@@ -158,42 +161,51 @@ namespace ParkingUserInterface
        
         private void BtnAddBalance_Click(object sender, EventArgs e)
         {
-            
-            this.Hide();
-            ValidateIsSelectedCountry();
-            SetAccions second = new SetAccions("AddBalance", Country);
-            second.ShowDialog();
-            this.Close();
+            if (ValidateIsSelectedCountry())
+            {
+                this.Hide();
+                SetAccions second = new SetAccions("AddBalance", Country);
+                second.ShowDialog();
+                this.Close();
+            }
 
         }
 
         private void BtnBuyParking_Click(object sender, EventArgs e)
         {
+
+            if (ValidateIsSelectedCountry())
+            {
+                this.Hide();
+                SetAccions second = new SetAccions("BuyParking", Country);
+                second.ShowDialog();
+                this.Close();
+            }
             
-            this.Hide();
-            ValidateIsSelectedCountry();
-            SetAccions second = new SetAccions("BuyParking", Country);
-            second.ShowDialog();
-            this.Close();
         }
 
         private void BtnCheckParking_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            ValidateIsSelectedCountry();
-            SetAccions second = new SetAccions("CheckParking", Country);
-            second.ShowDialog();
-            this.Close();
-
+            if (ValidateIsSelectedCountry())
+            {
+                this.Hide();
+                SetAccions second = new SetAccions("CheckParking", Country);
+                second.ShowDialog();
+                this.Close();
+            }
+            
         }
 
         private void BtnSetCostParking_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            ValidateIsSelectedCountry();
-            SetAccions second = new SetAccions("SetCostParking", Country);
-            second.ShowDialog();
-            this.Close();
+            if (ValidateIsSelectedCountry())
+            {
+                this.Hide();
+                SetAccions second = new SetAccions("SetCostParking", Country);
+                second.ShowDialog();
+                this.Close();
+            }
+            
         }
 
         private void Label1_Click(object sender, EventArgs e)
@@ -203,7 +215,7 @@ namespace ParkingUserInterface
 
         private void ComboBoxCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Country = (string)comboBoxCountry.SelectedValue;
+        
             Country = comboBoxCountry.Text;
             
         }
