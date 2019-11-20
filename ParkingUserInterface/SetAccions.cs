@@ -15,15 +15,22 @@ namespace ParkingUserInterface
     public class SetAccions : Form
     {
         private string Country { set; get; }
+
         private TextBox textBoxChange1;
+
         private Label labelChange2;
+
         private TextBox textBoxChange2;
+
         private Button btnMoveAlong;
+
         private Button btnBack;
+
         private ComboBox comboBoxCountry2;
+
         private Label labelChange1;
-        private ControllerAccount myControllerAccount;
-        private ControllerPurchase myControllerPurchase;
+        private ControllerAccount myControllerAccount { set; get; }
+        private ControllerPurchase myControllerPurchase { set; get; }
         private string Action { set; get; }
 
         public SetAccions(string action, string country)
@@ -276,10 +283,12 @@ namespace ParkingUserInterface
                     if (Country == "Uruguay")
                     {
                         myControllerPurchase.BuyParkingPurchaseUru(valueTextBox2, valueTextBox1);
+                        MessageBox.Show("Successful purchase");
                     }
                     else
                     {
                         myControllerPurchase.BuyParkingPurchaseArg(valueTextBox2, valueTextBox1);
+                        MessageBox.Show("Successful purchase");
                     }   
 
                 }
@@ -287,7 +296,15 @@ namespace ParkingUserInterface
                 {
                     InitControllerPurchase();
 
-                    myControllerPurchase.ContainPurchaseInHour(valueTextBox1, valueTextBox2);
+                    bool contain= myControllerPurchase.ContainPurchaseInHour(valueTextBox1, valueTextBox2);
+                    if (contain)
+                    {
+                        MessageBox.Show("Purchase success");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Successful purchase");
+                    }
                 }
                 if (Action == "SetCostParking")
                 {
@@ -301,6 +318,8 @@ namespace ParkingUserInterface
                     {
                         myControllerPurchase.ChangeValueMinuteArg(valueTextBox1);
                     }
+                    myControllerPurchase.dataAccessPurchase.DisposeMyContext();
+                    myControllerAccount.dataAccessAccount.DisposeMyContext();
                 }
             }
             catch (DataBaseException f)
@@ -311,8 +330,8 @@ namespace ParkingUserInterface
             {
 
             }
-            myControllerAccount.dataAccessAccount.DisposeMyContext();
-            myControllerPurchase.dataAccessPurchase.DisposeMyContext();
+            
+            
 
         }
 

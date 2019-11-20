@@ -93,6 +93,7 @@ namespace ParkingBusinessLogic
 
         public bool ContainPurchaseInHour(string license , string txt)
         {
+            
             LicensePlateParser newParserLicense = new LicensePlateParser();
             license = newParserLicense.FormatAndValidateLicensePlate(license);
             List<Purchase> purchaseWithLicense = dataFindPurchase.FindPurchaseByLicense(license);
@@ -107,7 +108,13 @@ namespace ParkingBusinessLogic
                     purchase.CompareHours(purchase.MyInitHour, purchase.MyFinHour, time);
                 resul = resul || resulOfPurchase;
             }
+            if (!resul)
+            {
+                throw new NoPurchasewithDate();
+
+            }
             return resul;
+            
         }
 
         public List<Purchase> ContainPurchase(string license, string initHour, string finHour, string day)
