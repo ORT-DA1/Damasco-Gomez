@@ -46,9 +46,9 @@ namespace ParkingUserInterface
             comboBoxCountry2.Items.Add("Uruguay");
             comboBoxCountry2.Items.Add("Argentina");
             comboBoxCountry2.Text = country;
+            this.comboBoxCountry2.SelectedIndexChanged +=new System.EventHandler(ComboBox_SelectedIndexChanged);
 
-            
-           
+         
 
             if (Action=="AddAccount")
             {
@@ -108,7 +108,10 @@ namespace ParkingUserInterface
 
 
         }
-
+        private void ComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            Country = (string)comboBoxCountry2.SelectedItem;
+        }
         private void InitializeComponent()
         {
             this.labelChange1 = new System.Windows.Forms.Label();
