@@ -265,10 +265,13 @@ namespace ParkingUserInterface
 
                         MessageBox.Show("Account registered successfully");
                     }
-                    catch () { }
-                   
+                    catch (LogicException a)
+                    {
+                        MessageBox.Show(a.Message);
+                    }
 
-                    
+
+
                 }
                 if (Action == "AddBalance")
                 {
