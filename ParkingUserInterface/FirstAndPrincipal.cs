@@ -29,16 +29,15 @@ namespace ParkingUserInterface
             comboBoxCountry.Items.Add("Argentina");
             if (country == "None")
             {
-                string Country = (string)comboBoxCountry.SelectedValue;
+                Country = comboBoxCountry.Text;
             }
             else if (country == "Uruguay")
             {
-                comboBoxCountry.SelectedValue = "Uruguay";
+                comboBoxCountry.Text = country; 
             }
             else
             {
-                comboBoxCountry.SelectedValue = "Argentina";
-
+                comboBoxCountry.Text = country;
             }
             
            
@@ -204,7 +203,9 @@ namespace ParkingUserInterface
 
         private void ComboBoxCountry_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string Country = (string)comboBoxCountry.SelectedValue;
+            //Country = (string)comboBoxCountry.SelectedValue;
+            Country = comboBoxCountry.Text;
+            
         }
     }
 

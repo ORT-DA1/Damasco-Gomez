@@ -29,7 +29,8 @@ namespace ParkingUserInterface
             Country = country;
             comboBoxCountry2.Items.Add("Uruguay");
             comboBoxCountry2.Items.Add("Argentina");
-            comboBoxCountry2.SelectedValue = country;
+            comboBoxCountry2.Text = country;
+            
            
 
             if (accion=="AddAccount")
