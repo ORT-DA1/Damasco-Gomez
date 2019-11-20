@@ -244,22 +244,17 @@ namespace ParkingUserInterface
                         newAccount = new AccountArgentina(number, balance);
                     }
                     controllerAccount.RegisterAccount(newAccount);
+
                     MessageBox.Show("Account registered successfully");
+
                     context.Dispose();
                 }
                 if (Action == "AddBalance")
                 {
-                    Account newAccount = new AccountArgentina();
-                    if (Country == "Uruguay")
-                    {
-                        newAccount = new AccountUruguay(number, balance);
-                    }
-                    else
-                    {
-                        newAccount = new AccountArgentina(number, balance);
-                    }
                     controllerAccount.AddAmountBalance(number,balance);
-                    MessageBox.Show("Account registered successfully");
+
+                    MessageBox.Show("Balance added successfully");
+
                     context.Dispose();
 
                 }
