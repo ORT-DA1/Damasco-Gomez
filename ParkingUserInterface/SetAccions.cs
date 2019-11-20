@@ -299,9 +299,6 @@ namespace ParkingUserInterface
                     {
                         myControllerPurchase.ChangeValueMinuteArg(valueTextBox1);
                     }
-
-
-
                 }
             }
             catch (DataBaseException f)
