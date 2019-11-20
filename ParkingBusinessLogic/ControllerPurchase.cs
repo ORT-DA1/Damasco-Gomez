@@ -53,10 +53,12 @@ namespace ParkingBusinessLogic
         public void ChangeValueMinuteUru(string newValue)
         {
             valueOfMinuteUru.ChangeValue(newValue);
+            dataAccessAccount.Update();
         }
         public void ChangeValueMinuteArg(string newValue)
         {
             valueOfMinuteArg.ChangeValue(newValue);
+            dataAccessAccount.Update();
         }
         public void BuyParkingPurchaseUru(string msg, string num)
         {
@@ -66,6 +68,7 @@ namespace ParkingBusinessLogic
             
             Purchase  myP = RegisterPurchaseUru(msg,num);
             FindAndDiscount(myA, myP);
+            dataFindAccount.Update();
         }
         public void BuyParkingPurchaseArg(string msg, string num)
         {
@@ -74,7 +77,8 @@ namespace ParkingBusinessLogic
             myA = dataFindAccount.FindAccountByNumber(myA.ValidateAndFormat(num, formatNum));
             
             Purchase myP = RegisterPurchaseArg(msg, num);
-            FindAndDiscount(myA, myP);            
+            FindAndDiscount(myA, myP);
+            dataFindAccount.Update();
         }
 
         private void FindAndDiscount(Account account, Purchase purchase)

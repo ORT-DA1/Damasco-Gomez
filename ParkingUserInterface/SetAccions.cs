@@ -46,9 +46,9 @@ namespace ParkingUserInterface
             comboBoxCountry2.Items.Add("Uruguay");
             comboBoxCountry2.Items.Add("Argentina");
             comboBoxCountry2.Text = country;
+            this.comboBoxCountry2.SelectedIndexChanged +=new System.EventHandler(ComboBox_SelectedIndexChanged);
 
-            
-           
+         
 
             if (Action=="AddAccount")
             {
@@ -108,7 +108,10 @@ namespace ParkingUserInterface
 
 
         }
-
+        private void ComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            Country = (string)comboBoxCountry2.SelectedItem;
+        }
         private void InitializeComponent()
         {
             this.labelChange1 = new System.Windows.Forms.Label();
@@ -281,13 +284,13 @@ namespace ParkingUserInterface
                         InitControllerAccount();
                         if (Country == "Uruguay")
                         {
-                            myControllerAccount.AddAmountBalanceUru(valueTextBox2, valueTextBox1);
+                            myControllerAccount.AddAmountBalanceUru(valueTextBox1, valueTextBox2);
                             MessageBox.Show("Balance added successfully");
                             goPrincipal();
                         }
                         else
                         {
-                            myControllerAccount.AddAmountBalanceArg(valueTextBox2, valueTextBox1);
+                            myControllerAccount.AddAmountBalanceArg(valueTextBox1, valueTextBox2);
                             MessageBox.Show("Balance added successfully");
                         }
                         
@@ -303,30 +306,43 @@ namespace ParkingUserInterface
                 }
                 if (Action == "BuyParking")
                 {
-                    try
-                    {
+                   
                         InitControllerPurchase();
 
                         if (Country == "Uruguay")
                         {
-                            myControllerPurchase.BuyParkingPurchaseUru(valueTextBox2, valueTextBox1);
-                            MessageBox.Show("Successful purchase");
-                            goPrincipal();
+                            try
+                            {
+                                myControllerPurchase.BuyParkingPurchaseUru(valueTextBox2, valueTextBox1);
+                                MessageBox.Show("Successful purchase");
+                                goPrincipal();
+                            }
+                            catch (LogicException a)
+                            {
+                                MessageBox.Show(a.Message);
+                            }
+
                         }
                         else
                         {
-                            myControllerPurchase.BuyParkingPurchaseArg(valueTextBox2, valueTextBox1);
-                            MessageBox.Show("Successful purchase");
-                            goPrincipal();
+                            try
+                            {
+                                myControllerPurchase.BuyParkingPurchaseArg(valueTextBox2, valueTextBox1);
+                                MessageBox.Show("Successful purchase");
+                                goPrincipal();
+                            }
+                            catch (LogicException a)
+                            {
+                                MessageBox.Show(a.Message);
+                            }
+
+
                         }
 
                     }
-                    catch (LogicException a)
-                    {
-                        MessageBox.Show(a.Message);
-                    }
+                   
 
-                }
+                
                 if (Action == "CheckParking")
                 {
                     try

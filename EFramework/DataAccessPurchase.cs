@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,10 @@ namespace EFramework
             {
                 throw new DataBaseException(sameAccount); //has account with number
             }
+            catch (DbUpdateException e)
+            {
+                throw new DataBaseException(sameAccount);
+            }
         }
         public void DeleteDataBase()
         {
@@ -50,6 +55,7 @@ namespace EFramework
             Context.Database.ExecuteSqlCommand("delete from Accounts;");
 
         }
+<<<<<<< HEAD
 
         public List<Purchase> AllData()
         {
@@ -61,5 +67,12 @@ namespace EFramework
             }
             return myPurchases;
         }
+=======
+        public void Update()
+        {
+            Context.SaveChanges();
+        }
+
+>>>>>>> 85ff4a22d473e3404ba81ba917814dc98c2ca80b
     }
 }

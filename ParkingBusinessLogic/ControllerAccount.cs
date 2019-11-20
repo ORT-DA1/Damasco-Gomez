@@ -41,6 +41,8 @@ namespace ParkingBusinessLogic
             number = myAccount.ValidateAndFormat(number, formatNumUruguay);
             myAccount = dataFindAccount.FindAccountByNumber(number);
             myAccount.AddBalance(balance);
+            dataAccessAccount.Update();
+
         }
         public void AddAmountBalanceArg(string number, string balance)
         {
