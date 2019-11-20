@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace ParkingBusinessLogic.Exceptions
 {
-    public class InvalidTextException  : LogicException
+    public class NotPurchaseWithLicense : LogicException
     {
-        private static readonly string message = "Text was invalid, try again.";
-
-        public InvalidTextException() : base(message)
+        private static readonly string message = "There is not purchase with that license plate";
+        public NotPurchaseWithLicense() : base(message)
         {
 
         }

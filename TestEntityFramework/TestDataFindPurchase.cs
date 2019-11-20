@@ -1,6 +1,7 @@
 ﻿using EFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
+using ParkingBusinessLogic.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -31,14 +32,10 @@ namespace TestEntityFramework
             AccountArgentina myAccountArg2 = new AccountArgentina("234-456-78", "100");
             myPurchaseUru = new PurchaseUruguay(msg, myAccountUru2);
             myPurchaseArg = new PurchaseArgentina(msg2, myAccountArg2);
-
-
-            myDAInsert.Context.Database.ExecuteSqlCommand("delete from Purchases;");
-            myDAInsert.Context.Database.ExecuteSqlCommand("delete from Accounts;");
-
+            myDAInsert.DeleteDataBase();
         }
         [TestMethod]
-        public void TestFindPurchaseUruByLicenseAndTime()
+        public void TestFindPurchaseUruByLicense()
         {
             myDAInsert.Insert(myPurchaseUru);
             string license = "SBN1234";
@@ -46,17 +43,31 @@ namespace TestEntityFramework
             Assert.IsTrue(myPurchaseUru.ContainsLicense(purchaseUruguay, license));
         }
         [TestMethod]
-        public void TestFindPurchaseArgByLicenseAndTime()
+        [ExpectedException(typeof(NotPurchaseWithLicense))]
+        public void TestFindPurchaseUruByLicenseFail()
+        {
+            string license = "SBN1234";
+            List<Purchase> purchaseUruguay = myDAFind.FindPurchaseByLicense(license);
+        }
+        [TestMethod]
+        public void TestFindPurchaseArgByLicense()
         {
             myDAInsert.Insert(myPurchaseArg);
             string license = "SBN2345";
             List<Purchase> purchaseArgentina = myDAFind.FindPurchaseByLicense(license);
             Assert.IsTrue(myPurchaseArg.ContainsLicense(purchaseArgentina, license));
         }
+        [TestMethod]
+        [ExpectedException(typeof(NotPurchaseWithLicense))]
+        public void TestFindPurchaseArgByLicenseFail()
+        {
+            string license = "SBN2345";
+            List<Purchase> purchaseArgentina = myDAFind.FindPurchaseByLicense(license);
+        }
         [TestCleanup]
         public void FinishTest()
         {
-            myDAInsert.DisposeMyContext();
+            myDAFind.DisposeMyContext();
         }
     }
 }

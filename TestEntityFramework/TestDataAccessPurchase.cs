@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.Entity.Core;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
@@ -14,7 +16,9 @@ namespace TestEntityFramework
     [TestClass]
     public class TestDataAccessPurchase
     {
-        DataAccessPurchase myDA;
+        DataAccessPurchase myInsertPurchase;
+        DataAccessAccount myInsertAccount;
+        DataFindAccount myFindAccount;
         PurchaseUruguay myPurchaseUru;
         PurchaseArgentina myPurchaseArg;
         string msg = "SBN1234 120 13:00";
@@ -23,27 +27,43 @@ namespace TestEntityFramework
         [TestInitialize]
         public void InitTest()
         {
-            myDA = new DataAccessPurchase(new MyContext());
-
+            MyContext myContext = new MyContext();
+            myInsertPurchase = new DataAccessPurchase(myContext);
+            myInsertAccount = new DataAccessAccount(myContext);
+            myFindAccount = new DataFindAccount(myContext);
             AccountUruguay myAccountUru2 = new AccountUruguay("098872898", "100");
             AccountArgentina myAccountArg2 = new AccountArgentina("234-456-78", "100");
+            myInsertAccount.Insert(myAccountUru2);
+            myInsertAccount.Insert(myAccountArg2);
+            Account findAccountUru = myFindAccount.FindAccountByNumber(myAccountUru2.Number);
+            Account findAccountArg = myFindAccount.FindAccountByNumber(myAccountUru2.Number);
             myPurchaseUru = new PurchaseUruguay(msg, myAccountUru2);
             myPurchaseArg = new PurchaseArgentina(msg2, myAccountArg2);
-
-
-            myDA.Context.Database.ExecuteSqlCommand("delete from Purchases;");
-            myDA.Context.Database.ExecuteSqlCommand("delete from Accounts;");
-
+            myInsertPurchase.DeleteDataBase();
         }
         [TestMethod]
         public void InsertPurchaseUru()
         {
-            myDA.Insert(myPurchaseUru);
+            myInsertPurchase.Insert(myPurchaseUru);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(UpdateException))]
+        public void InsertPurchaseUruFailSameInitHourAndLicense()
+        {
+            myInsertPurchase.Insert(myPurchaseUru);
+            myInsertPurchase.Insert(myPurchaseUru);
+        }
+        [Ignore]
+        [TestMethod]
+        [ExpectedException(typeof(DbException))]
+        public void InsertPurchaseUruFailConnection()
+        {
+            myInsertPurchase.Insert(myPurchaseUru);
         }
         [TestMethod]
         public void InsertPurchaseArg()
         {
-            myDA.Insert(myPurchaseArg);
+            myInsertPurchase.Insert(myPurchaseArg);
         }
         
 
@@ -51,7 +71,7 @@ namespace TestEntityFramework
         [TestCleanup]
         public void FinishTest()
         {
-            myDA.DisposeMyContext();
+            myInsertPurchase.DisposeMyContext();
         }
     }
 }

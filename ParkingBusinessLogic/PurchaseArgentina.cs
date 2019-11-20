@@ -16,55 +16,10 @@ namespace ParkingBusinessLogic
         {
 
         }
-        public PurchaseArgentina(string msg, Account myA)
+        public PurchaseArgentina(string msg, Account myA) : base(msg, myA, new MinuteParserArgentina())
         {
-            try
-            {
-                Id = Guid.NewGuid();
-                DateParser dateParser = new DateParser();
-                string startTime = dateParser.GetTimeFromTxt(msg);
-                MinuteParserArgentina minuteParser = new MinuteParserArgentina();
-                LicensePlateParser myParserLicense = new LicensePlateParser();
-                string licensePlate = myParserLicense.GetLicensePlate(msg);
-
-                string finishTime = AddMinHour(minuteParser.GetCantMinutes(msg), startTime);
-                
-                MyAccount = myA;
-                MyLicensePlate = licensePlate;
-                MyDay = MyDay;
-                MyInitHour = startTime;
-                MyFinHour = finishTime;
-            }
-            catch (LogicException e)
-            {
-                throw new InvalidTextExceptionArgentina();
-            }
         }
 
-        public PurchaseArgentina(Guid id,string msg, AccountArgentina myA)
-        {
-            try
-            {
-                Id = id;
-                DateParser dateParser = new DateParser();
-                string startTime = dateParser.GetTimeFromTxt(msg);
-                MinuteParserArgentina minuteParser = new MinuteParserArgentina();
-                LicensePlateParser myParserLicense = new LicensePlateParser();
-                string licensePlate = myParserLicense.GetLicensePlate(msg);
-
-                string finishTime = AddMinHour(minuteParser.GetCantMinutes(msg), startTime);
-
-                MyAccount = myA;
-                MyLicensePlate = licensePlate;
-                MyDay = MyDay;
-                MyInitHour = startTime;
-                MyFinHour = finishTime;
-            }
-            catch (LogicException e)
-            {
-                throw new InvalidTextExceptionArgentina();
-            }
-        }
 
 
 

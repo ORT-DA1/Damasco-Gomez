@@ -31,7 +31,7 @@ namespace ParkingBusinessLogic
             }
             else
             {
-                throw new InvalidTextExceptionUruguay();
+                throw new InvalidTextException();
             }
         }
 
