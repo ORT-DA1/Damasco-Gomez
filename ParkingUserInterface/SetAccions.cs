@@ -264,6 +264,7 @@ namespace ParkingUserInterface
                         myControllerAccount.RegisterAccount(newAccount);
 
                         MessageBox.Show("Account registered successfully");
+                        goPrincipal();
                     }
                     catch (LogicException a)
                     {
@@ -282,6 +283,7 @@ namespace ParkingUserInterface
                         {
                             myControllerAccount.AddAmountBalanceUru(valueTextBox2, valueTextBox1);
                             MessageBox.Show("Balance added successfully");
+                            goPrincipal();
                         }
                         else
                         {
@@ -309,11 +311,13 @@ namespace ParkingUserInterface
                         {
                             myControllerPurchase.BuyParkingPurchaseUru(valueTextBox2, valueTextBox1);
                             MessageBox.Show("Successful purchase");
+                            goPrincipal();
                         }
                         else
                         {
                             myControllerPurchase.BuyParkingPurchaseArg(valueTextBox2, valueTextBox1);
                             MessageBox.Show("Successful purchase");
+                            goPrincipal();
                         }
 
                     }
@@ -332,6 +336,7 @@ namespace ParkingUserInterface
                         bool contain = myControllerPurchase.ContainPurchaseInHour(valueTextBox1, valueTextBox2);
 
                         MessageBox.Show("Purchase success");
+                        goPrincipal();
 
                     }
                     catch (LogicException a)
@@ -351,10 +356,14 @@ namespace ParkingUserInterface
                         if (Country == "Uruguay")
                         {
                             myControllerPurchase.ChangeValueMinuteUru(valueTextBox1);
+                            MessageBox.Show("cost changed successfully");
+                            goPrincipal();
                         }
                         else
                         {
                             myControllerPurchase.ChangeValueMinuteArg(valueTextBox1);
+                            MessageBox.Show("cost changed successfully");
+                            goPrincipal();
                         }
 
                     }
