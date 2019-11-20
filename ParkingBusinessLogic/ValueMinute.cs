@@ -1,5 +1,6 @@
 ﻿using ParkingBusinessLogic.Exceptions;
 using System;
+using System.Linq;
 
 namespace ParkingBusinessLogic
 {
@@ -41,12 +42,10 @@ namespace ParkingBusinessLogic
 
         public void ChangeValue(string NewValue)
         {
-            try
-            {
+            if (NewValue.All(char.IsDigit) && Int32.Parse(NewValue)>0 ) { 
                 valuePerMinutes = Int32.Parse(NewValue.Trim());
             }
-
-            catch
+            else
             {
                 throw new NegativeNumberException();
             }

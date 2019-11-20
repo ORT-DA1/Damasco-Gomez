@@ -40,6 +40,13 @@ namespace TestParkingBusinessLogic
             int Output = myValue.ValuePerMinutes;
             Assert.AreEqual(NewValue, Output);
         }
+        [TestMethod]
+        [ExpectedException(typeof(NegativeNumberException))]
+        public void TestChangeValueFail()
+        {
+            int NewValue = -400;
+            myValue.ChangeValue(NewValue.ToString());
+        }
 
     }
 }

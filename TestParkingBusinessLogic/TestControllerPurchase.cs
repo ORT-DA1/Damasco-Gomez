@@ -250,6 +250,17 @@ namespace TestParkingBusinessLogic
             Assert.AreEqual(0,output);
         }
         [TestMethod]
+        public void TestContainPurchaseFailUru4()
+        {
+            string license = "SBN1234";
+            string initHour = "11:00";
+            string finHour = "17:00";
+            string day = "12-10";
+            myController.RegisterPurchaseUru(txtUru, numUru);
+            int output = myController.ContainPurchase(license, initHour, finHour, day).Count();
+            Assert.AreEqual(0, output);
+        }
+        [TestMethod]
         public void TestContainPurchaseFailArg()
         {
             string license = "SBN2345";

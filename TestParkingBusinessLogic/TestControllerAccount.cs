@@ -1,6 +1,7 @@
 ﻿using EFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
+using ParkingBusinessLogic.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -54,6 +55,54 @@ namespace TestParkingBusinessLogic
             Account expected = myController.FindAccountByNum("12345678");
             Assert.AreEqual(wanted.Number, expected.Number);
 
+        }
+        [TestMethod]
+        public void TestAddAmountBalanceUru()
+        {
+            string numUru = "098 34 56 76";
+            int initBalance = 110;
+            int addBalance = 220;
+            int finalBalance = initBalance + addBalance;
+            Account wanted = new AccountUruguay(numUru, initBalance.ToString());
+            myController.RegisterAccount(wanted);
+            myController.AddAmountBalanceUru(numUru, addBalance.ToString());
+            Assert.AreEqual(finalBalance, wanted.Balance);
+
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NegativeNumberException))]
+        public void TestAddAmountBalanceUruFail()
+        {
+            string numUru = "098 34 56 76";
+            int initBalance = 110;
+            int addBalance = -220;
+            Account wanted = new AccountUruguay(numUru, initBalance.ToString());
+            myController.RegisterAccount(wanted);
+            myController.AddAmountBalanceArg(numUru, addBalance.ToString());
+        }
+        [TestMethod]
+        public void TestAddAmountBalanceArg()
+        {
+            string numArg = "12345678";
+            int initBalance = 110;
+            int addBalance = 220;
+            int finalBalance = initBalance + addBalance;
+            Account wanted = new AccountArgentina(numArg, initBalance.ToString());
+            myController.RegisterAccount(wanted);
+            myController.AddAmountBalanceArg(numArg, addBalance.ToString());
+            Assert.AreEqual(finalBalance, wanted.Balance);
+
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NegativeNumberException))]
+        public void TestAddAmountBalanceArgFail()
+        {
+            string numArg = "123456-78";
+            int initBalance = 110;
+            int addBalance = -220;
+            Account wanted = new AccountArgentina(numArg, initBalance.ToString());
+            myController.RegisterAccount(wanted);
+            myController.AddAmountBalanceUru(numArg, addBalance.ToString());
         }
         [TestCleanup]
         public void FinishTest()
