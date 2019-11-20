@@ -11,5 +11,7 @@ namespace ContractDataBase
         public T FindAccountByNumber(string num);
 
         public void DisposeMyContext();
+
+        public void Update();
     }
 }

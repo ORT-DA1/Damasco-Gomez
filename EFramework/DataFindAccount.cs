@@ -31,5 +31,9 @@ namespace EFramework
             }
             return myA;
         }
+        public void Update()
+        {
+            Context.SaveChanges();
+        }
     }
 }

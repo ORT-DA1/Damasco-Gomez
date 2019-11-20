@@ -306,30 +306,43 @@ namespace ParkingUserInterface
                 }
                 if (Action == "BuyParking")
                 {
-                    try
-                    {
+                   
                         InitControllerPurchase();
 
                         if (Country == "Uruguay")
                         {
-                            myControllerPurchase.BuyParkingPurchaseUru(valueTextBox2, valueTextBox1);
-                            MessageBox.Show("Successful purchase");
-                            goPrincipal();
+                            try
+                            {
+                                myControllerPurchase.BuyParkingPurchaseUru(valueTextBox2, valueTextBox1);
+                                MessageBox.Show("Successful purchase");
+                                goPrincipal();
+                            }
+                            catch (LogicException a)
+                            {
+                                MessageBox.Show(a.Message);
+                            }
+
                         }
                         else
                         {
-                            myControllerPurchase.BuyParkingPurchaseArg(valueTextBox2, valueTextBox1);
-                            MessageBox.Show("Successful purchase");
-                            goPrincipal();
+                            try
+                            {
+                                myControllerPurchase.BuyParkingPurchaseArg(valueTextBox2, valueTextBox1);
+                                MessageBox.Show("Successful purchase");
+                                goPrincipal();
+                            }
+                            catch (LogicException a)
+                            {
+                                MessageBox.Show(a.Message);
+                            }
+
+
                         }
 
                     }
-                    catch (LogicException a)
-                    {
-                        MessageBox.Show(a.Message);
-                    }
+                   
 
-                }
+                
                 if (Action == "CheckParking")
                 {
                     try

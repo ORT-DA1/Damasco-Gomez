@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,10 @@ namespace EFramework
             catch (UpdateException e)
             {
                 throw new DataBaseException(sameAccount); //has account with number
+            }
+            catch (DbUpdateException e)
+            {
+                throw new DataBaseException(sameAccount);
             }
         }
         public void DeleteDataBase()
