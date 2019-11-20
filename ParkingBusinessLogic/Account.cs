@@ -107,10 +107,21 @@ namespace ParkingBusinessLogic
             {
                 return false;
             }
-
+            
+        }
+        public string ValidateAndFormat(string num, string formatNum)
+        {
+            if (ValidateFormatNum(num))
+            {
+                string number = FormatNum(num);
+                return number;
+            }
+            else
+            {
+                throw new ExceptionNumberIncorrectFormat(formatNum);
+            }
         }
 
- 
 
     }
 }

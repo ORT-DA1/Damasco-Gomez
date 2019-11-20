@@ -12,21 +12,23 @@ namespace ParkingBusinessLogic
 {
     public class ControllerAccount
     {
-        public IDataAccessAccount<Account> dataAccessAccount;
+        public IDataAccess<Account> dataAccessAccount { get; set; }
+        public IFindAccount<Account> dataFindAccount { get; set; }
 
-        public ControllerAccount(IDataAccessAccount<Account> dataAccess)
+        public ControllerAccount(IDataAccess<Account> dataInsert, IFindAccount<Account> dataFind)
         {
-            dataAccessAccount = dataAccess;
+            dataAccessAccount = dataInsert;
+            dataFindAccount = dataFind;
         }
         public bool RegisterAccount(Account account)
         {
-            dataAccessAccount.InsertAccount(account);
+            dataAccessAccount.Insert(account);
             return true;
 
         }
         public Account FindAccountByNum(string num)
         {
-            Account myA = dataAccessAccount.FindAccountByNumber(num);
+            Account myA = dataFindAccount.FindAccountByNumber(num);
             return myA;
         }
 

@@ -1,4 +1,5 @@
 ﻿using ContractDataBase;
+using ParkingBusinessLogic.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,18 +13,42 @@ namespace ParkingBusinessLogic
         public ValueMinute valueOfMinuteUru { get; set; }
         public ValueMinute valueOfMinuteArg { get; set; }
 
-        public IDataAccessPurchase<Purchase> dataAccessPurchase;
-        public IDataAccessAccount<Account> dataAccessAccount;
+        public IDataAccess<Purchase> dataAccessPurchase { get; set; }
+        public IDataAccess<Account> dataAccessAccount { get; set; }
+        public IFindAccount<Account> dataFindAccount { get; set; }
+        public IFindPurchase<Purchase> dataFindPurchase { get; set; }
 
-        public ControllerPurchase()
+        const string correctNumUruguay = "098 786 898 or 98 765 678";
+        const string correctNumArgentina = "123-456-78 or 12345678";
+
+        public ControllerPurchase(IDataAccess<Purchase> accessPurchase, IDataAccess<Account> accessAccount, 
+            IFindAccount<Account> findAccount, IFindPurchase<Purchase> findPurchase)
         {
+            dataAccessPurchase = accessPurchase;
+            dataAccessAccount = accessAccount;
+            dataFindAccount = findAccount;
+            dataFindPurchase = findPurchase;
             valueOfMinuteUru = new ValueMinute();
             valueOfMinuteArg = new ValueMinute();
         }
-        public bool RegisterPurchase(Purchase purchase)
+        public Purchase RegisterPurchaseUru(string txtUru, string num)
         {
-            dataAccessPurchase.InsertPurchase(purchase);
-            return true;
+            Account account = new AccountUruguay();
+            num = account.ValidateAndFormat(num, correctNumUruguay);
+            account = dataFindAccount.FindAccountByNumber(num);
+            Purchase purchase = new PurchaseUruguay(txtUru, account);
+            dataAccessPurchase.Insert(purchase);
+            return purchase;
+        }
+        public Purchase RegisterPurchaseArg(string txtArg, string num)
+        {
+
+            Account account = new AccountArgentina();
+            num = account.ValidateAndFormat(num,correctNumArgentina);
+            account = dataFindAccount.FindAccountByNumber(num);
+            Purchase purchase = new PurchaseArgentina(txtArg, account);
+            dataAccessPurchase.Insert(purchase);
+            return purchase;
         }
         public void ChangeValueMinuteUru(int newValue)
         {
@@ -33,28 +58,32 @@ namespace ParkingBusinessLogic
         {
             valueOfMinuteArg.ChangeValue(newValue);
         }
-        public void BuyParkingPurchaseUru(string msg, Account myAccount)
+        public void BuyParkingPurchaseUru(string msg, string num)
         {
-            Account myA = dataAccessAccount.FindAccountByNumber(myAccount.Number);
-            Purchase myP = new PurchaseUruguay(msg, myA);
+            string formatNum = "098 898 987";
+            Account myA = new AccountUruguay();
+            myA = dataFindAccount.FindAccountByNumber(myA.ValidateAndFormat(num, formatNum));
+            
+            Purchase  myP = RegisterPurchaseUru(msg,num);
             FindAndDiscount(myA, myP);
-            RegisterPurchase(myP);
         }
-        public void BuyParkingPurchaseArg(string msg, Account myAccount)
+        public void BuyParkingPurchaseArg(string msg, string num)
         {
-            Account myA = dataAccessAccount.FindAccountByNumber(myAccount.Number);
-            Purchase myP = new PurchaseArgentina(msg, myA);
-            FindAndDiscount(myA, myP);
-            RegisterPurchase(myP);
+            string formatNum = "123-456-78";
+            Account myA = new AccountArgentina();
+            myA = dataFindAccount.FindAccountByNumber(myA.ValidateAndFormat(num, formatNum));
+            
+            Purchase myP = RegisterPurchaseArg(msg, num);
+            FindAndDiscount(myA, myP);            
         }
 
-        public void FindAndDiscount(Account account, Purchase purchase)
+        private void FindAndDiscount(Account account, Purchase purchase)
         {
             int amountToDiscont = FindAmountFromPurchase(purchase);
             account.DiscountBalance(amountToDiscont);
         }
 
-        public int FindAmountFromPurchase(Purchase purchase)
+        private int FindAmountFromPurchase(Purchase purchase)
         {
             MinuteParser minuteParser = new MinuteParserUruguay();
             int cantMinutes = minuteParser.CalculateCantMinutesFromPurchase(purchase.MyInitHour, purchase.MyFinHour);

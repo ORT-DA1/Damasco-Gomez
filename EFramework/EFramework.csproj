@@ -53,6 +53,8 @@
   <ItemGroup>
     <Compile Include="DataAccessAccount.cs" />
     <Compile Include="DataAccessPurchase.cs" />
+    <Compile Include="DataFindAccount.cs" />
+    <Compile Include="DataFindPurchase.cs" />
     <Compile Include="MyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,6 +68,10 @@
     <ProjectReference Include="..\ContractDataBase\ContractDataBase.csproj">
       <Project>{109CBAB0-1343-4968-A48D-682047E0A8BC}</Project>
       <Name>ContractDataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contracts\Contracts.csproj">
+      <Project>{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}</Project>
+      <Name>Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\ParkingBusinessLogic\ParkingBusinessLogic.csproj">
       <Project>{36A1DF78-CD90-4610-B474-ED203C1F5879}</Project>

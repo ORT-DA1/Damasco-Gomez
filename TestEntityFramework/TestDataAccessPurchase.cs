@@ -38,29 +38,14 @@ namespace TestEntityFramework
         [TestMethod]
         public void InsertPurchaseUru()
         {
-            myDA.InsertPurchase(myPurchaseUru);
+            myDA.Insert(myPurchaseUru);
         }
         [TestMethod]
         public void InsertPurchaseArg()
         {
-            myDA.InsertPurchase(myPurchaseArg);
+            myDA.Insert(myPurchaseArg);
         }
-        [TestMethod]
-        public void TestFindPurchaseUruByLicenseAndTime()
-        {
-            myDA.InsertPurchase(myPurchaseUru);
-            string license = "SBN1234";
-            List<Purchase> purchaseUruguay = myDA.FindPurchaseByLicense(license);
-            Assert.IsTrue(myPurchaseUru.ContainsLicense(purchaseUruguay, license));
-        }
-        [TestMethod]
-        public void TestFindPurchaseArgByLicenseAndTime()
-        {
-            myDA.InsertPurchase(myPurchaseArg);
-            string license = "SBN2345";
-            List<Purchase> purchaseArgentina = myDA.FindPurchaseByLicense(license);
-            Assert.IsTrue(myPurchaseArg.ContainsLicense(purchaseArgentina, license));
-        }
+        
 
 
         [TestCleanup]
