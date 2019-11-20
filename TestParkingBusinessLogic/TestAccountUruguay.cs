@@ -22,8 +22,10 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestAddBalanceCorrect()
         {
-            bool output = myAccount.AddBalance("200");
-            Assert.IsTrue(output);
+            int expected = 310 ;
+            myAccount.AddBalance("200");
+            int output = myAccount.Balance ;                
+            Assert.AreEqual(expected, output);
         }
 
         [TestMethod]

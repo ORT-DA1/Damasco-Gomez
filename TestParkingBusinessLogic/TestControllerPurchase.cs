@@ -152,7 +152,7 @@ namespace TestParkingBusinessLogic
             myController.BuyParkingPurchaseUru(txtUru, accountUru.Number);
             string license = "SBN1234";
             string dayToday = DateTime.Now.ToString("dd/MM");
-            string txt = dayToday+" 15:00";
+            string txt = dayToday+" 14:59";
             bool output = myController.ContainPurchaseInHour(license, txt);
         }
         [TestMethod]
@@ -182,6 +182,7 @@ namespace TestParkingBusinessLogic
             Assert.IsTrue(output);
         }
         [TestMethod]
+        [ExpectedException(typeof(NoPurchasewithDate))]
         public void TestContainPurchaseInHourFail()
         {
             numUru = "099155499";
@@ -192,7 +193,7 @@ namespace TestParkingBusinessLogic
             string dayToday = DateTime.Now.ToString("dd/MM");
             string txt = dayToday + " 17:40";
             bool output = myController.ContainPurchaseInHour(license, txt);
-            Assert.IsFalse(output);
+            
         }
         [TestMethod]
         public void TestContainPurchaseUru()

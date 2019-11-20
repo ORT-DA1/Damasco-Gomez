@@ -78,7 +78,7 @@ namespace TestParkingBusinessLogic
             int addBalance = -220;
             Account wanted = new AccountUruguay(numUru, initBalance.ToString());
             myController.RegisterAccount(wanted);
-            myController.AddAmountBalanceArg(numUru, addBalance.ToString());
+            myController.AddAmountBalanceUru(numUru, addBalance.ToString());
         }
         [TestMethod]
         public void TestAddAmountBalanceArg()
@@ -102,7 +102,7 @@ namespace TestParkingBusinessLogic
             int addBalance = -220;
             Account wanted = new AccountArgentina(numArg, initBalance.ToString());
             myController.RegisterAccount(wanted);
-            myController.AddAmountBalanceUru(numArg, addBalance.ToString());
+            myController.AddAmountBalanceArg(numArg, addBalance.ToString());
         }
         [TestCleanup]
         public void FinishTest()

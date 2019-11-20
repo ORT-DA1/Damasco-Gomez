@@ -35,19 +35,11 @@ namespace ParkingBusinessLogic
 
         
         
-        public bool AddBalance(string cant)
+        public void AddBalance(string cant)
         {
             int newBalance = ValidateAndFormatBalance(cant);
-            if (newBalance > 0)
-            {
-                int previosBalance = Balance;
-                Balance = previosBalance + newBalance;
-                return true;
-            }
-            else
-            {
-                throw new NegativeNumberException();
-            }
+            int previosBalance = Balance;
+            Balance = previosBalance + newBalance;          
 
         }
         public abstract bool ValidateFormatNum(string num);
