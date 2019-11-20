@@ -36,7 +36,7 @@ namespace TestParkingBusinessLogic
         public void TestChangeValue()
         {
             int NewValue = 400;
-            myValue.ChangeValue(NewValue);
+            myValue.ChangeValue(NewValue.ToString());
             int Output = myValue.ValuePerMinutes;
             Assert.AreEqual(NewValue, Output);
         }

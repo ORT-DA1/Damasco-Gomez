@@ -78,14 +78,14 @@ namespace TestParkingBusinessLogic
         public void TestChangeValueMinuteUru()
         {
             int newValue = 15;
-            myController.ChangeValueMinuteUru(newValue);
+            myController.ChangeValueMinuteUru(newValue.ToString());
             Assert.AreEqual(newValue, myController.valueOfMinuteUru.ValuePerMinutes);
         }
         [TestMethod]
         public void TestChangeValueMinuteArg()
         {
             int newValue = 15;
-            myController.ChangeValueMinuteArg(newValue);
+            myController.ChangeValueMinuteArg(newValue.ToString());
             Assert.AreEqual(newValue, myController.valueOfMinuteArg.ValuePerMinutes);
 
         }

@@ -41,8 +41,16 @@ namespace ParkingBusinessLogic
 
         public void ChangeValue(string NewValue)
         {
-            
-            valuePerMinutes = Int32.Parse(NewValue);
+            try
+            {
+                valuePerMinutes = Int32.Parse(NewValue.Trim());
+            }
+
+            catch
+            {
+                throw new NegativeNumberException();
+            }
+
         }
 
     }

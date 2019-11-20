@@ -22,7 +22,7 @@ namespace TestParkingBusinessLogic
         [TestMethod]
         public void TestAddBalanceCorrect()
         {
-            bool output = myAccount.AddBalance(200);
+            bool output = myAccount.AddBalance("200");
             Assert.IsTrue(output);
         }
 
@@ -30,7 +30,7 @@ namespace TestParkingBusinessLogic
         [ExpectedException(typeof(NegativeNumberException))]
         public void TestAddBalanceNegativeNumber()
         {
-            myAccount.AddBalance(-200);
+            myAccount.AddBalance("-200");
         }
 
 

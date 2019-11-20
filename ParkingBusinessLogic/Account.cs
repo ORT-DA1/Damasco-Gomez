@@ -114,7 +114,7 @@ namespace ParkingBusinessLogic
             }
             else
             {
-                throw new ExceptionNumberIncorrectFormat(balance);
+                throw new NegativeNumberException();
             }
         }
     }
