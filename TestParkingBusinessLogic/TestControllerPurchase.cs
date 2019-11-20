@@ -33,7 +33,7 @@ namespace TestParkingBusinessLogic
             DataFindPurchase findPurchase = new DataFindPurchase(myContext);
             myController = new ControllerPurchase(accessPurchase, accessAccount, findAccount, findPurchase);
             myController.dataAccessAccount.DeleteDataBase();
-
+            
             accountArg = new AccountArgentina(numArg, "1500");
             myController.dataAccessAccount.Insert(accountArg);
             accountUru = new AccountUruguay(numUru, "1000");
@@ -142,6 +142,97 @@ namespace TestParkingBusinessLogic
             accountArg = new AccountArgentina(numArg, "100");
             myController.dataAccessAccount.Insert(accountArg);
             myController.BuyParkingPurchaseArg(txtArg, numArg);
+        }
+
+        [TestMethod]
+        public void TestContainPurchaseUru()
+        {
+            string license = "SBN1234";
+            string initHour = "13:00";
+            string finHour = "15:00";
+            myController.RegisterPurchaseUru(txtUru, numUru);
+            bool output = myController.ContainPurchase(license,initHour,finHour);
+            Assert.IsTrue(output);
+        }
+        [TestMethod]
+        public void TestContainPurchaseArg()
+        {
+            string license = "SBN2345";
+            string initHour = "14:00";
+            string finHour = "16:00";
+            myController.RegisterPurchaseArg(txtArg, numArg);
+            bool output = myController.ContainPurchase(license, initHour, finHour);
+            Assert.IsTrue(output);
+        }
+        [TestMethod]
+        public void TestContainPurchaseFailUru()
+        {
+            string license = "SBN1234";
+            string initHour = "14:00";
+            string finHour = "15:00";
+            myController.RegisterPurchaseUru(txtUru, numUru);
+            bool output = myController.ContainPurchase(license, initHour, finHour);
+            Assert.IsFalse(output);
+        }
+        [TestMethod]
+        public void TestContainPurchaseFailUru2()
+        {
+            string license = "SBN1234";
+            string initHour = "13:00";
+            string finHour = "18:00";
+            myController.RegisterPurchaseUru(txtUru, numUru);
+            bool output = myController.ContainPurchase(license, initHour, finHour);
+            Assert.IsFalse(output);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NotPurchaseWithLicense))]
+        public void TestContainPurchaseFailUru3()
+        {
+            string license = "SBN1235";
+            string initHour = "13:00";
+            string finHour = "15:00";
+            myController.RegisterPurchaseUru(txtUru, numUru);
+            bool output = myController.ContainPurchase(license, initHour, finHour);
+            Assert.IsFalse(output);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(NotPurchaseWithLicense))]
+        public void TestContainPurchaseFailArg()
+        {
+            string license = "SBN1345";
+            string initHour = "14:00";
+            string finHour = "16:00";
+            myController.RegisterPurchaseArg(txtArg, numArg);
+            bool output = myController.ContainPurchase(license, initHour, finHour);
+            Assert.IsFalse(output);
+        }
+        [TestMethod]
+        public void TestContainPurchaseFailArg2()
+        {
+            string license = "SBN2345";
+            string initHour = "11:00";
+            string finHour = "16:00";
+            myController.RegisterPurchaseArg(txtArg, numArg);
+            bool output = myController.ContainPurchase(license, initHour, finHour);
+            Assert.IsFalse(output);
+
+        }
+        [TestMethod]
+        public void TestContainPurchaseFailArg3()
+        {
+            string license = "SBN2345";
+            string initHour = "14:00";
+            string finHour = "15:00";
+            myController.RegisterPurchaseArg(txtArg, numArg);
+            bool output = myController.ContainPurchase(license, initHour, finHour);
+            Assert.IsFalse(output);
+
+        }
+
+        [TestCleanup]
+        public void FinishTest()
+        {
+            myController.dataFindPurchase.DisposeMyContext();
         }
     }
 }

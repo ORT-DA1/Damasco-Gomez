@@ -91,6 +91,22 @@ namespace ParkingBusinessLogic
             return amountToDiscont;
         }
 
+        public bool ContainPurchase(string license, string initHour, string finHour)
+        {
+            bool itContains = false;
+            LicensePlateParser newParserLicense = new LicensePlateParser();
+            license = newParserLicense.FormatAndValidateLicensePlate(license);
+            initHour = initHour.Trim();
+            finHour = finHour.Trim();
+            List<Purchase> purchaseWithLicense = dataFindPurchase.FindPurchaseByLicense(license);
+            foreach (var purchase in purchaseWithLicense)
+            {
+                itContains = itContains ||
+                    (purchase.MyLicensePlate == license && purchase.MyInitHour == initHour && purchase.MyFinHour == finHour);
+            }
+            return itContains;
+        }
+
 
     }
 }

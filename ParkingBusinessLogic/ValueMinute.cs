@@ -43,9 +43,5 @@ namespace ParkingBusinessLogic
             valuePerMinutes = NewValue;
         }
 
-        public override string ToString()
-        {
-            return "Value is:" + ValuePerMinutes;
-        }
     }
 }

@@ -89,19 +89,7 @@ namespace ParkingBusinessLogic
 
 
         }
-        public bool AccountEmpty()
-        {
-
-            if (Number == "")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-            
-        }
+        
         public string ValidateAndFormat(string num, string formatNum)
         {
             if (ValidateFormatNum(num))

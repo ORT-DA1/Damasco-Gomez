@@ -200,20 +200,7 @@ namespace TestParkingBusinessLogic
             bool output = myAccount.DiscountBalance(amount);
 
         }
-        [TestMethod]
-        public void TestAccountEmptyTrue()
-        {
-
-            Account myAccount = new AccountUruguay();
-            bool expected = myAccount.AccountEmpty();
-            Assert.IsTrue(expected);
-        }
-        [TestMethod]
-        public void TestAccountEmptyFalse()
-        {
-            bool expected = myAccount.AccountEmpty();
-            Assert.IsFalse(expected);
-        }
+       
 
 
 

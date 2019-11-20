@@ -34,14 +34,7 @@ namespace TestEntityFramework
             myPurchaseArg = new PurchaseArgentina(msg2, myAccountArg2);
             myDAInsert.DeleteDataBase();
         }
-        [TestMethod]
-        public void TestFindPurchaseUruByLicense()
-        {
-            myDAInsert.Insert(myPurchaseUru);
-            string license = "SBN1234";
-            List<Purchase> purchaseUruguay = myDAFind.FindPurchaseByLicense(license);
-            Assert.IsTrue(myPurchaseUru.ContainsLicense(purchaseUruguay, license));
-        }
+        
         [TestMethod]
         [ExpectedException(typeof(NotPurchaseWithLicense))]
         public void TestFindPurchaseUruByLicenseFail()
@@ -49,14 +42,7 @@ namespace TestEntityFramework
             string license = "SBT1234";
             List<Purchase> purchaseUruguay = myDAFind.FindPurchaseByLicense(license);
         }
-        [TestMethod]
-        public void TestFindPurchaseArgByLicense()
-        {
-            myDAInsert.Insert(myPurchaseArg);
-            string license = "SBN2345";
-            List<Purchase> purchaseArgentina = myDAFind.FindPurchaseByLicense(license);
-            Assert.IsTrue(myPurchaseArg.ContainsLicense(purchaseArgentina, license));
-        }
+        
         [TestMethod]
         [ExpectedException(typeof(NotPurchaseWithLicense))]
         public void TestFindPurchaseArgByLicenseFail()

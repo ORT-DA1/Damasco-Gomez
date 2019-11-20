@@ -55,5 +55,10 @@ namespace TestParkingBusinessLogic
             Assert.AreEqual(wanted.Number, expected.Number);
 
         }
+        [TestCleanup]
+        public void FinishTest()
+        {
+            myController.dataFindAccount.DisposeMyContext();
+        }
     }
 }

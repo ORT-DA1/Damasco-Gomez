@@ -99,15 +99,7 @@ namespace ParkingBusinessLogic
             bool sameHourFinit = Int32.Parse(parserFin[0]) == Int32.Parse(parseCompare[0]) && Int32.Parse(parserFin[1]) > Int32.Parse(parseCompare[1]);
             return betweenHours || sameHourInit || sameHourFinit;
         }
-        public bool ContainsLicense(List<Purchase> obj, string license)
-        {
-            bool itContains = false;
-            foreach(var purchase in obj)
-            {
-                itContains = itContains || purchase.MyLicensePlate == license;
-            }
-            return itContains;
-        }
+        
         public override bool Equals(Object obj)
         {
             Purchase otherPurchase = (Purchase)obj;

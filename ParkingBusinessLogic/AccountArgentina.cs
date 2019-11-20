@@ -30,21 +30,7 @@ namespace ParkingBusinessLogic
             }
 
         }
-        public AccountArgentina(Guid id, String num, string balance)
-        {
-            if (ValidateFormatNum(num) && ValidateBalance(balance))
-            {
-                Id = id;
-                Number = FormatNum(num);
-                Balance = FormatBalance(balance);
-            }
-            else
-            {
-                throw new InvalidAccountArgentinaException();
-            }
-
-        }
-
+        
         public override string FormatNum(string num)
         {
             num = num.Replace("-", "").Trim();     

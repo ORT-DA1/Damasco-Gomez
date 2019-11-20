@@ -47,7 +47,6 @@
     <Compile Include="Account.cs" />
     <Compile Include="AccountArgentina.cs" />
     <Compile Include="AccountUruguay.cs" />
-    <Compile Include="Controller.cs" />
     <Compile Include="ControllerAccount.cs" />
     <Compile Include="ControllerPurchase.cs" />
     <Compile Include="DateParser.cs" />

@@ -30,19 +30,7 @@ namespace ParkingBusinessLogic
 
         }
 
-        public AccountUruguay(Guid id, String num, string balance)
-        {
-            if (ValidateFormatNum(num) && ValidateBalance(balance)) {
-                Id = id;
-                Number = FormatNum(num);
-                Balance = FormatBalance(balance);
-            }
-            else
-            {
-                throw new InvalidAccountUruguayException();
-            }
-
-        }
+        
 
         public override string FormatNum(string num)
         {
