@@ -43,21 +43,21 @@ namespace TestParkingBusinessLogic
             myPurchase = new PurchaseUruguay(text, emptyAccount);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextExceptionUruguay))]
+        [ExpectedException(typeof(InvalidTextException))]
         public void TestCreatePurchaseWrongTxt()
         {
             string text = "not there";
             myPurchase = new PurchaseUruguay(text, emptyAccount);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextExceptionUruguay))]
+        [ExpectedException(typeof(InvalidTextException))]
         public void TestCreatePurchaseWithWrongTime()
         {
             string text = "SBN 2208 150 19:00";
             myPurchase = new PurchaseUruguay(text, emptyAccount);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextExceptionUruguay))]
+        [ExpectedException(typeof(InvalidTextException))]
         public void TestCreatePurchaseWithWrongLincense1()
         {
             string text = "SBN P208 150 15:00";
@@ -65,14 +65,14 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextExceptionUruguay))]
+        [ExpectedException(typeof(InvalidTextException))]
         public void TestCreatePurchaseWithWrongLincense2()
         {
             string text = "SBN208 150 13:00";
             PurchaseUruguay myPurchase = new PurchaseUruguay(text, emptyAccount);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextExceptionUruguay))]
+        [ExpectedException(typeof(InvalidTextException))]
         public void TestCreatePurchaseWithWrongMinutes()
         {
             string text = "SBN208 170 13:00";

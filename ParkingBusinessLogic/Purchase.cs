@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Contracts;
+using ParkingBusinessLogic.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,34 @@ namespace ParkingBusinessLogic
              set
             {
                 myDay = DateTime.Now.ToString("dd-MM");
+            }
+        }
+        protected Purchase() { }
+
+        protected Purchase(string msg, Account myA, MinuteParser minuteParser)
+        {
+            try
+            {
+                Id = Guid.NewGuid();
+                DateParser dateParser = new DateParser();
+                string startTime = dateParser.GetTimeFromTxt(msg);
+                //MinuteParserUruguay minuteParser = new MinuteParserUruguay();
+                LicensePlateParser myParserLicense = new LicensePlateParser();
+                string licensePlate = myParserLicense.GetLicensePlate(msg);
+
+
+                string finishTime = AddMinHour(minuteParser.GetCantMinutes(msg), startTime);
+
+                MyAccount = myA;
+                MyLicensePlate = licensePlate;
+                MyDay = MyDay;
+                MyInitHour = startTime;
+                MyFinHour = finishTime;
+            }
+            catch (LogicException e)
+            {
+                throw new InvalidTextException();
+
             }
         }
 

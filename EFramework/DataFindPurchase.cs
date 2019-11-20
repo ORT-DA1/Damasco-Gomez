@@ -1,5 +1,6 @@
 ﻿using ContractDataBase;
 using ParkingBusinessLogic;
+using ParkingBusinessLogic.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,10 @@ namespace EFramework
             foreach (var purchase in purchases)
             {
                 myA.Add(purchase);
+            }
+            if (myA == null)
+            {
+                throw new NotPurchaseWithLicense();
             }
             return myA;
         }

@@ -1,6 +1,7 @@
 ﻿using EFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
+using ParkingBusinessLogic.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -28,10 +29,7 @@ namespace TestEntityFramework
             myAccountUru = new AccountUruguay("094485968", "100");
 
             myAccountArg = new AccountArgentina("123-456-78", "100");
-
-            myDAInsert.Context.Database.ExecuteSqlCommand("delete from Purchases;");
-            myDAInsert.Context.Database.ExecuteSqlCommand("delete from Accounts;");
-
+            myDAInsert.DeleteDataBase();
         }
 
         [TestMethod]
@@ -42,16 +40,28 @@ namespace TestEntityFramework
             Assert.AreEqual(myAccountUru.Number, accountUruguay.Number);
         }
         [TestMethod]
+        [ExpectedException(typeof(NotAccountException))]
+        public void TestFindAcccountUruByNumFail()
+        {
+            Account accountUruguay = myDAFind.FindAccountByNumber("094 485 968");
+        }
+        [TestMethod]
         public void TestFindAcccountArgByNum()
         {
             myDAInsert.Insert(myAccountArg);
             Account accountArgentina = myDAFind.FindAccountByNumber("12345678");
             Assert.AreEqual(myAccountArg.Number, accountArgentina.Number);
         }
+        [TestMethod]
+        [ExpectedException(typeof(NotAccountException))]
+        public void TestFindAcccountArgByNumFail()
+        {
+            Account accountArgentina = myDAFind.FindAccountByNumber("12345678");
+        }
         [TestCleanup]
         public void FinishTest()
         {
-            myDAInsert.DisposeMyContext();
+            myDAFind.DisposeMyContext();
         }
     }
 }

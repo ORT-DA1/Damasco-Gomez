@@ -24,6 +24,11 @@ namespace EFramework
 
         public void Insert(Account account)
         {
+<<<<<<< HEAD
+           
+                Context.Accounts.Add(account);
+                Context.SaveChanges();
+=======
             try
             {
                 Context.Accounts.Add(account);
@@ -37,6 +42,7 @@ namespace EFramework
             {
                 throw new DataBaseException(sameAccount); //has account with number
             }
+>>>>>>> dc3158536e84daa921f14383383fadaf91928ac9
         }
 
         public void DisposeMyContext()

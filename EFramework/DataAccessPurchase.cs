@@ -1,7 +1,10 @@
 ﻿using ContractDataBase;
 using ParkingBusinessLogic;
+using ParkingBusinessLogic.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.Entity.Core;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +13,9 @@ namespace EFramework
 {
     public class DataAccessPurchase : IDataAccess<Purchase>
     {
+        const string problemConnection = "the data base is not connected";
+        const string sameAccount = "you have an account with that number";
+
         public MyContext Context { get;  set; }
 
         public DataAccessPurchase(MyContext context)
@@ -23,8 +29,19 @@ namespace EFramework
 
         public void Insert(Purchase purchase)
         {
-            Context.Purchases.Add(purchase);
-            Context.SaveChanges();
+            try
+            {
+                Context.Purchases.Add(purchase);
+                Context.SaveChanges();
+            }
+            catch (DbException e)
+            {
+                throw new DataBaseException(problemConnection); // error d conexion
+            }
+            catch (UpdateException e)
+            {
+                throw new DataBaseException(sameAccount); //has account with number
+            }
         }
         public void DeleteDataBase()
         {
