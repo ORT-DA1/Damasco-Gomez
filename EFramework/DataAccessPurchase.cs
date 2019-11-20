@@ -31,6 +31,7 @@ namespace EFramework
         {
             try
             {
+
                 Context.Purchases.Add(purchase);
                 Context.SaveChanges();
             }

@@ -37,19 +37,19 @@ namespace TestEntityFramework
         [Ignore]
         [TestMethod]
         [ExpectedException(typeof(DbException))]
-        public void InsertAccountUruFailConnection()
+        public void TestInsertAccountUruFailConnection()
         {
             myDA.Insert(myAccountUru);
         }
         [TestMethod]
         [ExpectedException(typeof(DbUpdateException))]
-        public void InsertAccountUruFailEqual()
+        public void TestInsertAccountUruFailEqual()
         {
             myDA.Insert(myAccountUru);
             myDA.Insert(myAccountUru);
         }
         [TestMethod]
-        public void InsertAccountArg()
+        public void TestInsertAccountArg()
         {
             myDA.Insert(myAccountArg);
         }

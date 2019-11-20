@@ -130,7 +130,7 @@ namespace ParkingUserInterface
         {
             if (comboBoxCountry.Text == "")
             {
-                MessageBox.Show(new SelectCountryException().Message);
+                //MessageBox.Show(new SelectCountryException().Message);
                 return false;
             }
             else

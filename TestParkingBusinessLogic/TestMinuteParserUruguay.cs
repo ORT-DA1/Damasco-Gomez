@@ -26,14 +26,14 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextExceptionUruguay))]
+        [ExpectedException(typeof(InvalidTextException))]
         public void TestErrorGetMinutesUru()
         {
             string msg = ("wrong text");
             int output = myMinParUru.GetCantMinutes(msg);
         }
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextExceptionUruguay))]
+        [ExpectedException(typeof(InvalidTextException))]
         public void TestErrorGetMinutes2Uru()
         {
             string msg = ("ABC 1234 355 10:00");
@@ -74,7 +74,7 @@ namespace TestParkingBusinessLogic
         }
 
         [TestMethod]
-        [ExpectedException(typeof(InvalidTextExceptionUruguay))]
+        [ExpectedException(typeof(InvalidTextException))]
         public void TestParseTxtErrorUru()
         {
             string msg = ("ABC rwt");
