@@ -226,13 +226,14 @@ namespace ParkingUserInterface
         {
             try
             {
+                MyContext context = new MyContext();
+                ControllerAccount controllerAccount = new ControllerAccount(new DataAccessAccount(context), new DataFindAccount(context));
+                string number = textBoxChange1.Text;
+                string balance = textBoxChange2.Text;
                 if (Action == "AddAccount")
                 {
-                    MyContext context = new MyContext();
-                    ControllerAccount controllerAccount = new ControllerAccount(new DataAccessAccount(context), new DataFindAccount(context));
                     //ControllerPurchase controllerPurchase = new ControllerPurchase(new DataAccessPurchase(context),new DataAccessAccount(context),new DataFindAccount(context), new DataFindPurchase(context));
-                    string number = textBoxChange1.Text;
-                    string balance = textBoxChange2.Text;
+                    
                     Account newAccount = new AccountArgentina();
                     if (Country == "Uruguay")
                     {
@@ -244,9 +245,22 @@ namespace ParkingUserInterface
                     }
                     controllerAccount.RegisterAccount(newAccount);
                     MessageBox.Show("Account registered successfully");
+                    context.Dispose();
                 }
                 if (Action == "AddBalance")
                 {
+                    Account newAccount = new AccountArgentina();
+                    if (Country == "Uruguay")
+                    {
+                        newAccount = new AccountUruguay(number, balance);
+                    }
+                    else
+                    {
+                        newAccount = new AccountArgentina(number, balance);
+                    }
+                    controllerAccount.AddAmountBalance(number,balance);
+                    MessageBox.Show("Account registered successfully");
+                    context.Dispose();
 
                 }
                 if (Action == "BuyParking")

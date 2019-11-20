@@ -39,14 +39,16 @@ namespace ParkingBusinessLogic
         {
             return Int32.Parse(balance);
         }
-        
-        public bool AddBalance(int cant)
-        {
 
-            if (cant > 0)
+        
+        
+        public bool AddBalance(string cant)
+        {
+            int newBalance = ValidateAndFormatBalance(cant);
+            if (newBalance > 0)
             {
                 int previosBalance = Balance;
-                Balance = previosBalance + cant;
+                Balance = previosBalance + newBalance;
                 return true;
             }
             else
@@ -122,7 +124,18 @@ namespace ParkingBusinessLogic
             }
         }
 
-
+        public int ValidateAndFormatBalance(string balance)
+        {
+            if (ValidateBalance(balance))
+            {
+                int newBalance = FormatBalance(balance);
+                return newBalance;
+            }
+            else
+            {
+                throw new ExceptionNumberIncorrectFormat(balance);
+            }
+        }
     }
 }
 
