@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
@@ -33,10 +34,6 @@ namespace TestEntityFramework
             myFindAccount = new DataFindAccount(myContext);
             AccountUruguay myAccountUru2 = new AccountUruguay("098872898", "100");
             AccountArgentina myAccountArg2 = new AccountArgentina("234-456-78", "100");
-            myInsertAccount.Insert(myAccountUru2);
-            myInsertAccount.Insert(myAccountArg2);
-            Account findAccountUru = myFindAccount.FindAccountByNumber(myAccountUru2.Number);
-            Account findAccountArg = myFindAccount.FindAccountByNumber(myAccountUru2.Number);
             myPurchaseUru = new PurchaseUruguay(msg, myAccountUru2);
             myPurchaseArg = new PurchaseArgentina(msg2, myAccountArg2);
             myInsertPurchase.DeleteDataBase();
@@ -47,7 +44,7 @@ namespace TestEntityFramework
             myInsertPurchase.Insert(myPurchaseUru);
         }
         [TestMethod]
-        [ExpectedException(typeof(UpdateException))]
+        [ExpectedException(typeof(DbUpdateException))]
         public void InsertPurchaseUruFailSameInitHourAndLicense()
         {
             myInsertPurchase.Insert(myPurchaseUru);

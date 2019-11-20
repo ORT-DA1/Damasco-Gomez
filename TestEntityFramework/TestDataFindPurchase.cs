@@ -46,7 +46,7 @@ namespace TestEntityFramework
         [ExpectedException(typeof(NotPurchaseWithLicense))]
         public void TestFindPurchaseUruByLicenseFail()
         {
-            string license = "SBN1234";
+            string license = "SBT1234";
             List<Purchase> purchaseUruguay = myDAFind.FindPurchaseByLicense(license);
         }
         [TestMethod]
@@ -61,7 +61,7 @@ namespace TestEntityFramework
         [ExpectedException(typeof(NotPurchaseWithLicense))]
         public void TestFindPurchaseArgByLicenseFail()
         {
-            string license = "SBN2345";
+            string license = "SBN2349";
             List<Purchase> purchaseArgentina = myDAFind.FindPurchaseByLicense(license);
         }
         [TestCleanup]

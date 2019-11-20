@@ -37,7 +37,7 @@ namespace EFramework
             }
             catch (DbException e)
             {
-                throw new DataBaseException(problemConnection); // error d conexion
+                throw new DataBaseException(sameAccount); // error d conexion
             }
             catch (UpdateException e)
             {

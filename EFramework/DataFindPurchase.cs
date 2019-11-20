@@ -30,11 +30,15 @@ namespace EFramework
             {
                 myA.Add(purchase);
             }
-            if (myA == null)
+            if (myA.Count == 0)
             {
                 throw new NotPurchaseWithLicense();
+            } 
+            else
+            {
+                return myA;
             }
-            return myA;
+            
         }
     }
 }
