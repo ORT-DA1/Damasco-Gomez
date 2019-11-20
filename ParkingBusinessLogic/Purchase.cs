@@ -76,19 +76,7 @@ namespace ParkingBusinessLogic
 
         }
 
-        public bool ContainValues(string licensePlate, string date, string initTime)
-        {
-            bool result = false;
-            if (MyLicensePlate == licensePlate)
-            {
-                if ((MyDay == date) && CompareHours(MyInitHour, MyFinHour, initTime))
-                {
-                    result = true;
 
-                }
-            }
-            return result;
-        }
         public bool CompareHours(string initHour, string finHour, string compareHour)
         {
             string[] parserFin = finHour.Split(':');

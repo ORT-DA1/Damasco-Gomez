@@ -132,7 +132,7 @@ namespace TestParkingBusinessLogic
             numUru = "099155499";
             accountUru = new AccountUruguay(numUru, "10");
             myController.dataAccessAccount.Insert(accountUru);
-            myController.BuyParkingPurchaseUru(txtUru,accountUru.ValidateAndFormat(numUru, numUru));
+            myController.BuyParkingPurchaseUru(txtUru,accountUru.Number);
         }
         [TestMethod]
         [ExpectedException(typeof(InsufficientBalanceException))]
@@ -143,7 +143,57 @@ namespace TestParkingBusinessLogic
             myController.dataAccessAccount.Insert(accountArg);
             myController.BuyParkingPurchaseArg(txtArg, numArg);
         }
-
+        [TestMethod]
+        public void TestContainPurchaseInHour()
+        {
+            numUru = "099155499";
+            accountUru = new AccountUruguay(numUru, "1000");
+            myController.dataAccessAccount.Insert(accountUru);
+            myController.BuyParkingPurchaseUru(txtUru, accountUru.Number);
+            string license = "SBN1234";
+            string dayToday = DateTime.Now.ToString("dd/MM");
+            string txt = dayToday+" 15:00";
+            bool output = myController.ContainPurchaseInHour(license, txt);
+        }
+        [TestMethod]
+        public void TestContainPurchaseInHour2()
+        {
+            numUru = "099155499";
+            accountUru = new AccountUruguay(numUru, "1000");
+            myController.dataAccessAccount.Insert(accountUru);
+            myController.BuyParkingPurchaseUru(txtUru, accountUru.Number);
+            string license = "SBN1234";
+            string dayToday = DateTime.Now.ToString("dd/MM");
+            string txt = dayToday + " 13:00";
+            bool output = myController.ContainPurchaseInHour(license, txt);
+            Assert.IsTrue(output);
+        }
+        [TestMethod]
+        public void TestContainPurchaseInHour3()
+        {
+            numUru = "099155499";
+            accountUru = new AccountUruguay(numUru, "1000");
+            myController.dataAccessAccount.Insert(accountUru);
+            myController.BuyParkingPurchaseUru(txtUru, accountUru.Number);
+            string license = "SBN1234";
+            string dayToday = DateTime.Now.ToString("dd/MM");
+            string txt = dayToday + " 14:59";
+            bool output = myController.ContainPurchaseInHour(license, txt);
+            Assert.IsTrue(output);
+        }
+        [TestMethod]
+        public void TestContainPurchaseInHourFail()
+        {
+            numUru = "099155499";
+            accountUru = new AccountUruguay(numUru, "1000");
+            myController.dataAccessAccount.Insert(accountUru);
+            myController.BuyParkingPurchaseUru(txtUru, accountUru.Number);
+            string license = "SBN1234";
+            string dayToday = DateTime.Now.ToString("dd/MM");
+            string txt = dayToday + " 17:40";
+            bool output = myController.ContainPurchaseInHour(license, txt);
+            Assert.IsFalse(output);
+        }
         [TestMethod]
         public void TestContainPurchaseUru()
         {

@@ -239,33 +239,7 @@ namespace TestParkingBusinessLogic
             bool output = myPurchase.CompareHours(initHour, finitHour,otherHour);
             Assert.IsFalse(output);
         }
-        [TestMethod]
-        public void TestContainValuesTrue()
-        {
-            string licensePlate = "SBN2208";
-            string date = DateTime.Now.ToString("dd-MM");
-            string initTime = "12:00";
-            bool output = myPurchase.ContainValues(licensePlate, date, initTime);
-            Assert.IsTrue(output);
-        }
-        [TestMethod]
-        public void TestContainValuesFalse()
-        {
-            string licensePlate = "SBN2208";
-            string date = "11-11";
-            string initTime = "12:00";
-            bool output = myPurchase.ContainValues(licensePlate, date, initTime);
-            Assert.IsFalse(output);
-        }
-        [TestMethod]
-        public void TestContainValuesFalse2()
-        {
-            string licensePlate = "SBN2208";
-            string date = DateTime.Now.ToString("dd-MM");
-            string initTime = "15:00";
-            bool output = myPurchase.ContainValues(licensePlate, date, initTime);
-            Assert.IsFalse(output);
-        }
+        
         [TestMethod]
         public void TestEqualsTrue()
         {
