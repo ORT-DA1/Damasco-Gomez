@@ -27,7 +27,9 @@ namespace ParkingBusinessLogic
                 myDay = DateTime.Now.ToString("dd-MM");
             }
         }
-        protected Purchase() { }
+        public Purchase() 
+        {
+        }
 
         protected Purchase(string msg, Account myA, MinuteParser minuteParser)
         {
@@ -76,17 +78,6 @@ namespace ParkingBusinessLogic
 
         }
 
-
-        public bool CompareHours(string initHour, string finHour, string compareHour)
-        {
-            string[] parserFin = finHour.Split(':');
-            string[] parserIni = initHour.Split(':');
-            string[] parseCompare = compareHour.Split(':');
-            bool betweenHours = Int32.Parse(parserFin[0]) > Int32.Parse(parseCompare[0]) && Int32.Parse(parserIni[0]) < Int32.Parse(parseCompare[0]);
-            bool sameHourInit = Int32.Parse(parserIni[0]) == Int32.Parse(parseCompare[0]) && Int32.Parse(parserIni[1]) <= Int32.Parse(parseCompare[1]);
-            bool sameHourFinit = Int32.Parse(parserFin[0]) == Int32.Parse(parseCompare[0]) && Int32.Parse(parserFin[1]) > Int32.Parse(parseCompare[1]);
-            return betweenHours || sameHourInit || sameHourFinit;
-        }
         
         public override bool Equals(Object obj)
         {

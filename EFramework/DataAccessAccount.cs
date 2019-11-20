@@ -52,5 +52,15 @@ namespace EFramework
 
         }
 
+        public List<Account> AllData()
+        {
+            var listAccount = Context.Accounts;
+            List<Account> myAccounts = new List<Account>();
+            foreach(var a in listAccount)
+            {
+                myAccounts.Add(a);
+            }
+            return myAccounts;
+        }
     }
 }

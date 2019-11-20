@@ -100,12 +100,13 @@ namespace ParkingBusinessLogic
             DateParser dateParser = new DateParser();
             string day = dateParser.GetDayFromCheck(txt);
             string time = dateParser.GetTimeFromCheck(txt);
+            CompareValues compareValues = new CompareValues();
             bool resul = false;
             bool resulOfPurchase = false;
             foreach (var purchase in purchaseWithLicense)
             {
                 resulOfPurchase = (day == purchase.MyDay) &&
-                    purchase.CompareHours(purchase.MyInitHour, purchase.MyFinHour, time);
+                    compareValues.CompareHours(purchase.MyInitHour, purchase.MyFinHour, time);
                 resul = resul || resulOfPurchase;
             }
             if (!resul)

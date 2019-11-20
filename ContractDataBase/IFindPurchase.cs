@@ -11,6 +11,8 @@ namespace ContractDataBase
 
         public List<T> FindPurchaseByLicense(string license);
 
+        public List<T> FindPurchaseBetweenDate(string initDay, string finDay, string initHour, string finHour);
+
         public void DisposeMyContext();
     }
 }

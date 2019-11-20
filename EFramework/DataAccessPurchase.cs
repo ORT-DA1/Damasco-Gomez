@@ -50,5 +50,16 @@ namespace EFramework
             Context.Database.ExecuteSqlCommand("delete from Accounts;");
 
         }
+
+        public List<Purchase> AllData()
+        {
+            var listPurchase = Context.Purchases;
+            List<Purchase> myPurchases = new List<Purchase>();
+            foreach (var a in listPurchase)
+            {
+                myPurchases.Add(a);
+            }
+            return myPurchases;
+        }
     }
 }

@@ -26,19 +26,48 @@ namespace EFramework
         {
             List<Purchase> myA = new List<Purchase>();
             var purchases = Context.Purchases.Where(b => b.MyLicensePlate == license);
-            foreach (var purchase in purchases)
-            {
-                myA.Add(purchase);
-            }
-            if (myA.Count == 0)
+            
+            if (purchases == null)
             {
                 throw new NotPurchaseWithLicense();
             } 
             else
             {
+                foreach (var purchase in purchases)
+                {
+                    myA.Add(purchase);
+                }
                 return myA;
             }
             
         }
+
+        public List<Purchase> FindPurchaseBetweenDate(string initDay, string finDay, string initHour, string finHour)
+        {
+            List<Purchase> pur = new List<Purchase>();
+            CompareValues compareValues = new CompareValues();
+            var purchases = Context.Purchases.Where(b =>
+               compareValues.CompareDay(initDay, finDay, b.MyDay) &&
+               compareValues.CompareHours(initHour, finHour, b.MyInitHour) &&
+               compareValues.CompareHours(initHour, finHour, b.MyFinHour)
+            ) ;
+
+            if (purchases == null)
+            {
+                throw new NoPurchasewithDate();
+            }
+            else
+            {
+                foreach (var purchase in purchases)
+                {
+                    pur.Add(purchase);
+                }
+            }
+
+            
+            return pur;
+
+        }
+
     }
 }
