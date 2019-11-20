@@ -1,4 +1,9 @@
-﻿using System;
+﻿using ContractDataBase;
+using Contracts;
+using EFramework;
+using ParkingBusinessLogic;
+using ParkingBusinessLogic.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,8 +22,11 @@ namespace ParkingUserInterface
         private Button btnBack;
         private ComboBox comboBoxCountry2;
         private Label labelChange1;
+        private ControllerAccount myControllerAccount;
+        private ControllerPurchase myControllerPurchase;
+        private string Action { set; get; }
 
-        public SetAccions(string accion, string country)
+        public SetAccions(string action, string country)
         {
             InitializeComponent();
             labelChange2.Hide();
@@ -27,13 +35,15 @@ namespace ParkingUserInterface
             textBoxChange2.Hide();
             btnMoveAlong.Hide();
             Country = country;
+            Action = action;
             comboBoxCountry2.Items.Add("Uruguay");
             comboBoxCountry2.Items.Add("Argentina");
             comboBoxCountry2.Text = country;
+
             
            
 
-            if (accion=="AddAccount")
+            if (Action=="AddAccount")
             {
                 
                 labelChange1.Text = "Number";
@@ -46,7 +56,7 @@ namespace ParkingUserInterface
                 btnMoveAlong.Show();
             }
 
-            if (accion == "AddBalance")
+            if (Action == "AddBalance")
             {
                 labelChange1.Text = "Number";
                 labelChange1.Show();
@@ -57,7 +67,7 @@ namespace ParkingUserInterface
                 btnMoveAlong.Text = "Add Balance";
                 btnMoveAlong.Show();
             }
-            if (accion == "BuyParking")
+            if (Action == "BuyParking")
             {
                 labelChange1.Text = "Number";
                 labelChange1.Show();
@@ -68,7 +78,7 @@ namespace ParkingUserInterface
                 btnMoveAlong.Text = "Buy Parking";
                 btnMoveAlong.Show();
             }
-            if (accion == "CheckParking")
+            if (Action == "CheckParking")
             {
                 labelChange1.Text = "License Plate";
                 labelChange1.Show();
@@ -79,7 +89,7 @@ namespace ParkingUserInterface
                 btnMoveAlong.Text = "Check License";
                 btnMoveAlong.Show();
             }
-            if (accion == "SetCostParking")
+            if (Action == "SetCostParking")
             {
                 labelChange1.Text = "Cost Per Minute";
                 labelChange1.Show();
@@ -144,6 +154,7 @@ namespace ParkingUserInterface
             this.btnMoveAlong.TabIndex = 5;
             this.btnMoveAlong.Text = "MoveAlong";
             this.btnMoveAlong.UseVisualStyleBackColor = true;
+            this.btnMoveAlong.Click += new System.EventHandler(this.BtnMoveAlong_Click);
             // 
             // btnBack
             // 
@@ -212,5 +223,96 @@ namespace ParkingUserInterface
         {
 
         }
+        private void InitControllerAccount()
+        {
+            MyContext context = new MyContext();
+            myControllerAccount = new ControllerAccount(new DataAccessAccount(context), new DataFindAccount(context));
+            
+        }
+        private void InitControllerPurchase()
+        {
+            MyContext context = new MyContext();
+            myControllerPurchase =  new ControllerPurchase(new DataAccessPurchase(context),new DataAccessAccount(context),new DataFindAccount(context), new DataFindPurchase(context));
+        }
+        private void BtnMoveAlong_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string valueTextBox1 = textBoxChange1.Text;
+                string valueTextBox2 = textBoxChange2.Text;
+                if (Action == "AddAccount")
+                {
+                    
+                    InitControllerAccount();
+                    Account newAccount = new AccountArgentina();
+                    if (Country == "Uruguay")
+                    {
+                        newAccount = new AccountUruguay(valueTextBox1, valueTextBox2);
+                    }
+                    else
+                    {
+                        newAccount = new AccountArgentina(valueTextBox1, valueTextBox2);
+                    }
+                    myControllerAccount.RegisterAccount(newAccount);
+
+                    MessageBox.Show("Account registered successfully");
+
+                    
+                }
+                if (Action == "AddBalance")
+                {
+                    InitControllerAccount();
+
+                    myControllerAccount.AddAmountBalance(valueTextBox2, valueTextBox1);
+
+                    MessageBox.Show("Balance added successfully");
+
+                }
+                if (Action == "BuyParking")
+                {
+                    InitControllerPurchase();
+
+                    if (Country == "Uruguay")
+                    {
+                        myControllerPurchase.BuyParkingPurchaseUru(valueTextBox2, valueTextBox1);
+                    }
+                    else
+                    {
+                        myControllerPurchase.BuyParkingPurchaseArg(valueTextBox2, valueTextBox1);
+                    }   
+
+                }
+                if (Action == "CheckParking")
+                {
+
+                }
+                if (Action == "SetCostParking")
+                {
+                    InitControllerPurchase();
+
+                    if (Country == "Uruguay")
+                    {
+                        myControllerPurchase.ChangeValueMinuteUru(valueTextBox1);
+                    }
+                    else
+                    {
+                        myControllerPurchase.ChangeValueMinuteArg(valueTextBox1);
+                    }
+                }
+            }
+            catch (DataBaseException f)
+            {
+                MessageBox.Show(new DataBaseException("account could not be registered").Message);
+            }
+            catch (LogicException d)
+            {
+
+            }
+            myControllerAccount.dataAccessAccount.DisposeMyContext();
+            myControllerPurchase.dataAccessPurchase.DisposeMyContext();
+
+        }
+
     }
 }

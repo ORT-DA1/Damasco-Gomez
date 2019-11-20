@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{36A1DF78-CD90-4610-B474-ED203C1F5879}</ProjectGuid>
+    <ProjectGuid>{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ParkingBusinessLogic</RootNamespace>
-    <AssemblyName>ParkingBusinessLogic</AssemblyName>
+    <RootNamespace>Contracts</RootNamespace>
+    <AssemblyName>Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -51,42 +51,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
-    <Compile Include="AccountArgentina.cs" />
-    <Compile Include="AccountUruguay.cs" />
-    <Compile Include="ControllerAccount.cs" />
-    <Compile Include="ControllerPurchase.cs" />
-    <Compile Include="DateParser.cs" />
-    <Compile Include="Exceptions\DataBaseException.cs" />
-    <Compile Include="Exceptions\ExceptionNumberIncorrectFormat.cs" />
-    <Compile Include="Exceptions\InsufficientBalanceException.cs" />
-    <Compile Include="Exceptions\InvalidAccountArgentinaException.cs" />
-    <Compile Include="Exceptions\InvalidTextException.cs" />
-    <Compile Include="Exceptions\InvalidAccountUruguayException.cs" />
-    <Compile Include="Exceptions\InvalidTextCheckException.cs" />
-    <Compile Include="Exceptions\NegativeNumberException.cs" />
-    <Compile Include="Exceptions\NotAccountException.cs" />
-    <Compile Include="Exceptions\NotPurchaseWithLicense.cs" />
-    <Compile Include="Exceptions\SelectCountryException.cs" />
-    <Compile Include="LicensePlateParser.cs" />
-    <Compile Include="MinuteParser.cs" />
-    <Compile Include="MinuteParserArgentina.cs" />
-    <Compile Include="MinuteParserUruguay.cs" />
+    <Compile Include="LogicException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Purchase.cs" />
-    <Compile Include="PurchaseArgentina.cs" />
-    <Compile Include="PurchaseUruguay.cs" />
-    <Compile Include="ValueMinute.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ContractDataBase\ContractDataBase.csproj">
-      <Project>{109CBAB0-1343-4968-A48D-682047E0A8BC}</Project>
-      <Name>ContractDataBase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Contracts\Contracts.csproj">
-      <Project>{EB8815BB-2763-4A50-BEDD-65C0B31EFA20}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -95,7 +61,11 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
+<<<<<<< HEAD
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+=======
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+>>>>>>> 75da3b8947ff2e63d615b25100f0473a89db2252
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />

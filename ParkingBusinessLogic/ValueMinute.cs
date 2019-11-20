@@ -1,4 +1,5 @@
 ﻿using ParkingBusinessLogic.Exceptions;
+using System;
 
 namespace ParkingBusinessLogic
 {
@@ -38,9 +39,10 @@ namespace ParkingBusinessLogic
 
         }
 
-        public void ChangeValue(int NewValue)
+        public void ChangeValue(string NewValue)
         {
-            valuePerMinutes = NewValue;
+            
+            valuePerMinutes = Int32.Parse(NewValue);
         }
 
     }
