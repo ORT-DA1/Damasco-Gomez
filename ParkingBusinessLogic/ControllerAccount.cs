@@ -31,8 +31,12 @@ namespace ParkingBusinessLogic
             Account myA = dataFindAccount.FindAccountByNumber(num);
             return myA;
         }
-
-
+        
+        public void AddAmountBalance(string number, string balance)
+        {
+            Account myAccount = dataFindAccount.FindAccountByNumber(number);
+            myAccount.AddBalance(balance);
+        }
 
     }
 }

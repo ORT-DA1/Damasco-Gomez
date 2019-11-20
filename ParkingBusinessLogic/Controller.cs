@@ -105,7 +105,7 @@ namespace ParkingBusinessLogic
 
         public void AddBalanceInAccount(Account MyAccount, int value)
         {
-            MyAccount.AddBalance(value);
+           // MyAccount.AddBalance(value);
         }
         public bool ChekPurchase(String licensePlate, String dateTime)
         {
