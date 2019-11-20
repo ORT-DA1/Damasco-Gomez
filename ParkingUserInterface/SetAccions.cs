@@ -285,7 +285,9 @@ namespace ParkingUserInterface
                 }
                 if (Action == "CheckParking")
                 {
+                    InitControllerPurchase();
 
+                    myControllerPurchase.ContainPurchaseInHour(valueTextBox1, valueTextBox2);
                 }
                 if (Action == "SetCostParking")
                 {
