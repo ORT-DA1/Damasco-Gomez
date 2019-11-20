@@ -1,4 +1,9 @@
-﻿using System;
+﻿using ContractDataBase;
+using Contracts;
+using EFramework;
+using ParkingBusinessLogic;
+using ParkingBusinessLogic.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,8 +22,9 @@ namespace ParkingUserInterface
         private Button btnBack;
         private ComboBox comboBoxCountry2;
         private Label labelChange1;
+        private string Action { set; get; }
 
-        public SetAccions(string accion, string country)
+        public SetAccions(string action, string country)
         {
             InitializeComponent();
             labelChange2.Hide();
@@ -27,13 +33,15 @@ namespace ParkingUserInterface
             textBoxChange2.Hide();
             btnMoveAlong.Hide();
             Country = country;
+            Action = action;
             comboBoxCountry2.Items.Add("Uruguay");
             comboBoxCountry2.Items.Add("Argentina");
             comboBoxCountry2.Text = country;
+
             
            
 
-            if (accion=="AddAccount")
+            if (Action=="AddAccount")
             {
                 
                 labelChange1.Text = "Number";
@@ -46,7 +54,7 @@ namespace ParkingUserInterface
                 btnMoveAlong.Show();
             }
 
-            if (accion == "AddBalance")
+            if (Action == "AddBalance")
             {
                 labelChange1.Text = "Number";
                 labelChange1.Show();
@@ -57,7 +65,7 @@ namespace ParkingUserInterface
                 btnMoveAlong.Text = "Add Balance";
                 btnMoveAlong.Show();
             }
-            if (accion == "BuyParking")
+            if (Action == "BuyParking")
             {
                 labelChange1.Text = "Number";
                 labelChange1.Show();
@@ -68,7 +76,7 @@ namespace ParkingUserInterface
                 btnMoveAlong.Text = "Buy Parking";
                 btnMoveAlong.Show();
             }
-            if (accion == "CheckParking")
+            if (Action == "CheckParking")
             {
                 labelChange1.Text = "License Plate";
                 labelChange1.Show();
@@ -79,7 +87,7 @@ namespace ParkingUserInterface
                 btnMoveAlong.Text = "Check License";
                 btnMoveAlong.Show();
             }
-            if (accion == "SetCostParking")
+            if (Action == "SetCostParking")
             {
                 labelChange1.Text = "Cost Per Minute";
                 labelChange1.Show();
@@ -144,6 +152,7 @@ namespace ParkingUserInterface
             this.btnMoveAlong.TabIndex = 5;
             this.btnMoveAlong.Text = "MoveAlong";
             this.btnMoveAlong.UseVisualStyleBackColor = true;
+            this.btnMoveAlong.Click += new System.EventHandler(this.BtnMoveAlong_Click);
             // 
             // btnBack
             // 
@@ -211,6 +220,56 @@ namespace ParkingUserInterface
         private void BtnUruguay2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnMoveAlong_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Action == "AddAccount")
+                {
+                    MyContext context = new MyContext();
+                    ControllerAccount controllerAccount = new ControllerAccount(new DataAccessAccount(context), new DataFindAccount(context));
+                    //ControllerPurchase controllerPurchase = new ControllerPurchase(new DataAccessPurchase(context),new DataAccessAccount(context),new DataFindAccount(context), new DataFindPurchase(context));
+                    string number = textBoxChange1.Text;
+                    string balance = textBoxChange2.Text;
+                    Account newAccount = new AccountArgentina();
+                    if (Country == "Uruguay")
+                    {
+                        newAccount = new AccountUruguay(number, balance);
+                    }
+                    else
+                    {
+                        newAccount = new AccountArgentina(number, balance);
+                    }
+                    controllerAccount.RegisterAccount(newAccount);
+                    MessageBox.Show("Account registered successfully");
+                }
+                if (Action == "AddBalance")
+                {
+
+                }
+                if (Action == "BuyParking")
+                {
+
+                }
+                if (Action == "CheckParking")
+                {
+
+                }
+                if (Action == "SetCostParking")
+                {
+
+                }
+            }
+            catch (DataBaseException f)
+            {
+                MessageBox.Show(new DataBaseException("account could not be registered").Message);
+            }
+            catch (LogicException d)
+            {
+
+            }
         }
     }
 }
