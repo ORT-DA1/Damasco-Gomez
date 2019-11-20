@@ -20,14 +20,7 @@ namespace ParkingBusinessLogic
             Balance = 0;
             Number = "";
         }
-        public Account (Guid id, string num, int balance)
-        {
-            Id = id;
-            Number = num;
-            Balance = balance;
-        }
-
-
+        
         public abstract string FormatNum(string num);
 
         public bool ValidateBalance(string balance)
@@ -98,19 +91,7 @@ namespace ParkingBusinessLogic
 
 
         }
-        public bool AccountEmpty()
-        {
-
-            if (Number == "")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-            
-        }
+        
         public string ValidateAndFormat(string num, string formatNum)
         {
             if (ValidateFormatNum(num))

@@ -22,8 +22,10 @@ namespace TestEntityFramework
         DataFindAccount myFindAccount;
         PurchaseUruguay myPurchaseUru;
         PurchaseArgentina myPurchaseArg;
-        string msg = "SBN1234 120 13:00";
-        string msg2 = "SBN2345 13:00 120";
+        Account myAccountUru;
+        Account myAccountArg;
+        string msgUru = "SBN1234 120 13:00";
+        string msgArg = "SBN2345 13:00 120";
 
         [TestInitialize]
         public void InitTest()
@@ -32,37 +34,66 @@ namespace TestEntityFramework
             myInsertPurchase = new DataAccessPurchase(myContext);
             myInsertAccount = new DataAccessAccount(myContext);
             myFindAccount = new DataFindAccount(myContext);
-            AccountUruguay myAccountUru2 = new AccountUruguay("098872898", "100");
-            AccountArgentina myAccountArg2 = new AccountArgentina("234-456-78", "100");
-            myPurchaseUru = new PurchaseUruguay(msg, myAccountUru2);
-            myPurchaseArg = new PurchaseArgentina(msg2, myAccountArg2);
+            myAccountUru = new AccountUruguay("098872898", "100");
+            myAccountArg = new AccountArgentina("234-456-78", "100");
+            myPurchaseUru = new PurchaseUruguay(msgUru, myAccountUru);
+            myPurchaseArg = new PurchaseArgentina(msgArg, myAccountArg);
             myInsertPurchase.DeleteDataBase();
         }
         [TestMethod]
-        public void InsertPurchaseUru()
+        public void TestInsertPurchaseUru()
         {
             myInsertPurchase.Insert(myPurchaseUru);
         }
         [TestMethod]
         [ExpectedException(typeof(DbUpdateException))]
-        public void InsertPurchaseUruFailSameInitHourAndLicense()
+        public void TestInsertPurchaseUruFailSameInitHourAndLicense()
         {
             myInsertPurchase.Insert(myPurchaseUru);
             myInsertPurchase.Insert(myPurchaseUru);
+        }
+        [TestMethod]
+        public void TestInsertPurchaseUruFailSameLicense()
+        {
+            myInsertPurchase.Insert(myPurchaseUru);
+            string newTxt = "SBN1234 30 10:00";
+            Purchase newPurchase = new PurchaseUruguay(newTxt,myAccountUru);
+            myInsertPurchase.Insert(newPurchase);
         }
         [Ignore]
         [TestMethod]
         [ExpectedException(typeof(DbException))]
-        public void InsertPurchaseUruFailConnection()
+        public void TestInsertPurchaseUruFailConnection()
         {
             myInsertPurchase.Insert(myPurchaseUru);
         }
         [TestMethod]
-        public void InsertPurchaseArg()
+        public void TestInsertPurchaseArg()
         {
             myInsertPurchase.Insert(myPurchaseArg);
         }
-        
+        [TestMethod]
+        [ExpectedException(typeof(DbUpdateException))]
+        public void TestInsertPurchaseArgFailSameInitHourAndLicense()
+        {
+            myInsertPurchase.Insert(myPurchaseArg);
+            myInsertPurchase.Insert(myPurchaseArg);
+        }
+        [TestMethod]
+        public void TestInsertPurchaseArgFailSameLicense()
+        {
+            myInsertPurchase.Insert(myPurchaseArg);
+            string newTxt = "SBN1234 10:00 23";
+            Purchase newPurchase = new PurchaseArgentina(newTxt, myAccountArg);
+            myInsertPurchase.Insert(newPurchase);
+        }
+        [Ignore]
+        [TestMethod]
+        [ExpectedException(typeof(DbException))]
+        public void TestInsertPurchaseArgFailConnection()
+        {
+            myInsertPurchase.Insert(myPurchaseArg);
+        }
 
 
         [TestCleanup]

@@ -33,7 +33,7 @@ namespace TestParkingBusinessLogic
             DataFindPurchase findPurchase = new DataFindPurchase(myContext);
             myController = new ControllerPurchase(accessPurchase, accessAccount, findAccount, findPurchase);
             myController.dataAccessAccount.DeleteDataBase();
-
+            
             accountArg = new AccountArgentina(numArg, "1500");
             myController.dataAccessAccount.Insert(accountArg);
             accountUru = new AccountUruguay(numUru, "1000");
@@ -142,6 +142,103 @@ namespace TestParkingBusinessLogic
             accountArg = new AccountArgentina(numArg, "100");
             myController.dataAccessAccount.Insert(accountArg);
             myController.BuyParkingPurchaseArg(txtArg, numArg);
+        }
+
+        [TestMethod]
+        public void TestContainPurchaseUru()
+        {
+            string license = "SBN1234";
+            string initHour = "13:00";
+            string finHour = "15:00";
+            string day = DateTime.Now.ToString("dd-MM");
+            myController.RegisterPurchaseUru(txtUru, numUru);
+            int output = myController.ContainPurchase(license,initHour,finHour,day).Count();
+            Assert.AreEqual(1,output);
+        }
+        [TestMethod]
+        public void TestContainPurchaseArg()
+        {
+            string license = "SBN2345";
+            string initHour = "14:00";
+            string finHour = "16:00";
+            string day = DateTime.Now.ToString("dd-MM");
+            myController.RegisterPurchaseArg(txtArg, numArg);
+            int output = myController.ContainPurchase(license, initHour, finHour, day).Count();
+            Assert.AreEqual(1,output);
+        }
+        [TestMethod]
+        public void TestContainPurchaseFailUru()
+        {
+            string license = "SBN1234";
+            string initHour = "14:00";
+            string finHour = "15:00";
+            string day = DateTime.Now.ToString("dd-MM");
+            myController.RegisterPurchaseUru(txtUru, numUru);
+            int output = myController.ContainPurchase(license, initHour, finHour, day).Count();
+            Assert.AreEqual(0,output);
+        }
+        [TestMethod]
+        public void TestContainPurchaseFailUru2()
+        {
+            string license = "SBN1234";
+            string initHour = "13:00";
+            string finHour = "18:00";
+            string day = DateTime.Now.ToString("dd-MM");
+            myController.RegisterPurchaseUru(txtUru, numUru);
+            int output = myController.ContainPurchase(license, initHour, finHour, day).Count();
+            Assert.AreEqual(0,output);
+        }
+        [TestMethod]
+        public void TestContainPurchaseFailUru3()
+        {
+            string license = "SBN1234";
+            string initHour = "13:00";
+            string finHour = "15:00";
+            string day = "11-10";
+            myController.RegisterPurchaseUru(txtUru, numUru);
+            int output = myController.ContainPurchase(license, initHour, finHour, day).Count();
+            Assert.AreEqual(0,output);
+        }
+        [TestMethod]
+        public void TestContainPurchaseFailArg()
+        {
+            string license = "SBN2345";
+            string initHour = "13:00";
+            string finHour = "16:00";
+            string day = DateTime.Now.ToString("dd-MM");
+            myController.RegisterPurchaseArg(txtArg, numArg);
+            int output = myController.ContainPurchase(license, initHour, finHour, day).Count();
+            Assert.AreEqual(0,output);
+        }
+        [TestMethod]
+        public void TestContainPurchaseFailArg2()
+        {
+            string license = "SBN2345";
+            string initHour = "14:00";
+            string finHour = "15:00";
+            string day = DateTime.Now.ToString("dd-MM");
+            myController.RegisterPurchaseArg(txtArg, numArg);
+            int output = myController.ContainPurchase(license, initHour, finHour, day).Count();
+            Assert.AreEqual(0,output);
+
+        }
+        [TestMethod]
+        public void TestContainPurchaseFailArg3()
+        {
+            string license = "SBN2345";
+            string initHour = "14:00";
+            string finHour = "16:00";
+            string day = "18-09";
+            myController.RegisterPurchaseArg(txtArg, numArg);
+            int output = myController.ContainPurchase(license, initHour, finHour, day).Count();
+            Assert.AreEqual(0,output);
+
+        }
+
+        [TestCleanup]
+        public void FinishTest()
+        {
+            myController.dataFindPurchase.DisposeMyContext();
         }
     }
 }

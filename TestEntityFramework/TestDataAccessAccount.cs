@@ -30,7 +30,7 @@ namespace TestEntityFramework
         }
 
         [TestMethod]
-        public void InsertAccountUru()
+        public void TestInsertAccountUru()
         {
             myDA.Insert(myAccountUru);
         }
@@ -53,7 +53,20 @@ namespace TestEntityFramework
         {
             myDA.Insert(myAccountArg);
         }
-
+        [Ignore]
+        [TestMethod]
+        [ExpectedException(typeof(DbException))]
+        public void TestInsertAccountArgFailConnection()
+        {
+            myDA.Insert(myAccountArg);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(DbUpdateException))]
+        public void TestInsertAccountArgFailEqual()
+        {
+            myDA.Insert(myAccountArg);
+            myDA.Insert(myAccountArg);
+        }
 
         [TestCleanup]
         public void FinishTest()

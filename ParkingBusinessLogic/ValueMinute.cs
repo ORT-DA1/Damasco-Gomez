@@ -45,9 +45,5 @@ namespace ParkingBusinessLogic
             valuePerMinutes = Int32.Parse(NewValue);
         }
 
-        public override string ToString()
-        {
-            return "Value is:" + ValuePerMinutes;
-        }
     }
 }
