@@ -272,6 +272,7 @@ namespace ParkingUserInterface
                 if (Action == "BuyParking")
                 {
                     InitControllerPurchase();
+
                     if (Country == "Uruguay")
                     {
                         myControllerPurchase.BuyParkingPurchaseUru(valueTextBox2, valueTextBox1);
