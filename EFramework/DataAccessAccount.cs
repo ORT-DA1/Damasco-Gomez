@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.Entity.Core;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,7 +34,7 @@ namespace EFramework
             {
                 throw new DataBaseException(problemConnection); // error d conexion
             }
-            catch (EntityException e)
+            catch (DbUpdateException e)
             {
                 throw new DataBaseException(sameAccount); //has account with number
             }
