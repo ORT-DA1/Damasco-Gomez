@@ -63,11 +63,10 @@ namespace ParkingUserInterface
 
         private void ReportInterfaceLoad(List<Purchase> list)
         {
-            foreach(var p in list)
-            {
-                listPurchases.Items.Add(p);
-            }
-            
+            listPurchases.DataSource = list;
+            listPurchases.Height = list.Count * 13;
+            this.Height = listPurchases.Height + 200;
+
         }
 
         private void ButtonFind_Click(object sender, EventArgs e)
