@@ -12,6 +12,51 @@ namespace TestParkingBusinessLogic
     [TestClass]
     public class TestReportController
     {
+        [TestMethod]
+        public void Test()
+        {
+
+        }
+        [TestMethod]
+        public void Test()
+        {
+
+        }
+        [TestMethod]
+        public void Test()
+        {
+
+        }
+        [TestMethod]
+        public void Test()
+        {
+
+        }
+        [TestMethod]
+        public void Test()
+        {
+
+        }
+        [TestMethod]
+        public void Test()
+        {
+
+        }
+        [TestMethod]
+        public void Test()
+        {
+
+        }
+        [TestMethod]
+        public void Test()
+        {
+
+        }
+        [TestMethod]
+        public void Test()
+        {
+
+        }
 
     }
 }

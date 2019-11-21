@@ -55,7 +55,6 @@ namespace EFramework
             Context.Database.ExecuteSqlCommand("delete from Accounts;");
 
         }
-<<<<<<< HEAD
 
         public List<Purchase> AllData()
         {
@@ -67,12 +66,12 @@ namespace EFramework
             }
             return myPurchases;
         }
-=======
+
+    
         public void Update()
         {
             Context.SaveChanges();
         }
 
->>>>>>> 85ff4a22d473e3404ba81ba917814dc98c2ca80b
     }
 }

@@ -27,7 +27,7 @@ namespace EFramework
             List<Purchase> myA = new List<Purchase>();
             var purchases = Context.Purchases.Where(b => b.MyLicensePlate == license);
             
-            if (purchases == null)
+            if (!purchases.Any())
             {
                 throw new NotPurchaseWithLicense();
             } 

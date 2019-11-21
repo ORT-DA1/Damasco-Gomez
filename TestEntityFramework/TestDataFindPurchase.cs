@@ -19,8 +19,10 @@ namespace TestEntityFramework
         DataFindPurchase myDAFind;
         PurchaseUruguay myPurchaseUru;
         PurchaseArgentina myPurchaseArg;
-        string msg = "SBN1234 120 13:00";
-        string msg2 = "SBN2345 13:00 120";
+        string msgUru = "SBN1234 120 13:00";
+        string msgArg = "SBN2345 13:00 120";
+        AccountUruguay myAccountUru2;
+        AccountArgentina myAccountArg2;
 
         [TestInitialize]
         public void InitTest()
@@ -28,18 +30,31 @@ namespace TestEntityFramework
             MyContext myContext = new MyContext();
             myDAInsert = new DataAccessPurchase(myContext);
             myDAFind = new DataFindPurchase(myContext);
-            AccountUruguay myAccountUru2 = new AccountUruguay("098872898", "100");
-            AccountArgentina myAccountArg2 = new AccountArgentina("234-456-78", "100");
-            myPurchaseUru = new PurchaseUruguay(msg, myAccountUru2);
-            myPurchaseArg = new PurchaseArgentina(msg2, myAccountArg2);
+            myAccountUru2 = new AccountUruguay("098872898", "100");
+            myAccountArg2 = new AccountArgentina("234-456-78", "100");
+            myPurchaseUru = new PurchaseUruguay(msgUru, myAccountUru2);
+            myPurchaseArg = new PurchaseArgentina(msgArg, myAccountArg2);
+            
+
             myDAInsert.DeleteDataBase();
         }
-        
+
+        [TestMethod]
+        public void TestInsertUru()
+        {
+            myDAInsert.Insert(myPurchaseUru);
+        }
+        [TestMethod]
+        public void TestInsertArg()
+        {
+            myDAInsert.Insert(myPurchaseArg);
+        }
+
         [TestMethod]
         [ExpectedException(typeof(NotPurchaseWithLicense))]
         public void TestFindPurchaseUruByLicenseFail()
         {
-            string license = "SBT1234";
+            string license = "SBT1239";
             List<Purchase> purchaseUruguay = myDAFind.FindPurchaseByLicense(license);
         }
         
@@ -50,6 +65,24 @@ namespace TestEntityFramework
             string license = "SBN2349";
             List<Purchase> purchaseArgentina = myDAFind.FindPurchaseByLicense(license);
         }
+
+        [TestMethod]
+        public void TestFindByLicense()
+        {
+            for (int i = 0; i<50; i=i+5)
+            {
+                msgUru = "SBN4567 120 13:0"+i;
+                msgArg = "SBN4567 13:0"+i+" 120";
+                myPurchaseUru = new PurchaseUruguay(msgUru, myAccountUru2);
+                myPurchaseArg = new PurchaseArgentina(msgArg, myAccountArg2);
+            }
+            
+            string license = "SBN4567";
+            int expected = 10;
+            List<Purchase> purchaseWithLicense = myDAFind.FindPurchaseByLicense(license);
+            Assert.AreEqual(expected, purchaseWithLicense.Count());
+        }
+       
         [TestCleanup]
         public void FinishTest()
         {
