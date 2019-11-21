@@ -17,13 +17,13 @@ namespace ParkingBusinessLogic
             string[] parserFin = finHour.Split(':');
             string[] parserIni = initHour.Split(':');
             string[] parseCompare = compareHour.Split(':');
-            bool betweenHours = Int32.Parse(parserIni[0]) < Int32.Parse(parseCompare[0]) && Int32.Parse(parserFin[0]) <= Int32.Parse(parseCompare[0]);
+            bool betweenHours = Int32.Parse(parserIni[0]) < Int32.Parse(parseCompare[0]) && Int32.Parse(parserFin[0]) > Int32.Parse(parseCompare[0]);
             bool sameHourInit = Int32.Parse(parserIni[0]) == Int32.Parse(parseCompare[0]) && Int32.Parse(parserIni[1]) <= Int32.Parse(parseCompare[1]);
             bool sameHourFinit = Int32.Parse(parserFin[0]) == Int32.Parse(parseCompare[0]) && Int32.Parse(parserFin[1]) > Int32.Parse(parseCompare[1]);
             return betweenHours || sameHourInit || sameHourFinit;
         }
 
-        public bool CompareDay(string initDay, string finDay, string compareDay)
+        public bool CompareDate(string initDay, string finDay, string compareDay)
         {
             string[] parseInitDay = initDay.Split('-');
             string[] parseFinDay = finDay.Split('-');

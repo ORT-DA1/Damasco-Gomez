@@ -2,13 +2,16 @@
 using ParkingBusinessLogic;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TestParkingBusinessLogic
 {
-    class TestCompareValues
+    [TestClass]
+    [ExcludeFromCodeCoverage]
+    public class TestCompareValues
     {
         private CompareValues compareValues;
         [TestInitialize]
@@ -71,13 +74,22 @@ namespace TestParkingBusinessLogic
             Assert.IsFalse(output);
         }
         [TestMethod]
-        public void TestCompareHoursFals3()
+        public void TestCompareHoursFalse3()
         {
             string initHour = "10:50";
             string finitHour = "11:11";
             string otherHour = "11:40";
             bool output = compareValues.CompareHours(initHour, finitHour, otherHour);
             Assert.IsFalse(output);
+        }
+        [TestMethod]
+        public void TestCompareDate()
+        {
+            string initDay = "12-01";
+            string finDay = "18-12";
+            string myDay = DateTime.Now.ToString("dd/MM");
+            bool output = compareValues.CompareDate(initDay, finDay, myDay);
+            Assert.IsTrue(output);
         }
     }
 }

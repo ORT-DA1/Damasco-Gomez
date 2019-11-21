@@ -27,7 +27,7 @@ namespace EFramework
             List<Purchase> myA = new List<Purchase>();
             var purchases = Context.Purchases.Where(b => b.MyLicensePlate == license);
             
-            if (!purchases.Any())
+            if (purchases.Count()==0)
             {
                 throw new NotPurchaseWithLicense();
             } 
@@ -47,7 +47,7 @@ namespace EFramework
             List<Purchase> pur = new List<Purchase>();
             CompareValues compareValues = new CompareValues();
             var purchases = Context.Purchases.Where(b =>
-               compareValues.CompareDay(initDay, finDay, b.MyDay) &&
+               compareValues.CompareDate(initDay, finDay, b.MyDay) &&
                compareValues.CompareHours(initHour, finHour, b.MyInitHour) &&
                compareValues.CompareHours(initHour, finHour, b.MyFinHour)
             ) ;

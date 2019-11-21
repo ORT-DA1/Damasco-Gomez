@@ -70,13 +70,32 @@ namespace TestEntityFramework
         public void TestFindByLicense()
         {
             msgUru = "SBN4567 120 13:00";
-            msgArg = "SBN4567 13:00 120";
+            msgArg = "SBN4567 15:00 120";
             myPurchaseUru = new PurchaseUruguay(msgUru, myAccountUru2);
             myPurchaseArg = new PurchaseArgentina(msgArg, myAccountArg2);
-
+            myDAInsert.Insert(myPurchaseUru);
+            myDAInsert.Insert(myPurchaseArg);
+            msgUru = "SBN4567 120 10:00";
+            msgArg = "SBN4567 11:00 120";
+            myPurchaseUru = new PurchaseUruguay(msgUru, myAccountUru2);
+            myPurchaseArg = new PurchaseArgentina(msgArg, myAccountArg2);
+            myDAInsert.Insert(myPurchaseUru);
+            myDAInsert.Insert(myPurchaseArg);
+            msgUru = "SBN4567 120 12:00";
+            msgArg = "SBN4567 14:00 120";
+            myPurchaseUru = new PurchaseUruguay(msgUru, myAccountUru2);
+            myPurchaseArg = new PurchaseArgentina(msgArg, myAccountArg2);
+            myDAInsert.Insert(myPurchaseUru);
+            myDAInsert.Insert(myPurchaseArg);
+            msgUru = "SBN4567 120 17:00";
+            msgArg = "SBN4567 16:00 120";
+            myPurchaseUru = new PurchaseUruguay(msgUru, myAccountUru2);
+            myPurchaseArg = new PurchaseArgentina(msgArg, myAccountArg2);
+            myDAInsert.Insert(myPurchaseUru);
+            myDAInsert.Insert(myPurchaseArg);
 
             string license = "SBN4567";
-            int expected = 2;
+            int expected = 8;
             List<Purchase> purchaseWithLicense = myDAFind.FindPurchaseByLicense(license);
             Assert.AreEqual(expected, purchaseWithLicense.Count());
         }
