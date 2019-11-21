@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ParkingBusinessLogic.Exceptions
 {
-    public class NotPurchaseWithLicense : LogicException
+    public class NotPurchaseFound : LogicException
     {
-        private static readonly string message = "There is not purchase with that license plate";
-        public NotPurchaseWithLicense() : base(message)
+        private static readonly string message = "There is not purchase with that content";
+        public NotPurchaseFound() : base(message)
         {
 
         }

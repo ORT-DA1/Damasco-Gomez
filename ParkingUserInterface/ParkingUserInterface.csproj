@@ -66,6 +66,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ReportInterface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportInterface.Designer.cs">
+      <DependentUpon>ReportInterface.cs</DependentUpon>
+    </Compile>
     <Compile Include="SetAccions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportInterface.resx">
+      <DependentUpon>ReportInterface.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SetAccions.resx">
       <DependentUpon>SetAccions.cs</DependentUpon>

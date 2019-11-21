@@ -78,12 +78,11 @@ namespace ParkingBusinessLogic
 
         }
 
-        
-        public override bool Equals(Object obj)
+
+        public override string ToString()
         {
-            Purchase otherPurchase = (Purchase)obj;
-            return (otherPurchase.MyLicensePlate == this.MyLicensePlate) &&
-                (otherPurchase.MyInitHour == this.MyInitHour) && (otherPurchase.MyFinHour == this.MyFinHour);
+
+            return this.MyLicensePlate + " " + this.MyInitHour + " " + this.MyFinHour + " ";// + this.MyAccount.Number;
         }
     }
 }

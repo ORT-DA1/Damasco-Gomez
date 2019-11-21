@@ -1,4 +1,5 @@
-﻿using ParkingBusinessLogic.Exceptions;
+﻿using Contracts;
+using ParkingBusinessLogic.Exceptions;
 using System;
 using System.Linq;
 
@@ -81,6 +82,18 @@ namespace ParkingBusinessLogic
 
             return auxReturn;
         }
+
+        public string ValidateAndFormatTime(string time)
+        {
+            if (ValidateTime(time))
+            {
+                return time;
+            }
+            else
+            {
+                throw new ExceptionIncorrectTime();
+            }
+        }
         public bool ValidateDateNumberFromCheck(string MyMonth, string MyDay)
         {
             int ThisDay = Int32.Parse(DateTime.Now.ToString("dd"));
@@ -88,6 +101,27 @@ namespace ParkingBusinessLogic
             int month = Int32.Parse(MyMonth);
             int day = Int32.Parse(MyDay);
             return (month <= ThisMonth) && (day <= ThisDay);
+        }
+        public string ValidateDateAndFormat(string DayAndMonth)
+        {
+            LogicException logicException = new ExpectionDayError();
+            
+            string[] dayAndMonth = DayAndMonth.Split('/');
+            if (DayAndMonth.Contains('/') && ValidateNumberArrayFromCheck(dayAndMonth))
+            {
+               int month = Int32.Parse(dayAndMonth[0]);
+               int day = Int32.Parse(dayAndMonth[1]);
+               if ((12 >= month) && (31 >= day))
+               {
+                   return dayAndMonth[0]+"-"+dayAndMonth[1];
+               }
+               else
+               {
+                   throw logicException;
+               }
+            }
+            else { throw logicException; }            
+            
         }
 
         public bool ValidateNumberArrayFromCheck(string[] stringArray)

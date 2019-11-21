@@ -27,7 +27,7 @@ namespace ParkingBusinessLogic
         {
             string[] parseInitDay = initDay.Split('-');
             string[] parseFinDay = finDay.Split('-');
-            string[] parseCompareDay = compareDay.Split('/');
+            string[] parseCompareDay = compareDay.Split('-');
             bool betweenDay = Int32.Parse(parseInitDay[1]) < Int32.Parse(parseCompareDay[1]) && Int32.Parse(parseFinDay[1]) > Int32.Parse(parseCompareDay[1]);
             bool sameInitDay = Int32.Parse(parseInitDay[1]) == Int32.Parse(parseCompareDay[1]) && Int32.Parse(parseInitDay[0]) <= Int32.Parse(parseCompareDay[0]);
             bool sameFinDay = Int32.Parse(parseFinDay[1]) == Int32.Parse(parseCompareDay[1]) && Int32.Parse(parseFinDay[0]) >= Int32.Parse(parseCompareDay[0]);

@@ -51,7 +51,7 @@ namespace TestEntityFramework
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NotPurchaseWithLicense))]
+        [ExpectedException(typeof(NotPurchaseFound))]
         public void TestFindPurchaseUruByLicenseFail()
         {
             string license = "SBT1239";
@@ -59,7 +59,7 @@ namespace TestEntityFramework
         }
         
         [TestMethod]
-        [ExpectedException(typeof(NotPurchaseWithLicense))]
+        [ExpectedException(typeof(NotPurchaseFound))]
         public void TestFindPurchaseArgByLicenseFail()
         {
             string license = "SBN2349";

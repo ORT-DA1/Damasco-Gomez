@@ -59,7 +59,9 @@
     <Compile Include="ControllerPurchase.cs" />
     <Compile Include="DateParser.cs" />
     <Compile Include="Exceptions\DataBaseException.cs" />
+    <Compile Include="Exceptions\ExceptionIncorrectTime.cs" />
     <Compile Include="Exceptions\ExceptionNumberIncorrectFormat.cs" />
+    <Compile Include="Exceptions\ExpectionDayError.cs" />
     <Compile Include="Exceptions\InsufficientBalanceException.cs" />
     <Compile Include="Exceptions\InvalidAccountArgentinaException.cs" />
     <Compile Include="Exceptions\InvalidTextException.cs" />
@@ -68,7 +70,7 @@
     <Compile Include="Exceptions\NegativeNumberException.cs" />
     <Compile Include="Exceptions\NoPurchasewithDate.cs" />
     <Compile Include="Exceptions\NotAccountException.cs" />
-    <Compile Include="Exceptions\NotPurchaseWithLicense.cs" />
+    <Compile Include="Exceptions\NotPurchaseFound.cs" />
     <Compile Include="Exceptions\SelectCountryException.cs" />
     <Compile Include="LicensePlateParser.cs" />
     <Compile Include="MinuteParser.cs" />

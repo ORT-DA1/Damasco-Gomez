@@ -29,7 +29,7 @@ namespace EFramework
             
             if (purchases.Count()==0)
             {
-                throw new NotPurchaseWithLicense();
+                throw new NotPurchaseFound();
             } 
             else
             {
@@ -46,26 +46,22 @@ namespace EFramework
         {
             List<Purchase> pur = new List<Purchase>();
             CompareValues compareValues = new CompareValues();
-            var purchases = Context.Purchases.Where(b =>
-               compareValues.CompareDate(initDay, finDay, b.MyDay) &&
-               compareValues.CompareHours(initHour, finHour, b.MyInitHour) &&
-               compareValues.CompareHours(initHour, finHour, b.MyFinHour)
-            ) ;
-
-            if (purchases == null)
+            var purchases = Context.Purchases;
+            foreach (var purchase in purchases)
+            {
+                if (compareValues.CompareDate(initDay, finDay, purchase.MyDay) &&
+                        compareValues.CompareHours(initHour, finHour, purchase.MyInitHour) &&
+                                compareValues.CompareHours(initHour, finHour, purchase.MyFinHour)) 
+                pur.Add(purchase);
+            }
+            if (pur.Count == 0)
             {
                 throw new NoPurchasewithDate();
             }
             else
             {
-                foreach (var purchase in purchases)
-                {
-                    pur.Add(purchase);
-                }
+                return pur;
             }
-
-            
-            return pur;
 
         }
 
