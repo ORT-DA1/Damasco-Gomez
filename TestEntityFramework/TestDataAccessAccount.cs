@@ -42,7 +42,7 @@ namespace TestEntityFramework
             myDA.Insert(myAccountUru);
         }
         [TestMethod]
-        [ExpectedException(typeof(DbUpdateException))]
+        [ExpectedException(typeof(DataBaseException))]
         public void TestInsertAccountUruFailEqual()
         {
             myDA.Insert(myAccountUru);
@@ -61,7 +61,7 @@ namespace TestEntityFramework
             myDA.Insert(myAccountArg);
         }
         [TestMethod]
-        [ExpectedException(typeof(DbUpdateException))]
+        [ExpectedException(typeof(DataBaseException))]
         public void TestInsertAccountArgFailEqual()
         {
             myDA.Insert(myAccountArg);

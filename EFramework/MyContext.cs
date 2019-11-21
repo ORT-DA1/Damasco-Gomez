@@ -26,7 +26,7 @@ namespace EFramework
 
             modelBuilder.Entity<Account>().HasKey(a => a.Number);
             //modelBuilder.Entity<Purchase>().
-            modelBuilder.Entity<Purchase>().HasKey(p => new { p.MyLicensePlate, p.MyInitHour });
+            modelBuilder.Entity<Purchase>().HasKey(p => new { p.MyLicensePlate, p.MyInitHour, p.MyDay });
         }
        }
 }

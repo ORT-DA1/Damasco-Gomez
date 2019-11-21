@@ -9,14 +9,10 @@ namespace ParkingBusinessLogic
 {
     public class ReportController
     {
-        private IDataAccess<Purchase> DataAccessPurchase { get; set; }
-        private IFindAccount<Account> DataFindAccount { get; set; }
         private IFindPurchase<Purchase> DataFindPurchase { get; set; }
 
-        public ReportController( IDataAccess<Purchase> dataPurchase , IFindAccount<Account> findAccount, IFindPurchase<Purchase> findPurchase)
+        public ReportController(IFindPurchase<Purchase> findPurchase)
         {
-            DataAccessPurchase = dataPurchase;
-            DataFindAccount = findAccount;
             DataFindPurchase = findPurchase;
         }
 

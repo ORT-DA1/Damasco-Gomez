@@ -1,6 +1,7 @@
 ﻿using EFramework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingBusinessLogic;
+using ParkingBusinessLogic.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -34,24 +35,16 @@ namespace TestEntityFramework
             myInsertPurchase = new DataAccessPurchase(myContext);
             myInsertAccount = new DataAccessAccount(myContext);
             myFindAccount = new DataFindAccount(myContext);
+
+            myInsertPurchase.DeleteDataBase();
+
             myAccountUru = new AccountUruguay("098872898", "100");
             myAccountArg = new AccountArgentina("234-456-78", "100");
             myPurchaseUru = new PurchaseUruguay(msgUru, myAccountUru);
             myPurchaseArg = new PurchaseArgentina(msgArg, myAccountArg);
-            myInsertPurchase.DeleteDataBase();
+
         }
-        [TestMethod]
-        public void TestInsertPurchaseUru()
-        {
-            myInsertPurchase.Insert(myPurchaseUru);
-        }
-        [TestMethod]
-        [ExpectedException(typeof(DbUpdateException))]
-        public void TestInsertPurchaseUruFailSameInitHourAndLicense()
-        {
-            myInsertPurchase.Insert(myPurchaseUru);
-            myInsertPurchase.Insert(myPurchaseUru);
-        }
+
         [TestMethod]
         public void TestInsertPurchaseUruFailSameLicense()
         {
@@ -73,14 +66,16 @@ namespace TestEntityFramework
             myInsertPurchase.Insert(myPurchaseArg);
         }
         [TestMethod]
-        [ExpectedException(typeof(DbUpdateException))]
+        [ExpectedException(typeof(DataBaseException))]
         public void TestInsertPurchaseArgFailSameInitHourAndLicense()
         {
+
+            myPurchaseArg = new PurchaseArgentina(msgArg, myAccountArg);
             myInsertPurchase.Insert(myPurchaseArg);
             myInsertPurchase.Insert(myPurchaseArg);
         }
         [TestMethod]
-        public void TestInsertPurchaseArgFailSameLicense()
+        public void TestInsertPurchaseArgSameLicense()
         {
             myInsertPurchase.Insert(myPurchaseArg);
             string newTxt = "SBN1234 10:00 23";

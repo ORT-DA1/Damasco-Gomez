@@ -154,6 +154,7 @@ namespace TestParkingBusinessLogic
             string dayToday = DateTime.Now.ToString("dd/MM");
             string txt = dayToday+" 14:59";
             bool output = myController.ContainPurchaseInHour(license, txt);
+            Assert.IsTrue(output);
         }
         [TestMethod]
         public void TestContainPurchaseInHour2()

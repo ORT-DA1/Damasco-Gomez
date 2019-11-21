@@ -69,16 +69,14 @@ namespace TestEntityFramework
         [TestMethod]
         public void TestFindByLicense()
         {
-            for (int i = 0; i<50; i=i+5)
-            {
-                msgUru = "SBN4567 120 13:0"+i;
-                msgArg = "SBN4567 13:0"+i+" 120";
-                myPurchaseUru = new PurchaseUruguay(msgUru, myAccountUru2);
-                myPurchaseArg = new PurchaseArgentina(msgArg, myAccountArg2);
-            }
-            
+            msgUru = "SBN4567 120 13:00";
+            msgArg = "SBN4567 13:00 120";
+            myPurchaseUru = new PurchaseUruguay(msgUru, myAccountUru2);
+            myPurchaseArg = new PurchaseArgentina(msgArg, myAccountArg2);
+
+
             string license = "SBN4567";
-            int expected = 10;
+            int expected = 2;
             List<Purchase> purchaseWithLicense = myDAFind.FindPurchaseByLicense(license);
             Assert.AreEqual(expected, purchaseWithLicense.Count());
         }

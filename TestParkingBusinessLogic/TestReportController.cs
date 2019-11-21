@@ -17,46 +17,7 @@ namespace TestParkingBusinessLogic
         {
 
         }
-        [TestMethod]
-        public void Test()
-        {
-
-        }
-        [TestMethod]
-        public void Test()
-        {
-
-        }
-        [TestMethod]
-        public void Test()
-        {
-
-        }
-        [TestMethod]
-        public void Test()
-        {
-
-        }
-        [TestMethod]
-        public void Test()
-        {
-
-        }
-        [TestMethod]
-        public void Test()
-        {
-
-        }
-        [TestMethod]
-        public void Test()
-        {
-
-        }
-        [TestMethod]
-        public void Test()
-        {
-
-        }
+        
 
     }
 }

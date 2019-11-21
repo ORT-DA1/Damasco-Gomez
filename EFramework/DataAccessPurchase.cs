@@ -15,7 +15,7 @@ namespace EFramework
     public class DataAccessPurchase : IDataAccess<Purchase>
     {
         const string problemConnection = "the data base is not connected";
-        const string sameAccount = "you have an account with that number";
+        const string samePurchase = "you have a purchase in that init hour";
 
         public MyContext Context { get;  set; }
 
@@ -38,15 +38,15 @@ namespace EFramework
             }
             catch (DbException e)
             {
-                throw new DataBaseException(sameAccount); // error d conexion
+                throw new DataBaseException(samePurchase); 
             }
             catch (UpdateException e)
             {
-                throw new DataBaseException(sameAccount); //has account with number
+                throw new DataBaseException(problemConnection); 
             }
             catch (DbUpdateException e)
             {
-                throw new DataBaseException(sameAccount);
+                throw new DataBaseException(samePurchase);
             }
         }
         public void DeleteDataBase()
